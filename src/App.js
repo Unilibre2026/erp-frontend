@@ -2089,7 +2089,7 @@ function PerfilesSugeridos() {
     try {
 
       const res = await fetch(
-        "http://127.0.0.1:8000/perfiles_sugeridos_indicador/cargar",
+        `${API_URL}/perfiles_sugeridos_indicador/cargar`,
         {
           method: "POST",
           body: formData
@@ -2127,7 +2127,7 @@ function PerfilesSugeridos() {
     try {
 
       const res = await fetch(
-        `http://127.0.0.1:8000/perfiles_sugeridos_indicador/${id}`,
+        `${API_URL}/perfiles_sugeridos_indicador/${id}`,
         {
           method: "DELETE"
         }
