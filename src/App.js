@@ -62,7 +62,7 @@ const cargarVacantes = async () => {
     setRoles(Array.isArray(lista) ? lista : []);
   } catch (error) {
     console.error(error);
-    setRoles([]);F
+    setRoles([]);
     
   }
 };
