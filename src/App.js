@@ -348,12 +348,18 @@ if (!usuario) {
           Cargar perfiles sugeridos por indicador
         </button>
 
+        <button onClick={() => setVista("usuarios")}>
+  Usuarios
+</button>
+
         <button
   onClick={logout}
   style={{ background: "red", color: "white", marginTop: "20px" }}
 >
   Cerrar sesión
 </button>
+
+
 
         
       </div>
@@ -370,6 +376,7 @@ if (!usuario) {
   {vista === "carga" && <CargaMasiva />}
   {vista === "convocatorias" && <Convocatorias />}
   {vista === "indicadores" && <Indicadores />}
+  {vista === "usuarios" && <Usuarios />}
 
   {vista === "Cargar observaciones de expertos" && (
     <ObservacionesExpertos />
