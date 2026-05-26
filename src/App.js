@@ -4,37 +4,133 @@ import logo from "./logo.png";
 
 const API_URL = "https://erp-unilibre-production.up.railway.app";
 
+
+function Login({ onLogin }) {
+  const [form, setForm] = useState({
+    usuario: "",
+    password: ""
+  });
+
+  const handleChange = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const login = async () => {
+    try {
+      const res = await fetch(`${API_URL}/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(form)
+      });
+
+      const data = await res.json();
+
+      if (!data.success) {
+        alert(data.mensaje);
+        return;
+      }
+
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("usuario", data.usuario);
+
+      onLogin(data.usuario);
+
+    } catch (error) {
+      console.error(error);
+      alert("Error en login");
+    }
+  };
+
+  return (
+    <div style={{ padding: "50px" }}>
+      <h2>Login</h2>
+
+      <input
+        name="usuario"
+        placeholder="Usuario"
+        onChange={handleChange}
+      />
+
+      <input
+        name="password"
+        type="password"
+        placeholder="Contraseña"
+        onChange={handleChange}
+      />
+
+      <button onClick={login}>
+        Entrar
+      </button>
+    </div>
+
+
+  );
+}
+
+
+
+
 /* =========================
    APP PRINCIPAL
 ========================= */
 
 function App() {
-  const [vista, setVista] = useState("formulario");
 
-  
+  const [usuario, setUsuario] = useState(null);
 
-  
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      setUsuario(localStorage.getItem("usuario"));
+    }
+  }, []);
+
+  // =========================
+  // AQUÍ VA EL LOGOUT
+  // =========================
+  const logout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("usuario");
+    setUsuario(null);
+  };
+
+const [vista, setVista] = useState("formulario");
   const [rolForm, setRolForm] = useState({
     convocatoria: "",
     rol: ""
   });
 
-  const [roles, setRoles] = useState([]);
-
+const [roles, setRoles] = useState([]);
   const [vacanteForm, setVacanteForm] = useState({
-  convocatoria: "",
-  indicador: "",
-  nivel: "",
-  rol: "",
-  num_expertos: ""
-});
+    convocatoria: "",
+    indicador: "",
+    nivel: "",
+    rol: "",
+    num_expertos: ""
+  }); 
+
+  
+  
 
 
 const [vacantes, setVacantes] = useState([]);
 
 const cargarVacantes = async () => {
   try {
-    const res = await fetch(`${API_URL}/vacantes`);
+    const token = localStorage.getItem("token");
+
+    const res = await fetch(`${API_URL}/vacantes`, {
+      headers: {
+        "Authorization": `Bearer ${token}`
+      }
+    });
+
     const data = await res.json();
 
     console.log("VACANTES:", data);
@@ -91,6 +187,8 @@ const guardarVacante = async () => {
     !vacanteForm.num_expertos
   ) {
     alert("Completa todos los campos");
+
+    
     return;
   }
 
@@ -198,11 +296,15 @@ const eliminarVacante = async (id) => {
   }
 };
 
-
+if (!usuario) {
+  return <Login onLogin={setUsuario} />;
+}
 
 
   return (
     <div className="container">
+
+    
 
       <div className="sidebar">
         <h2 className="titulo-sidebar">Reclutamiento</h2>
@@ -245,6 +347,13 @@ const eliminarVacante = async (id) => {
         <button onClick={() => setVista("Cargar perfiles sugeridos por indicador")}>
           Cargar perfiles sugeridos por indicador
         </button>
+
+        <button
+  onClick={logout}
+  style={{ background: "red", color: "white", marginTop: "20px" }}
+>
+  Cerrar sesión
+</button>
 
         
       </div>
