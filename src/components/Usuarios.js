@@ -83,7 +83,7 @@ export default function Usuarios() {
         placeholder="Área"
         value={form.area}
         onChange={handleChange}
-      />c
+      />
 
       <br /><br />
 
