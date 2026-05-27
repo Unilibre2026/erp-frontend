@@ -35,7 +35,9 @@ export default function Usuarios() {
     setForm({
       usuario: "",
       password: "",
-      nombre: ""
+      nombre: "",
+      area: "",
+      rol:
     });
 
   } catch (error) {
@@ -75,6 +77,25 @@ export default function Usuarios() {
 />
 
       <br /><br />
+
+      <input
+        name="area"
+        placeholder="Área"
+        value={form.area}
+        onChange={handleChange}
+      />
+
+      <br /><br />
+
+      <input
+        name="rol"
+        placeholder="Rol"
+        value={form.rol}
+        onChange={handleChange}
+      />
+
+      <br /><br />
+
 
       <button onClick={guardarUsuario}>
         Guardar usuario
