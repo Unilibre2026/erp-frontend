@@ -37,7 +37,7 @@ export default function Usuarios() {
       password: "",
       nombre: "",
       area: "",
-      rol:
+      rol: ""
     });
 
   } catch (error) {
@@ -83,7 +83,7 @@ export default function Usuarios() {
         placeholder="Área"
         value={form.area}
         onChange={handleChange}
-      />
+      />c
 
       <br /><br />
 
