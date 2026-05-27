@@ -88,6 +88,20 @@ onLogin(data.usuario);
 
 function App() {
 
+  const modulosPermitidos = JSON.parse(
+  localStorage.getItem("modulos") || "[]"
+);
+
+const esAdmin =
+  localStorage.getItem("usuario") === "admin";
+
+  const puedeVer = (modulo) => {
+    return (
+      esAdmin ||
+      modulosPermitidos.includes(modulo)
+    );
+  };
+
   const [usuario, setUsuario] = useState(null);
 
   useEffect(() => {
@@ -316,48 +330,67 @@ if (!usuario) {
       <div className="sidebar">
         <h2 className="titulo-sidebar">Reclutamiento</h2>
 
-        <button onClick={() => setVista("formulario")}>
-          Novedades
-        </button>
+        {puedeVer("formulario") && (
+  <button onClick={() => setVista("formulario")}>
+    Novedades
+  </button>
+)}
       
 
-        <button onClick={() => setVista("consulta")}>
-          Consultas
-        </button>
+        {puedeVer("consulta") && (
+  <button onClick={() => setVista("consulta")}>
+    Consultas
+  </button>
+)}
 
-        {/* 🔥 NUEVO MÓDULO EN SIDEBAR */}
-        <button onClick={() => setVista("carga")}>
-          Carga masiva de expertos
-        </button>
+        
+        {puedeVer("carga") && (
+  <button onClick={() => setVista("carga")}>
+    Carga masiva
+  </button>
+)}
 
 
-        <button onClick={() => setVista("convocatorias")}>
-          Crear convocatorias
-        </button>
+        {puedeVer("convocatorias") && (
+  <button onClick={() => setVista("convocatorias")}>
+    Crear convocatorias
+  </button>
+)}
 
-        <button onClick={() => setVista("indicadores")}>
-          Crear indicadores
-        </button>
+{puedeVer("indicadores") && (
+  <button onClick={() => setVista("indicadores")}>
+    Crear indicadores
+  </button>
+)}
 
-        <button onClick={() => setVista("Crear rol")}>
-          Crear rol
-        </button>
+{puedeVer("roles") && (
+  <button onClick={() => setVista("Crear rol")}>
+    Crear rol
+  </button>
+)}
 
-        <button onClick={() => setVista("Autorizar vacantes")}>
-          Autorizar vacantes
-        </button>
+{puedeVer("vacantes") && (
+  <button onClick={() => setVista("Autorizar vacantes")}>
+    Autorizar vacantes
+  </button>
+)}
 
-        <button onClick={() => setVista("Cargar observaciones de expertos")}>
-          Cargar observaciones de expertos
-        </button>
+{puedeVer("observaciones_expertos") && (
+  <button onClick={() => setVista("Cargar observaciones de expertos")}>
+    Cargar observaciones de expertos
+  </button>
+)}
 
-        <button onClick={() => setVista("Cargar perfiles sugeridos por indicador")}>
-          Cargar perfiles sugeridos por indicador
-        </button>
-
-        <button onClick={() => setVista("usuarios")}>
-  Usuarios
-</button>
+{puedeVer("perfiles_sugeridos_indicador") && (
+  <button onClick={() => setVista("Cargar perfiles sugeridos por indicador")}>
+    Cargar perfiles sugeridos por indicador
+  </button>
+)}
+        {puedeVer("usuarios") && (
+  <button onClick={() => setVista("usuarios")}>
+    Usuarios
+  </button>
+)}
 
 
 <button onClick={() => setVista("permisos_modulos")}>
