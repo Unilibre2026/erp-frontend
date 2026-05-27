@@ -3,10 +3,10 @@ import React, { useState } from "react";
 
 export default function Usuarios() {
   const [form, setForm] = useState({
-    usuario: "",
-    password: "",
-    rol: ""
-  });
+  usuario: "",
+  password: "",
+  nombre: ""
+});
 
   const handleChange = (e) => {
     setForm({
@@ -15,30 +15,34 @@ export default function Usuarios() {
     });
   };
 
-  const guardarUsuario = async () => {
-    try {
-      const res = await fetch("https://erp-unilibre-production.up.railway.app/usuarios", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(form)
-      });
+ const guardarUsuario = async () => {
+  try {
+    const res = await fetch("https://erp-unilibre-production.up.railway.app/usuarios", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(form)
+    });
 
-      const data = await res.json();
-      alert(data.mensaje || "Usuario creado");
+    const data = await res.json();
 
-      setForm({
-        usuario: "",
-        password: "",
-        rol: ""
-      });
+    console.log("STATUS:", res.status);
+    console.log("RESPONSE:", data);
 
-    } catch (error) {
-      console.error(error);
-      alert("Error creando usuario");
-    }
-  };
+    alert(JSON.stringify(data));
+
+    setForm({
+      usuario: "",
+      password: "",
+      nombre: ""
+    });
+
+  } catch (error) {
+    console.error("ERROR COMPLETO:", error);
+    alert("Error creando usuario");
+  }
+};
 
   return (
     <div style={{ padding: "20px" }}>
@@ -64,11 +68,11 @@ export default function Usuarios() {
       <br /><br />
 
       <input
-        name="rol"
-        placeholder="Rol (admin/user)"
-        value={form.rol}
-        onChange={handleChange}
-      />
+  name="nombre"
+  placeholder="Nombre"
+  value={form.nombre}
+  onChange={handleChange}
+/>
 
       <br /><br />
 
