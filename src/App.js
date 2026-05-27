@@ -392,10 +392,12 @@ if (!usuario) {
   </button>
 )}
 
-
+{puedeVer("usuarios") && (
 <button onClick={() => setVista("permisos_modulos")}>
   Permisos módulos
 </button>
+
+)}
 
         <button
   onClick={logout}
