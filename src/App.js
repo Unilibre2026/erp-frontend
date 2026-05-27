@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import logo from "./logo.png";
 import Usuarios from "./components/Usuarios";
+import PermisosModulos from "./components/PermisosModulos";
 
 const API_URL = "https://erp-unilibre-production.up.railway.app";
 
@@ -353,6 +354,11 @@ if (!usuario) {
   Usuarios
 </button>
 
+
+<button onClick={() => setVista("permisos_modulos")}>
+  Permisos módulos
+</button>
+
         <button
   onClick={logout}
   style={{ background: "red", color: "white", marginTop: "20px" }}
@@ -378,6 +384,8 @@ if (!usuario) {
   {vista === "convocatorias" && <Convocatorias />}
   {vista === "indicadores" && <Indicadores />}
   {vista === "usuarios" && <Usuarios />}
+  {vista === "permisos_modulos" && <PermisosModulos />}
+
 
   {vista === "Cargar observaciones de expertos" && (
     <ObservacionesExpertos />
