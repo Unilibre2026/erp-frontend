@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import logo from "./logo.png";
+import Usuarios from "./components/Usuarios";
 
 const API_URL = "https://erp-unilibre-production.up.railway.app";
 
