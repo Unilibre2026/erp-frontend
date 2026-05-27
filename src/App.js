@@ -38,9 +38,14 @@ function Login({ onLogin }) {
       }
 
       localStorage.setItem("token", data.token);
-      localStorage.setItem("usuario", data.usuario);
+localStorage.setItem("usuario", data.usuario);
 
-      onLogin(data.usuario);
+localStorage.setItem(
+  "modulos",
+  JSON.stringify(data.modulos || [])
+);
+
+onLogin(data.usuario);
 
     } catch (error) {
       console.error(error);
