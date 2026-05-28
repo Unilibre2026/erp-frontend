@@ -21,6 +21,8 @@ export default function Login({ onLogin }) {
 
       <img src={loginLogo} alt="Logo Login" className="logo" />
 
+      <h2 className="login-titulo">Coordinación de Pruebas</h2>
+
       <input
         placeholder="Usuario"
         value={usuario}
