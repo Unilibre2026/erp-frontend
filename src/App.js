@@ -1,83 +1,18 @@
 import React, { useState, useEffect } from "react";
+
+import Login from "./components/Login"; // componente login
+
+import appLogo from "./logo.png"; // logo del sistema (global)
+
+
 import "./App.css";
-import logo from "./logo.png";
+
 import Usuarios from "./components/Usuarios";
 import PermisosModulos from "./components/PermisosModulos";
 
 const API_URL = "https://erp-unilibre-production.up.railway.app";
 
 
-function Login({ onLogin }) {
-  const [form, setForm] = useState({
-    usuario: "",
-    password: ""
-  });
-
-  const handleChange = (e) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const login = async () => {
-    try {
-      const res = await fetch(`${API_URL}/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(form)
-      });
-
-      const data = await res.json();
-
-      if (!data.success) {
-        alert(data.mensaje);
-        return;
-      }
-
-      localStorage.setItem("token", data.token);
-localStorage.setItem("usuario", data.usuario);
-
-localStorage.setItem(
-  "modulos",
-  JSON.stringify(data.modulos || [])
-);
-
-onLogin(data.usuario);
-
-    } catch (error) {
-      console.error(error);
-      alert("Error en login");
-    }
-  };
-
-  return (
-    <div style={{ padding: "50px" }}>
-      <h2>Login</h2>
-
-      <input
-        name="usuario"
-        placeholder="Usuario"
-        onChange={handleChange}
-      />
-
-      <input
-        name="password"
-        type="password"
-        placeholder="Contraseña"
-        onChange={handleChange}
-      />
-
-      <button onClick={login}>
-        Entrar
-      </button>
-    </div>
-
-
-  );
-}
 
 
 
@@ -414,7 +349,7 @@ if (!usuario) {
       <div className="content">
 
         <div className="contenedor-logo">
-          <img src={logo} alt="Logo" className="logo-superior" />
+          <img src={appLogo} alt="Logo" className="logo-superior" />
         </div>
 
         <>
