@@ -311,6 +311,17 @@ table td:nth-child(16) {
   object-fit: contain;
 }
 
+.login-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding-top: 120px; /* ajusta aquí la altura */
+  gap: 10px;
+}
+
+
 table {
   border-collapse: collapse;
   table-layout: fixed;
