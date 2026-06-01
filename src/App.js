@@ -1574,7 +1574,7 @@ function Consultas() {
 
   return (
     <div>
-      <h2>Consultas</h2>
+      <h2>CONSULTAS PRUEBA DIEGO</h2>
 
       <select onChange={(e) => setCampoBusqueda(e.target.value)}>
         <option value="documento_experto">Documento</option>
