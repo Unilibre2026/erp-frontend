@@ -1602,12 +1602,8 @@ function Consultas() {
             <th>Rol</th>
             <th>Responsable de la novedad</th>
             <th>Motivo del retiro</th>
-            <th colSpan="3" style={{
-  background:"red",
-  color:"white",
-  fontSize:"20px"
-}}>
-  PRUEBA DIEGO
+            <th style={{ background: "yellow" }}>
+  OBSERVACIONES
 </th>
             <th>Contactar en futuras convocaorias</th>
             <th>Justificación de la asignación</th>
