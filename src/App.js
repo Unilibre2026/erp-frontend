@@ -1194,7 +1194,9 @@ useEffect(() => {
 
 {/* CIUDAD DE DOMICILIO */}
 <div style={{ display: "flex", flexDirection: "column" }}>
-  ...
+  
+</div>
+
 </div>
 
   
