@@ -1601,7 +1601,8 @@ function Consultas() {
             <th>Nivel</th>
             <th>Rol</th>
             <th>Responsable de la novedad</th>
-            <th>Motivo del retiro</th>      
+            <th>Motivo del retiro</th>
+            <th>Observaciones</th>      
             <th>Contactar en futuras convocaorias</th>
             <th>Justificación de la asignación</th>
             <th>Perfil laboral</th>
@@ -1623,7 +1624,12 @@ function Consultas() {
               <td>{i.nivel}</td>
               <td>{i.rol}</td>
               <td>{i.responsable}</td>
-              <td>{i.motivo_retiro}</td>              
+              <td>{i.motivo_retiro}</td> 
+              <td>
+  <div className="scroll-columna-12">
+    {i.observaciones}
+  </div>
+</td>             
               <td>{i.contactar_futuro}</td>
               <td>
         <div className="scroll-columna-12">
