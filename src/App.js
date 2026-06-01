@@ -1164,6 +1164,24 @@ useEffect(() => {
 
   </div>
 
+  {/* DISPONIBILIDAD */}
+<div style={{ display: "flex", flexDirection: "column" }}>
+
+  <label>
+    Disponibilidad de tiempo
+  </label>
+
+  <input
+    name="disponibilidad_tiempo"
+    onChange={handleChange}
+    placeholder="Disponibilidad de tiempo"
+    style={{ width: "280px" }}
+  />
+
+</div>
+
+  
+
 </div>
 <div style={{ display: "flex", gap: "10px", marginBottom: "10px" }}>
 
