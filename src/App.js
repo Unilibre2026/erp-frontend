@@ -1558,7 +1558,7 @@ function Consultas() {
     fetch(`${API_URL}/novedades`)
       .then(r => r.json())
       .then(data => {
-        console.log("DATA COMPLETA:", data);
+        console.log("PRIMER REGISTRO:", data[0]);
         setDatos(data);
       })
       .catch(err => console.error("Error cargando datos:", err));
