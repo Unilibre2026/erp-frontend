@@ -602,3 +602,10 @@ table td:nth-child(11) {
   min-width: 100px;
   max-width: 100px;
 }
+
+table th:nth-child(16),
+table td:nth-child(16) {
+  min-width: 100px;
+  max-width: 100px;
+  width: 100px;
+}
