@@ -1164,20 +1164,33 @@ useEffect(() => {
 
   </div>
 
-  {/* DISPONIBILIDAD */}
+  {/* CIUDAD DE DOMICILIO */}
 <div style={{ display: "flex", flexDirection: "column" }}>
 
-  <label>
-    Disponibilidad de tiempo
+  <label
+    style={{
+      fontSize: "14px",
+      fontWeight: "normal",
+      marginBottom: "4px"
+    }}
+  >
+    Ciudad de domicilio
   </label>
 
   <input
-    name="disponibilidad_tiempo"
+    name="experiencia_en_entidad"
+    value={form.experiencia_en_entidad}
     onChange={handleChange}
-    placeholder="Disponibilidad de tiempo"
-    style={{ width: "280px" }}
+    placeholder="Ciudad de domicilio"
+    style={{ width: "220px" }}
   />
 
+</div>
+
+
+{/* CIUDAD DE DOMICILIO */}
+<div style={{ display: "flex", flexDirection: "column" }}>
+  ...
 </div>
 
   
