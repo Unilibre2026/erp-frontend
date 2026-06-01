@@ -1142,6 +1142,10 @@ useEffect(() => {
 
   </div>
 
+  <div style={{ display: "flex", gap: "10px", marginBottom: "10px" }}>
+
+  
+
   {/* DISPONIBILIDAD */}
   <div style={{ display: "flex", flexDirection: "column" }}>
 
