@@ -598,9 +598,7 @@ table td:nth-child(13) {
 
 table th:nth-child(11),
 table td:nth-child(11) {
-  background: yellow !important;
-  width: 300px !important;
-  min-width: 300px !important;
-  max-width: 300px !important;
-  border: 5px solid red !important;
+  min-width: 300px;
+  max-width: 300px;
+  width: 300px;
 }
