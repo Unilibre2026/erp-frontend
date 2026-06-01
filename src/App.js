@@ -1602,7 +1602,9 @@ function Consultas() {
             <th>Rol</th>
             <th>Responsable de la novedad</th>
             <th>Motivo del retiro</th>
-            <th>Observaciones</th>      
+            <th style={{background:"yellow"}}>
+  OBSERVACIONES PRUEBA
+</th>   
             <th>Contactar en futuras convocaorias</th>
             <th>Justificación de la asignación</th>
             <th>Perfil laboral</th>
