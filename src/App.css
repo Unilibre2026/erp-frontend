@@ -609,3 +609,9 @@ table td:nth-child(16) {
   max-width: 100px;
   width: 100px;
 }
+table th:nth-child(17),
+table td:nth-child(17) {
+  min-width: 100px;
+  max-width: 100px;
+  width: 100px;
+}
