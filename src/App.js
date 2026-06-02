@@ -81,21 +81,36 @@ const cargarVacantes = async () => {
   try {
     const token = localStorage.getItem("token");
 
+    if (!token) {
+      console.warn("No hay token en localStorage");
+      setVacantes([]);
+      return;
+    }
+
     const res = await fetch(`${API_URL}/vacantes`, {
+      method: "GET",
       headers: {
+        "Content-Type": "application/json",
         "Authorization": `Bearer ${token}`
       }
     });
+
+    // 🔴 Si el backend responde 401, lo manejamos aquí
+    if (res.status === 401) {
+      console.error("No autorizado (401). Token inválido o expirado.");
+      setVacantes([]);
+      return;
+    }
 
     const data = await res.json();
 
     console.log("VACANTES:", data);
 
-    const lista = data.vacantes || data.data || data || [];
+    const lista = data?.vacantes || data?.data || data || [];
 
     setVacantes(Array.isArray(lista) ? lista : []);
   } catch (error) {
-    console.error(error);
+    console.error("Error cargando vacantes:", error);
     setVacantes([]);
   }
 };
