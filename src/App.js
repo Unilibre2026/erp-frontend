@@ -1142,6 +1142,12 @@ useEffect(() => {
 
   </div>
 
+  </div>
+
+  <div style={{ display: "flex", flexDirection: "column" }}>
+  
+  
+
   <div style={{ display: "flex", gap: "10px", marginBottom: "10px" }}>
 
   
@@ -1192,7 +1198,7 @@ useEffect(() => {
 </div>
 
 
-{/* CIUDAD DE DOMICILIO */}
+
 <div style={{ display: "flex", flexDirection: "column" }}>
   
 </div>
