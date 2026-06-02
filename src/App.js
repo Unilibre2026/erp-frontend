@@ -1316,7 +1316,8 @@ useEffect(() => {
 
     <input
       name="responsable_reporte_novedad"
-      onChange={handleChange}
+      value={localStorage.getItem("usuario") || ""}
+      readOnly
      
       style={{
         width: "250px",
