@@ -170,6 +170,8 @@ const guardarVacante = async () => {
   }
 
   try {
+
+    const token = localStorage.getItem("token");
     const res = await fetch(`${API_URL}/vacantes`, {
       method: "POST",
       headers: {
@@ -259,8 +261,12 @@ const eliminarRol = async (id) => {
 const eliminarVacante = async (id) => {
   try {
     const token = localStorage.getItem("token");
+
     const res = await fetch(`${API_URL}/vacantes/${id}`, {
-      method: "DELETE"
+      method: "DELETE",
+      headers: {
+        "Authorization": `Bearer ${token}`
+      }
     });
 
     const data = await res.json();
@@ -271,7 +277,6 @@ const eliminarVacante = async (id) => {
 
   } catch (error) {
     console.error(error);
-    alert("Error eliminando vacante");
   }
 };
 
