@@ -1364,6 +1364,7 @@ function CargaMasiva() {
     try {
       const res = await fetch(`${API_URL}/expertos/cargar`, {
         method: "POST",
+        headers: {"Authorization": `Bearer ${token}`},
         body: formData
       });
 
