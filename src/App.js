@@ -1324,6 +1324,9 @@ useEffect(() => {
         height: "32px",
         padding: "10px",
         boxSizing: "border-box"
+        backgroundColor: "#e9ecef",
+        color: "#495057",
+        border: "1px solid #ced4da"
       }}
     />
 
