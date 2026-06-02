@@ -14,9 +14,16 @@ export default function PermisosModulos() {
 
     try {
 
+      const token = localStorage.getItem("token");
+
       const res = await fetch(
-        "https://erp-unilibre-production.up.railway.app/permisos_modulos"
-      );
+     "https://erp-unilibre-production.up.railway.app/permisos_modulos",
+     {
+     headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
+ );
 
       const data = await res.json();
 
@@ -42,13 +49,18 @@ export default function PermisosModulos() {
 
     try {
 
+      const token = localStorage.getItem("token");
+
       const res = await fetch(
         "https://erp-unilibre-production.up.railway.app/permisos_modulos/cargar",
         {
           method: "POST",
-          body: formData
-        }
-      );
+          headers: {
+            Authorization: `Bearer ${token}`
+         },
+         body: formData
+  }
+);
 
       const data = await res.json();
 
