@@ -309,7 +309,7 @@ if (!usuario) {
         
         {puedeVer("carga") && (
   <button onClick={() => setVista("carga")}>
-    Carga masiva
+    Carga masiva de expertos
   </button>
 )}
 
