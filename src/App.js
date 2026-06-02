@@ -351,7 +351,7 @@ if (!usuario) {
 )}
         {puedeVer("usuarios") && (
   <button onClick={() => setVista("usuarios")}>
-    Usuarios
+    Crear usuarios
   </button>
 )}
 
