@@ -106,7 +106,7 @@ const eliminarUsuario = async (id) => {
 
       <input
         name="usuario"
-        placeholder="Usuario"
+        placeholder="Crear usuarios"
         value={form.usuario}
         onChange={handleChange}
       />
