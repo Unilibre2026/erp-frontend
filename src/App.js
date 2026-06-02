@@ -104,7 +104,14 @@ const cargarVacantes = async () => {
 
   const cargarRoles = async () => {
   try {
-    const res = await fetch(`${API_URL}/roles`);
+    const token = localStorage.getItem("token");
+
+    const res = await fetch(`${API_URL}/roles`, {
+      headers: {
+        "Authorization": `Bearer ${token}`
+      }
+    });
+
     const data = await res.json();
 
     console.log("ROLES BACKEND:", data);
@@ -115,7 +122,6 @@ const cargarVacantes = async () => {
   } catch (error) {
     console.error(error);
     setRoles([]);
-    
   }
 };
 
