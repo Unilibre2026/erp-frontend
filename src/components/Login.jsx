@@ -1,18 +1,53 @@
 import React, { useState } from "react";
 import loginLogo from "../assets/logo.png";
 
+const API_URL = "https://erp-unilibre-production.up.railway.app";
+
 export default function Login({ onLogin }) {
   const [usuario, setUsuario] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleLogin = () => {
-    if (usuario && password) {
-      localStorage.setItem("usuario", usuario);
-      localStorage.setItem("token", "fake-token");
-
-      onLogin(usuario); // avisa a App.js que ya inició sesión
-    } else {
+  const handleLogin = async () => {
+    if (!usuario || !password) {
       alert("Completa los campos");
+      return;
+    }
+
+    try {
+      setLoading(true);
+
+      const res = await fetch(`${API_URL}/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          usuario,
+          password
+        })
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        alert(data.message || "Error de login");
+        return;
+      }
+
+      // 🔥 guardamos usuario
+      localStorage.setItem("usuario", usuario);
+
+      // 🔥 guardamos token real del backend
+      localStorage.setItem("token", data.token);
+
+      onLogin(usuario);
+
+    } catch (error) {
+      console.error(error);
+      alert("Error conectando con el servidor");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -36,7 +71,9 @@ export default function Login({ onLogin }) {
         onChange={(e) => setPassword(e.target.value)}
       />
 
-      <button onClick={handleLogin}>Ingresar</button>
+      <button onClick={handleLogin} disabled={loading}>
+        {loading ? "Ingresando..." : "Ingresar"}
+      </button>
 
     </div>
   );
