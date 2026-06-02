@@ -615,3 +615,8 @@ table td:nth-child(17) {
   max-width: 100px;
   width: 100px;
 }
+
+input[type="file"] {
+  width: 100%;
+  max-width: 200px; /* ajusta esto */
+}
