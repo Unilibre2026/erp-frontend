@@ -173,7 +173,8 @@ const guardarVacante = async () => {
     const res = await fetch(`${API_URL}/vacantes`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
       },
       body: JSON.stringify(vacanteForm)
     });
@@ -257,6 +258,7 @@ const eliminarRol = async (id) => {
 
 const eliminarVacante = async (id) => {
   try {
+    const token = localStorage.getItem("token");
     const res = await fetch(`${API_URL}/vacantes/${id}`, {
       method: "DELETE"
     });
