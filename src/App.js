@@ -1359,6 +1359,8 @@ function CargaMasiva() {
     const formData = new FormData();
     formData.append("file", archivo);
 
+    const token = localStorage.getItem("token");
+
     try {
       const res = await fetch(`${API_URL}/expertos/cargar`, {
         method: "POST",
