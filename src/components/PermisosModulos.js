@@ -167,9 +167,9 @@ export default function PermisosModulos() {
              <button onClick={() => eliminarPermiso(p.id)}>
               Eliminar
              </button>
-      </td>
+           </td>
 
-    </tr>
+         </tr>
 
   ))}
 
