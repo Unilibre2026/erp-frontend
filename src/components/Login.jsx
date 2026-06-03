@@ -35,13 +35,25 @@ export default function Login({ onLogin }) {
         return;
       }
 
-      // 🔥 guardamos usuario
-      localStorage.setItem("usuario", usuario);
+      // Guardamos usuario
+      localStorage.setItem(
+        "usuario",
+        data.usuario || usuario
+      );
 
-      // 🔥 guardamos token real del backend
-      localStorage.setItem("token", data.token);
+      // Guardamos token
+      localStorage.setItem(
+        "token",
+        data.token
+      );
 
-      onLogin(usuario);
+      // Guardamos módulos permitidos
+      localStorage.setItem(
+        "modulos",
+        JSON.stringify(data.modulos || [])
+      );
+
+      onLogin(data.usuario || usuario);
 
     } catch (error) {
       console.error(error);
@@ -54,9 +66,15 @@ export default function Login({ onLogin }) {
   return (
     <div className="login-container">
 
-      <img src={loginLogo} alt="Logo Login" className="logo" />
+      <img
+        src={loginLogo}
+        alt="Logo Login"
+        className="logo"
+      />
 
-      <h2 className="login-titulo">Coordinación de Pruebas</h2>
+      <h2 className="login-titulo">
+        Coordinación de Pruebas
+      </h2>
 
       <input
         placeholder="Usuario"
@@ -71,7 +89,10 @@ export default function Login({ onLogin }) {
         onChange={(e) => setPassword(e.target.value)}
       />
 
-      <button onClick={handleLogin} disabled={loading}>
+      <button
+        onClick={handleLogin}
+        disabled={loading}
+      >
         {loading ? "Ingresando..." : "Ingresar"}
       </button>
 
