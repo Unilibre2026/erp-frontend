@@ -106,30 +106,36 @@ export default function PermisosModulos() {
 
         <thead>
 
-          <tr>
-            <th>ID</th>
-            <th>Usuario</th>
-            <th>Módulo</th>
-          </tr>
+        <tr>
+          <th>ID</th>
+          <th>Usuario</th>
+          <th>Módulo</th>
+          <th>Acciones</th>
+        </tr>
 
-        </thead>
+</thead>
 
         <tbody>
 
-          {permisos.map((p) => (
+        {permisos.map((p) => (
 
-            <tr key={p.id}>
+         <tr key={p.id}>
 
-              <td>{p.id}</td>
-              <td>{p.usuario}</td>
-              <td>{p.modulo}</td>
+           <td>{p.id}</td>
+           <td>{p.usuario}</td>
+           <td>{p.modulo}</td>
 
-            </tr>
+           <td>
+             <button>
+             Eliminar
+            </button>
+      </td>
 
-          ))}
+    </tr>
 
-        </tbody>
+  ))}
 
+ </tbody>
       </table>
 
     </div>
