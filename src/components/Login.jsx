@@ -30,10 +30,10 @@ export default function Login({ onLogin }) {
 
       const data = await res.json();
 
-      if (!res.ok) {
-        alert(data.message || "Error de login");
-        return;
-      }
+      if (!data.success) {
+      alert(data.mensaje || "Usuario o contraseña incorrectos");
+     return;
+}
 
       // Guardamos usuario
       localStorage.setItem(
