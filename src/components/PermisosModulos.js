@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 export default function PermisosModulos() {
 
   const [file, setFile] = useState(null);
-
   const [permisos, setPermisos] = useState([]);
 
   useEffect(() => {
@@ -17,13 +16,13 @@ export default function PermisosModulos() {
       const token = localStorage.getItem("token");
 
       const res = await fetch(
-     "https://erp-unilibre-production.up.railway.app/permisos_modulos",
-     {
-     headers: {
-      Authorization: `Bearer ${token}`
-    }
-  }
- );
+        "https://erp-unilibre-production.up.railway.app/permisos_modulos",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
+      );
 
       const data = await res.json();
 
@@ -43,44 +42,6 @@ export default function PermisosModulos() {
       return;
     }
 
-  const eliminarPermiso = async (id) => {
-
-  if (!window.confirm("¿Desea eliminar este permiso?")) {
-    return;
-  }
-
-  try {
-
-    const token = localStorage.getItem("token");
-
-    const res = await fetch(
-      `https://erp-unilibre-production.up.railway.app/permisos_modulos/${id}`,
-      {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      }
-    );
-
-    const data = await res.json();
-
-    if (!res.ok) {
-      alert(data.detail || data.mensaje || "Error eliminando");
-      return;
-    }
-
-    alert("Permiso eliminado correctamente");
-
-    cargarPermisos();
-
-  } catch (error) {
-
-    console.error(error);
-    alert("Error eliminando permiso");
-  }
- };
-
     const formData = new FormData();
 
     formData.append("file", file);
@@ -95,10 +56,10 @@ export default function PermisosModulos() {
           method: "POST",
           headers: {
             Authorization: `Bearer ${token}`
-         },
-         body: formData
-  }
-);
+          },
+          body: formData
+        }
+      );
 
       const data = await res.json();
 
@@ -111,6 +72,46 @@ export default function PermisosModulos() {
       console.error(error);
 
       alert("Error cargando archivo");
+    }
+  };
+
+  const eliminarPermiso = async (id) => {
+
+    if (!window.confirm("¿Desea eliminar este permiso?")) {
+      return;
+    }
+
+    try {
+
+      const token = localStorage.getItem("token");
+
+      const res = await fetch(
+        `https://erp-unilibre-production.up.railway.app/permisos_modulos/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
+      );
+
+      const data = await res.json();
+
+      if (!res.ok) {
+
+        alert(data.detail || data.mensaje || "Error eliminando");
+        return;
+      }
+
+      alert("Permiso eliminado correctamente");
+
+      cargarPermisos();
+
+    } catch (error) {
+
+      console.error(error);
+
+      alert("Error eliminando permiso");
     }
   };
 
@@ -144,36 +145,37 @@ export default function PermisosModulos() {
 
         <thead>
 
-        <tr>
-          <th>ID</th>
-          <th>Usuario</th>
-          <th>Módulo</th>
-          <th>Acciones</th>
-        </tr>
+          <tr>
+            <th>ID</th>
+            <th>Usuario</th>
+            <th>Módulo</th>
+            <th>Acciones</th>
+          </tr>
 
-</thead>
+        </thead>
 
         <tbody>
 
-        {permisos.map((p) => (
+          {permisos.map((p) => (
 
-         <tr key={p.id}>
+            <tr key={p.id}>
 
-           <td>{p.id}</td>
-           <td>{p.usuario}</td>
-           <td>{p.modulo}</td>
+              <td>{p.id}</td>
+              <td>{p.usuario}</td>
+              <td>{p.modulo}</td>
 
-           <td>
-             <button onClick={() => eliminarPermiso(p.id)}>
-              Eliminar
-             </button>
-           </td>
+              <td>
+                <button onClick={() => eliminarPermiso(p.id)}>
+                  Eliminar
+                </button>
+              </td>
 
-         </tr>
+            </tr>
 
-  ))}
+          ))}
 
- </tbody>
+        </tbody>
+
       </table>
 
     </div>
