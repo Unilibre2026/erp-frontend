@@ -43,7 +43,7 @@ export default function PermisosModulos() {
       return;
     }
 
-    const eliminarPermiso = async (id) => {
+  const eliminarPermiso = async (id) => {
 
   if (!window.confirm("¿Desea eliminar este permiso?")) {
     return;
