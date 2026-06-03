@@ -43,6 +43,44 @@ export default function PermisosModulos() {
       return;
     }
 
+    const eliminarPermiso = async (id) => {
+
+  if (!window.confirm("¿Desea eliminar este permiso?")) {
+    return;
+  }
+
+  try {
+
+    const token = localStorage.getItem("token");
+
+    const res = await fetch(
+      `https://erp-unilibre-production.up.railway.app/permisos_modulos/${id}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
+    );
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      alert(data.detail || data.mensaje || "Error eliminando");
+      return;
+    }
+
+    alert("Permiso eliminado correctamente");
+
+    cargarPermisos();
+
+  } catch (error) {
+
+    console.error(error);
+    alert("Error eliminando permiso");
+  }
+ };
+
     const formData = new FormData();
 
     formData.append("file", file);
