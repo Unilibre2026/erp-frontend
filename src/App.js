@@ -295,7 +295,7 @@ if (!usuario) {
 
         {puedeVer("formulario") && (
   <button onClick={() => setVista("formulario")}>
-    Novedades
+    Formulario
   </button>
 )}
       
@@ -1377,6 +1377,42 @@ useEffect(() => {
 function CargaMasiva() {
 
   const [archivo, setArchivo] = useState(null);
+   const [expertos, setExpertos] = useState([]);
+
+   const API_URL = "https://erp-unilibre-production.up.railway.app";
+
+   // =========================
+  // OBTENER EXPERTOS
+  // =========================
+  const obtenerExpertos = async () => {
+    const token = localStorage.getItem("token");
+
+    try {
+      const res = await fetch(`${API_URL}/expertos`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+
+      const data = await res.json();
+      setExpertos(data);
+
+    } catch (err) {
+      console.error("Error cargando expertos", err);
+    }
+  };
+
+  // =========================
+  // CARGA AL MONTAR
+  // =========================
+  useEffect(() => {
+    obtenerExpertos();
+  }, []);
+
+  // =========================
+  // SUBIR EXCEL
+  // =========================
+  
 
   const subirExcel = async () => {
     if (!archivo) {
@@ -1401,17 +1437,53 @@ function CargaMasiva() {
       alert(
         `Insertados: ${data.insertados}\nDuplicados: ${data.duplicados}`
       );
+      setArchivo(null);
+
+      // refrescar tabla //
+      obtenerExpertos();
 
     } catch (err) {
       alert("Error subiendo archivo");
     }
   };
 
+  // =========================
+  // ELIMINAR EXPERTO
+  // =========================
+  const eliminarExperto = async (id) => {
+    const confirmar = window.confirm("¿Seguro que deseas eliminar este experto?");
+    if (!confirmar) return;
+
+    const token = localStorage.getItem("token");
+
+    try {
+      await fetch(`${API_URL}/expertos/${id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+
+      alert("Eliminado correctamente");
+
+      obtenerExpertos();
+
+    } catch (err) {
+      alert("Error eliminando experto");
+    }
+  };
+
+  // =========================
+  // UI
+  // =========================
+
   return (
     <div>
       <h2>Carga Masiva de Expertos</h2>
 
-      <input
+      
+       {/* SUBIDA EXCEL */}
+       <input
         type="file"
         accept=".xlsx"
         onChange={(e) => setArchivo(e.target.files[0])}
@@ -1419,10 +1491,41 @@ function CargaMasiva() {
 
       <button onClick={subirExcel}>
         Subir Excel
-      </button>
+      </button> 
+     {/* TABLA DE EXPERTOS */}
+      <h3 style={{ marginTop: "20px" }}>Listado de Expertos</h3>
+
+      <table border="1" width="100%">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Correo</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {expertos.map((exp) => (
+            <tr key={exp.id}>
+              <td>{exp.id}</td>
+              <td>{exp.nombre}</td>
+              <td>{exp.correo}</td>
+
+              <td>
+                <button onClick={() => eliminarExperto(exp.id)}>
+                  Eliminar
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }
+
+
 
 function Convocatorias() {
   const [form, setForm] = useState({
