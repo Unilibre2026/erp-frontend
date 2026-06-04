@@ -1385,22 +1385,26 @@ function CargaMasiva() {
   // OBTENER EXPERTOS
   // =========================
   const obtenerExpertos = async () => {
-    const token = localStorage.getItem("token");
+  const token = localStorage.getItem("token");
 
-    try {
-      const res = await fetch(`${API_URL}/expertos`, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      });
+  try {
+    const res = await fetch(`${API_URL}/expertos`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
 
-      const data = await res.json();
-      setExpertos(data);
+    const data = await res.json();
 
-    } catch (err) {
-      console.error("Error cargando expertos", err);
-    }
-  };
+    console.log("STATUS:", res.status);
+    console.log("DATA:", data);
+
+    setExpertos(Array.isArray(data) ? data : []);
+
+  } catch (err) {
+    console.error("Error cargando expertos", err);
+  }
+};
 
   // =========================
   // CARGA AL MONTAR
@@ -1506,7 +1510,8 @@ function CargaMasiva() {
         </thead>
 
         <tbody>
-          {expertos.map((exp) => (
+          {Array.isArray(expertos) &&
+            expertos.map((exp) => (
             <tr key={exp.id}>
               <td>{exp.id}</td>
               <td>{exp.nombre}</td>
