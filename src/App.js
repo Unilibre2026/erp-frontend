@@ -795,9 +795,9 @@ if (name === "nivel") {
     console.error(error);
   }
 
-}
+ }
 
-
+};
 
 
   const buscarExperto = async () => {
