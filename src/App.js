@@ -1059,20 +1059,25 @@ if (form.tipo_novedad === "Ingreso") {
   </label>
 
     <select
-    name="motivo_retiro"
-    onChange={handleChange}
-    style={{ width: "200px", height: "34px" }}
-  >
-    <option value="">Seleccione...</option>
-    <option value="Conocimientos insuficientes">Conocimientos insuficientes</option>
-    <option value="Disponibilidad de tiempo">Disponibilidad de tiempo</option>
-    <option value="Estado de salud">Estado de salud</option>
-    <option value="Honorarios">Honorarios</option>
-    <option value="Motivos personales">Motivos personales</option>
-    <option value="No cunple con el perfil">No cumple con el perfil</option>
-    <option value="No se logró contactar">No se logró contactar</option>
-    <option value="Otro">Otro</option>
-  </select>
+   name="motivo_retiro"
+   value={form.motivo_retiro}
+   onChange={handleChange}
+   disabled={
+    form.tipo_novedad !== "Retiro parcial" &&
+    form.tipo_novedad !== "Retiro DEFINITIVO"
+  }
+  style={{ width: "200px", height: "34px" }}
+>
+  <option value="">Seleccione...</option>
+  <option value="Conocimientos insuficientes">Conocimientos insuficientes</option>
+  <option value="Disponibilidad de tiempo">Disponibilidad de tiempo</option>
+  <option value="Estado de salud">Estado de salud</option>
+  <option value="Honorarios">Honorarios</option>
+  <option value="Motivos personales">Motivos personales</option>
+  <option value="No cumple con el perfil">No cumple con el perfil</option>
+  <option value="No se logró contactar">No se logró contactar</option>
+  <option value="Otro">Otro</option>
+</select>
 </div>
 
   <div style={{ display: "flex", flexDirection: "column" }}>
