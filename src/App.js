@@ -1096,7 +1096,18 @@ if (form.tipo_novedad === "Ingreso") {
    value={form.contactar_futuras_convocatorias}
    onChange={handleChange}
    disabled={form.tipo_novedad !== "Retiro DEFINITIVO"}
-   style={{ width: "200px", height: "34px" }}
+   style={{
+    width: "200px",
+    height: "34px",
+    backgroundColor:
+      form.tipo_novedad !== "Retiro DEFINITIVO"
+        ? "#c0c0c0"
+        : "#ffffff",
+    color:
+      form.tipo_novedad !== "Retiro DEFINITIVO"
+        ? "#666666"
+        : "#000000"
+  }}
   >
   <option value="">Seleccione...</option>
   <option value="SI">SI</option>
