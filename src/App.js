@@ -1011,9 +1011,10 @@ if (form.tipo_novedad === "Ingreso") {
   </label>
 
   <select
-    name="tipo_novedad"
-    onChange={handleChange}
-    style={{ width: "180px", height: "34px" }}
+   name="tipo_novedad"
+   value={form.tipo_novedad}
+   onChange={handleChange}
+   style={{ width: "180px", height: "34px" }}
   >
     <option value="">Seleccione...</option>
     <option value="Ingreso">Ingreso</option>
