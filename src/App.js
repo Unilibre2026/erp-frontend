@@ -1092,15 +1092,16 @@ if (form.tipo_novedad === "Ingreso") {
   </label>
 
     <select
-    name="contactar_futuras_convocatorias"
-    onChange={handleChange}
-    style={{ width: "200px", height: "34px" }}
+   name="contactar_futuras_convocatorias"
+   value={form.contactar_futuras_convocatorias}
+   onChange={handleChange}
+   disabled={form.tipo_novedad !== "Retiro DEFINITIVO"}
+   style={{ width: "200px", height: "34px" }}
   >
-    <option value="">Seleccione...</option>
-    <option value="SI">SI</option>
-    <option value="NO">NO</option>
-    
-  </select>
+  <option value="">Seleccione...</option>
+  <option value="SI">SI</option>
+  <option value="NO">NO</option>
+</select>
 </div>
 
   
