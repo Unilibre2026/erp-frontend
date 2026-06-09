@@ -832,6 +832,36 @@ useEffect(() => {
       return;
     }
 
+  // =========================
+  // VALIDAR ASIGNACIÓN DUPLICADA
+  // =========================
+
+if (form.tipo_novedad === "Ingreso") {
+
+  try {
+
+    const validar = await fetch(
+      `${API_URL}/validar-asignacion?documento=${form.documento_experto}&convocatoria=${encodeURIComponent(form.convocatoria)}&indicador=${encodeURIComponent(form.indicador)}&nivel=${encodeURIComponent(form.nivel)}`
+    );
+
+    const resultado = await validar.json();
+
+    if (resultado.existe) {
+      alert(
+        "Este experto ya se encuentra asignado a esta convocatoria, indicador y nivel."
+      );
+      return;
+    }
+
+  } catch (error) {
+    console.error("Error validando asignación:", error);
+    alert("No fue posible validar la asignación.");
+    return;
+  }
+
+}
+
+
     try {
       const res = await fetch(`${API_URL}/novedades`, {
         method: "POST",
