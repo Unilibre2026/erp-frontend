@@ -665,6 +665,15 @@ function Formulario() {
   useEffect(() => {
   cargarConvocatorias();
 }, []);
+
+  useEffect(() => {
+  const usuario = localStorage.getItem("usuario");
+
+  setForm(prev => ({
+    ...prev,
+    responsable_reporte_novedad: usuario || ""
+  }));
+}, []);
 useEffect(() => {
   if (form.convocatoria) {
     fetch(`${API_URL}/roles/por-convocatoria/${form.convocatoria}`)
@@ -923,7 +932,7 @@ if (form.tipo_novedad === "Ingreso") {
         indicador: "",
         nivel: "",
         rol: "",
-        responsable_reporte_novedad: "",
+        responsable_reporte_novedad: localStorage.getItem("usuario") || "",
         justificacion_asignacion: "",
         motivo_retiro: "",
         contactar_futuras_convocatorias: "",
