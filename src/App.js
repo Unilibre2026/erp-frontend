@@ -1277,11 +1277,12 @@ if (form.tipo_novedad === "Ingreso") {
     </label>
 
     <input
-      name="disponibilidad_tiempo"
-      onChange={handleChange}
-      placeholder="Disponibilidad de tiempo"
-      style={{ width: "280px" }}
-    />
+    name="disponibilidad_tiempo"
+    value={form.disponibilidad_tiempo}
+    onChange={handleChange}
+    placeholder="Disponibilidad de tiempo"
+    style={{ width: "280px" }}
+   />
 
   </div>
 
@@ -1335,17 +1336,17 @@ if (form.tipo_novedad === "Ingreso") {
     </label>
 
     <textarea
-      name="justificacion_asignacion"
-      onChange={handleChange}
-      
-      style={{
-        width: "600px",
-        height: "100px",
-        padding: "10px",
-        boxSizing: "border-box",
-        resize: "vertical"
-      }}
-    />
+    name="justificacion_asignacion"
+    value={form.justificacion_asignacion}
+    onChange={handleChange}
+    style={{
+    width: "600px",
+    height: "100px",
+    padding: "10px",
+    boxSizing: "border-box",
+    resize: "vertical"
+   }}
+   />
 
   </div>
 
@@ -1363,17 +1364,17 @@ if (form.tipo_novedad === "Ingreso") {
     </label>
 
     <textarea
-      name="perfil_laboral"
-      onChange={handleChange}
-      
-      style={{
-        width: "600px",
-        height: "100px",
-        padding: "10px",
-        boxSizing: "border-box",
-        resize: "vertical"
-      }}
-    />
+    name="perfil_laboral"
+    value={form.perfil_laboral}
+    onChange={handleChange}
+    style={{
+    width: "600px",
+    height: "100px",
+    padding: "10px",
+    boxSizing: "border-box",
+    resize: "vertical"
+  }}
+   />
 
   </div>
 
@@ -1394,17 +1395,17 @@ if (form.tipo_novedad === "Ingreso") {
     </label>
 
     <textarea
-      name="perfil_academico"
-      onChange={handleChange}
-      
-      style={{
-        width: "600px",
-        height: "100px",
-        padding: "10px",
-        boxSizing: "border-box",
-        resize: "vertical"
-      }}
-    />
+    name="perfil_academico"
+    value={form.perfil_academico}
+    onChange={handleChange}
+    style={{
+    width: "600px",
+    height: "100px",
+    padding: "10px",
+    boxSizing: "border-box",
+    resize: "vertical"
+    }}
+  />
 
   </div>
 
