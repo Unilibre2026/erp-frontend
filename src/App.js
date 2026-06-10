@@ -935,10 +935,11 @@ if (form.tipo_novedad === "Ingreso") {
       // 👇 DESBLOQUEA DESPUÉS
       setTimeout(() => {
       setBloquearBusqueda(false);
-     }, 300);
+     
 
 
       documentoRef.current?.focus();
+    }, 300);
 
     } catch (err) {
       alert(err.message);
