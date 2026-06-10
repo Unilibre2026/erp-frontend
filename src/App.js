@@ -652,6 +652,7 @@ function Formulario() {
   const [loadingBusqueda, setLoadingBusqueda] = useState(false);
   const [estadoExperto, setEstadoExperto] = useState(null);
   const [convocatorias, setConvocatorias] = useState([]);
+  const [bloquearBusqueda, setBloquearBusqueda] = useState(false);
   const [indicadores, setIndicadores] = useState([]);
   const [niveles, setNiveles] = useState([]);
   const [roles, setRoles] = useState([]);
@@ -803,6 +804,8 @@ if (name === "nivel") {
 
 
   const buscarExperto = async () => {
+
+    if (bloquearBusqueda) return; 
     const documento = form.documento_experto;
     if (!documento) return;
 
@@ -899,6 +902,9 @@ if (form.tipo_novedad === "Ingreso") {
 
       alert(data.mensaje || "Guardado correctamente");
 
+      // 👇 BLOQUEA BÚSQUEDA
+      setBloquearBusqueda(true);
+
       setForm({
         documento_experto: "",
         nombre_experto: "",
@@ -918,6 +924,12 @@ if (form.tipo_novedad === "Ingreso") {
       });
 
       setEstadoExperto(null);
+
+      // 👇 DESBLOQUEA DESPUÉS
+      setTimeout(() => {
+      setBloquearBusqueda(false);
+     }, 300);
+
 
       documentoRef.current?.focus();
 
