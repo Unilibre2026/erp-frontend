@@ -10,6 +10,9 @@ import "./App.css";
 import Usuarios from "./components/Usuarios";
 import PermisosModulos from "./components/PermisosModulos";
 
+import ExcelJS from "exceljs";
+import { saveAs } from "file-saver";
+
 const API_URL = "https://erp-unilibre-production.up.railway.app";
 
 
@@ -1836,9 +1839,81 @@ function Consultas() {
       .includes(textoBusqueda.toLowerCase());
   });
 
+  const exportarExcel = async () => {
+  const workbook = new ExcelJS.Workbook();
+  const sheet = workbook.addWorksheet("Novedades");
+
+  sheet.columns = [
+    { header: "ID", key: "id", width: 10 },
+    { header: "Documento", key: "documento_experto", width: 20 },
+    { header: "Nombre", key: "nombre", width: 25 },
+    { header: "Convocatoria", key: "convocatoria", width: 25 },
+    { header: "Tipo novedad", key: "tipo_novedad", width: 20 },
+    { header: "Eje", key: "eje", width: 25 },
+    { header: "Nivel", key: "nivel", width: 15 },
+    { header: "Rol", key: "rol", width: 20 },
+    { header: "Responsable", key: "responsable", width: 25 },
+    { header: "Motivo retiro", key: "motivo_retiro", width: 25 },
+    { header: "Observaciones", key: "observaciones", width: 40 },
+    { header: "Contactar", key: "contactar_futuro", width: 20 },
+    { header: "Justificación", key: "justificacion", width: 40 },
+    { header: "Perfil laboral", key: "perfil_laboral", width: 40 },
+    { header: "Perfil académico", key: "perfil_academico", width: 40 },
+    { header: "Validador", key: "validador", width: 20 },
+    { header: "Fecha", key: "fecha_creacion", width: 25 },
+  ];
+
+  filtrados.forEach((i) => {
+    sheet.addRow({
+      id: i.id,
+      documento_experto: i.documento_experto,
+      nombre: i.nombre,
+      convocatoria: i.convocatoria,
+      tipo_novedad: i.tipo_novedad,
+      eje: i.eje,
+      nivel: i.nivel,
+      rol: i.rol,
+      responsable: i.responsable,
+      motivo_retiro: i.motivo_retiro,
+      observaciones: i.observaciones,
+      contactar_futuro: i.contactar_futuro,
+      justificacion: i.justificacion,
+      perfil_laboral: i.perfil_laboral,
+      perfil_academico: i.perfil_academico,
+      validador: i.validador,
+      fecha_creacion: i.fecha_creacion,
+    });
+  });
+
+  sheet.getRow(1).font = { bold: true };
+
+  const buffer = await workbook.xlsx.writeBuffer();
+
+  const blob = new Blob([buffer], {
+    type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+  });
+
+  saveAs(blob, "novedades.xlsx");
+};
+
   return (
     <div>
       <h2>CONSULTA GENERAL DE NOVEDADES</h2>
+
+      <button
+       onClick={exportarExcel}
+       style={{
+        marginBottom: "10px",
+        padding: "8px 12px",
+        background: "#2d6cdf",
+        color: "white",
+        border: "none",
+        borderRadius: "4px",
+        cursor: "pointer"
+      }}
+      >
+      📥 Descargar Excel
+      </button>
 
       <select onChange={(e) => setCampoBusqueda(e.target.value)}>
         <option value="documento_experto">Documento</option>
