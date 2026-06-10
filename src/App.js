@@ -1066,7 +1066,20 @@ if (form.tipo_novedad === "Ingreso") {
     form.tipo_novedad !== "Retiro parcial" &&
     form.tipo_novedad !== "Retiro DEFINITIVO"
   }
-  style={{ width: "200px", height: "34px" }}
+   style={{
+    width: "200px",
+    height: "34px",
+    backgroundColor:
+      form.tipo_novedad !== "Retiro parcial" &&
+      form.tipo_novedad !== "Retiro DEFINITIVO"
+        ? "#a9a9a9"
+        : "#ffffff",
+    color:
+      form.tipo_novedad !== "Retiro parcial" &&
+      form.tipo_novedad !== "Retiro DEFINITIVO"
+        ? "#666666"
+        : "#000000"
+  }}
 >
   <option value="">Seleccione...</option>
   <option value="Conocimientos insuficientes">Conocimientos insuficientes</option>
