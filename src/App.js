@@ -918,7 +918,7 @@ if (form.tipo_novedad === "Ingreso") {
       });
 
       setEstadoExperto(null);
-      
+
       documentoRef.current?.focus();
 
     } catch (err) {
@@ -972,7 +972,7 @@ if (form.tipo_novedad === "Ingreso") {
 
   <input
   name="nombre_experto"
-  value={estadoExperto === true ? form.nombre_experto : ""}
+  value={form.nombre_experto}
   readOnly
   disabled
   style={{
