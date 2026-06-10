@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 import Login from "./components/Login"; // componente login
 
@@ -656,6 +656,8 @@ function Formulario() {
   const [niveles, setNiveles] = useState([]);
   const [roles, setRoles] = useState([]);
 
+  const documentoRef = useRef(null);
+
   useEffect(() => {
   cargarConvocatorias();
 }, []);
@@ -916,6 +918,8 @@ if (form.tipo_novedad === "Ingreso") {
       });
 
       setEstadoExperto(null);
+      
+      documentoRef.current?.focus();
 
     } catch (err) {
       alert(err.message);
@@ -933,6 +937,7 @@ if (form.tipo_novedad === "Ingreso") {
     <label>Documento del experto</label>
 
     <input
+      ref={documentoRef}
       className="campo-documento"
       name="documento_experto"
       
