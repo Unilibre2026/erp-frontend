@@ -710,8 +710,15 @@ useEffect(() => {
   // =========================
 
   if (name === "documento_experto") {
-    setEstadoExperto(null);
+  setEstadoExperto(null);
+
+  if (value === "") {
+    setForm((prev) => ({
+      ...prev,
+      nombre_experto: ""
+    }));
   }
+}
 
   // =========================
   // CARGAR INDICADORES
