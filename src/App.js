@@ -43,12 +43,40 @@ const esAdmin =
   const [usuario, setUsuario] = useState(null);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+  const token = localStorage.getItem("token");
 
-    if (token) {
-      setUsuario(localStorage.getItem("usuario"));
+    if (!token) return;
+
+   try {
+    const payload = JSON.parse(
+      atob(token.split(".")[1])
+    );
+
+    const expiracion = payload.exp * 1000;
+
+    if (Date.now() > expiracion) {
+      localStorage.removeItem("token");
+      localStorage.removeItem("usuario");
+      localStorage.removeItem("modulos");
+
+      setUsuario(null);
+
+      alert("La sesión ha expirado. Inicia sesión nuevamente.");
+      return;
     }
-  }, []);
+
+    setUsuario(localStorage.getItem("usuario"));
+
+  } catch (error) {
+    console.error("Token inválido:", error);
+
+    localStorage.removeItem("token");
+    localStorage.removeItem("usuario");
+    localStorage.removeItem("modulos");
+
+    setUsuario(null);
+  }
+}, []);
 
   // =========================
   // AQUÍ VA EL LOGOUT
