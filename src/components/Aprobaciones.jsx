@@ -58,7 +58,7 @@ export default function Aprobaciones() {
       <table border="1" cellPadding="5">
         <thead>
           <tr>
-            <th>Novedad n.</th>
+            <th>Novedad</th>
             <th>Documento del experto</th>
             <th>Nombre del experto</th>
             <th>Convocatoria</th>
@@ -89,7 +89,8 @@ export default function Aprobaciones() {
             pendientes.map((item) => (
               <tr key={item.id}>
 
-                <td>{item.documento}</td>
+                <td>{item.id}</td>
+                <td>{item.documento_experto}</td>
                 <td>{item.nombre}</td>
                 <td>{item.convocatoria}</td>
                 <td>{item.tipo_novedad}</td>
