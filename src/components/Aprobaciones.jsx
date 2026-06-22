@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 
+const API_URL = "https://erp-unilibre-production.up.railway.app";
+
 export default function Aprobaciones() {
+
   const [pendientes, setPendientes] = useState([]);
 
   const cargarPendientes = async () => {
     try {
-      const res = await fetch("http://localhost:8000/aprobaciones/pendientes");
+      const res = await fetch(`${API_URL}/aprobaciones/pendientes`);
       const data = await res.json();
-
-      console.log("RESPUESTA BACKEND:", data); // 👈 útil para validar
-
       setPendientes(data);
     } catch (error) {
       console.log("Error cargando pendientes:", error);
@@ -17,6 +17,7 @@ export default function Aprobaciones() {
   };
 
   const decidir = async (id, aprobacion) => {
+
     let justificacion = null;
 
     if (aprobacion === "NO APROBADO") {
@@ -31,7 +32,7 @@ export default function Aprobaciones() {
     };
 
     try {
-      await fetch("http://localhost:8000/aprobaciones/decidir", {
+      await fetch(`${API_URL}/aprobaciones/decidir`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -40,21 +41,10 @@ export default function Aprobaciones() {
       });
 
       cargarPendientes();
+
     } catch (error) {
       console.log("Error enviando decisión:", error);
     }
-  };
-
-  const renderEstado = (estado) => {
-    if (estado === "APROBADO") return "🟢 APROBADO";
-    if (estado === "NO APROBADO") return "🔴 RECHAZADO";
-    return "🟡 PENDIENTE";
-  };
-
-  const colorEstado = (estado) => {
-    if (estado === "APROBADO") return "green";
-    if (estado === "NO APROBADO") return "red";
-    return "orange";
   };
 
   useEffect(() => {
@@ -77,28 +67,33 @@ export default function Aprobaciones() {
         </thead>
 
         <tbody>
-          {pendientes.map((item) => (
-            <tr key={item.id}>
-              <td>{item.nombre}</td>
-              <td>{item.convocatoria}</td>
-              <td>{item.tipo_novedad}</td>
-
-              {/* ESTADO DINÁMICO */}
-              <td style={{ fontWeight: "bold", color: colorEstado(item.aprobacion) }}>
-                {renderEstado(item.aprobacion)}
-              </td>
-
-              <td>
-                <button onClick={() => decidir(item.id, "APROBADO")}>
-                  Aprobar
-                </button>
-
-                <button onClick={() => decidir(item.id, "NO APROBADO")}>
-                  No aprobar
-                </button>
-              </td>
+          {pendientes.length === 0 ? (
+            <tr>
+              <td colSpan="5">No hay registros</td>
             </tr>
-          ))}
+          ) : (
+            pendientes.map((item) => (
+              <tr key={item.id}>
+                <td>{item.nombre}</td>
+                <td>{item.convocatoria}</td>
+                <td>{item.tipo_novedad}</td>
+
+                <td style={{ fontWeight: "bold" }}>
+                  🟡 PENDIENTE
+                </td>
+
+                <td>
+                  <button onClick={() => decidir(item.id, "APROBADO")}>
+                    Aprobar
+                  </button>
+
+                  <button onClick={() => decidir(item.id, "NO APROBADO")}>
+                    No aprobar
+                  </button>
+                </td>
+              </tr>
+            ))
+          )}
         </tbody>
       </table>
     </div>
