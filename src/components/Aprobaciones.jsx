@@ -58,9 +58,23 @@ export default function Aprobaciones() {
       <table border="1" cellPadding="5">
         <thead>
           <tr>
-            <th>Nombre</th>
+            <th>Novedad n.</th>
+            <th>Documento del experto</th>
+            <th>Nombre del experto</th>
             <th>Convocatoria</th>
-            <th>Tipo</th>
+            <th>Tipo de novedad</th>
+            <th>Eje/Indicador</th>
+            <th>Nivel</th>
+            <th>Rol</th>
+            <th>Responsable de la novedad</th>
+            <th>Motivo del retiro</th>
+            <th>Ciudad domicilio</th>
+            <th>Contactar en futuras convocatorias</th>
+            <th>Justificación de la asignación</th>
+            <th>Perfil laboral</th>
+            <th>Perfil académico</th>
+            <th>Disponibilidad de tiempo</th>
+            <th>Fecha de la novedad</th>
             <th>Estado</th>
             <th>Acciones</th>
           </tr>
@@ -74,9 +88,23 @@ export default function Aprobaciones() {
           ) : (
             pendientes.map((item) => (
               <tr key={item.id}>
+
+                <td>{item.documento}</td>
                 <td>{item.nombre}</td>
                 <td>{item.convocatoria}</td>
                 <td>{item.tipo_novedad}</td>
+                <td>{item.eje}</td>
+                <td>{item.nivel}</td>
+                <td>{item.rol}</td>
+                <td>{item.responsable}</td>
+                <td>{item.motivo_retiro}</td>
+                <td>{item.observaciones}</td>
+                <td>{item.contactar_futuro}</td>
+                <td>{item.justificacion}</td>
+                <td>{item.perfil_laboral}</td>
+                <td>{item.perfil_academico}</td>
+                <td>{item.validador}</td>
+                <td>{item.fecha_creacion}</td>
 
                 <td style={{ fontWeight: "bold" }}>
                   🟡 PENDIENTE
