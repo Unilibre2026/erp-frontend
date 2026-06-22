@@ -12,6 +12,7 @@ import PermisosModulos from "./components/PermisosModulos";
 
 import ExcelJS from "exceljs";
 import { saveAs } from "file-saver";
+import Aprobaciones from "./components/Aprobaciones";
 
 const API_URL = "https://erp-unilibre-production.up.railway.app";
 
@@ -386,6 +387,12 @@ if (!usuario) {
   </button>
 )}
 
+{puedeVer("aprobaciones") && (
+  <button onClick={() => setVista("aprobaciones")}>
+    Aprobaciones
+  </button>
+)}
+
 {puedeVer("usuarios") && (
 <button onClick={() => setVista("permisos_modulos")}>
   Permisos módulos
@@ -419,6 +426,7 @@ if (!usuario) {
   {vista === "indicadores" && <Indicadores />}
   {vista === "usuarios" && <Usuarios />}
   {vista === "permisos_modulos" && <PermisosModulos />}
+  {vista === "aprobaciones" && <Aprobaciones />}
 
 
   {vista === "Cargar observaciones de expertos" && (
