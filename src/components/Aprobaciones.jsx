@@ -151,7 +151,7 @@ export default function Aprobaciones() {
                           )
                         }
                       >
-                        Rechazar
+                        No aprobado
                       </button>
                     </div>
                   </td>
