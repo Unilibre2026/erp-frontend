@@ -138,7 +138,7 @@ export default function Aprobaciones() {
                       >
                         {loadingId === item.id
                           ? "..."
-                          : "Aprobar"}
+                          : "Aprobado"}
                       </button>
 
                       <button
