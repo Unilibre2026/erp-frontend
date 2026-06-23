@@ -647,3 +647,31 @@ table td:last-child {
   text-align: center;
   white-space: nowrap;
 }
+
+.table-wrapper {
+  max-height: 75vh;
+  overflow: auto;
+  border: 1px solid #ddd;
+}
+
+/* filas más altas */
+table tr td {
+  padding: 12px;
+  vertical-align: middle;
+}
+
+/* encabezado fijo */
+thead th {
+  position: sticky;
+  top: 0;
+  background: #1f4e5f;
+  color: white;
+  z-index: 2;
+}
+
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch; /* suavidad en Mac/iOS */
+  scroll-behavior: smooth; /* suavidad general */
+}

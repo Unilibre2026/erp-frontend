@@ -56,15 +56,17 @@ export default function Aprobaciones() {
     <div style={{ padding: "20px" }}>
       <h2 style={{ marginBottom: "15px" }}>Pendientes de aprobación</h2>
 
-      <div style={{ overflowX: "auto" }}>
+      {/* 🔥 WRAPPER REAL PARA EVITAR APRETAMIENTO */}
+      <div className="table-wrapper" style={{ overflowX: "auto" }}>
         <table
           border="1"
           cellPadding="10"
           style={{
             width: "100%",
             borderCollapse: "collapse",
-            tableLayout: "fixed",
+            tableLayout: "auto", // 🔥 antes fixed (eso te estaba aplastando todo)
             fontSize: "13px",
+            minWidth: "1400px", // 🔥 clave para 20 columnas
           }}
         >
           <thead style={{ background: "#f2f2f2" }}>
@@ -94,6 +96,7 @@ export default function Aprobaciones() {
           <tbody>
             {pendientes.length === 0 ? (
               <tr>
+                {/* 🔥 corregido colSpan */}
                 <td colSpan="19" style={{ textAlign: "center" }}>
                   No hay registros
                 </td>
@@ -120,8 +123,8 @@ export default function Aprobaciones() {
                   <td>{item.fecha_creacion}</td>
 
                   <td style={{ textAlign: "center" }}>
-                   <span className="status-pill pending">
-                     🟡 Pendiente
+                    <span className="status-pill pending">
+                      🟡 Pendiente
                     </span>
                   </td>
 
