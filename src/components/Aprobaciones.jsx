@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 const API_URL = "https://erp-unilibre-production.up.railway.app";
 
 export default function Aprobaciones() {
-
   const [pendientes, setPendientes] = useState([]);
 
   const cargarPendientes = async () => {
@@ -17,7 +16,6 @@ export default function Aprobaciones() {
   };
 
   const decidir = async (id, aprobacion) => {
-
     let justificacion = null;
 
     if (aprobacion === "NO APROBADO") {
@@ -27,21 +25,18 @@ export default function Aprobaciones() {
 
     const payload = {
       numero_novedad: id,
-      aprobacion: aprobacion,
-      justificacion_aprobacion: justificacion
+      aprobacion,
+      justificacion_aprobacion: justificacion,
     };
 
     try {
       await fetch(`${API_URL}/aprobaciones/decidir`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(payload)
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
       });
 
       cargarPendientes();
-
     } catch (error) {
       console.log("Error enviando decisión:", error);
     }
@@ -52,92 +47,99 @@ export default function Aprobaciones() {
   }, []);
 
   return (
-    <div>
-      <h2>Pendientes de aprobación</h2>
+    <div style={{ padding: "20px" }}>
+      <h2 style={{ marginBottom: "15px" }}>Pendientes de aprobación</h2>
 
-      <table
-        border="1"
-        cellPadding="19"
-        style={{ width: "100%", borderCollapse: "collapse", tableLayout: "fixed" }}
-      >
-        <thead className="tabla-aprobaciones-header">
-          <tr>
-            <th>Novedad</th>
-            <th>Documento del experto</th>
-            <th>Nombre del experto</th>
-            <th>Convocatoria</th>
-            <th>Tipo de novedad</th>
-            <th>Eje/Indicador</th>
-            <th>Nivel</th>
-            <th>Rol</th>
-            <th>Responsable de la novedad</th>
-            <th>Motivo del retiro</th>
-            <th>Ciudad domicilio</th>
-            <th>Contactar en futuras convocatorias</th>
-            <th>Justificación de la asignación</th>
-            <th>Perfil laboral</th>
-            <th>Perfil académico</th>
-            <th>Disponibilidad de tiempo</th>
-            <th>Fecha de la novedad</th>
-            <th>Estado</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          {pendientes.length === 0 ? (
+      <div style={{ overflowX: "auto" }}>
+        <table
+          border="1"
+          cellPadding="10"
+          style={{
+            width: "100%",
+            borderCollapse: "collapse",
+            tableLayout: "fixed",
+            fontSize: "13px",
+          }}
+        >
+          <thead style={{ background: "#f2f2f2" }}>
             <tr>
-              <td colSpan="19">No hay registros</td>
+              <th>Novedad</th>
+              <th>Documento</th>
+              <th>Nombre</th>
+              <th>Convocatoria</th>
+              <th>Tipo</th>
+              <th>Indicador</th>
+              <th>Nivel</th>
+              <th>Rol</th>
+              <th>Responsable</th>
+              <th>Motivo</th>
+              <th>Ciudad</th>
+              <th>Contacto futuro</th>
+              <th>Justificación</th>
+              <th>Perfil laboral</th>
+              <th>Perfil académico</th>
+              <th>Disponibilidad</th>
+              <th>Fecha</th>
+              <th>Estado</th>
+              <th>Acciones</th>
             </tr>
-          ) : (
-            pendientes.map((item) => (
-              <tr key={item.id}>
+          </thead>
 
-                <td>{item.id}</td>
-                <td>{item.documento_experto}</td>
-                <td>{item.nombre}</td>
-                <td>{item.convocatoria}</td>
-                <td>{item.tipo_novedad}</td>
-                <td>{item.eje}</td>
-                <td>{item.nivel}</td>
-                <td>{item.rol}</td>
-
-                <td>{item.responsable}</td>
-
-                <td>{item.motivo_retiro}</td>
-                <td>{item.ciudad_domicilio}</td>
-
-                <td>{item.contactar_futuro}</td>
-
-                <td>{item.justificacion}</td>
-
-                <td>{item.perfil_laboral}</td>
-                <td>{item.perfil_academico}</td>
-
-                {/* 🔧 CORREGIDO: antes estaba mal mapeado */}
-                <td>{item.disponibilidad_tiempo}</td>
-
-                <td>{item.fecha_creacion}</td>
-
-                <td style={{ fontWeight: "bold", textAlign: "center" }}>
-                  🟡 PENDIENTE
+          <tbody>
+            {pendientes.length === 0 ? (
+              <tr>
+                <td colSpan="19" style={{ textAlign: "center" }}>
+                  No hay registros
                 </td>
-
-                <td style={{ textAlign: "center", whiteSpace: "nowrap" }}>
-                  <button onClick={() => decidir(item.id, "APROBADO")}>
-                    Aprobar
-                  </button>
-
-                  <button onClick={() => decidir(item.id, "NO APROBADO")}>
-                    No aprobar
-                  </button>
-                </td>
-
               </tr>
-            ))
-          )}
-        </tbody>
-      </table>
+            ) : (
+              pendientes.map((item) => (
+                <tr key={item.id}>
+                  <td>{item.id}</td>
+                  <td>{item.documento_experto}</td>
+                  <td>{item.nombre}</td>
+                  <td>{item.convocatoria}</td>
+                  <td>{item.tipo_novedad}</td>
+                  <td>{item.eje}</td>
+                  <td>{item.nivel}</td>
+                  <td>{item.rol}</td>
+                  <td>{item.responsable}</td>
+                  <td>{item.motivo_retiro}</td>
+                  <td>{item.ciudad_domicilio}</td>
+                  <td>{item.contactar_futuro}</td>
+                  <td>{item.justificacion}</td>
+                  <td>{item.perfil_laboral}</td>
+                  <td>{item.perfil_academico}</td>
+                  <td>{item.disponibilidad_tiempo}</td>
+                  <td>{item.fecha_creacion}</td>
+
+                  <td style={{ fontWeight: "bold", textAlign: "center" }}>
+                    🟡 Pendiente
+                  </td>
+
+                  <td style={{ textAlign: "center" }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        gap: "6px",
+                      }}
+                    >
+                      <button onClick={() => decidir(item.id, "APROBADO")}>
+                        Aprobar
+                      </button>
+
+                      <button onClick={() => decidir(item.id, "NO APROBADO")}>
+                        Rechazar
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
