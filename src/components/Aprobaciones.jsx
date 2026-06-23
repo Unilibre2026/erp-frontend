@@ -56,7 +56,6 @@ export default function Aprobaciones() {
     <div style={{ padding: "20px" }}>
       <h2 style={{ marginBottom: "15px" }}>Pendientes de aprobación</h2>
 
-      {/* 🔥 WRAPPER REAL PARA EVITAR APRETAMIENTO */}
       <div className="table-wrapper" style={{ overflowX: "auto" }}>
         <table
           border="1"
@@ -64,14 +63,16 @@ export default function Aprobaciones() {
           style={{
             width: "100%",
             borderCollapse: "collapse",
-            tableLayout: "auto", // 🔥 antes fixed (eso te estaba aplastando todo)
+            tableLayout: "auto",
             fontSize: "13px",
-            minWidth: "1400px", // 🔥 clave para 20 columnas
+            minWidth: "1400px",
           }}
         >
           <thead style={{ background: "#f2f2f2" }}>
             <tr>
               <th>Novedad</th>
+              <th>Estado</th>
+              <th>Acciones</th>
               <th>Documento</th>
               <th>Nombre</th>
               <th>Convocatoria</th>
@@ -88,15 +89,13 @@ export default function Aprobaciones() {
               <th>Perfil académico</th>
               <th>Disponibilidad</th>
               <th>Fecha</th>
-              <th>Estado</th>
-              <th>Acciones</th>
             </tr>
           </thead>
 
           <tbody>
             {pendientes.length === 0 ? (
               <tr>
-                {/* 🔥 corregido colSpan */}
+                {/* 🔥 CORREGIDO: ahora sigue teniendo 19 columnas */}
                 <td colSpan="19" style={{ textAlign: "center" }}>
                   No hay registros
                 </td>
@@ -104,30 +103,17 @@ export default function Aprobaciones() {
             ) : (
               pendientes.map((item) => (
                 <tr key={item.id}>
+                  {/* 🔥 Novedad */}
                   <td>{item.id}</td>
-                  <td>{item.documento_experto}</td>
-                  <td>{item.nombre}</td>
-                  <td>{item.convocatoria}</td>
-                  <td>{item.tipo_novedad}</td>
-                  <td>{item.eje}</td>
-                  <td>{item.nivel}</td>
-                  <td>{item.rol}</td>
-                  <td>{item.responsable}</td>
-                  <td>{item.motivo_retiro}</td>
-                  <td>{item.ciudad_domicilio}</td>
-                  <td>{item.contactar_futuro}</td>
-                  <td>{item.justificacion}</td>
-                  <td>{item.perfil_laboral}</td>
-                  <td>{item.perfil_academico}</td>
-                  <td>{item.disponibilidad_tiempo}</td>
-                  <td>{item.fecha_creacion}</td>
 
+                  {/* 🔥 Estado */}
                   <td style={{ textAlign: "center" }}>
                     <span className="status-pill pending">
                       🟡 Pendiente
                     </span>
                   </td>
 
+                  {/* 🔥 Acciones */}
                   <td style={{ textAlign: "center" }}>
                     <div style={{ display: "flex", gap: "6px", justifyContent: "center" }}>
                       <button
@@ -145,6 +131,25 @@ export default function Aprobaciones() {
                       </button>
                     </div>
                   </td>
+
+                  {/* 🔥 Documento */}
+                  <td>{item.documento_experto}</td>
+
+                  <td>{item.nombre}</td>
+                  <td>{item.convocatoria}</td>
+                  <td>{item.tipo_novedad}</td>
+                  <td>{item.eje}</td>
+                  <td>{item.nivel}</td>
+                  <td>{item.rol}</td>
+                  <td>{item.responsable}</td>
+                  <td>{item.motivo_retiro}</td>
+                  <td>{item.ciudad_domicilio}</td>
+                  <td>{item.contactar_futuro}</td>
+                  <td>{item.justificacion}</td>
+                  <td>{item.perfil_laboral}</td>
+                  <td>{item.perfil_academico}</td>
+                  <td>{item.disponibilidad_tiempo}</td>
+                  <td>{item.fecha_creacion}</td>
                 </tr>
               ))
             )}
