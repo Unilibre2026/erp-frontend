@@ -55,7 +55,7 @@ export default function Aprobaciones() {
     <div>
       <h2>Pendientes de aprobación</h2>
 
-      <table border="1" cellPadding="5" style={{ width: "100%", borderCollapse: "collapse" }}>
+      <table border="1" cellPadding="19" style={{ width: "100%", borderCollapse: "collapse" }}>
         <thead>
           <tr>
             <th>Novedad</th>
