@@ -621,9 +621,11 @@ input[type="file"] {
   max-width: 600px; /* ajusta esto */
 }
 
-.tabla-aprobaciones-header th {git status
-  background-color: red !important;
-  color: white !important;
+.tabla-aprobaciones-header th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+  text-align: left;
+  padding: 10px;
 }
 
 table th:nth-child(19),
