@@ -36,7 +36,9 @@ export default function Aprobaciones() {
 
       await fetch(`${API_URL}/aprobaciones/decidir`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify(payload),
       });
 
@@ -54,9 +56,14 @@ export default function Aprobaciones() {
 
   return (
     <div style={{ padding: "20px" }}>
-      <h2 style={{ marginBottom: "15px" }}>Pendientes de aprobación</h2>
+      <h2 style={{ marginBottom: "15px" }}>
+        Pendientes de aprobación
+      </h2>
 
-      <div className="table-wrapper" style={{ overflowX: "auto" }}>
+      <div
+        className="table-wrapper"
+        style={{ overflowX: "auto" }}
+      >
         <table
           border="1"
           cellPadding="10"
@@ -95,46 +102,61 @@ export default function Aprobaciones() {
           <tbody>
             {pendientes.length === 0 ? (
               <tr>
-                {/* 🔥 CORREGIDO: ahora sigue teniendo 19 columnas */}
-                <td colSpan="19" style={{ textAlign: "center" }}>
+                <td
+                  colSpan="19"
+                  style={{ textAlign: "center" }}
+                >
                   No hay registros
                 </td>
               </tr>
             ) : (
               pendientes.map((item) => (
                 <tr key={item.id}>
-                  {/* 🔥 Novedad */}
                   <td>{item.id}</td>
 
-                  {/* 🔥 Estado */}
                   <td style={{ textAlign: "center" }}>
                     <span className="status-pill pending">
                       🟡 Pendiente
                     </span>
                   </td>
 
-                  {/* 🔥 Acciones */}
                   <td style={{ textAlign: "center" }}>
-                    <div style={{ display: "flex", gap: "6px", justifyContent: "center" }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        gap: "6px",
+                        justifyContent: "center",
+                        flexWrap: "wrap",
+                      }}
+                    >
                       <button
+                        className="btn-aprobar"
                         disabled={loadingId === item.id}
-                        onClick={() => decidir(item.id, "APROBADO")}
+                        onClick={() =>
+                          decidir(item.id, "APROBADO")
+                        }
                       >
-                        {loadingId === item.id ? "..." : "Aprobar"}
+                        {loadingId === item.id
+                          ? "..."
+                          : "Aprobar"}
                       </button>
 
                       <button
+                        className="btn-rechazar"
                         disabled={loadingId === item.id}
-                        onClick={() => decidir(item.id, "NO APROBADO")}
+                        onClick={() =>
+                          decidir(
+                            item.id,
+                            "NO APROBADO"
+                          )
+                        }
                       >
                         Rechazar
                       </button>
                     </div>
                   </td>
 
-                  {/* 🔥 Documento */}
                   <td>{item.documento_experto}</td>
-
                   <td>{item.nombre}</td>
                   <td>{item.convocatoria}</td>
                   <td>{item.tipo_novedad}</td>
