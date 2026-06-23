@@ -762,7 +762,7 @@ table td:nth-child(3) {
   border: 1px solid #4ade80 !important;
   border-radius: 6px;
   padding: 8px 12px;
-  font-weight: 600;
+  font-weight: 610;
 }
 
 .btn-rechazar {
@@ -771,5 +771,5 @@ table td:nth-child(3) {
   border: 1px solid #f472b6 !important;
   border-radius: 6px;
   padding: 8px 12px;
-  font-weight: 600;
+  font-weight: 610;
 }
