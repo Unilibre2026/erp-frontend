@@ -675,3 +675,41 @@ thead th {
   -webkit-overflow-scrolling: touch; /* suavidad en Mac/iOS */
   scroll-behavior: smooth; /* suavidad general */
 }
+
+/* =========================
+   ESTADO APROBACIONES
+========================= */
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  min-height: 28px;
+}
+
+.status-pill.pending {
+  background-color: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffe69c;
+}
+
+/* Estado */
+table th:nth-child(2),
+table td:nth-child(2) {
+  min-width: 120px;
+  width: 120px;
+  text-align: center;
+}
+
+/* Acciones */
+table th:nth-child(3),
+table td:nth-child(3) {
+  min-width: 180px;
+  width: 180px;
+  text-align: center;
+}
