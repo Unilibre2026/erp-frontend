@@ -55,7 +55,7 @@ export default function Aprobaciones() {
     <div>
       <h2>Pendientes de aprobación</h2>
 
-      <table border="1" cellPadding="5">
+      <table border="1" cellPadding="5" style={{ width: "100%", borderCollapse: "collapse" }}>
         <thead>
           <tr>
             <th>Novedad</th>
@@ -83,7 +83,7 @@ export default function Aprobaciones() {
         <tbody>
           {pendientes.length === 0 ? (
             <tr>
-              <td colSpan="5">No hay registros</td>
+              <td colSpan="19">No hay registros</td>
             </tr>
           ) : (
             pendientes.map((item) => (
@@ -98,13 +98,19 @@ export default function Aprobaciones() {
                 <td>{item.nivel}</td>
                 <td>{item.rol}</td>
                 <td>{item.responsable}</td>
+
                 <td>{item.motivo_retiro}</td>
-                <td>{item.observaciones}</td>
+                <td>{item.ciudad_domicilio}</td>
+
                 <td>{item.contactar_futuro}</td>
+
                 <td>{item.justificacion}</td>
+
                 <td>{item.perfil_laboral}</td>
                 <td>{item.perfil_academico}</td>
+
                 <td>{item.validador}</td>
+
                 <td>{item.fecha_creacion}</td>
 
                 <td style={{ fontWeight: "bold" }}>
@@ -120,6 +126,7 @@ export default function Aprobaciones() {
                     No aprobar
                   </button>
                 </td>
+
               </tr>
             ))
           )}
