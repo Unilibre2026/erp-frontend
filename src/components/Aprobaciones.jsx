@@ -119,8 +119,10 @@ export default function Aprobaciones() {
                   <td>{item.disponibilidad_tiempo}</td>
                   <td>{item.fecha_creacion}</td>
 
-                  <td style={{ fontWeight: "bold", textAlign: "center" }}>
-                    🟡 Pendiente
+                  <td style={{ textAlign: "center" }}>
+                   <span className="status-pill pending">
+                     🟡 Pendiente
+                    </span>
                   </td>
 
                   <td style={{ textAlign: "center" }}>
