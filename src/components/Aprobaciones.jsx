@@ -55,7 +55,11 @@ export default function Aprobaciones() {
     <div>
       <h2>Pendientes de aprobación</h2>
 
-      <table border="1" cellPadding="19" style={{ width: "100%", borderCollapse: "collapse" }}>
+      <table
+        border="1"
+        cellPadding="19"
+        style={{ width: "100%", borderCollapse: "collapse", tableLayout: "fixed" }}
+      >
         <thead className="tabla-aprobaciones-header">
           <tr>
             <th>Novedad</th>
@@ -97,6 +101,7 @@ export default function Aprobaciones() {
                 <td>{item.eje}</td>
                 <td>{item.nivel}</td>
                 <td>{item.rol}</td>
+
                 <td>{item.responsable}</td>
 
                 <td>{item.motivo_retiro}</td>
@@ -109,15 +114,16 @@ export default function Aprobaciones() {
                 <td>{item.perfil_laboral}</td>
                 <td>{item.perfil_academico}</td>
 
-                <td>{item.validador}</td>
+                {/* 🔧 CORREGIDO: antes estaba mal mapeado */}
+                <td>{item.disponibilidad_tiempo}</td>
 
                 <td>{item.fecha_creacion}</td>
 
-                <td style={{ fontWeight: "bold" }}>
+                <td style={{ fontWeight: "bold", textAlign: "center" }}>
                   🟡 PENDIENTE
                 </td>
 
-                <td>
+                <td style={{ textAlign: "center", whiteSpace: "nowrap" }}>
                   <button onClick={() => decidir(item.id, "APROBADO")}>
                     Aprobar
                   </button>
