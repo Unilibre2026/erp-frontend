@@ -620,3 +620,8 @@ input[type="file"] {
   width: 100%;
   max-width: 600px; /* ajusta esto */
 }
+
+.tabla-aprobaciones-header th {
+  background-color: red !important;
+  color: white !important;
+}

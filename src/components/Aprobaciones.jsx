@@ -56,7 +56,7 @@ export default function Aprobaciones() {
       <h2>Pendientes de aprobación</h2>
 
       <table border="1" cellPadding="19" style={{ width: "100%", borderCollapse: "collapse" }}>
-        <thead style={{ backgroundColor: "red", color: "white" }}>
+        <thead className="tabla-aprobaciones-header">
           <tr>
             <th>Novedad</th>
             <th>Documento del experto</th>
