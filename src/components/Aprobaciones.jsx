@@ -4,12 +4,14 @@ const API_URL = "https://erp-unilibre-production.up.railway.app";
 
 export default function Aprobaciones() {
   const [pendientes, setPendientes] = useState([]);
+  const [loadingId, setLoadingId] = useState(null);
 
   const cargarPendientes = async () => {
     try {
       const res = await fetch(`${API_URL}/aprobaciones/pendientes`);
       const data = await res.json();
-      setPendientes(data);
+
+      setPendientes(Array.isArray(data) ? data : []);
     } catch (error) {
       console.log("Error cargando pendientes:", error);
     }
@@ -30,6 +32,8 @@ export default function Aprobaciones() {
     };
 
     try {
+      setLoadingId(id);
+
       await fetch(`${API_URL}/aprobaciones/decidir`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -39,6 +43,8 @@ export default function Aprobaciones() {
       cargarPendientes();
     } catch (error) {
       console.log("Error enviando decisión:", error);
+    } finally {
+      setLoadingId(null);
     }
   };
 
@@ -118,18 +124,18 @@ export default function Aprobaciones() {
                   </td>
 
                   <td style={{ textAlign: "center" }}>
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "center",
-                        gap: "6px",
-                      }}
-                    >
-                      <button onClick={() => decidir(item.id, "APROBADO")}>
-                        Aprobar
+                    <div style={{ display: "flex", gap: "6px", justifyContent: "center" }}>
+                      <button
+                        disabled={loadingId === item.id}
+                        onClick={() => decidir(item.id, "APROBADO")}
+                      >
+                        {loadingId === item.id ? "..." : "Aprobar"}
                       </button>
 
-                      <button onClick={() => decidir(item.id, "NO APROBADO")}>
+                      <button
+                        disabled={loadingId === item.id}
+                        onClick={() => decidir(item.id, "NO APROBADO")}
+                      >
                         Rechazar
                       </button>
                     </div>
