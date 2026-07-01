@@ -718,51 +718,23 @@ table td:nth-child(3) {
    BOTONES APROBACIONES
 ========================= */
 
-.btn-aprobar {
-  background-color: #86efac; /* verde claro */
-  color: #14532d;
-  border: 1px solid #4ade80;
-  border-radius: 6px;
-  padding: 8px 12px;
-  cursor: pointer;
-  font-weight: 600;
-}
-
-.btn-aprobar:hover {
-  background-color: #4ade80;
-}
-
-.btn-aprobar:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
+btn-aprobar,
 .btn-rechazar {
-  background-color: #fbcfe8; /* rosado claro */
-  color: #9d174d;
-  border: 1px solid #f472b6;
+  width: 110px;          /* Ambos tendrán el mismo ancho */
+  height: 38px;          /* Misma altura */
   border-radius: 6px;
-  padding: 8px 12px;
-  cursor: pointer;
   font-weight: 600;
-}
-
-.btn-rechazar:hover {
-  background-color: #f9a8d4;
-}
-
-.btn-rechazar:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-sizing: border-box;
 }
 
 .btn-aprobar {
-  background: #A7F3D0 !important;   /* Verde menta */
+  background: #A7F3D0 !important;
   color: #065F46 !important;
   border: 1px solid #6EE7B7 !important;
-  border-radius: 6px;
-  padding: 8px 12px;
-  font-weight: 600;
 }
 
 .btn-aprobar:hover {
@@ -774,9 +746,6 @@ table td:nth-child(3) {
   background: #FBCFE8 !important;
   color: #9D174D !important;
   border: 1px solid #F472B6 !important;
-  border-radius: 6px;
-  padding: 8px 12px;
-  font-weight: 600;
 }
 
 .btn-rechazar:hover {
