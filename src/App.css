@@ -184,7 +184,7 @@ table tr:nth-child(even) {
 
 
 /* Anchos específicos columnas */
-table td:nth-child(14) {
+/*table td:nth-child(14) {
   width: 400px;
 }
 
@@ -260,7 +260,7 @@ table td:nth-child(5) {
   min-width: 40px;
   max-width: 40px;
   width: 40px;
-}*/
+}
 
 table th:nth-child(6),
 table td:nth-child(6) {
@@ -296,7 +296,7 @@ table td:nth-child(16) {
   min-width: 100px;
   max-width: 100px;
   width: 100px;
-}
+}*/
 
 /* Logo */
 .contenedor-logo {
