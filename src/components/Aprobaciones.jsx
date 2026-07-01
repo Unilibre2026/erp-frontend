@@ -161,9 +161,23 @@ export default function Aprobaciones() {
                   <td>{item.motivo_retiro}</td>
                   <td>{item.ciudad_domicilio}</td>
                   <td>{item.contactar_futuro}</td>
-                  <td>{item.justificacion}</td>
-                  <td>{item.perfil_laboral}</td>
-                  <td>{item.perfil_academico}</td>
+                  <td>
+                   <div className="scroll-aprobaciones">
+                    {item.justificacion}
+                   </div>
+                  </td>
+
+                  <td>
+                   <div className="scroll-aprobaciones">
+                    {item.perfil_laboral}
+                   </div>
+                  </td>
+
+                  <td>
+                   <div className="scroll-aprobaciones">
+                    {item.perfil_academico}
+                   </div>
+                  </td>
                   <td>{item.disponibilidad_tiempo}</td>
                   <td>{item.fecha_creacion}</td>
                 </tr>
