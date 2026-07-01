@@ -757,19 +757,29 @@ table td:nth-child(3) {
 }
 
 .btn-aprobar {
-  background: #86efac !important;
-  color: #14532d !important;
-  border: 1px solid #4ade80 !important;
+  background: #A7F3D0 !important;   /* Verde menta */
+  color: #065F46 !important;
+  border: 1px solid #6EE7B7 !important;
   border-radius: 6px;
   padding: 8px 12px;
-  font-weight: 609;
+  font-weight: 600;
+}
+
+.btn-aprobar:hover {
+  background: #6EE7B7 !important;
+  border-color: #34D399 !important;
 }
 
 .btn-rechazar {
-  background: #fbcfe8 !important;
-  color: #9d174d !important;
-  border: 1px solid #f472b6 !important;
+  background: #FBCFE8 !important;
+  color: #9D174D !important;
+  border: 1px solid #F472B6 !important;
   border-radius: 6px;
   padding: 8px 12px;
-  font-weight: 609;
+  font-weight: 600;
+}
+
+.btn-rechazar:hover {
+  background: #F9A8D4 !important;
+  border-color: #EC4899 !important;
 }
