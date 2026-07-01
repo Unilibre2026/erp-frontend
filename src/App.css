@@ -766,7 +766,7 @@ thead th {
 
 .tabla-aprobaciones th:nth-child(3),
 .tabla-aprobaciones td:nth-child(3){
-    width:370px;
+    width:450px;
 }
 
 .tabla-aprobaciones th:nth-child(4),
