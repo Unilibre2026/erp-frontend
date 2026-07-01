@@ -826,17 +826,17 @@ thead th {
 
 .tabla-aprobaciones th:nth-child(15),
 .tabla-aprobaciones td:nth-child(15){
-    width:200px;
+    width:250px;
 }
 
 .tabla-aprobaciones th:nth-child(16),
 .tabla-aprobaciones td:nth-child(16){
-    width:300px;
+    width:250px;
 }
 
 .tabla-aprobaciones th:nth-child(17),
 .tabla-aprobaciones td:nth-child(17){
-    width:300px;
+    width:250px;
 }
 
 .tabla-aprobaciones th:nth-child(18),
@@ -847,4 +847,24 @@ thead th {
 .tabla-aprobaciones th:nth-child(19),
 .tabla-aprobaciones td:nth-child(19){
     width:130px;
+}
+
+/* Columnas con scroll vertical */
+
+.tabla-aprobaciones td:nth-child(15),
+.tabla-aprobaciones td:nth-child(16),
+.tabla-aprobaciones td:nth-child(17) {
+    padding: 0;
+    vertical-align: top;
+}
+
+.scroll-aprobaciones {
+    max-height: 100px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 8px;
+    white-space: normal;
+    word-break: break-word;
+    text-align: justify;
+    line-height: 1.4;
 }
