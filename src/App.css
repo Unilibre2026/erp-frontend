@@ -774,10 +774,10 @@ thead th {
     width:130px;
 }
 
-.tabla-aprobaciones th:nth-child(5),
+/*.tabla-aprobaciones th:nth-child(5),
 .tabla-aprobaciones td:nth-child(5){
     width:400px;
-}
+}*/
 
 .tabla-aprobaciones th:nth-child(6),
 .tabla-aprobaciones td:nth-child(6){
