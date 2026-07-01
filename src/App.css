@@ -718,16 +718,24 @@ table td:nth-child(3) {
    BOTONES APROBACIONES
 ========================= */
 
-btn-aprobar,
+.btn-aprobar,
 .btn-rechazar {
-  width: 110px;          /* Ambos tendrán el mismo ancho */
-  height: 38px;          /* Misma altura */
-  border-radius: 6px;
-  font-weight: 600;
-  display: inline-flex;
+  min-width: 120px !important;
+  width: 120px !important;
+  max-width: 120px !important;
+
+  height: 36px !important;
+
+  display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
+
+  white-space: nowrap;
+  flex-shrink: 0;
+
+  padding: 0;
+  border-radius: 6px;
+  font-weight: 600;
   box-sizing: border-box;
 }
 
@@ -737,18 +745,8 @@ btn-aprobar,
   border: 1px solid #6EE7B7 !important;
 }
 
-.btn-aprobar:hover {
-  background: #6EE7B7 !important;
-  border-color: #34D399 !important;
-}
-
 .btn-rechazar {
   background: #FBCFE8 !important;
   color: #9D174D !important;
   border: 1px solid #F472B6 !important;
-}
-
-.btn-rechazar:hover {
-  background: #F9A8D4 !important;
-  border-color: #EC4899 !important;
 }
