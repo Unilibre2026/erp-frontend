@@ -732,3 +732,119 @@ thead th {
   opacity: .65;
   cursor: not-allowed;
 }
+/* =========================
+   TABLA APROBACIONES
+========================= */
+
+.tabla-aprobaciones {
+  width: 100%;
+  min-width: 2200px;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.tabla-aprobaciones th,
+.tabla-aprobaciones td {
+  padding: 10px;
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Anchos independientes */
+
+.tabla-aprobaciones th:nth-child(1),
+.tabla-aprobaciones td:nth-child(1){
+    width:70px;
+}
+
+.tabla-aprobaciones th:nth-child(2),
+.tabla-aprobaciones td:nth-child(2){
+    width:120px;
+}
+
+.tabla-aprobaciones th:nth-child(3),
+.tabla-aprobaciones td:nth-child(3){
+    width:350px;
+}
+
+.tabla-aprobaciones th:nth-child(4),
+.tabla-aprobaciones td:nth-child(4){
+    width:130px;
+}
+
+.tabla-aprobaciones th:nth-child(5),
+.tabla-aprobaciones td:nth-child(5){
+    width:130px;
+}
+
+.tabla-aprobaciones th:nth-child(6),
+.tabla-aprobaciones td:nth-child(6){
+    width:130px;
+}
+
+.tabla-aprobaciones th:nth-child(7),
+.tabla-aprobaciones td:nth-child(7){
+    width:130px;
+}
+
+.tabla-aprobaciones th:nth-child(8),
+.tabla-aprobaciones td:nth-child(8){
+    width:130px;
+}
+
+.tabla-aprobaciones th:nth-child(9),
+.tabla-aprobaciones td:nth-child(9){
+    width:130px;
+}
+
+.tabla-aprobaciones th:nth-child(10),
+.tabla-aprobaciones td:nth-child(10){
+    width:130px;
+}
+
+.tabla-aprobaciones th:nth-child(11),
+.tabla-aprobaciones td:nth-child(11){
+    width:130px;
+}
+
+.tabla-aprobaciones th:nth-child(12),
+.tabla-aprobaciones td:nth-child(12){
+    width:130px;
+}
+
+.tabla-aprobaciones th:nth-child(13),
+.tabla-aprobaciones td:nth-child(13){
+    width:130px;
+}
+
+.tabla-aprobaciones th:nth-child(14),
+.tabla-aprobaciones td:nth-child(14){
+    width:130px;
+}
+
+.tabla-aprobaciones th:nth-child(15),
+.tabla-aprobaciones td:nth-child(15){
+    width:130px;
+}
+
+.tabla-aprobaciones th:nth-child(16),
+.tabla-aprobaciones td:nth-child(16){
+    width:130px;
+}
+
+.tabla-aprobaciones th:nth-child(17),
+.tabla-aprobaciones td:nth-child(17){
+    width:130px;
+}
+
+.tabla-aprobaciones th:nth-child(18),
+.tabla-aprobaciones td:nth-child(18){
+    width:130px;
+}
+
+.tabla-aprobaciones th:nth-child(19),
+.tabla-aprobaciones td:nth-child(19){
+    width:130px;
+}
