@@ -677,66 +677,58 @@ thead th {
 }
 
 /* =========================
-   ESTADO APROBACIONES
+   BOTONES APROBACIONES
 ========================= */
-
-.status-pill {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 6px 12px;
-  border-radius: 999px;
-  font-size: 12px;
-  font-weight: 600;
-  white-space: nowrap;
-  min-height: 28px;
-}
-
-.status-pill.pending {
-  background-color: #fff3cd;
-  color: #856404;
-  border: 1px solid #ffe69c;
-}
-
-/* Estado */
-table th:nth-child(2),
-table td:nth-child(2) {
-  min-width: 120px;
-  width: 120px;
-  text-align: center;
-}
-
-/* Acciones */
-table th:nth-child(3),
-table td:nth-child(3) {
-  min-width: 180px;
-  width: 180px;
-  text-align: center;
-}
 
 .btn-aprobar,
 .btn-rechazar {
-  min-width: 120px;
-  width: 120px;
-  max-width: 120px;
-  height: 36px;
+  min-width: 120px !important;
+  width: 120px !important;
+  max-width: 120px !important;
+
+  height: 36px !important;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
+  white-space: nowrap;
+  flex-shrink: 0;
+
+  padding: 0;
   border-radius: 6px;
   font-weight: 600;
+  box-sizing: border-box;
+
   cursor: pointer;
   transition: all .25s ease;
 
+  /* Estado inicial */
   background: #29566B;
   color: #FFFFFF;
   border: 1px solid #29566B;
 }
 
-.btn-aprobar:hover,
-.btn-rechazar:hover {
-  background: #356C84;
-  border-color: #356C84;
+/* ---------- APROBAR ---------- */
+
+.btn-aprobar:hover:not(:disabled) {
+  background: #BBF7D0 !important;
+  color: #166534 !important;
+  border-color: #4ADE80 !important;
+}
+
+/* ---------- RECHAZAR ---------- */
+
+.btn-rechazar:hover:not(:disabled) {
+  background: #FBCFE8 !important;
+  color: #BE123C !important;
+  border-color: #F472B6 !important;
+}
+
+/* ---------- BOTÓN DESHABILITADO ---------- */
+
+.btn-aprobar:disabled,
+.btn-rechazar:disabled {
+  opacity: .65;
+  cursor: not-allowed;
 }
