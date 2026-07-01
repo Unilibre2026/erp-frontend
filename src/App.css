@@ -714,39 +714,29 @@ table td:nth-child(3) {
   text-align: center;
 }
 
-/* =========================
-   BOTONES APROBACIONES
-========================= */
-
 .btn-aprobar,
 .btn-rechazar {
-  min-width: 120px !important;
-  width: 120px !important;
-  max-width: 120px !important;
-
-  height: 36px !important;
+  min-width: 120px;
+  width: 120px;
+  max-width: 120px;
+  height: 36px;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  white-space: nowrap;
-  flex-shrink: 0;
-
-  padding: 0;
   border-radius: 6px;
   font-weight: 600;
-  box-sizing: border-box;
+  cursor: pointer;
+  transition: all .25s ease;
+
+  background: #29566B;
+  color: #FFFFFF;
+  border: 1px solid #29566B;
 }
 
-.btn-aprobar {
-  background: #A7F3D0 !important;
-  color: #065F46 !important;
-  border: 1px solid #6EE7B7 !important;
-}
-
-.btn-rechazar {
-  background: #FBCFE8 !important;
-  color: #9D174D !important;
-  border: 1px solid #F472B6 !important;
+.btn-aprobar:hover,
+.btn-rechazar:hover {
+  background: #356C84;
+  border-color: #356C84;
 }
