@@ -65,37 +65,31 @@ export default function Aprobaciones() {
         style={{ overflowX: "auto" }}
       >
         <table
-          border="1"
+         className="tabla-aprobaciones"
+         border="1"
           cellPadding="10"
-          style={{
-            width: "100%",
-            borderCollapse: "collapse",
-            tableLayout: "auto",
-            fontSize: "13px",
-            minWidth: "1400px",
-          }}
-        >
+      >
           <thead style={{ background: "#f2f2f2" }}>
             <tr>
-              <th>Novedad</th>
-              <th>Estado</th>
-              <th>Acciones</th>
-              <th>Documento</th>
-              <th>Nombre</th>
-              <th>Convocatoria</th>
-              <th>Tipo</th>
-              <th>Indicador</th>
-              <th>Nivel</th>
-              <th>Rol</th>
-              <th>Responsable</th>
-              <th>Motivo</th>
-              <th>Ciudad</th>
-              <th>Contacto futuro</th>
-              <th>Justificación</th>
-              <th>Perfil laboral</th>
-              <th>Perfil académico</th>
-              <th>Disponibilidad</th>
-              <th>Fecha</th>
+              <th className="col-novedad">Novedad</th>
+              <th className="col-estado">Estado</th>
+              <th className="col-acciones">Acciones</th>
+              <th className="col-documento">Documento</th>
+              <th className="col-nombre">Nombre</th>
+              <th className="col-convocatoria">Convocatoria</th>
+              <th className="col-tipo">Tipo</th>
+              <th className="col-indicador">Indicador</th>
+              <th className="col-nivel">Nivel</th>
+              <th className="col-rol">Rol</th>
+              <th className="col-responsable">Responsable</th>
+              <th className="col-motivo">Motivo</th>
+              <th className="col-ciudad">Ciudad</th>
+              <th className="col-contacto">Contacto futuro</th>
+              <th className="col-justificacion">Justificación</th>
+              <th className="col-perfil-laboral">Perfil laboral</th>
+              <th className="col-perfil-academico">Perfil académico</th>
+              <th className="col-disponibilidad">Disponibilidad</th>
+              <th className="col-fecha">Fecha</th>
             </tr>
           </thead>
 
