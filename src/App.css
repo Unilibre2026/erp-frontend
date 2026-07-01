@@ -603,7 +603,7 @@ table td:nth-child(11) {
   max-width: 100px;
 }
 
-table th:nth-child(16),
+/*table th:nth-child(16),
 table td:nth-child(16) {
   min-width: 100px;
   max-width: 100px;
@@ -614,7 +614,7 @@ table td:nth-child(17) {
   min-width: 100px;
   max-width: 100px;
   width: 100px;
-}
+}*/
 
 input[type="file"] {
   width: 100%;
