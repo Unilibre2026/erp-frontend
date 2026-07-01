@@ -831,12 +831,12 @@ thead th {
 
 .tabla-aprobaciones th:nth-child(16),
 .tabla-aprobaciones td:nth-child(16){
-    width:200px;
+    width:300px;
 }
 
 .tabla-aprobaciones th:nth-child(17),
 .tabla-aprobaciones td:nth-child(17){
-    width:200px;
+    width:300px;
 }
 
 .tabla-aprobaciones th:nth-child(18),
