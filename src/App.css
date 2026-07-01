@@ -766,7 +766,7 @@ thead th {
 
 .tabla-aprobaciones th:nth-child(3),
 .tabla-aprobaciones td:nth-child(3){
-    width:350px;
+    width:370px;
 }
 
 .tabla-aprobaciones th:nth-child(4),
@@ -776,12 +776,12 @@ thead th {
 
 .tabla-aprobaciones th:nth-child(5),
 .tabla-aprobaciones td:nth-child(5){
-    width:130px;
+    width:400px;
 }
 
 .tabla-aprobaciones th:nth-child(6),
 .tabla-aprobaciones td:nth-child(6){
-    width:130px;
+    width:450px;
 }
 
 .tabla-aprobaciones th:nth-child(7),
@@ -791,7 +791,7 @@ thead th {
 
 .tabla-aprobaciones th:nth-child(8),
 .tabla-aprobaciones td:nth-child(8){
-    width:130px;
+    width:400px;
 }
 
 .tabla-aprobaciones th:nth-child(9),
@@ -826,17 +826,17 @@ thead th {
 
 .tabla-aprobaciones th:nth-child(15),
 .tabla-aprobaciones td:nth-child(15){
-    width:130px;
+    width:160px;
 }
 
 .tabla-aprobaciones th:nth-child(16),
 .tabla-aprobaciones td:nth-child(16){
-    width:130px;
+    width:160px;
 }
 
 .tabla-aprobaciones th:nth-child(17),
 .tabla-aprobaciones td:nth-child(17){
-    width:130px;
+    width:160px;
 }
 
 .tabla-aprobaciones th:nth-child(18),
