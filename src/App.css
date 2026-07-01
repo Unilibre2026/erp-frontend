@@ -255,12 +255,12 @@ table td:nth-child(4) {
   max-width: 80px;
   width: 80px;
 }
-table th:nth-child(5),
+/*table th:nth-child(5),
 table td:nth-child(5) {
   min-width: 40px;
   max-width: 40px;
   width: 40px;
-}
+}*/
 
 table th:nth-child(6),
 table td:nth-child(6) {
@@ -774,10 +774,10 @@ thead th {
     width:130px;
 }
 
-/*.tabla-aprobaciones th:nth-child(5),
+.tabla-aprobaciones th:nth-child(5),
 .tabla-aprobaciones td:nth-child(5){
     width:400px;
-}*/
+}
 
 .tabla-aprobaciones th:nth-child(6),
 .tabla-aprobaciones td:nth-child(6){
