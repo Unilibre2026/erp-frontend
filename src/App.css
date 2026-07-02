@@ -1036,3 +1036,103 @@ thead th {
   }
 
 }
+
+/*=========================
+      HOJA DE VIDA
+=========================*/
+
+.perfil-header{
+
+    display:flex;
+    gap:25px;
+    align-items:center;
+
+    margin-bottom:25px;
+    padding-bottom:20px;
+
+    border-bottom:2px solid #E5E7EB;
+
+}
+
+.perfil-avatar{
+
+    width:95px;
+    height:95px;
+
+    border-radius:50%;
+
+    background:#1F4E5F;
+
+    color:white;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:48px;
+
+}
+
+.perfil-info h2{
+
+    margin:0;
+    color:#1F4E5F;
+    font-size:30px;
+
+}
+
+.perfil-info p{
+
+    margin:6px 0;
+    font-size:15px;
+
+}
+
+.perfil-grid{
+
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(420px,1fr));
+
+    gap:20px;
+
+}
+
+.card-perfil{
+
+    background:#F8FAFC;
+
+    border-radius:12px;
+
+    padding:20px;
+
+    box-shadow:0 3px 12px rgba(0,0,0,.08);
+
+}
+
+.card-perfil h3{
+
+    margin-top:0;
+
+    color:#1F4E5F;
+
+    border-bottom:2px solid #D1D5DB;
+
+    padding-bottom:8px;
+
+}
+
+.texto-card{
+
+    max-height:180px;
+
+    overflow:auto;
+
+    white-space:pre-wrap;
+
+    text-align:justify;
+
+    line-height:1.6;
+
+    padding-right:8px;
+
+}
