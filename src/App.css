@@ -791,7 +791,7 @@ thead th {
 
 .tabla-aprobaciones th:nth-child(8),
 .tabla-aprobaciones td:nth-child(8){
-    width:130px;
+    width:100px;
 }
 
 .tabla-aprobaciones th:nth-child(9),
@@ -918,4 +918,23 @@ thead th {
     white-space: normal;
     word-break: break-word;
     overflow-wrap: break-word;
+}
+
+/* Columna Indicador */
+.tabla-aprobaciones td:nth-child(8) {
+    text-align: justify;
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+/* =========================
+   COLUMNA NOVEDAD
+========================= */
+
+.tabla-aprobaciones td:nth-child(1) {
+    font-size: 36px;      /* Aproximadamente 3 veces el tamaño actual */
+    font-weight: bold;    /* Negrilla */
+    text-align: center;   /* Centrado horizontal */
+    vertical-align: middle; /* Centrado vertical */
 }
