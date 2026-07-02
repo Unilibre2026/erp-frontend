@@ -766,17 +766,17 @@ thead th {
 
 .tabla-aprobaciones th:nth-child(3),
 .tabla-aprobaciones td:nth-child(3){
-    width:250px;
+    width:120px;
 }
 
 .tabla-aprobaciones th:nth-child(4),
 .tabla-aprobaciones td:nth-child(4){
-    width:130px;
+    width:250px;
 }
 
 .tabla-aprobaciones th:nth-child(5),
 .tabla-aprobaciones td:nth-child(5){
-    width:250px;
+    width:130px;
 }
 
 .tabla-aprobaciones th:nth-child(6),
@@ -786,17 +786,17 @@ thead th {
 
 .tabla-aprobaciones th:nth-child(7),
 .tabla-aprobaciones td:nth-child(7){
-    width:130px;
+    width:250px;
 }
 
 .tabla-aprobaciones th:nth-child(8),
 .tabla-aprobaciones td:nth-child(8){
-    width:400px;
+    width:130px;
 }
 
 .tabla-aprobaciones th:nth-child(9),
 .tabla-aprobaciones td:nth-child(9){
-    width:130px;
+    width:400px;
 }
 
 .tabla-aprobaciones th:nth-child(10),
@@ -826,7 +826,7 @@ thead th {
 
 .tabla-aprobaciones th:nth-child(15),
 .tabla-aprobaciones td:nth-child(15){
-    width:250px;
+    width:130px;
 }
 
 .tabla-aprobaciones th:nth-child(16),
@@ -841,11 +841,16 @@ thead th {
 
 .tabla-aprobaciones th:nth-child(18),
 .tabla-aprobaciones td:nth-child(18){
-    width:130px;
+    width:250px;
 }
 
 .tabla-aprobaciones th:nth-child(19),
 .tabla-aprobaciones td:nth-child(19){
+    width:130px;
+}
+
+.tabla-aprobaciones th:nth-child(20),
+.tabla-aprobaciones td:nth-child(20){
     width:130px;
 }
 
