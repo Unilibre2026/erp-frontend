@@ -874,10 +874,6 @@ thead th {
 ========================= */
 
 .btn-hoja-vida {
-  background: transparent;
-  border: none;
-  border-radius: 8px;
-
   width: 48px;
   height: 48px;
 
@@ -886,15 +882,37 @@ thead th {
   justify-content: center;
 
   padding: 0;
+  margin: 0 auto;
+
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+
   cursor: pointer;
 
-  color: #1F4E5F;
+  color: #2563EB;              /* Azul inicial */
 
-  transition: all .25s ease;
+  transition: background-color .25s ease,
+              color .25s ease,
+              transform .25s ease,
+              box-shadow .25s ease;
+}
+
+/* El icono toma siempre el color del botón */
+.btn-hoja-vida svg {
+  width: 30px;
+  height: 30px;
+  stroke: currentColor !important;
+  transition: inherit;
 }
 
 .btn-hoja-vida:hover {
-  background: #4ADE80;      /* Verde pasto */
-  color: #FFFFFF;           /* Icono blanco */
+  background-color: #22C55E;   /* Verde pasto */
+  color: #FFFFFF;              /* Icono blanco */
   transform: scale(1.08);
+  box-shadow: 0 3px 10px rgba(34,197,94,.30);
+}
+
+.btn-hoja-vida:active {
+  transform: scale(.95);
 }
