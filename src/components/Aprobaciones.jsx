@@ -292,22 +292,11 @@ export default function Aprobaciones() {
 
     <div className="card-perfil">
 
-      <h3>Motivo del retiro</h3>
-
-      <div className="texto-card">
-        {expertoSeleccionado.motivo_retiro}
-      </div>
-
-    </div>
-
-
-    <div className="card-perfil">
-
       <h3>Justificación</h3>
 
       <div className="texto-card">
-        {expertoSeleccionado.justificacion}
-      </div>
+       {expertoSeleccionado.justificacion}
+    </div>
 
     </div>
 
@@ -317,8 +306,8 @@ export default function Aprobaciones() {
       <h3>Perfil Laboral</h3>
 
       <div className="texto-card">
-        {expertoSeleccionado.perfil_laboral}
-      </div>
+       {expertoSeleccionado.perfil_laboral}
+    </div>
 
     </div>
 
@@ -327,9 +316,20 @@ export default function Aprobaciones() {
 
       <h3>Perfil Académico</h3>
 
-      <div className="texto-card">
+       <div className="texto-card">
         {expertoSeleccionado.perfil_academico}
-      </div>
+    </div>
+
+    </div>
+
+
+    <div className="card-perfil">
+
+      <h3>Motivo del retiro</h3>
+
+      <div className="texto-card">
+       {expertoSeleccionado.motivo_retiro}
+    </div>
 
     </div>
 
