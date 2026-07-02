@@ -933,7 +933,7 @@ thead th {
 ========================= */
 
 .tabla-aprobaciones td:nth-child(1) {
-    font-size: 36px;      /* Aproximadamente 3 veces el tamaño actual */
+    font-size: 24px;      /* Aproximadamente 3 veces el tamaño actual */
     font-weight: bold;    /* Negrilla */
     text-align: center;   /* Centrado horizontal */
     vertical-align: middle; /* Centrado vertical */
