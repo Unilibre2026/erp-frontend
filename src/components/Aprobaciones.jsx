@@ -116,7 +116,10 @@ export default function Aprobaciones() {
                    <button
                     className="btn-hoja-vida"
                     title="Ver hoja de vida"
-                    onClick={() => setExpertoSeleccionado(item)}
+                    onClick={() => {
+                      console.log(item);
+                      setExpertoSeleccionado(item);
+                    }}
                    >
                     <FileUser strokeWidth={2} />
                    </button>
@@ -226,7 +229,100 @@ export default function Aprobaciones() {
 
             <div className="modal-body">
 
-            </div>
+  <div className="perfil-header">
+
+    <div className="perfil-avatar">
+      👤
+    </div>
+
+    <div className="perfil-info">
+      <h2>{expertoSeleccionado.nombre}</h2>
+
+      <p>
+        <strong>Documento:</strong> {expertoSeleccionado.documento_experto}
+      </p>
+
+      <p>
+        <strong>Convocatoria:</strong> {expertoSeleccionado.convocatoria}
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <div className="perfil-grid">
+
+    <div className="card-perfil">
+      <h3>Información General</h3>
+
+      <p><strong>Tipo de novedad:</strong> {expertoSeleccionado.tipo_novedad}</p>
+
+      <p><strong>Indicador:</strong> {expertoSeleccionado.eje}</p>
+
+      <p><strong>Nivel:</strong> {expertoSeleccionado.nivel}</p>
+
+      <p><strong>Rol:</strong> {expertoSeleccionado.rol}</p>
+
+      <p><strong>Responsable:</strong> {expertoSeleccionado.responsable}</p>
+
+      <p><strong>Ciudad:</strong> {expertoSeleccionado.ciudad_domicilio}</p>
+
+      <p><strong>Disponibilidad:</strong> {expertoSeleccionado.disponibilidad_tiempo}</p>
+
+      <p><strong>Contacto futuro:</strong> {expertoSeleccionado.contactar_futuro}</p>
+
+      <p><strong>Fecha:</strong> {expertoSeleccionado.fecha_creacion}</p>
+
+    </div>
+
+
+    <div className="card-perfil">
+
+      <h3>Motivo del retiro</h3>
+
+      <div className="texto-card">
+        {expertoSeleccionado.motivo_retiro}
+      </div>
+
+    </div>
+
+
+    <div className="card-perfil">
+
+      <h3>Justificación</h3>
+
+      <div className="texto-card">
+        {expertoSeleccionado.justificacion}
+      </div>
+
+    </div>
+
+
+    <div className="card-perfil">
+
+      <h3>Perfil Laboral</h3>
+
+      <div className="texto-card">
+        {expertoSeleccionado.perfil_laboral}
+      </div>
+
+    </div>
+
+
+    <div className="card-perfil">
+
+      <h3>Perfil Académico</h3>
+
+      <div className="texto-card">
+        {expertoSeleccionado.perfil_academico}
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
 
           </div>
         </div>
