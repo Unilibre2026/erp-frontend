@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { FileUser } from "lucide-react";
+import { FileUser, User } from "lucide-react";
 
 
 const API_URL = "https://erp-unilibre-production.up.railway.app";
@@ -215,7 +215,16 @@ export default function Aprobaciones() {
           >
             <div className="modal-header">
               <div>
-                <h2>👤 Hoja de Vida del Experto</h2>
+                <h2
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "10px",
+                  }}
+                >          
+                 <User size={28} color="#ffffff" />
+                  Hoja de Vida del Experto
+               </h2>
                 <small>Resumen Ejecutivo del Perfil</small>
               </div>
 
