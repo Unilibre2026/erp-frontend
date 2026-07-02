@@ -938,3 +938,101 @@ thead th {
     text-align: center;   /* Centrado horizontal */
     vertical-align: middle; /* Centrado vertical */
 }
+
+/* =========================
+   MODAL HOJA DE VIDA
+========================= */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 9999;
+}
+
+.modal-hoja-vida {
+  width: 85%;
+  max-width: 1000px;
+  max-height: 90vh;
+
+  background: #ffffff;
+  border-radius: 14px;
+
+  overflow: hidden;
+
+  box-shadow: 0 10px 35px rgba(0,0,0,.35);
+
+  animation: aparecerModal .25s ease;
+}
+
+.modal-header {
+  background: #1F4E5F;
+  color: white;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 16px 22px;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.btn-cerrar-modal {
+  background: transparent;
+  border: none;
+
+  color: white;
+
+  font-size: 28px;
+  cursor: pointer;
+
+  transition: .2s;
+}
+
+.btn-cerrar-modal:hover {
+  color: #FCA5A5;
+}
+
+.modal-body {
+  padding: 25px;
+  overflow-y: auto;
+  max-height: calc(90vh - 70px);
+}
+
+.modal-body h3 {
+  margin-top: 25px;
+  margin-bottom: 12px;
+
+  color: #1F4E5F;
+  border-bottom: 2px solid #E5E7EB;
+  padding-bottom: 6px;
+}
+
+.modal-body p {
+  margin: 8px 0;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+@keyframes aparecerModal {
+
+  from{
+    opacity:0;
+    transform:scale(.90);
+  }
+
+  to{
+    opacity:1;
+    transform:scale(1);
+  }
+
+}

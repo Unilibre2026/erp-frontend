@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { FileUser } from "lucide-react";
 
+
 const API_URL = "https://erp-unilibre-production.up.railway.app";
 
 export default function Aprobaciones() {
   const [pendientes, setPendientes] = useState([]);
   const [loadingId, setLoadingId] = useState(null);
+  const [expertoSeleccionado, setExpertoSeleccionado] = useState(null);
 
   const cargarPendientes = async () => {
     try {
@@ -112,10 +114,11 @@ export default function Aprobaciones() {
 
                   <td style={{ textAlign: "center" }}>
                    <button
-                     className="btn-hoja-vida"
-                     title="Ver hoja de vida"
-                     >
-                      <FileUser strokeWidth={2} />
+                    className="btn-hoja-vida"
+                    title="Ver hoja de vida"
+                    onClick={() => setExpertoSeleccionado(item)}
+                   >
+                    <FileUser strokeWidth={2} />
                    </button>
                   </td>
 
@@ -197,6 +200,38 @@ export default function Aprobaciones() {
           </tbody>
         </table>
       </div>
+
+      {expertoSeleccionado && (
+        <div
+          className="modal-overlay"
+          onClick={() => setExpertoSeleccionado(null)}
+        >
+          <div
+            className="modal-hoja-vida"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="modal-header">
+              <div>
+                <h2>👤 Hoja de Vida del Experto</h2>
+                <small>Resumen Ejecutivo del Perfil</small>
+              </div>
+
+              <button
+                className="btn-cerrar-modal"
+                onClick={() => setExpertoSeleccionado(null)}
+              >
+                ✕
+              </button>
+            </div>
+
+            <div className="modal-body">
+
+            </div>
+
+          </div>
+        </div>
+      )}
+
     </div>
   );
 }
