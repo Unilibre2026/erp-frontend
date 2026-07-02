@@ -301,24 +301,24 @@ export default function Aprobaciones() {
     </div>
 
 
-    <div className="card-perfil">
-
+    <div className="card-perfil card-alta">
       <h3>Perfil Laboral</h3>
 
       <div className="texto-card">
        {expertoSeleccionado.perfil_laboral}
-    </div>
+  </div>
+</div>
 
     </div>
 
 
-    <div className="card-perfil">
+    <div className="card-perfil card-alta">
+     <h3>Perfil Académico</h3>
 
-      <h3>Perfil Académicoco</h3>
-
-       <div className="texto-card">
-        {expertoSeleccionado.perfil_academico}
-    </div>
+     <div className="texto-card">
+      {expertoSeleccionado.perfil_academico}
+  </div>
+</div>
 
     </div>
 

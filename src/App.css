@@ -1136,3 +1136,7 @@ thead th {
     padding-right:8px;
 
 }
+
+.card-alta .texto-card {
+    min-height: 250px;
+}
