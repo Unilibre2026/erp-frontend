@@ -875,19 +875,28 @@ thead th {
 
 .btn-hoja-vida {
   background: transparent;
-  border: none;
+  border: 1px solid transparent;
+  border-radius: 8px;
+
+  width: 48px;
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   padding: 0;
   cursor: pointer;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  color: #1F4E5F;
 
-  color: #2563eb;
-  transition: transform .2s ease, color .2s ease;
+  transition: all .25s ease;
 }
 
 .btn-hoja-vida:hover {
-  color: #1d4ed8;
-  transform: scale(1.15);
+  background: #BBF7D0;
+  border: 1px solid #4ADE80;
+  color: #166534;
+  transform: scale(1.08);
+  box-shadow: 0 2px 8px rgba(74, 222, 128, 0.25);
 }
