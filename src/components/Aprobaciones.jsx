@@ -72,6 +72,7 @@ export default function Aprobaciones() {
           <thead style={{ background: "#f2f2f2" }}>
             <tr>
               <th className="col-novedad">Novedad</th>
+              <th>Hoja de Vida</th>
               <th className="col-estado">Estado</th>
               <th className="col-acciones">Acciones</th>
               <th className="col-documento">Documento</th>
@@ -107,6 +108,12 @@ export default function Aprobaciones() {
               pendientes.map((item) => (
                 <tr key={item.id}>
                   <td>{item.id}</td>
+
+                  <td style={{ textAlign: "center" }}>
+                   <button className="btn-hoja-vida">
+                   📄
+                   </button>
+                  </td>
 
                   <td style={{ textAlign: "center" }}>
                     <span className="status-pill pending">
