@@ -893,9 +893,8 @@ thead th {
 }
 
 .btn-hoja-vida svg {
-  width: 30px;
-  height: 30px;
-  stroke: currentColor;
+    stroke: currentColor;
+    transition: inherit;
 }
 
 .btn-hoja-vida:hover {
