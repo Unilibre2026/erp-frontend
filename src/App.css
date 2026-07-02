@@ -956,8 +956,7 @@ thead th {
 }
 
 .modal-hoja-vida {
-  width: 85%;
-  max-width: 1000px;
+  width: min(92vw, 1000px);
   max-height: 90vh;
 
   background: #ffffff;
@@ -1140,4 +1139,23 @@ thead th {
 
 .card-alta .texto-card {
     min-height: 250px;
+}
+/* Portátiles */
+@media (max-width: 1366px) {
+
+  .modal-hoja-vida {
+    width: 92vw;
+    max-width: 900px;
+  }
+
+}
+
+/* Pantallas pequeñas */
+@media (max-width: 1024px) {
+
+  .modal-hoja-vida {
+    width: 96vw;
+    max-width: 800px;
+  }
+
 }
