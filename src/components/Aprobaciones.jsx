@@ -314,7 +314,7 @@ export default function Aprobaciones() {
 
     <div className="card-perfil">
 
-      <h3>Perfil Académico</h3>
+      <h3>Perfil Académicoco</h3>
 
        <div className="texto-card">
         {expertoSeleccionado.perfil_academico}
