@@ -65,7 +65,7 @@
   cursor: pointer;
 }
 
-.content button:hover {
+.content button:not(.btn-hoja-vida):hover {
   background-color: #1d4ed8;
 }
 
@@ -881,38 +881,25 @@ thead th {
   align-items: center;
   justify-content: center;
 
-  padding: 0;
-  margin: 0 auto;
-
-  background: transparent;
-  border: none;
+  background: transparent !important;
+  border: none !important;
   border-radius: 8px;
 
   cursor: pointer;
 
-  color: #2563EB;              /* Azul inicial */
+  color: #2563EB !important;
 
-  transition: background-color .25s ease,
-              color .25s ease,
-              transform .25s ease,
-              box-shadow .25s ease;
+  transition: all .25s ease;
 }
 
-/* El icono toma siempre el color del botón */
 .btn-hoja-vida svg {
   width: 30px;
   height: 30px;
-  stroke: currentColor !important;
-  transition: inherit;
+  stroke: currentColor;
 }
 
 .btn-hoja-vida:hover {
-  background-color: #22C55E;   /* Verde pasto */
-  color: #FFFFFF;              /* Icono blanco */
+  background: #22C55E !important;
+  color: #FFFFFF !important;
   transform: scale(1.08);
-  box-shadow: 0 3px 10px rgba(34,197,94,.30);
-}
-
-.btn-hoja-vida:active {
-  transform: scale(.95);
 }
