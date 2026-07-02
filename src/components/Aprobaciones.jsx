@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { FileUser } from "lucide-react";
 
 const API_URL = "https://erp-unilibre-production.up.railway.app";
 
@@ -110,8 +111,11 @@ export default function Aprobaciones() {
                   <td>{item.id}</td>
 
                   <td style={{ textAlign: "center" }}>
-                   <button className="btn-hoja-vida">
-                   📄
+                   <button
+                     className="btn-hoja-vida"
+                     title="Ver hoja de vida"
+                   >
+                     <FileUser size={40} strokeWidth={2} />
                    </button>
                   </td>
 

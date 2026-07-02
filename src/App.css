@@ -868,3 +868,26 @@ thead th {
     text-align: justify;
     line-height: 1.4;
 }
+
+/* =========================
+   BOTÓN HOJA DE VIDA
+========================= */
+
+.btn-hoja-vida {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: #2563eb;
+  transition: transform .2s ease, color .2s ease;
+}
+
+.btn-hoja-vida:hover {
+  color: #1d4ed8;
+  transform: scale(1.15);
+}
