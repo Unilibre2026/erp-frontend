@@ -955,19 +955,23 @@ thead th {
   z-index: 9999;
 }
 
-.modal-hoja-vida {
-  width: min(92vw, 1000px);
-  max-height: 90vh;
+.modal-hoja-vida{
 
-  background: #ffffff;
-  border-radius: 14px;
+    width:85%;
+    max-width:1000px;
+    min-width:900px;
 
-  overflow-y: auto;
-  overflow-x: hidden;
+    max-height:90vh;
 
-  box-shadow: 0 10px 35px rgba(0,0,0,.35);
+    background:#fff;
 
-  animation: aparecerModal .25s ease;
+    border-radius:14px;
+
+    overflow-y:auto;
+    overflow-x:auto;
+
+    box-shadow:0 10px 35px rgba(0,0,0,.35);
+
 }
 
 .modal-header {
@@ -1091,9 +1095,12 @@ thead th {
 .perfil-grid{
 
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(420px,1fr));
+
+    grid-template-columns:1fr 1fr;
 
     gap:20px;
+
+    align-items:start;
 
 }
 
@@ -1139,23 +1146,4 @@ thead th {
 
 .card-alta .texto-card {
     min-height: 250px;
-}
-/* Portátiles */
-@media (max-width: 1366px) {
-
-  .modal-hoja-vida {
-    width: 92vw;
-    max-width: 900px;
-  }
-
-}
-
-/* Pantallas pequeñas */
-@media (max-width: 1024px) {
-
-  .modal-hoja-vida {
-    width: 96vw;
-    max-width: 800px;
-  }
-
 }
