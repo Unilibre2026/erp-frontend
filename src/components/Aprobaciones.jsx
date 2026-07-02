@@ -241,7 +241,11 @@ export default function Aprobaciones() {
   <div className="perfil-header">
 
     <div className="perfil-avatar">
-      👤
+     <User
+       size={48}
+       color="#ffffff"
+       strokeWidth={2.2}
+      />
     </div>
 
     <div className="perfil-info">
