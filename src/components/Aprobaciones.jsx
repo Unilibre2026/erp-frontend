@@ -114,8 +114,8 @@ export default function Aprobaciones() {
                    <button
                      className="btn-hoja-vida"
                      title="Ver hoja de vida"
-                   >
-                     <FileUser size={40} strokeWidth={2} />
+                     >
+                      <FileUser strokeWidth={2} />
                    </button>
                   </td>
 

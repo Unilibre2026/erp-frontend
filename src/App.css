@@ -874,8 +874,8 @@ thead th {
 ========================= */
 
 .btn-hoja-vida {
-  width: 48px;
-  height: 48px;
+  width: 70px;
+  height: 70px;
 
   display: flex;
   align-items: center;
@@ -883,7 +883,7 @@ thead th {
 
   background: transparent !important;
   border: none !important;
-  border-radius: 8px;
+  border-radius: 10px;
 
   cursor: pointer;
 
@@ -893,8 +893,12 @@ thead th {
 }
 
 .btn-hoja-vida svg {
-    stroke: currentColor;
-    transition: inherit;
+  stroke: currentColor;
+  transition: inherit;
+
+  /* Tamaño del icono */
+  width: 56px;
+  height: 56px;
 }
 
 .btn-hoja-vida:hover {
