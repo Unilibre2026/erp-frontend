@@ -307,7 +307,7 @@ export default function Aprobaciones() {
       <div className="texto-card">
        {expertoSeleccionado.perfil_laboral}
   </div>
-</div>
+
 
     </div>
 
@@ -320,7 +320,7 @@ export default function Aprobaciones() {
   </div>
 </div>
 
-    </div>
+    
 
 
     <div className="card-perfil">
