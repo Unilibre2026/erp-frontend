@@ -875,7 +875,7 @@ thead th {
 
 .btn-hoja-vida {
   background: transparent;
-  border: 1px solid transparent;
+  border: none;
   border-radius: 8px;
 
   width: 48px;
@@ -894,9 +894,7 @@ thead th {
 }
 
 .btn-hoja-vida:hover {
-  background: #BBF7D0;
-  border: 1px solid #4ADE80;
-  color: #166534;
+  background: #4ADE80;      /* Verde pasto */
+  color: #FFFFFF;           /* Icono blanco */
   transform: scale(1.08);
-  box-shadow: 0 2px 8px rgba(74, 222, 128, 0.25);
 }
