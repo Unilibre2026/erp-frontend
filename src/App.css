@@ -1147,3 +1147,52 @@ thead th {
 .card-alta .texto-card {
     min-height: 250px;
 }
+
+@media (max-width: 1366px){
+
+    .modal-hoja-vida{
+        width:90%;
+        max-width:900px;
+    }
+
+    .perfil-avatar{
+        width:75px;
+        height:75px;
+    }
+
+    .perfil-info h2{
+        font-size:24px;
+    }
+
+    .card-perfil{
+        padding:16px;
+    }
+
+    .card-perfil h3{
+        font-size:22px;
+    }
+
+    .texto-card,
+    .perfil-info p{
+        font-size:14px;
+    }
+
+}
+
+@media (max-width:1024px){
+
+    .modal-hoja-vida{
+        width:95%;
+        max-width:820px;
+    }
+
+    .perfil-avatar{
+        width:65px;
+        height:65px;
+    }
+
+    .perfil-info h2{
+        font-size:20px;
+    }
+
+}
