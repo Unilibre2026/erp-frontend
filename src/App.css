@@ -911,3 +911,11 @@ thead th {
   color: #FFFFFF !important;
   transform: scale(1.08);
 }
+
+/* Columna Rol */
+.tabla-aprobaciones td:nth-child(11) {
+    text-align: justify;
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
