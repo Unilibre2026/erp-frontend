@@ -176,7 +176,7 @@ export default function Aprobaciones() {
                   <td>{item.rol}</td>
                   <td>{item.responsable}</td>
                   <td>{item.motivo_retiro}</td>
-                  <td>{item.ciudad_domicilio}</td>
+                  <td>{item.observaciones}</td>
                   <td>{item.contactar_futuro}</td>
                   <td>
                    <div className="scroll-aprobaciones">
@@ -195,7 +195,7 @@ export default function Aprobaciones() {
                     {item.perfil_academico}
                    </div>
                   </td>
-                  <td>{item.disponibilidad_tiempo}</td>
+                  <td>{item.validador}</td>
                   <td>{item.fecha_creacion}</td>
                 </tr>
               ))
