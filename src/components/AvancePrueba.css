@@ -1,17 +1,23 @@
 .avance-prueba{
+
     padding:20px;
+
 }
 
 
 .avance-prueba h2{
+
     margin-bottom:25px;
     color:#123b6d;
+
 }
 
 
+
 /* ==========================
-   FILTRO
+   FILTRO CONVOCATORIA
 ========================== */
+
 
 .filtro-convocatoria{
 
@@ -39,9 +45,11 @@
 }
 
 
+
 /* ==========================
-   CONTENEDOR GENERAL
+   INDICADORES
 ========================== */
+
 
 .contenedor-indicadores{
 
@@ -73,7 +81,7 @@
 
 
 /* ==========================
-   ORDEN VERTICAL DE TABLAS
+   CONTENEDOR TABLAS
 ========================== */
 
 
@@ -89,27 +97,7 @@
 
 
 /* ==========================
-   CONTENEDORES INDIVIDUALES
-========================== */
-
-
-.tabla-resumen{
-
-    width:100%;
-
-}
-
-
-.tabla-principal{
-
-    width:100%;
-
-}
-
-
-
-/* ==========================
-   TITULOS TABLAS
+   TITULOS INTERNOS
 ========================== */
 
 
@@ -124,83 +112,17 @@
 
 
 
-/* ==========================
-   TABLA AVANCE
-========================== */
-
-
-.tabla-avance{
-
-    width:100%;
-    border-collapse:collapse;
-    table-layout:fixed;
-
-}
-
-
-
-.tabla-avance th{
-
-    background:#0d4f8b;
-    color:white;
-    font-size:14px;
-    padding:8px;
-    text-align:center;
-
-}
-
-
-
-.tabla-avance td{
-
-    border:1px solid #d9d9d9;
-    font-size:13px;
-    padding:7px;
-    text-align:center;
-
-}
-
-
-
-/* Anchos tabla avance */
-
-
-.tabla-avance th:nth-child(1),
-.tabla-avance td:nth-child(1){
-
-    width:25%;
-
-}
-
-
-.tabla-avance th:nth-child(2),
-.tabla-avance td:nth-child(2){
-
-    width:15%;
-
-}
-
-
-.tabla-avance th:nth-child(3),
-.tabla-avance td:nth-child(3),
-.tabla-avance th:nth-child(4),
-.tabla-avance td:nth-child(4),
-.tabla-avance th:nth-child(5),
-.tabla-avance td:nth-child(5),
-.tabla-avance th:nth-child(6),
-.tabla-avance td:nth-child(6),
-.tabla-avance th:nth-child(7),
-.tabla-avance td:nth-child(7){
-
-    width:12%;
-
-}
-
-
-
-/* ==========================
+/* =====================================================
    TABLA RESUMEN
-========================== */
+===================================================== */
+
+
+.tabla-resumen{
+
+    width:500px;
+
+}
+
 
 
 .tabla-resumen-datos{
@@ -236,36 +158,153 @@
 
 
 
-/* Anchos tabla resumen */
+/* Columnas resumen */
 
 
 .tabla-resumen-datos th:nth-child(1),
 .tabla-resumen-datos td:nth-child(1){
 
-    width:60%;
+    width:250px;
 
 }
+
 
 
 .tabla-resumen-datos th:nth-child(2),
 .tabla-resumen-datos td:nth-child(2){
 
-    width:13%;
+    width:80px;
 
 }
+
 
 
 .tabla-resumen-datos th:nth-child(3),
 .tabla-resumen-datos td:nth-child(3){
 
-    width:13%;
+    width:80px;
 
 }
+
 
 
 .tabla-resumen-datos th:nth-child(4),
 .tabla-resumen-datos td:nth-child(4){
 
-    width:14%;
+    width:90px;
+
+}
+
+
+
+
+
+/* =====================================================
+   TABLA AVANCE
+===================================================== */
+
+
+.tabla-principal{
+
+    width:100%;
+
+}
+
+
+
+.tabla-avance{
+
+    width:100%;
+    border-collapse:collapse;
+    table-layout:fixed;
+
+}
+
+
+
+.tabla-avance th{
+
+    background:#0d4f8b;
+    color:white;
+    font-size:14px;
+    padding:8px;
+    text-align:center;
+
+}
+
+
+
+.tabla-avance td{
+
+    border:1px solid #d9d9d9;
+    font-size:13px;
+    padding:7px;
+    text-align:center;
+
+}
+
+
+
+/* Columnas tabla avance */
+
+
+.tabla-avance th:nth-child(1),
+.tabla-avance td:nth-child(1){
+
+    width:220px;
+
+}
+
+
+
+.tabla-avance th:nth-child(2),
+.tabla-avance td:nth-child(2){
+
+    width:120px;
+
+}
+
+
+
+.tabla-avance th:nth-child(3),
+.tabla-avance td:nth-child(3){
+
+    width:70px;
+
+}
+
+
+
+.tabla-avance th:nth-child(4),
+.tabla-avance td:nth-child(4){
+
+    width:90px;
+
+}
+
+
+
+.tabla-avance th:nth-child(5),
+.tabla-avance td:nth-child(5){
+
+    width:110px;
+
+}
+
+
+
+.tabla-avance th:nth-child(6),
+.tabla-avance td:nth-child(6){
+
+    width:100px;
+
+}
+
+
+
+.tabla-avance th:nth-child(7),
+.tabla-avance td:nth-child(7){
+
+    width:100px;
 
 }
