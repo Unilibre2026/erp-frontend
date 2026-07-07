@@ -1,3 +1,29 @@
 .avance-prueba{
     padding:20px;
 }
+
+.avance-prueba h2{
+    margin-bottom:25px;
+    color:#123b6d;
+}
+
+.filtro-convocatoria{
+    display:flex;
+    flex-direction:column;
+    width:420px;
+    gap:8px;
+}
+
+.filtro-convocatoria label{
+    font-weight:bold;
+}
+
+.filtro-convocatoria select{
+    height:38px;
+    padding:5px 10px;
+    font-size:14px;
+}
+
+.contenedor-indicadores{
+    margin-top:30px;
+}
