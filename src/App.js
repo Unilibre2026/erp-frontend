@@ -4,7 +4,7 @@ import Login from "./components/Login"; // componente login
 
 import appLogo from "./logo.png"; // logo del sistema (global)
 
-import AvancePrueba from "./components/AvancePrueba/AvancePrueba";
+import AvancePrueba from "./components/AvancePrueba";
 
 
 import "./App.css";
