@@ -2,31 +2,54 @@
     padding:20px;
 }
 
+
 .avance-prueba h2{
     margin-bottom:25px;
     color:#123b6d;
 }
 
+
+/* ==========================
+   FILTRO
+========================== */
+
 .filtro-convocatoria{
+
     display:flex;
     flex-direction:column;
     width:420px;
     gap:8px;
+
 }
+
 
 .filtro-convocatoria label{
+
     font-weight:bold;
+
 }
 
+
 .filtro-convocatoria select{
+
     height:38px;
     padding:5px 10px;
     font-size:14px;
+
 }
 
+
+/* ==========================
+   CONTENEDOR GENERAL
+========================== */
+
 .contenedor-indicadores{
+
     margin-top:30px;
+
 }
+
+
 
 .card-indicador{
 
@@ -38,6 +61,8 @@
 
 }
 
+
+
 .card-indicador h3{
 
     margin-bottom:15px;
@@ -45,167 +70,66 @@
 
 }
 
+
+
+/* ==========================
+   ORDEN VERTICAL DE TABLAS
+========================== */
+
+
 .contenedor-tablas{
 
     display:flex;
-    gap:20px;
-    align-items:flex-start;
+    flex-direction:column;
+    gap:25px;
+    width:100%;
 
 }
 
-.tabla-principal{
 
-    flex:3;
 
-}
+/* ==========================
+   CONTENEDORES INDIVIDUALES
+========================== */
+
 
 .tabla-resumen{
 
-    flex:1;
+    width:100%;
 
 }
 
-.tabla-principal table,
-.tabla-resumen table{
+
+.tabla-principal{
 
     width:100%;
-    border-collapse:collapse;
-
-}
-
-.tabla-principal th,
-.tabla-principal td,
-.tabla-resumen th,
-.tabla-resumen td{
-
-    border:1px solid #d9d9d9;
-    padding:8px;
-    font-size:14px;
-
-}
-
-.tabla-principal th,
-.tabla-resumen th{
-
-    background:#0d4f8b;
-    color:white;
-
-}
-
-/* =====================================
-   TABLA PRINCIPAL - IZQUIERDA
-===================================== */
-
-.tabla-avance {
-
-    width: 100%;
-    border-collapse: collapse;
-    table-layout: fixed;
-
-}
-
-
-.tabla-avance th {
-
-    font-size: 20px;
-    padding: 8px;
-    text-align: center;
-
-}
-
-
-.tabla-avance td {
-
-    font-size: 20px;
-    padding: 7px;
-    text-align: center;
-
-}
-
-
-/* =====================================
-   ANCHOS COLUMNAS TABLA IZQUIERDA
-===================================== */
-
-
-/* Rol */
-
-.tabla-avance th:nth-child(1),
-.tabla-avance td:nth-child(1){
-
-    width:70px;
-
-}
-
-
-/* Horario */
-
-.tabla-avance th:nth-child(2),
-.tabla-avance td:nth-child(2){
-
-    width:30px;
-
-}
-
-
-/* Total */
-
-.tabla-avance th:nth-child(3),
-.tabla-avance td:nth-child(3){
-
-    width:10px;
-
-}
-
-
-/* Aprobados */
-
-.tabla-avance th:nth-child(4),
-.tabla-avance td:nth-child(4){
-
-    width:10px;
-
-}
-
-
-/* No aprobados */
-
-.tabla-avance th:nth-child(5),
-.tabla-avance td:nth-child(5){
-
-    width:10px;
-
-}
-
-
-/* Pendientes */
-
-.tabla-avance th:nth-child(6),
-.tabla-avance td:nth-child(6){
-
-    width:10px;
-
-}
-
-
-/* Subsanados */
-
-.tabla-avance th:nth-child(7),
-.tabla-avance td:nth-child(7){
-
-    width:10px;
 
 }
 
 
 
+/* ==========================
+   TITULOS TABLAS
+========================== */
 
-/* =====================================
-   TABLA RESUMEN - DERECHA
-===================================== */
+
+.titulo-tabla{
+
+    margin-bottom:10px;
+    color:#0d4f8b;
+    font-size:16px;
+    font-weight:bold;
+
+}
 
 
-.tabla-resumen-datos {
+
+/* ==========================
+   TABLA AVANCE
+========================== */
+
+
+.tabla-avance{
 
     width:100%;
     border-collapse:collapse;
@@ -214,64 +138,134 @@
 }
 
 
-.tabla-resumen-datos th {
 
-    font-size:20px;
+.tabla-avance th{
+
+    background:#0d4f8b;
+    color:white;
+    font-size:14px;
+    padding:8px;
+    text-align:center;
+
+}
+
+
+
+.tabla-avance td{
+
+    border:1px solid #d9d9d9;
+    font-size:13px;
+    padding:7px;
+    text-align:center;
+
+}
+
+
+
+/* Anchos tabla avance */
+
+
+.tabla-avance th:nth-child(1),
+.tabla-avance td:nth-child(1){
+
+    width:25%;
+
+}
+
+
+.tabla-avance th:nth-child(2),
+.tabla-avance td:nth-child(2){
+
+    width:15%;
+
+}
+
+
+.tabla-avance th:nth-child(3),
+.tabla-avance td:nth-child(3),
+.tabla-avance th:nth-child(4),
+.tabla-avance td:nth-child(4),
+.tabla-avance th:nth-child(5),
+.tabla-avance td:nth-child(5),
+.tabla-avance th:nth-child(6),
+.tabla-avance td:nth-child(6),
+.tabla-avance th:nth-child(7),
+.tabla-avance td:nth-child(7){
+
+    width:12%;
+
+}
+
+
+
+/* ==========================
+   TABLA RESUMEN
+========================== */
+
+
+.tabla-resumen-datos{
+
+    width:500px;
+    border-collapse:collapse;
+    table-layout:fixed;
+
+}
+
+
+
+.tabla-resumen-datos th{
+
+    background:#0d4f8b;
+    color:white;
+    font-size:13px;
     padding:6px;
     text-align:center;
 
 }
 
 
-.tabla-resumen-datos td {
 
-    font-size:20px;
+.tabla-resumen-datos td{
+
+    border:1px solid #d9d9d9;
+    font-size:12px;
     padding:6px;
     text-align:center;
 
 }
 
 
-/* =====================================
-   ANCHOS COLUMNAS TABLA DERECHA
-===================================== */
 
+/* Anchos tabla resumen */
 
-/* Rol */
 
 .tabla-resumen-datos th:nth-child(1),
 .tabla-resumen-datos td:nth-child(1){
 
-    width:20px;
+    width:60%;
 
 }
 
-
-/* Requeridos */
 
 .tabla-resumen-datos th:nth-child(2),
 .tabla-resumen-datos td:nth-child(2){
 
-    width:10px;
+    width:13%;
 
 }
 
-
-/* Reclutados */
 
 .tabla-resumen-datos th:nth-child(3),
 .tabla-resumen-datos td:nth-child(3){
 
-    width:10px;
+    width:13%;
 
 }
 
 
-/* Porcentaje */
-
 .tabla-resumen-datos th:nth-child(4),
 .tabla-resumen-datos td:nth-child(4){
 
-    width:10px;
+    width:14%;
 
 }
