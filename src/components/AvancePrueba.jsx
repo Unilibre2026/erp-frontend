@@ -8,6 +8,7 @@ function AvancePrueba() {
   const [convocatorias, setConvocatorias] = useState([]);
   const [convocatoria, setConvocatoria] = useState("");
   const [indicadores, setIndicadores] = useState([]);
+  const [roles, setRoles] = useState([]);
 
   useEffect(() => {
     cargarConvocatorias();
@@ -129,15 +130,43 @@ function AvancePrueba() {
 
         <tbody>
 
-          <tr>
+  {roles.length === 0 ? (
 
-            <td colSpan="7" style={{ textAlign: "center" }}>
-              Sin información
-            </td>
+    <tr>
 
-          </tr>
+      <td colSpan="7" style={{ textAlign: "center" }}>
+        Sin información
+      </td>
 
-        </tbody>
+    </tr>
+
+  ) : (
+
+    roles.map((rol) => (
+
+      <tr key={rol.id}>
+
+        <td>{rol.rol}</td>
+
+        <td></td>
+
+        <td>0</td>
+
+        <td>0</td>
+
+        <td>0</td>
+
+        <td>0</td>
+
+        <td>0</td>
+
+      </tr>
+
+    ))
+
+  )}
+
+</tbody>
 
       </table>
 
@@ -187,5 +216,36 @@ function AvancePrueba() {
     </div>
   );
 }
+
+const cargarRoles = async (convocatoriaSeleccionada) => {
+
+  if (!convocatoriaSeleccionada) {
+    setRoles([]);
+    return;
+  }
+
+  try {
+
+    const res = await fetch(
+      `${API_URL}/roles/${encodeURIComponent(convocatoriaSeleccionada)}`
+    );
+
+    if (!res.ok) {
+      throw new Error("Error consultando roles");
+    }
+
+    const data = await res.json();
+
+    setRoles(data);
+
+  } catch (error) {
+
+    console.error("Error cargando roles:", error);
+
+    setRoles([]);
+
+  }
+
+};
 
 export default AvancePrueba;
