@@ -127,7 +127,7 @@
 
 .tabla-resumen-datos{
 
-    width:500px;
+    width:300px;
     border-collapse:collapse;
     table-layout:fixed;
 
@@ -139,7 +139,7 @@
 
     background:#0d4f8b;
     color:white;
-    font-size:13px;
+    font-size:20px;
     padding:6px;
     text-align:center;
 
@@ -150,7 +150,7 @@
 .tabla-resumen-datos td{
 
     border:1px solid #d9d9d9;
-    font-size:12px;
+    font-size:20px;
     padding:6px;
     text-align:center;
 
@@ -164,7 +164,7 @@
 .tabla-resumen-datos th:nth-child(1),
 .tabla-resumen-datos td:nth-child(1){
 
-    width:250px;
+    width:70px;
 
 }
 
@@ -173,7 +173,7 @@
 .tabla-resumen-datos th:nth-child(2),
 .tabla-resumen-datos td:nth-child(2){
 
-    width:80px;
+    width:70px;
 
 }
 
@@ -182,7 +182,7 @@
 .tabla-resumen-datos th:nth-child(3),
 .tabla-resumen-datos td:nth-child(3){
 
-    width:80px;
+    width:30px;
 
 }
 
@@ -191,7 +191,7 @@
 .tabla-resumen-datos th:nth-child(4),
 .tabla-resumen-datos td:nth-child(4){
 
-    width:90px;
+    width:30px;
 
 }
 
@@ -226,7 +226,7 @@
 
     background:#0d4f8b;
     color:white;
-    font-size:14px;
+    font-size:20px;
     padding:8px;
     text-align:center;
 
@@ -237,7 +237,7 @@
 .tabla-avance td{
 
     border:1px solid #d9d9d9;
-    font-size:13px;
+    font-size:20px;
     padding:7px;
     text-align:center;
 
@@ -251,7 +251,7 @@
 .tabla-avance th:nth-child(1),
 .tabla-avance td:nth-child(1){
 
-    width:220px;
+    width:70px;
 
 }
 
@@ -260,7 +260,7 @@
 .tabla-avance th:nth-child(2),
 .tabla-avance td:nth-child(2){
 
-    width:120px;
+    width:70px;
 
 }
 
@@ -269,7 +269,7 @@
 .tabla-avance th:nth-child(3),
 .tabla-avance td:nth-child(3){
 
-    width:70px;
+    width:30px;
 
 }
 
@@ -278,7 +278,7 @@
 .tabla-avance th:nth-child(4),
 .tabla-avance td:nth-child(4){
 
-    width:90px;
+    width:30px;
 
 }
 
@@ -287,7 +287,7 @@
 .tabla-avance th:nth-child(5),
 .tabla-avance td:nth-child(5){
 
-    width:110px;
+    width:30px;
 
 }
 
@@ -296,7 +296,7 @@
 .tabla-avance th:nth-child(6),
 .tabla-avance td:nth-child(6){
 
-    width:100px;
+    width:30px;
 
 }
 
@@ -305,6 +305,6 @@
 .tabla-avance th:nth-child(7),
 .tabla-avance td:nth-child(7){
 
-    width:100px;
+    width:30px;
 
 }
