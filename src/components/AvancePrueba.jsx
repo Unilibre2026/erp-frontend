@@ -19,13 +19,40 @@ function AvancePrueba() {
       const data = await res.json();
 
       const unicas = [
-        ...new Set(data.map(c => c.nombre_convocatoria))
+        ...new Set(data.map((c) => c.nombre_convocatoria))
       ];
 
       setConvocatorias(unicas);
 
     } catch (error) {
-      console.error(error);
+      console.error("Error cargando convocatorias:", error);
+    }
+  };
+
+  const cargarIndicadores = async (convocatoriaSeleccionada) => {
+
+    if (!convocatoriaSeleccionada) {
+      setIndicadores([]);
+      return;
+    }
+
+    try {
+
+      const res = await fetch(
+        `${API_URL}/indicadores/${encodeURIComponent(convocatoriaSeleccionada)}`
+      );
+
+      if (!res.ok) {
+        throw new Error("Error consultando indicadores");
+      }
+
+      const data = await res.json();
+
+      setIndicadores(data);
+
+    } catch (error) {
+      console.error("Error cargando indicadores:", error);
+      setIndicadores([]);
     }
   };
 
@@ -40,8 +67,17 @@ function AvancePrueba() {
 
         <select
           value={convocatoria}
-          onChange={(e) => {const valor = e.target.value;setConvocatoria(valor);cargarIndicadores(valor);}}
+          onChange={(e) => {
+
+            const valor = e.target.value;
+
+            setConvocatoria(valor);
+
+            cargarIndicadores(valor);
+
+          }}
         >
+
           <option value="">
             Seleccione convocatoria
           </option>
@@ -59,7 +95,20 @@ function AvancePrueba() {
       <hr />
 
       <div className="contenedor-indicadores">
-        {/* Aquí aparecerán los indicadores */}
+
+        {indicadores.map((item) => (
+
+          <div
+            key={item.id}
+            className="card-indicador"
+          >
+
+            <h3>{item.indicador}</h3>
+
+          </div>
+
+        ))}
+
       </div>
 
     </div>
@@ -67,26 +116,3 @@ function AvancePrueba() {
 }
 
 export default AvancePrueba;
-
-const cargarIndicadores = async (convocatoriaSeleccionada) => {
-
-    if (!convocatoriaSeleccionada) {
-        setIndicadores([]);
-        return;
-    }
-
-    try {
-
-        const res = await fetch(
-            `${API_URL}/indicadores/${encodeURIComponent(convocatoriaSeleccionada)}`
-        );
-
-        const data = await res.json();
-
-        setIndicadores(data);
-
-    } catch (error) {
-        console.error(error);
-    }
-
-};
