@@ -210,6 +210,10 @@ function AvancePrueba() {
 
 
 
+      console.log("================================");
+      console.log("NOVEDADES CARGADAS");
+      console.table(filtradas);
+
       setNovedades(filtradas);
 
 
@@ -238,22 +242,35 @@ function AvancePrueba() {
 
   const obtenerHorario = (rol) => {
 
+  console.log("================================");
+  console.log("ROL:", rol);
 
-    const novedad = novedades.find(
-      (item) =>
-        item.rol === rol.rol &&
-        (
-          !rol.eje ||
-          item.eje === rol.eje
-        )
+  const novedad = novedades.find((item) => {
+
+    console.log(
+      "Comparando:",
+      item.rol,
+      item.eje,
+      "==>",
+      rol.rol,
+      rol.eje
     );
 
+    return (
+      item.rol === rol.rol &&
+      (
+        !rol.eje ||
+        item.eje === rol.eje
+      )
+    );
 
-    return novedad?.validador || "-";
+  });
 
+  console.log("NOVEDAD ENCONTRADA:", novedad);
 
-  };
+  return novedad?.validador || "-";
 
+};
 
 
 
