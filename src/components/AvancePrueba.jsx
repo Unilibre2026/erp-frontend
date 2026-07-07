@@ -179,7 +179,7 @@ function AvancePrueba() {
 
                   <div className="tabla-principal">
 
-                    <table>
+                      <table className="tabla-avance">
 
                       <thead>
 
@@ -292,7 +292,7 @@ function AvancePrueba() {
 
                   <div className="tabla-resumen">
 
-                    <table>
+                      <table className="tabla-resumen-datos">
 
                       <thead>
 

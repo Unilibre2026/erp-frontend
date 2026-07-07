@@ -91,3 +91,156 @@
     color:white;
 
 }
+
+/* =====================================
+   TABLA PRINCIPAL - IZQUIERDA
+===================================== */
+
+.tabla-avance {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+
+.tabla-avance th {
+
+    font-size: 14px;
+    padding: 8px;
+    text-align: center;
+
+}
+
+
+.tabla-avance td {
+
+    font-size: 13px;
+    padding: 7px;
+    text-align: center;
+
+}
+
+
+/* Anchos columnas tabla izquierda */
+
+.tabla-avance th:nth-child(1),
+.tabla-avance td:nth-child(1){
+
+    width: 22%;
+
+}
+
+
+.tabla-avance th:nth-child(2),
+.tabla-avance td:nth-child(2){
+
+    width: 15%;
+
+}
+
+
+.tabla-avance th:nth-child(3),
+.tabla-avance td:nth-child(3){
+
+    width: 10%;
+
+}
+
+
+.tabla-avance th:nth-child(4),
+.tabla-avance td:nth-child(4){
+
+    width: 12%;
+
+}
+
+
+.tabla-avance th:nth-child(5),
+.tabla-avance td:nth-child(5){
+
+    width: 14%;
+
+}
+
+
+.tabla-avance th:nth-child(6),
+.tabla-avance td:nth-child(6){
+
+    width: 13%;
+
+}
+
+
+.tabla-avance th:nth-child(7),
+.tabla-avance td:nth-child(7){
+
+    width: 14%;
+
+}
+
+
+
+/* =====================================
+   TABLA RESUMEN - DERECHA
+===================================== */
+
+
+.tabla-resumen-datos {
+
+    width:100%;
+    border-collapse:collapse;
+    table-layout:fixed;
+
+}
+
+
+.tabla-resumen-datos th {
+
+    font-size:13px;
+    padding:6px;
+    text-align:center;
+
+}
+
+
+.tabla-resumen-datos td {
+
+    font-size:12px;
+    padding:6px;
+    text-align:center;
+
+}
+
+
+/* Ancho columnas derecha */
+
+.tabla-resumen-datos th:nth-child(1),
+.tabla-resumen-datos td:nth-child(1){
+
+    width:45%;
+
+}
+
+
+.tabla-resumen-datos th:nth-child(2),
+.tabla-resumen-datos td:nth-child(2){
+
+    width:18%;
+
+}
+
+
+.tabla-resumen-datos th:nth-child(3),
+.tabla-resumen-datos td:nth-child(3){
+
+    width:18%;
+
+}
+
+
+.tabla-resumen-datos th:nth-child(4),
+.tabla-resumen-datos td:nth-child(4){
+
+    width:19%;
+
+}
