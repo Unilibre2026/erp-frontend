@@ -7,10 +7,7 @@ function AvancePrueba() {
 
   const [convocatorias, setConvocatorias] = useState([]);
   const [convocatoria, setConvocatoria] = useState("");
-  const [indicadores, setIndicadores] = useState([]);
-  const [roles, setRoles] = useState([]);
-  const [novedades, setNovedades] = useState([]);
-
+  const [avance, setAvance] = useState([]);
 
   useEffect(() => {
     cargarConvocatorias();
@@ -54,17 +51,7 @@ function AvancePrueba() {
 
 
 
-  const cargarIndicadores = async (convocatoriaSeleccionada) => {
-
-
-    if (!convocatoriaSeleccionada) {
-
-      setIndicadores([]);
-
-      return;
-
-    }
-
+  
 
     try {
 
@@ -109,20 +96,6 @@ function AvancePrueba() {
 
 
 
-
-
-  const cargarRoles = async (convocatoriaSeleccionada) => {
-
-
-    if (!convocatoriaSeleccionada) {
-
-      setRoles([]);
-
-      return;
-
-    }
-
-
     try {
 
 
@@ -163,22 +136,13 @@ function AvancePrueba() {
     }
 
 
-  };
+  
 
 
 
 
 
-  const cargarNovedades = async (convocatoriaSeleccionada) => {
-
-
-    if (!convocatoriaSeleccionada) {
-
-      setNovedades([]);
-
-      return;
-
-    }
+  
 
 
 
@@ -234,45 +198,43 @@ function AvancePrueba() {
     }
 
 
-  };
+    const cargarAvance = async (convocatoriaSeleccionada) => {
 
+  if (!convocatoriaSeleccionada) {
 
+    setAvance([]);
+    return;
 
+  }
 
+  try {
 
-  const obtenerHorario = (rol) => {
-
-  console.log("================================");
-  console.log("ROL:", rol);
-
-  const novedad = novedades.find((item) => {
-
-    console.log(
-      "Comparando:",
-      item.rol,
-      item.eje,
-      "==>",
-      rol.rol,
-      rol.eje
+    const res = await fetch(
+      `${API_URL}/avance-prueba/${encodeURIComponent(convocatoriaSeleccionada)}`
     );
 
-    return (
-      item.rol === rol.rol &&
-      (
-        !rol.eje ||
-        item.eje === rol.eje
-      )
+    if (!res.ok) {
+
+      throw new Error("Error consultando avance");
+
+    }
+
+    const data = await res.json();
+
+    setAvance(data);
+
+  } catch (error) {
+
+    console.error(
+      "Error cargando avance:",
+      error
     );
 
-  });
+    setAvance([]);
 
-  console.log("NOVEDAD ENCONTRADA:", novedad);
-
-  return novedad?.validador || "-";
+  }
 
 };
-
-
 
 
   return (
@@ -308,12 +270,7 @@ function AvancePrueba() {
 
             setConvocatoria(valor);
 
-
-            cargarIndicadores(valor);
-
-            cargarRoles(valor);
-
-            cargarNovedades(valor);
+            cargarAvance(valor);
 
 
 
@@ -364,8 +321,8 @@ function AvancePrueba() {
 
 
         {
-          indicadores.map(
-            (item) => (
+          avance.map(
+           (item) => (      
 
 
               <div
@@ -420,7 +377,7 @@ function AvancePrueba() {
 
 
                         {
-                          roles.length === 0 ? (
+                          item.filas.length === 0 ? (
 
 
                             <tr>
@@ -444,47 +401,29 @@ function AvancePrueba() {
                           ) : (
 
 
-                            roles.map(
-                              (rol) => (
+                            item.filas.map((fila, index) => (
 
+  <tr key={index}>
 
-                                <tr key={rol.id}>
+    <td>{fila.rol}</td>
 
+    <td>
+      {fila.horario || "-"}
+    </td>
 
-                                  <td>
-                                    {rol.rol}
-                                  </td>
+    <td>{fila.total}</td>
 
+    <td>{fila.aprobados}</td>
 
+    <td>{fila.no_aprobados}</td>
 
-                                  <td>
+    <td>{fila.pendientes}</td>
 
-                                    {
-                                      obtenerHorario(rol)
-                                    }
+    <td>{fila.subsanados}</td>
 
-                                  </td>
+  </tr>
 
-
-
-
-                                  <td>0</td>
-
-                                  <td>0</td>
-
-                                  <td>0</td>
-
-                                  <td>0</td>
-
-                                  <td>0</td>
-
-
-
-                                </tr>
-
-
-                              )
-                            )
+))
 
 
                           )
@@ -589,6 +528,8 @@ function AvancePrueba() {
   );
 
 }
+
+
 
 
 export default AvancePrueba;
