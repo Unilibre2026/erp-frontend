@@ -97,9 +97,11 @@
 ===================================== */
 
 .tabla-avance {
+
     width: 100%;
     border-collapse: collapse;
     table-layout: fixed;
+
 }
 
 
@@ -121,62 +123,80 @@
 }
 
 
-/* Anchos columnas tabla izquierda */
+/* =====================================
+   ANCHOS COLUMNAS TABLA IZQUIERDA
+===================================== */
+
+
+/* Rol */
 
 .tabla-avance th:nth-child(1),
 .tabla-avance td:nth-child(1){
 
-    width: 22%;
+    width:160px;
 
 }
 
+
+/* Horario */
 
 .tabla-avance th:nth-child(2),
 .tabla-avance td:nth-child(2){
 
-    width: 15%;
+    width:100px;
 
 }
 
+
+/* Total */
 
 .tabla-avance th:nth-child(3),
 .tabla-avance td:nth-child(3){
 
-    width: 10%;
+    width:60px;
 
 }
 
+
+/* Aprobados */
 
 .tabla-avance th:nth-child(4),
 .tabla-avance td:nth-child(4){
 
-    width: 12%;
+    width:85px;
 
 }
 
+
+/* No aprobados */
 
 .tabla-avance th:nth-child(5),
 .tabla-avance td:nth-child(5){
 
-    width: 14%;
+    width:100px;
 
 }
 
+
+/* Pendientes */
 
 .tabla-avance th:nth-child(6),
 .tabla-avance td:nth-child(6){
 
-    width: 13%;
+    width:85px;
 
 }
 
+
+/* Subsanados */
 
 .tabla-avance th:nth-child(7),
 .tabla-avance td:nth-child(7){
 
-    width: 14%;
+    width:85px;
 
 }
+
 
 
 
@@ -212,35 +232,46 @@
 }
 
 
-/* Ancho columnas derecha */
+/* =====================================
+   ANCHOS COLUMNAS TABLA DERECHA
+===================================== */
+
+
+/* Rol */
 
 .tabla-resumen-datos th:nth-child(1),
 .tabla-resumen-datos td:nth-child(1){
 
-    width:45%;
+    width:140px;
 
 }
 
+
+/* Requeridos */
 
 .tabla-resumen-datos th:nth-child(2),
 .tabla-resumen-datos td:nth-child(2){
 
-    width:18%;
+    width:60px;
 
 }
 
+
+/* Reclutados */
 
 .tabla-resumen-datos th:nth-child(3),
 .tabla-resumen-datos td:nth-child(3){
 
-    width:18%;
+    width:70px;
 
 }
 
 
+/* Porcentaje */
+
 .tabla-resumen-datos th:nth-child(4),
 .tabla-resumen-datos td:nth-child(4){
 
-    width:19%;
+    width:60px;
 
 }
