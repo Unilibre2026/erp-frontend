@@ -15,7 +15,9 @@ function AvancePrueba() {
   }, []);
 
   const cargarConvocatorias = async () => {
+
     try {
+
       const res = await fetch(`${API_URL}/convocatorias`);
       const data = await res.json();
 
@@ -26,8 +28,11 @@ function AvancePrueba() {
       setConvocatorias(unicas);
 
     } catch (error) {
+
       console.error("Error cargando convocatorias:", error);
+
     }
+
   };
 
   const cargarIndicadores = async (convocatoriaSeleccionada) => {
@@ -52,12 +57,48 @@ function AvancePrueba() {
       setIndicadores(data);
 
     } catch (error) {
+
       console.error("Error cargando indicadores:", error);
+
       setIndicadores([]);
+
     }
+
+  };
+
+  const cargarRoles = async (convocatoriaSeleccionada) => {
+
+    if (!convocatoriaSeleccionada) {
+      setRoles([]);
+      return;
+    }
+
+    try {
+
+      const res = await fetch(
+        `${API_URL}/roles/${encodeURIComponent(convocatoriaSeleccionada)}`
+      );
+
+      if (!res.ok) {
+        throw new Error("Error consultando roles");
+      }
+
+      const data = await res.json();
+
+      setRoles(data);
+
+    } catch (error) {
+
+      console.error("Error cargando roles:", error);
+
+      setRoles([]);
+
+    }
+
   };
 
   return (
+
     <div className="avance-prueba">
 
       <h2>Avance por prueba</h2>
@@ -76,6 +117,8 @@ function AvancePrueba() {
 
             cargarIndicadores(valor);
 
+            cargarRoles(valor);
+
           }}
         >
 
@@ -84,9 +127,14 @@ function AvancePrueba() {
           </option>
 
           {convocatorias.map((c, index) => (
-            <option key={index} value={c}>
+
+            <option
+              key={index}
+              value={c}
+            >
               {c}
             </option>
+
           ))}
 
         </select>
@@ -100,152 +148,129 @@ function AvancePrueba() {
         {indicadores.map((item) => (
 
           <div
-  key={item.id}
-  className="card-indicador"
->
+            key={item.id}
+            className="card-indicador"
+          >
 
-  <h3>{item.indicador}</h3>
+            <h3>{item.indicador}</h3>
 
-  <div className="contenedor-tablas">
+            <div className="contenedor-tablas">
 
-    <div className="tabla-principal">
+              <div className="tabla-principal">
 
-      <table>
+                <table>
 
-        <thead>
+                  <thead>
 
-          <tr>
+                    <tr>
 
-            <th>Rol</th>
-            <th>Horario</th>
-            <th>Total</th>
-            <th>Aprobados</th>
-            <th>No aprobados</th>
-            <th>Pendientes</th>
-            <th>Subsanados</th>
+                      <th>Rol</th>
+                      <th>Horario</th>
+                      <th>Total</th>
+                      <th>Aprobados</th>
+                      <th>No aprobados</th>
+                      <th>Pendientes</th>
+                      <th>Subsanados</th>
 
-          </tr>
+                    </tr>
 
-        </thead>
+                  </thead>
 
-        <tbody>
+                  <tbody>
 
-  {roles.length === 0 ? (
+                    {roles.length === 0 ? (
 
-    <tr>
+                      <tr>
 
-      <td colSpan="7" style={{ textAlign: "center" }}>
-        Sin información
-      </td>
+                        <td
+                          colSpan="7"
+                          style={{ textAlign: "center" }}
+                        >
+                          Sin información
+                        </td>
 
-    </tr>
+                      </tr>
 
-  ) : (
+                    ) : (
 
-    roles.map((rol) => (
+                      roles.map((rol) => (
 
-      <tr key={rol.id}>
+                        <tr key={rol.id}>
 
-        <td>{rol.rol}</td>
+                          <td>{rol.rol}</td>
 
-        <td></td>
+                          <td></td>
 
-        <td>0</td>
+                          <td>0</td>
 
-        <td>0</td>
+                          <td>0</td>
 
-        <td>0</td>
+                          <td>0</td>
 
-        <td>0</td>
+                          <td>0</td>
 
-        <td>0</td>
+                          <td>0</td>
 
-      </tr>
+                        </tr>
 
-    ))
+                      ))
 
-  )}
+                    )}
 
-</tbody>
+                  </tbody>
 
-      </table>
+                </table>
 
-    </div>
+              </div>
 
-    <div className="tabla-resumen">
+              <div className="tabla-resumen">
 
-      <table>
+                <table>
 
-        <thead>
+                  <thead>
 
-          <tr>
+                    <tr>
 
-            <th>Rol</th>
-            <th>Req.</th>
-            <th>Recl.</th>
-            <th>%</th>
+                      <th>Rol</th>
+                      <th>Req.</th>
+                      <th>Recl.</th>
+                      <th>%</th>
 
-          </tr>
+                    </tr>
 
-        </thead>
+                  </thead>
 
-        <tbody>
+                  <tbody>
 
-          <tr>
+                    <tr>
 
-            <td colSpan="4" style={{ textAlign: "center" }}>
-              Sin información
-            </td>
+                      <td
+                        colSpan="4"
+                        style={{ textAlign: "center" }}
+                      >
+                        Sin información
+                      </td>
 
-          </tr>
+                    </tr>
 
-        </tbody>
+                  </tbody>
 
-      </table>
+                </table>
 
-    </div>
+              </div>
 
-  </div>
+            </div>
 
-</div>
+          </div>
 
         ))}
 
       </div>
 
     </div>
+
   );
+
 }
-
-const cargarRoles = async (convocatoriaSeleccionada) => {
-
-  if (!convocatoriaSeleccionada) {
-    setRoles([]);
-    return;
-  }
-
-  try {
-
-    const res = await fetch(
-      `${API_URL}/roles/${encodeURIComponent(convocatoriaSeleccionada)}`
-    );
-
-    if (!res.ok) {
-      throw new Error("Error consultando roles");
-    }
-
-    const data = await res.json();
-
-    setRoles(data);
-
-  } catch (error) {
-
-    console.error("Error cargando roles:", error);
-
-    setRoles([]);
-
-  }
-
-};
 
 export default AvancePrueba;
