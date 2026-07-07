@@ -99,13 +99,86 @@ function AvancePrueba() {
         {indicadores.map((item) => (
 
           <div
-            key={item.id}
-            className="card-indicador"
-          >
+  key={item.id}
+  className="card-indicador"
+>
 
-            <h3>{item.indicador}</h3>
+  <h3>{item.indicador}</h3>
 
-          </div>
+  <div className="contenedor-tablas">
+
+    <div className="tabla-principal">
+
+      <table>
+
+        <thead>
+
+          <tr>
+
+            <th>Rol</th>
+            <th>Horario</th>
+            <th>Total</th>
+            <th>Aprobados</th>
+            <th>No aprobados</th>
+            <th>Pendientes</th>
+            <th>Subsanados</th>
+
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <tr>
+
+            <td colSpan="7" style={{ textAlign: "center" }}>
+              Sin información
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+    <div className="tabla-resumen">
+
+      <table>
+
+        <thead>
+
+          <tr>
+
+            <th>Rol</th>
+            <th>Req.</th>
+            <th>Recl.</th>
+            <th>%</th>
+
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <tr>
+
+            <td colSpan="4" style={{ textAlign: "center" }}>
+              Sin información
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+</div>
 
         ))}
 
