@@ -22,14 +22,18 @@ function AvancePrueba() {
 
     try {
 
-      const res = await fetch(`${API_URL}/convocatorias`);
+      const res = await fetch(
+        `${API_URL}/convocatorias`
+      );
 
       const data = await res.json();
 
 
       const unicas = [
         ...new Set(
-          data.map((c) => c.nombre_convocatoria)
+          data.map(
+            (c) => c.nombre_convocatoria
+          )
         )
       ];
 
@@ -85,6 +89,7 @@ function AvancePrueba() {
       setIndicadores(data);
 
 
+
     } catch (error) {
 
 
@@ -101,6 +106,7 @@ function AvancePrueba() {
 
 
   };
+
 
 
 
@@ -140,6 +146,7 @@ function AvancePrueba() {
       setRoles(data);
 
 
+
     } catch (error) {
 
 
@@ -150,6 +157,7 @@ function AvancePrueba() {
 
 
       setRoles([]);
+
 
 
     }
@@ -218,10 +226,12 @@ function AvancePrueba() {
       setNovedades([]);
 
 
+
     }
 
 
   };
+
 
 
 
@@ -231,7 +241,11 @@ function AvancePrueba() {
 
     const novedad = novedades.find(
       (item) =>
-        item.rol === rol
+        item.rol === rol.rol &&
+        (
+          !rol.eje ||
+          item.eje === rol.eje
+        )
     );
 
 
@@ -297,20 +311,22 @@ function AvancePrueba() {
 
 
 
-          {convocatorias.map(
-            (c, index) => (
+          {
+            convocatorias.map(
+              (c, index) => (
 
-              <option
-                key={index}
-                value={c}
-              >
+                <option
+                  key={index}
+                  value={c}
+                >
 
-                {c}
+                  {c}
 
-              </option>
+                </option>
 
+              )
             )
-          )}
+          }
 
 
 
@@ -330,209 +346,202 @@ function AvancePrueba() {
       <div className="contenedor-indicadores">
 
 
-        {indicadores.map(
-          (item) => (
+        {
+          indicadores.map(
+            (item) => (
 
 
-            <div
+              <div
 
-              key={item.id}
+                key={item.id}
 
-              className="card-indicador"
+                className="card-indicador"
 
-            >
+              >
 
 
 
-              <h3>
-                {item.indicador}
-              </h3>
+                <h3>
+                  {item.indicador}
+                </h3>
 
 
 
 
-              <div className="contenedor-tablas">
+                <div className="contenedor-tablas">
 
 
 
-                <div className="tabla-principal">
+                  <div className="tabla-principal">
 
 
 
-                  <table>
+                    <table>
 
 
+                      <thead>
 
-                    <thead>
+                        <tr>
 
+                          <th>Rol</th>
+                          <th>Horario</th>
+                          <th>Total</th>
+                          <th>Aprobados</th>
+                          <th>No aprobados</th>
+                          <th>Pendientes</th>
+                          <th>Subsanados</th>
 
-                      <tr>
+                        </tr>
 
-                        <th>Rol</th>
 
-                        <th>Horario</th>
+                      </thead>
 
-                        <th>Total</th>
 
-                        <th>Aprobados</th>
 
-                        <th>No aprobados</th>
 
-                        <th>Pendientes</th>
+                      <tbody>
 
-                        <th>Subsanados</th>
 
+                        {
+                          roles.length === 0 ? (
 
-                      </tr>
 
+                            <tr>
 
-                    </thead>
+                              <td
+                                colSpan="7"
+                                style={{
+                                  textAlign:"center"
+                                }}
+                              >
 
+                                Sin información
 
+                              </td>
 
 
-                    <tbody>
+                            </tr>
 
 
 
-                      {
-                        roles.length === 0 ? (
+                          ) : (
 
 
-                          <tr>
+                            roles.map(
+                              (rol) => (
 
-                            <td
-                              colSpan="7"
-                              style={{
-                                textAlign:"center"
-                              }}
-                            >
 
-                              Sin información
+                                <tr key={rol.id}>
 
-                            </td>
 
+                                  <td>
+                                    {rol.rol}
+                                  </td>
 
-                          </tr>
 
 
+                                  <td>
 
-                        ) : (
+                                    {
+                                      obtenerHorario(rol)
+                                    }
 
+                                  </td>
 
-                          roles.map(
-                            (rol) => (
 
 
-                              <tr key={rol.id}>
 
+                                  <td>0</td>
 
-                                <td>
-                                  {rol.rol}
-                                </td>
+                                  <td>0</td>
 
+                                  <td>0</td>
 
+                                  <td>0</td>
 
-                                <td>
+                                  <td>0</td>
 
-                                  {obtenerHorario(rol.rol)}
 
-                                </td>
 
+                                </tr>
 
 
-
-                                <td>0</td>
-
-                                <td>0</td>
-
-                                <td>0</td>
-
-                                <td>0</td>
-
-                                <td>0</td>
-
-
-
-                              </tr>
-
-
+                              )
                             )
+
+
                           )
-
-                        )
-                      }
+                        }
 
 
 
-                    </tbody>
+                      </tbody>
 
 
 
-                  </table>
+                    </table>
 
 
 
-
-                </div>
+                  </div>
 
 
 
 
 
-                <div className="tabla-resumen">
+                  <div className="tabla-resumen">
 
 
-                  <table>
+                    <table>
 
 
-                    <thead>
+                      <thead>
+
+                        <tr>
+
+                          <th>Rol</th>
+                          <th>Req.</th>
+                          <th>Recl.</th>
+                          <th>%</th>
+
+                        </tr>
 
 
-                      <tr>
-
-                        <th>Rol</th>
-
-                        <th>Req.</th>
-
-                        <th>Recl.</th>
-
-                        <th>%</th>
-
-
-                      </tr>
-
-
-                    </thead>
+                      </thead>
 
 
 
-                    <tbody>
+                      <tbody>
 
 
-                      <tr>
+                        <tr>
 
 
-                        <td
-                          colSpan="4"
-                          style={{
-                            textAlign:"center"
-                          }}
-                        >
+                          <td
+                            colSpan="4"
+                            style={{
+                              textAlign:"center"
+                            }}
+                          >
 
-                          Sin información
+                            Sin información
 
-                        </td>
-
-
-                      </tr>
+                          </td>
 
 
-                    </tbody>
+                        </tr>
+
+
+                      </tbody>
 
 
 
-                  </table>
+                    </table>
+
+
+
+                  </div>
+
 
 
 
@@ -545,13 +554,9 @@ function AvancePrueba() {
 
 
 
-
-            </div>
-
-
-
+            )
           )
-        )}
+        }
 
 
 
