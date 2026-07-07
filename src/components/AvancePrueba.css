@@ -153,7 +153,7 @@
 .tabla-avance th:nth-child(3),
 .tabla-avance td:nth-child(3){
 
-    width:30px;
+    width:20px;
 
 }
 
@@ -163,7 +163,7 @@
 .tabla-avance th:nth-child(4),
 .tabla-avance td:nth-child(4){
 
-    width:30px;
+    width:20px;
 
 }
 
@@ -173,7 +173,7 @@
 .tabla-avance th:nth-child(5),
 .tabla-avance td:nth-child(5){
 
-    width:30px;
+    width:20px;
 
 }
 
@@ -183,7 +183,7 @@
 .tabla-avance th:nth-child(6),
 .tabla-avance td:nth-child(6){
 
-    width:30px;
+    width:20px;
 
 }
 
@@ -193,7 +193,7 @@
 .tabla-avance th:nth-child(7),
 .tabla-avance td:nth-child(7){
 
-    width:30px;
+    width:20px;
 
 }
 
@@ -242,7 +242,7 @@
 .tabla-resumen-datos th:nth-child(1),
 .tabla-resumen-datos td:nth-child(1){
 
-    width:60px;
+    width:40px;
 
 }
 
@@ -252,7 +252,7 @@
 .tabla-resumen-datos th:nth-child(2),
 .tabla-resumen-datos td:nth-child(2){
 
-    width:30px;
+    width:20px;
 
 }
 
@@ -262,7 +262,7 @@
 .tabla-resumen-datos th:nth-child(3),
 .tabla-resumen-datos td:nth-child(3){
 
-    width:30px;
+    width:20px;
 
 }
 
@@ -272,6 +272,6 @@
 .tabla-resumen-datos th:nth-child(4),
 .tabla-resumen-datos td:nth-child(4){
 
-    width:30px;
+    width:20px;
 
 }
