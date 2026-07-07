@@ -8,6 +8,7 @@ function AvancePrueba() {
   const [convocatorias, setConvocatorias] = useState([]);
   const [convocatoria, setConvocatoria] = useState("");
   const [avance, setAvance] = useState([]);
+  const [resumen, setResumen] = useState([]);
 
   useEffect(() => {
     cargarConvocatorias();
@@ -69,7 +70,8 @@ function AvancePrueba() {
 
       const data = await res.json();
 
-      setAvance(data);
+      setAvance(data.indicadores || []);
+      setResumen(data.resumen || []);
 
     } catch (error) {
 
@@ -79,6 +81,7 @@ function AvancePrueba() {
       );
 
       setAvance([]);
+      setResumen([]);
 
     }
 
@@ -195,68 +198,64 @@ function AvancePrueba() {
 
                       <tbody>
 
-                        {
+{
+    resumen.length === 0 ? (
 
-                          item.filas.length === 0 ? (
+        <tr>
 
-                            <tr>
+            <td
+                colSpan="4"
+                style={{
+                    textAlign: "center"
+                }}
+            >
+                Sin información
+            </td>
 
-                              <td
-                                colSpan="7"
-                                style={{
-                                  textAlign: "center"
-                                }}
-                              >
+        </tr>
 
-                                Sin información
+    ) : (
 
-                              </td>
+        resumen.map((fila, index) => (
 
-                            </tr>
+            <tr key={index}>
 
-                          ) : (
+                <td>
+                    {fila.rol}
+                </td>
 
-                            item.filas.map((fila, filaIndex) => (
+                <td
+                    style={{
+                        textAlign: "center"
+                    }}
+                >
+                    {fila.requeridos}
+                </td>
 
-                              <tr key={filaIndex}>
+                <td
+                    style={{
+                        textAlign: "center"
+                    }}
+                >
+                    {fila.reclutados}
+                </td>
 
-                                <td>
-                                  {fila.rol}
-                                </td>
+                <td
+                    style={{
+                        textAlign: "center"
+                    }}
+                >
+                    {fila.porcentaje}%
+                </td>
 
-                                <td>
-                                  {fila.horario || "-"}
-                                </td>
+            </tr>
 
-                                <td>
-                                  {fila.total}
-                                </td>
+        ))
 
-                                <td>
-                                  {fila.aprobados}
-                                </td>
+    )
+}
 
-                                <td>
-                                  {fila.no_aprobados}
-                                </td>
-
-                                <td>
-                                  {fila.pendientes}
-                                </td>
-
-                                <td>
-                                  {fila.subsanados}
-                                </td>
-
-                              </tr>
-
-                            ))
-
-                          )
-
-                        }
-
-                      </tbody>
+</tbody>
 
                     </table>
 
