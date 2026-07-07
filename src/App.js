@@ -4,6 +4,8 @@ import Login from "./components/Login"; // componente login
 
 import appLogo from "./logo.png"; // logo del sistema (global)
 
+import AvancePrueba from "./components/AvancePrueba/AvancePrueba";
+
 
 import "./App.css";
 
@@ -338,6 +340,12 @@ if (!usuario) {
   </button>
 )}
 
+{puedeVer("avance_prueba") && (
+  <button onClick={() => setVista("avance_prueba")}>
+    Avance por prueba
+  </button>
+)}
+
         
         {puedeVer("carga") && (
   <button onClick={() => setVista("carga")}>
@@ -421,6 +429,7 @@ if (!usuario) {
         <>
   {vista === "formulario" && <Formulario />}
   {vista === "consulta" && <Consultas />}
+  {vista === "avance_prueba" && (<AvancePrueba />)}  
   {vista === "carga" && <CargaMasiva />}
   {vista === "convocatorias" && <Convocatorias />}
   {vista === "indicadores" && <Indicadores />}
