@@ -9,6 +9,7 @@ function AvancePrueba() {
   const [convocatoria, setConvocatoria] = useState("");
   const [indicadores, setIndicadores] = useState([]);
   const [roles, setRoles] = useState([]);
+  const [novedades, setNovedades] = useState([]);
 
   useEffect(() => {
     cargarConvocatorias();
@@ -199,7 +200,9 @@ function AvancePrueba() {
 
                           <td>{rol.rol}</td>
 
-                          <td></td>
+                          <td>
+                            {rol.horario ? rol.horario : "-"}
+                          </td>
 
                           <td>0</td>
 
