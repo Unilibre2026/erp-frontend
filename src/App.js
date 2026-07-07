@@ -2886,3 +2886,30 @@ const filtrados = safeDatos.filter((i) => {
 
 
 export default App;
+
+app.get("/indicadores/:convocatoria", async (req, res) => {
+  try {
+    const { convocatoria } = req.params;
+
+    const resultado = await pool.query(
+      `
+      SELECT id,
+             convocatoria,
+             indicador,
+             nivel
+      FROM indicadores
+      WHERE convocatoria = $1
+      ORDER BY indicador
+      `,
+      [convocatoria]
+    );
+
+    res.json(resultado.rows);
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      error: "Error consultando indicadores."
+    });
+  }
+});

@@ -7,6 +7,7 @@ function AvancePrueba() {
 
   const [convocatorias, setConvocatorias] = useState([]);
   const [convocatoria, setConvocatoria] = useState("");
+  const [indicadores, setIndicadores] = useState([]);
 
   useEffect(() => {
     cargarConvocatorias();
@@ -39,7 +40,7 @@ function AvancePrueba() {
 
         <select
           value={convocatoria}
-          onChange={(e) => setConvocatoria(e.target.value)}
+          onChange={(e) => {const valor = e.target.value;setConvocatoria(valor);cargarIndicadores(valor);}}
         >
           <option value="">
             Seleccione convocatoria
@@ -66,3 +67,26 @@ function AvancePrueba() {
 }
 
 export default AvancePrueba;
+
+const cargarIndicadores = async (convocatoriaSeleccionada) => {
+
+    if (!convocatoriaSeleccionada) {
+        setIndicadores([]);
+        return;
+    }
+
+    try {
+
+        const res = await fetch(
+            `${API_URL}/indicadores/${encodeURIComponent(convocatoriaSeleccionada)}`
+        );
+
+        const data = await res.json();
+
+        setIndicadores(data);
+
+    } catch (error) {
+        console.error(error);
+    }
+
+};
