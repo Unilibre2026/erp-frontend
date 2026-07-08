@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Login from "./components/Login"; // componente login
 
 import appLogo from "./logo.png"; // logo del sistema (global)
+import AvanceGeneral from "./components/AvanceGeneral";
 
 import AvancePrueba from "./components/AvancePrueba";
 
@@ -340,6 +341,12 @@ if (!usuario) {
   </button>
 )}
 
+{puedeVer("avance_general") && (
+  <button onClick={() => setVista("avance_general")}>
+    Consulta avance general
+  </button>
+)}
+
 {puedeVer("avance_prueba") && (
   <button onClick={() => setVista("avance_prueba")}>
     Avance por prueba
@@ -429,6 +436,7 @@ if (!usuario) {
         <>
   {vista === "formulario" && <Formulario />}
   {vista === "consulta" && <Consultas />}
+  {vista === "avance_general" && (<AvanceGeneral />)}
   {vista === "avance_prueba" && (<AvancePrueba />)}  
   {vista === "carga" && <CargaMasiva />}
   {vista === "convocatorias" && <Convocatorias />}
