@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Login from "./components/Login"; // componente login
 
 import appLogo from "./logo.png"; // logo del sistema (global)
-import AvanceGeneral from "./components/AvanceGeneral";
+import AvanceGeneral from "./components/ConsultaAvanceGeneral";
 
 import AvancePrueba from "./components/AvancePrueba";
 
