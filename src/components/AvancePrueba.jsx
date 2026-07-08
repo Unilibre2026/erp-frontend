@@ -300,7 +300,7 @@ function AvancePrueba() {
 
                           <th>Rol</th>
                           <th>Requerido.</th>
-                          <th>Reclutadi.</th>
+                          <th>Reclutado.</th>
                           <th> % de avance</th>
 
                         </tr>
