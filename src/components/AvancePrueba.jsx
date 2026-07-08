@@ -299,9 +299,9 @@ function AvancePrueba() {
                         <tr>
 
                           <th>Rol</th>
-                          <th>Req.</th>
-                          <th>Recl.</th>
-                          <th>%</th>
+                          <th>Requerido.</th>
+                          <th>Reclutadi.</th>
+                          <th> % de avance</th>
 
                         </tr>
 
