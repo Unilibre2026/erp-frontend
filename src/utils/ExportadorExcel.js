@@ -1,6 +1,6 @@
 import ExcelJS from "exceljs";
 import { saveAs } from "file-saver";
-import Logo from "../assets/logo_unilibre.png";
+import Logo from "../assets/logo.png";
 
 export async function exportarAvanceGeneral(
     convocatoria,
