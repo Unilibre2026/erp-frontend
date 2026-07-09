@@ -41,3 +41,89 @@
     padding:5px;
 
 }
+
+.tabla-avance-general table{
+
+    border-collapse: collapse;
+    width: max-content;
+
+}
+
+.tabla-avance-general th,
+.tabla-avance-general td{
+
+    border:1px solid #7f7f7f;
+    text-align:center;
+
+}
+
+.tabla-avance-general th:first-child,
+.tabla-avance-general td:first-child{
+
+    width:220px;
+    min-width:220px;
+    max-width:220px;
+    text-align:left;
+    padding-left:10px;
+
+}
+
+.tabla-avance-general th:not(:first-child),
+.tabla-avance-general td:not(:first-child){
+
+    width:75px;
+    min-width:75px;
+    max-width:75px;
+
+}
+
+.tabla-avance-general th,
+.tabla-avance-general td{
+
+    height:34px;
+
+}
+
+.tabla-avance-general{
+
+    font-size:20px;
+
+}
+.fin-rol{
+
+    border-right:3px solid #0b5d74;
+
+}
+
+.fin-rol{
+
+    border-right:3px solid #0b5d74;
+
+}
+
+.tabla-avance-general thead th{
+
+    border:1px solid #FFFFFF;
+
+}
+
+.tabla-avance-general thead tr:nth-child(2) th{
+
+    border:1px solid #FFFFFF;
+
+}
+.tabla-avance-general thead th{
+
+    border:1px solid #FFFFFF;
+    background:#0b5d74;
+    color:#FFFFFF;
+    font-weight:bold;
+
+}
+
+.tabla-avance-general thead tr:nth-child(2) th{
+
+    background:#2f7d94;
+    color:#FFFFFF;
+
+}

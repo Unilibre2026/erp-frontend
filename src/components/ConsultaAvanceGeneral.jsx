@@ -368,14 +368,34 @@ function ConsultaAvanceGeneral() {
 
                                             <React.Fragment key={rol}>
 
-                                                <th>Requerido</th>
+                                          {/* REQUERIDO */}
 
-                                                <th>Reclutado</th>
+                                          <td>
 
-                                                <th>% avance</th>
+                                           {obtenerCantidad(ciudad, rol)}
 
-                                            </React.Fragment>
+                                         </td>
 
+                                          {/* RECLUTADO */}
+
+                                         <td>
+
+                                                0
+
+                                        </td>
+
+                                         {/* % AVANCE */}
+
+                                        <td className="fin-rol">
+
+                                            <strong>
+
+                                              0,0%
+
+                                            </strong>
+
+                                        </td>
+</React.Fragment>
                                         ))
 
                                     }
