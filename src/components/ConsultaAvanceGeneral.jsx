@@ -287,27 +287,80 @@ function ConsultaAvanceGeneral() {
 
                             <thead>
 
-                                <tr>
+    <tr>
 
-                                    <th>Ciudad</th>
+        <th rowSpan="2">
+            Ciudad
+        </th>
 
-                                    {
+        {
 
-                                        roles.map((rol, index) => (
+            roles.map((rol, index) => (
 
-                                            <th key={index}>
-                                                {rol}
-                                            </th>
+                <th
+                    key={index}
+                    colSpan="3"
+                    className="titulo-rol"
+                >
 
-                                        ))
+                    {rol}
 
-                                    }
+                </th>
 
-                                    <th>Total</th>
+            ))
 
-                                </tr>
+        }
 
-                            </thead>
+        <th
+            colSpan="3"
+            className="titulo-total"
+        >
+            Total
+        </th>
+
+    </tr>
+
+    <tr>
+
+        {
+
+            roles.map((rol, index) => (
+
+                <>
+
+                    <th key={`r-${index}`}>
+                        Requerido
+                    </th>
+
+                    <th key={`c-${index}`}>
+                        Reclutado
+                    </th>
+
+                    <th key={`p-${index}`}>
+                        % avance
+                    </th>
+
+                </>
+
+            ))
+
+        }
+
+        <th>
+            Requerido
+        </th>
+
+        <th>
+            Reclutado
+        </th>
+
+        <th>
+            % avance
+        </th>
+
+    </tr>
+
+</thead>
 
                             <tbody>
 
