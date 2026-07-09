@@ -325,31 +325,7 @@ const obtenerTotalCiudad = (ciudad) => {
 
 };
 
-const obtenerTotalRol = (rol) => {
 
-    return vacantes
-        .filter(v => v.rol === rol)
-        .reduce(
-
-            (total, v) => total + Number(v.num_expertos || 0),
-
-            0
-
-        );
-
-};
-
-const obtenerTotalGeneral = () => {
-
-    return vacantes.reduce(
-
-        (total, v) => total + Number(v.num_expertos || 0),
-
-        0
-
-    );
-
-};
 
 //=====================================
 // DATOS DE LA TABLA
