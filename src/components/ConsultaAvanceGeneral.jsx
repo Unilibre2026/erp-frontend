@@ -11,10 +11,16 @@ function ConsultaAvanceGeneral() {
 
     const [convocatorias, setConvocatorias] = useState([]);
     const [convocatoria, setConvocatoria] = useState("");
+
+    // Información que llegará del backend
     const [avance, setAvance] = useState([]);
 
+    // Los dejamos preparados para los siguientes pasos
+    const [roles, setRoles] = useState([]);
+    const [ciudades, setCiudades] = useState([]);
+
     // ==========================
-    // USE EFFECT
+    // CARGAR CONVOCATORIAS
     // ==========================
 
     useEffect(() => {
@@ -45,7 +51,59 @@ function ConsultaAvanceGeneral() {
 
         } catch (error) {
 
+            console.error("Error cargando convocatorias:", error);
+
+        }
+
+    };
+
+    // ==========================
+    // CARGAR AVANCE
+    // ==========================
+
+    const cargarAvance = async (convocatoriaSeleccionada) => {
+
+        if (!convocatoriaSeleccionada) {
+
+            setAvance([]);
+            setRoles([]);
+            setCiudades([]);
+            return;
+
+        }
+
+        try {
+
+            const res = await fetch(
+                `${API_URL}/avance-prueba/${encodeURIComponent(convocatoriaSeleccionada)}`
+            );
+
+            if (!res.ok) {
+
+                throw new Error("Error consultando información");
+
+            }
+
+            const data = await res.json();
+
+            console.log("===== RESPUESTA DEL BACKEND =====");
+            console.log(data);
+
+            // Guardamos la información completa
+            setAvance(data.indicadores || []);
+
+            // Estos estados se llenarán más adelante
+            // cuando construyamos la tabla dinámica.
+            setRoles([]);
+            setCiudades([]);
+
+        } catch (error) {
+
             console.error(error);
+
+            setAvance([]);
+            setRoles([]);
+            setCiudades([]);
 
         }
 
@@ -57,97 +115,67 @@ function ConsultaAvanceGeneral() {
 
     return (
 
-    <div className="consulta-avance-general">
+        <div className="consulta-avance-general">
 
-        <h2>Consulta avance general</h2>
+            <h2>
+                Consulta avance general
+            </h2>
 
-        <div className="barra-superior">
+            <div className="barra-superior">
 
-            <div className="campo">
+                <div className="campo">
 
-                <label>Convocatoria</label>
+                    <label>
+                        Convocatoria
+                    </label>
 
-                <select
-                    value={convocatoria}
-                    onChange={(e) => {
+                    <select
 
-                       const valor = e.target.value;
+                        value={convocatoria}
 
-                        setConvocatoria(valor);
+                        onChange={(e) => {
 
-                        cargarAvance(valor);
+                            const valor = e.target.value;
 
-                    }}
-                >
+                            setConvocatoria(valor);
 
-                    <option value="">
-                        Seleccione convocatoria
-                    </option>
+                            cargarAvance(valor);
 
-                    {
+                        }}
 
-                        convocatorias.map((c, index) => (
+                    >
 
-                            <option
-                                key={index}
-                                value={c}
-                            >
-                                {c}
-                            </option>
+                        <option value="">
+                            Seleccione convocatoria
+                        </option>
 
-                        ))
+                        {
 
-                    }
+                            convocatorias.map((c, index) => (
 
-                </select>
+                                <option
+                                    key={index}
+                                    value={c}
+                                >
+
+                                    {c}
+
+                                </option>
+
+                            ))
+
+                        }
+
+                    </select>
+
+                </div>
 
             </div>
 
         </div>
 
-    </div>
+    );
 
-);
-
-} 
-
-const cargarAvance = async (convocatoriaSeleccionada) => {
-
-    if (!convocatoriaSeleccionada) {
-
-        setAvance([]);
-        return;
-
-    }
-
-    try {
-
-        const res = await fetch(
-            `${API_URL}/avance-prueba/${encodeURIComponent(convocatoriaSeleccionada)}`
-        );
-
-        if (!res.ok) {
-
-            throw new Error("Error consultando información");
-
-        }
-
-        const data = await res.json();
-
-        console.log("DATOS DEL BACKEND");
-
-        console.log(data);
-
-        setAvance(data.indicadores || []);
-
-    } catch (error) {
-
-        console.error(error);
-
-        setAvance([]);
-
-    }
-
-};
+}
 
 export default ConsultaAvanceGeneral;
