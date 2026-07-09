@@ -30,13 +30,9 @@ export async function exportarAvanceGeneral(
     console.log("Roles:", roles);
     console.log("Vacantes:", vacantes);
 
-    worksheet.columns = [];
-
-    worksheet.columns.push({ width: 25 }); // Ciudad
-
     worksheet.columns = [
 
-    { width: 25 }
+    { width: 25 }   // Ciudad
 
 ];
 
