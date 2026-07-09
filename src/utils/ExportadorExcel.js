@@ -392,6 +392,65 @@ ciudades.forEach((ciudad) => {
 
 });
 
+
+//=====================================
+// FILA TOTAL
+//=====================================
+
+let columnaTotal = 1;
+
+worksheet.getCell(fila, columnaTotal).value = "TOTAL";
+
+worksheet.getCell(fila, columnaTotal).font = {
+    bold: true
+};
+
+worksheet.getCell(fila, columnaTotal).fill = {
+    type: "pattern",
+    pattern: "solid",
+    fgColor: { argb: "FCE4EC" }
+};
+
+columnaTotal++;
+
+roles.forEach((rol) => {
+
+    const requerido = vacantes
+        .filter(v => v.rol === rol)
+        .reduce((t, v) => t + Number(v.num_expertos || 0), 0);
+
+    worksheet.getCell(fila, columnaTotal).value = requerido;
+
+    columnaTotal++;
+
+    worksheet.getCell(fila, columnaTotal).value = 0;
+
+    columnaTotal++;
+
+    worksheet.getCell(fila, columnaTotal).value = "0,0%";
+
+    columnaTotal++;
+
+});
+
+const totalGeneral = vacantes.reduce(
+
+    (t, v) => t + Number(v.num_expertos || 0),
+
+    0
+
+);
+
+worksheet.getCell(fila, columnaTotal).value = totalGeneral;
+
+columnaTotal++;
+
+worksheet.getCell(fila, columnaTotal).value = 0;
+
+columnaTotal++;
+
+worksheet.getCell(fila, columnaTotal).value = "0,0%";
+
     //=====================================
     // GUARDAR
     //=====================================
