@@ -85,7 +85,15 @@ worksheet.columns = columnas;
 
     worksheet.getCell("C2").value = "UNIVERSIDAD LIBRE";
 
-    worksheet.getCell("C2").alignment = {
+    worksheet.getCell("C2").font = {
+
+    bold: true,
+    size: 20,
+    color: { argb: "0B5D74" }
+
+};
+
+worksheet.getCell("C2").alignment = {
 
     horizontal: "center",
     vertical: "middle"
@@ -106,34 +114,51 @@ worksheet.columns = columnas;
 
     };
 
-    //=====================================
-    // SUBTITULO
-    //=====================================
+//=====================================
+// SUBTITULO
+//=====================================
 
-    worksheet.mergeCells(3,3,3,ultimaColumna);
+worksheet.mergeCells(3, 3, 3, ultimaColumna);
 
-    worksheet.getCell("C3").value = "CONSULTA AVANCE GENERAL";
+worksheet.getCell("C3").value = "CONSULTA AVANCE GENERAL";
 
-    worksheet.getCell("C3").alignment = {
+worksheet.getCell("C3").font = {
 
-    horizontal:"center",
-    vertical:"middle"
+    bold: true,
+    size: 16
 
 };
 
-    worksheet.getCell("A3").font = {
+worksheet.getCell("C3").alignment = {
 
-        bold: true,
-        size: 16
+    horizontal: "center",
+    vertical: "middle"
 
-    };
+};
 
-    worksheet.getCell("A3").alignment = {
+//=====================================
+// INSERTAR LOGO
+//=====================================
 
-        horizontal: "center"
+worksheet.addImage(
 
-    };
+    logoId,
 
+    {
+
+        tl: {
+            col: 0.15,
+            row: 1.15
+        },
+
+        ext: {
+            width: 90,
+            height: 90
+        }
+
+    }
+
+);
     //=====================================
     // INFORMACIÓN
     //=====================================
