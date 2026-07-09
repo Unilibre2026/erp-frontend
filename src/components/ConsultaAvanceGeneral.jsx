@@ -190,6 +190,18 @@ setRoles(rolesUnicos);
 
                     </select>
 
+                    {/* Temporal mientras construimos la tabla */}
+
+<div style={{ display: "none" }}>
+
+    {vacantes.length}
+
+    {ciudades.length}
+
+    {roles.length}
+
+</div>
+
                 </div>
 
             </div>
