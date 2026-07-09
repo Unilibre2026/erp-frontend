@@ -12,15 +12,8 @@ function ConsultaAvanceGeneral() {
     const [convocatorias, setConvocatorias] = useState([]);
     const [convocatoria, setConvocatoria] = useState("");
 
-    // Información que llegará del backend
-    const [avance, setAvance] = useState([]);
-
-    // Los dejamos preparados para los siguientes pasos
-    const [roles, setRoles] = useState([]);
-    const [ciudades, setCiudades] = useState([]);
-
     // ==========================
-    // CARGAR CONVOCATORIAS
+    // USE EFFECT
     // ==========================
 
     useEffect(() => {
@@ -58,58 +51,6 @@ function ConsultaAvanceGeneral() {
     };
 
     // ==========================
-    // CARGAR AVANCE
-    // ==========================
-
-    const cargarAvance = async (convocatoriaSeleccionada) => {
-
-        if (!convocatoriaSeleccionada) {
-
-            setAvance([]);
-            setRoles([]);
-            setCiudades([]);
-            return;
-
-        }
-
-        try {
-
-            const res = await fetch(
-                `${API_URL}/avance-prueba/${encodeURIComponent(convocatoriaSeleccionada)}`
-            );
-
-            if (!res.ok) {
-
-                throw new Error("Error consultando información");
-
-            }
-
-            const data = await res.json();
-
-            console.log("===== RESPUESTA DEL BACKEND =====");
-            console.log(data);
-
-            // Guardamos la información completa
-            setAvance(data.indicadores || []);
-
-            // Estos estados se llenarán más adelante
-            // cuando construyamos la tabla dinámica.
-            setRoles([]);
-            setCiudades([]);
-
-        } catch (error) {
-
-            console.error(error);
-
-            setAvance([]);
-            setRoles([]);
-            setCiudades([]);
-
-        }
-
-    };
-
-    // ==========================
     // RETURN
     // ==========================
 
@@ -135,11 +76,7 @@ function ConsultaAvanceGeneral() {
 
                         onChange={(e) => {
 
-                            const valor = e.target.value;
-
-                            setConvocatoria(valor);
-
-                            cargarAvance(valor);
+                            setConvocatoria(e.target.value);
 
                         }}
 
