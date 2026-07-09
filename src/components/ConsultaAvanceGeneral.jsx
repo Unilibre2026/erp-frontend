@@ -62,6 +62,8 @@ function ConsultaAvanceGeneral() {
         if (!convocatoriaSeleccionada) {
 
             setVacantes([]);
+            setCiudades([]);
+            setRoles([]);
             return;
 
         }
@@ -95,37 +97,45 @@ function ConsultaAvanceGeneral() {
 
             setVacantes(filtradas);
 
-            // Obtener ciudades únicas
-             const ciudadesUnicas = [
+            // ==========================
+            // CIUDADES (INDICADOR)
+            // ==========================
+
+            const ciudadesUnicas = [
                 ...new Set(
                     filtradas.map(v => v.indicador)
-    )
-];
+                )
+            ];
 
-// Obtener roles únicos
-              const rolesUnicos = [
-                   ...new Set(
-                       filtradas.map(v => v.rol)
-    )
-];
+            // ==========================
+            // ROLES
+            // ==========================
 
-setCiudades(ciudadesUnicas);
-setRoles(rolesUnicos);
+            const rolesUnicos = [
+                ...new Set(
+                    filtradas.map(v => v.rol)
+                )
+            ];
 
-            console.log("===== VACANTES FILTRADAS =====");
+            setCiudades(ciudadesUnicas);
+            setRoles(rolesUnicos);
+
+            console.log("===== VACANTES =====");
             console.table(filtradas);
 
-            console.log("CIUDADES");
+            console.log("===== CIUDADES =====");
             console.table(ciudadesUnicas);
 
-            console.log("ROLES");
+            console.log("===== ROLES =====");
             console.table(rolesUnicos);
 
         } catch (error) {
 
-            console.error("Error:", error);
+            console.error(error);
 
             setVacantes([]);
+            setCiudades([]);
+            setRoles([]);
 
         }
 
@@ -152,9 +162,7 @@ setRoles(rolesUnicos);
                     </label>
 
                     <select
-
                         value={convocatoria}
-
                         onChange={(e) => {
 
                             const valor = e.target.value;
@@ -164,7 +172,6 @@ setRoles(rolesUnicos);
                             cargarVacantes(valor);
 
                         }}
-
                     >
 
                         <option value="">
@@ -179,9 +186,7 @@ setRoles(rolesUnicos);
                                     key={index}
                                     value={c}
                                 >
-
                                     {c}
-
                                 </option>
 
                             ))
@@ -190,21 +195,113 @@ setRoles(rolesUnicos);
 
                     </select>
 
-                    {/* Temporal mientras construimos la tabla */}
-
-<div style={{ display: "none" }}>
-
-    {vacantes.length}
-
-    {ciudades.length}
-
-    {roles.length}
-
-</div>
-
                 </div>
 
             </div>
+
+            {/* Temporal para evitar warning de React */}
+
+            <div style={{ display: "none" }}>
+
+                {vacantes.length}
+                {ciudades.length}
+                {roles.length}
+
+            </div>
+
+            {/* ==========================
+                TABLA
+            ========================== */}
+
+            {convocatoria && (
+
+                <div className="tabla-avance-general">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Ciudad</th>
+
+                                {
+
+                                    roles.map((rol, index) => (
+
+                                        <th key={index}>
+                                            {rol}
+                                        </th>
+
+                                    ))
+
+                                }
+
+                                <th>Total</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            {
+
+                                ciudades.map((ciudad, index) => (
+
+                                    <tr key={index}>
+
+                                        <td>
+                                            {ciudad}
+                                        </td>
+
+                                        {
+
+                                            roles.map((rol, i) => (
+
+                                                <td key={i}></td>
+
+                                            ))
+
+                                        }
+
+                                        <td></td>
+
+                                    </tr>
+
+                                ))
+
+                            }
+
+                            <tr>
+
+                                <td>
+
+                                    <strong>Total</strong>
+
+                                </td>
+
+                                {
+
+                                    roles.map((rol, index) => (
+
+                                        <td key={index}></td>
+
+                                    ))
+
+                                }
+
+                                <td></td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            )}
 
         </div>
 
