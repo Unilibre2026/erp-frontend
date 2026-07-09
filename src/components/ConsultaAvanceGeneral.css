@@ -217,7 +217,6 @@
 
 .total{
 
-    background:#fafafa;
     font-weight:bold;
 
 }
@@ -230,5 +229,33 @@
 .col-ciudad{
 
     border-right:3px solid #0b5d74 !important;
+
+}
+
+/*==================================
+        FILA TOTAL
+==================================*/
+
+.fila-total td{
+
+    background:#FCE4EC;
+
+    font-weight:bold;
+
+}
+
+.fila-total .col-ciudad{
+
+    background:#FCE4EC;
+
+}
+
+/*==================================
+        TOTALES
+==================================*/
+
+.total{
+
+    font-weight:bold;
 
 }
