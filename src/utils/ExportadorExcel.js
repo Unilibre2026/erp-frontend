@@ -24,11 +24,11 @@ const response = await fetch(Logo);
 
 const blob = await response.blob();
 
-const buffer = await blob.arrayBuffer();
+const logoBuffer = await blob.arrayBuffer();
 
 const logoId = workbook.addImage({
 
-    buffer,
+    buffer: logoBuffer,
 
     extension: "png"
 
