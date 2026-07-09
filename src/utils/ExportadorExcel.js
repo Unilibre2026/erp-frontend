@@ -40,19 +40,15 @@ export async function exportarAvanceGeneral(
 
 ];
 
-for (const rol of roles) {
+ roles.forEach(() => {
 
     worksheet.columns.push(
-
         { width: 14 },
-
         { width: 14 },
-
         { width: 14 }
-
     );
 
-}
+});
 
     worksheet.columns.push({ width: 14 });
     worksheet.columns.push({ width: 14 });
