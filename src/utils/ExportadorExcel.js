@@ -3,9 +3,9 @@ import { saveAs } from "file-saver";
 
 export async function exportarAvanceGeneral(
     convocatoria,
-    ciudades,
-    roles,
-    vacantes
+    ciudades = [],
+    roles = [],
+    vacantes = []
 ) {
 
     const workbook = new ExcelJS.Workbook();
@@ -15,6 +15,12 @@ export async function exportarAvanceGeneral(
 
     const worksheet = workbook.addWorksheet("Avance General");
 
+    if (!Array.isArray(ciudades)) ciudades = [];
+
+    if (!Array.isArray(roles)) roles = [];
+
+    if (!Array.isArray(vacantes)) vacantes = [];
+
     //=====================================
     // ANCHO DE COLUMNAS
     //=====================================
@@ -23,13 +29,25 @@ export async function exportarAvanceGeneral(
 
     worksheet.columns.push({ width: 25 }); // Ciudad
 
-    roles.forEach(() => {
+    worksheet.columns = [
 
-        worksheet.columns.push({ width: 14 });
-        worksheet.columns.push({ width: 14 });
-        worksheet.columns.push({ width: 14 });
+    { width: 25 }
 
-    });
+];
+
+for (const rol of roles) {
+
+    worksheet.columns.push(
+
+        { width: 14 },
+
+        { width: 14 },
+
+        { width: 14 }
+
+    );
+
+}
 
     worksheet.columns.push({ width: 14 });
     worksheet.columns.push({ width: 14 });
@@ -143,7 +161,7 @@ export async function exportarAvanceGeneral(
     // ROLES
     //------------------------------------
 
-    let columna = 1;
+    let columna = 2;
 
     roles.forEach((rol) => {
 

@@ -346,10 +346,20 @@ function ConsultaAvanceGeneral() {
                 </div>
 
                 <button
-                   onClick={() => exportarAvanceGeneral(convocatoria)}
-                >
-                   Exportar Excel
-                </button>
+                  className="btn-exportar"
+                  onClick={() =>
+                   exportarAvanceGeneral(
+                 convocatoria,
+                 ciudades,
+                 roles,
+                 vacantes
+        )
+    }
+>
+
+                 📥 Exportar Excel
+
+</button>
 
             </div>
 
