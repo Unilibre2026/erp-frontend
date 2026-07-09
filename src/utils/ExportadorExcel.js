@@ -1,26 +1,95 @@
-import ExcelJS from "exceljs";
-import { saveAs } from "file-saver";
-
 export async function exportarAvanceGeneral() {
 
-    // Crear libro
     const workbook = new ExcelJS.Workbook();
 
     workbook.creator = "ERP Universidad Libre";
-    workbook.lastModifiedBy = "ERP Universidad Libre";
     workbook.created = new Date();
 
-    // Crear hoja
     const worksheet = workbook.addWorksheet("Avance General");
 
-    // Texto de prueba
-    worksheet.getCell("A1").value = "UNIVERSIDAD LIBRE";
+    //=====================================
+    // ANCHO DE COLUMNAS
+    //=====================================
 
-    worksheet.getCell("A2").value = "CONSULTA AVANCE GENERAL";
+    worksheet.columns = [
 
-    worksheet.getCell("A3").value = "Exportación en construcción";
+        { width: 22 },
 
-    // Generar archivo
+        { width: 18 },
+
+        { width: 18 },
+
+        { width: 18 },
+
+        { width: 18 },
+
+        { width: 18 }
+
+    ];
+
+    //=====================================
+    // TITULO
+    //=====================================
+
+    worksheet.mergeCells("A2:F2");
+
+    worksheet.getCell("A2").value = "UNIVERSIDAD LIBRE";
+
+    worksheet.getCell("A2").font = {
+
+        bold: true,
+
+        size: 20,
+
+        color: { argb: "0B5D74" }
+
+    };
+
+    worksheet.getCell("A2").alignment = {
+
+        horizontal: "center"
+
+    };
+
+    //=====================================
+    // SUBTITULO
+    //=====================================
+
+    worksheet.mergeCells("A3:F3");
+
+    worksheet.getCell("A3").value = "CONSULTA AVANCE GENERAL";
+
+    worksheet.getCell("A3").font = {
+
+        bold: true,
+
+        size: 16
+
+    };
+
+    worksheet.getCell("A3").alignment = {
+
+        horizontal: "center"
+
+    };
+
+    //=====================================
+    // INFORMACIÓN
+    //=====================================
+
+    worksheet.getCell("A5").value = "Convocatoria";
+
+    worksheet.getCell("B5").value = "Pendiente";
+
+    worksheet.getCell("A6").value = "Fecha";
+
+    worksheet.getCell("B6").value = new Date();
+
+    worksheet.getCell("B6").numFmt = "dd/mm/yyyy hh:mm";
+
+    //=====================================
+    // GUARDAR
+    //=====================================
 
     const buffer = await workbook.xlsx.writeBuffer();
 
@@ -28,7 +97,7 @@ export async function exportarAvanceGeneral() {
 
         new Blob([buffer]),
 
-        "Prueba.xlsx"
+        "Consulta_Avance_General.xlsx"
 
     );
 
