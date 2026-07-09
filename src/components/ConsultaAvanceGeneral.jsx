@@ -11,9 +11,12 @@ function ConsultaAvanceGeneral() {
 
     const [convocatorias, setConvocatorias] = useState([]);
     const [convocatoria, setConvocatoria] = useState("");
+    const [vacantes, setVacantes] = useState([]);
+    const [ciudades, setCiudades] = useState([]);
+    const [roles, setRoles] = useState([]);
 
     // ==========================
-    // USE EFFECT
+    // CARGAR CONVOCATORIAS
     // ==========================
 
     useEffect(() => {
@@ -36,7 +39,7 @@ function ConsultaAvanceGeneral() {
 
             const unicas = [
                 ...new Set(
-                    data.map((c) => c.nombre_convocatoria)
+                    data.map(c => c.nombre_convocatoria)
                 )
             ];
 
@@ -45,6 +48,84 @@ function ConsultaAvanceGeneral() {
         } catch (error) {
 
             console.error("Error cargando convocatorias:", error);
+
+        }
+
+    };
+
+    // ==========================
+    // CARGAR VACANTES
+    // ==========================
+
+    const cargarVacantes = async (convocatoriaSeleccionada) => {
+
+        if (!convocatoriaSeleccionada) {
+
+            setVacantes([]);
+            return;
+
+        }
+
+        try {
+
+            const token = localStorage.getItem("token");
+
+            const res = await fetch(
+                `${API_URL}/vacantes`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+            );
+
+            if (!res.ok) {
+
+                throw new Error("Error cargando vacantes");
+
+            }
+
+            const data = await res.json();
+
+            const lista = data.vacantes || data || [];
+
+            const filtradas = lista.filter(
+                v => v.convocatoria === convocatoriaSeleccionada
+            );
+
+            setVacantes(filtradas);
+
+            // Obtener ciudades únicas
+             const ciudadesUnicas = [
+                ...new Set(
+                    filtradas.map(v => v.indicador)
+    )
+];
+
+// Obtener roles únicos
+              const rolesUnicos = [
+                   ...new Set(
+                       filtradas.map(v => v.rol)
+    )
+];
+
+setCiudades(ciudadesUnicas);
+setRoles(rolesUnicos);
+
+            console.log("===== VACANTES FILTRADAS =====");
+            console.table(filtradas);
+
+            console.log("CIUDADES");
+            console.table(ciudadesUnicas);
+
+            console.log("ROLES");
+            console.table(rolesUnicos);
+
+        } catch (error) {
+
+            console.error("Error:", error);
+
+            setVacantes([]);
 
         }
 
@@ -76,7 +157,11 @@ function ConsultaAvanceGeneral() {
 
                         onChange={(e) => {
 
-                            setConvocatoria(e.target.value);
+                            const valor = e.target.value;
+
+                            setConvocatoria(valor);
+
+                            cargarVacantes(valor);
 
                         }}
 
