@@ -11,6 +11,10 @@
 
 }
 
+/*==================================
+        BARRA SUPERIOR
+==================================*/
+
 .barra-superior{
 
     display:flex;
@@ -42,88 +46,177 @@
 
 }
 
-.tabla-avance-general table{
+/*==================================
+        TABLA
+==================================*/
 
-    border-collapse: collapse;
-    width: max-content;
+.tabla-avance-general{
+
+    margin-top:20px;
+    overflow-x:auto;
 
 }
+
+.tabla-avance-general table{
+
+    border-collapse:collapse;
+    width:max-content;
+
+}
+
+/*==================================
+        CELDAS GENERALES
+==================================*/
 
 .tabla-avance-general th,
 .tabla-avance-general td{
 
     border:1px solid #7f7f7f;
     text-align:center;
+    padding:0px;
 
 }
+
+/*==================================
+        PRIMERA COLUMNA
+==================================*/
 
 .tabla-avance-general th:first-child,
 .tabla-avance-general td:first-child{
 
-    width:220px;
-    min-width:220px;
-    max-width:220px;
+    width:230px;
+    min-width:230px;
+    max-width:230px;
+
     text-align:left;
-    padding-left:10px;
+
+    padding-left:12px;
 
 }
+
+/*==================================
+        RESTO DE COLUMNAS
+==================================*/
 
 .tabla-avance-general th:not(:first-child),
 .tabla-avance-general td:not(:first-child){
 
-    width:75px;
-    min-width:75px;
-    max-width:75px;
+    width:78px;
+    min-width:78px;
+    max-width:78px;
 
 }
 
-.tabla-avance-general th,
-.tabla-avance-general td{
+/*==================================
+        ALTURA FILAS
+==================================*/
+
+.tabla-avance-general thead tr:first-child{
+
+    height:42px;
+
+}
+
+.tabla-avance-general thead tr:nth-child(2){
 
     height:34px;
 
 }
 
-.tabla-avance-general{
+.tabla-avance-general tbody tr{
 
-    font-size:80px;
-
-}
-.fin-rol{
-
-    border-right:3px solid #0b5d74;
+    height:36px;
 
 }
 
-.fin-rol{
+/*==================================
+        TITULOS PRINCIPALES
+==================================*/
 
-    border-right:3px solid #0b5d74;
+.titulo-rol,
+.titulo-total{
 
-}
-
-.tabla-avance-general thead th{
-
-    border:1px solid #FFFFFF;
-
-}
-
-.tabla-avance-general thead tr:nth-child(2) th{
-
-    border:1px solid #FFFFFF;
-
-}
-.tabla-avance-general thead th{
-
-    border:1px solid #FFFFFF;
     background:#0b5d74;
     color:#FFFFFF;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    border:1px solid #FFFFFF !important;
+
+}
+
+/*==================================
+        SUBTITULOS
+==================================*/
+
+.subtitulo{
+
+    background:#2f7d94;
+    color:#FFFFFF;
+
+    font-size:13px;
+
+    font-weight:bold;
+
+    border:1px solid #FFFFFF !important;
+
+}
+
+/*==================================
+        DATOS
+==================================*/
+
+.dato{
+
+    font-size:14px;
+
+    font-weight:normal;
+
+}
+
+/*==================================
+        COLUMNA CIUDAD
+==================================*/
+
+.col-ciudad{
+
+    font-size:14px;
+
     font-weight:bold;
 
 }
 
-.tabla-avance-general thead tr:nth-child(2) th{
+/*==================================
+        FILA TOTAL
+==================================*/
 
-    background:#2f7d94;
-    color:#FFFFFF;
+.fila-total{
+
+    background:#f4f4f4;
+
+    font-weight:bold;
+
+}
+
+/*==================================
+        SEPARADOR ENTRE ROLES
+==================================*/
+
+.fin-rol{
+
+    border-right:3px solid #0b5d74 !important;
+
+}
+
+/*==================================
+        TOTALES
+==================================*/
+
+.total{
+
+    background:#fafafa;
+    font-weight:bold;
 
 }
