@@ -110,6 +110,10 @@ worksheet.columns = columnas;
     worksheet.getCell("B6").value = new Date();
     worksheet.getCell("B6").numFmt = "dd/mm/yyyy hh:mm";
 
+    //Ajustar ancho de columnas de información//
+    worksheet.getColumn(1).width = 25;
+    worksheet.getColumn(2).width = 28;
+
     //=====================================
     // ENCABEZADOS
     //=====================================
