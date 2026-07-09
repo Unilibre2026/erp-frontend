@@ -30,25 +30,29 @@ export async function exportarAvanceGeneral(
     console.log("Roles:", roles);
     console.log("Vacantes:", vacantes);
 
-    worksheet.columns = [
+//=====================================
+// ANCHO DE COLUMNAS
+//=====================================
 
-    { width: 25 }   // Ciudad
+const columnas = [
+
+    { width: 25 } // Ciudad
 
 ];
 
- roles.forEach(() => {
+roles.forEach(() => {
 
-    worksheet.columns.push(
-        { width: 14 },
-        { width: 14 },
-        { width: 14 }
-    );
+    columnas.push({ width: 14 });
+    columnas.push({ width: 14 });
+    columnas.push({ width: 14 });
 
 });
 
-    worksheet.columns.push({ width: 14 });
-    worksheet.columns.push({ width: 14 });
-    worksheet.columns.push({ width: 14 });
+columnas.push({ width: 14 });
+columnas.push({ width: 14 });
+columnas.push({ width: 14 });
+
+worksheet.columns = columnas;
 
     //=====================================
     // TITULO
