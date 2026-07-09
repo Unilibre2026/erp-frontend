@@ -346,12 +346,9 @@ function ConsultaAvanceGeneral() {
                 </div>
 
                 <button
-                  className="btn-exportar"
-                  onClick={exportarAvanceGeneral}
-    >
-
-                  📥 Exportar Excel
-
+                   onClick={() => exportarAvanceGeneral(convocatoria)}
+                >
+                   Exportar Excel
                 </button>
 
             </div>

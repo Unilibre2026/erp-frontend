@@ -1,4 +1,9 @@
-export async function exportarAvanceGeneral() {
+export async function exportarAvanceGeneral(
+    convocatoria,
+    ciudades,
+    roles,
+    vacantes
+) {
 
     const workbook = new ExcelJS.Workbook();
 
@@ -79,7 +84,7 @@ export async function exportarAvanceGeneral() {
 
     worksheet.getCell("A5").value = "Convocatoria";
 
-    worksheet.getCell("B5").value = "Pendiente";
+    worksheet.getCell("B5").value = convocatoria;
 
     worksheet.getCell("A6").value = "Fecha";
 
