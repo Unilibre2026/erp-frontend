@@ -11,6 +11,7 @@ function ConsultaAvanceGeneral() {
 
     const [convocatorias, setConvocatorias] = useState([]);
     const [convocatoria, setConvocatoria] = useState("");
+    const [avance, setAvance] = useState([]);
 
     // ==========================
     // USE EFFECT
@@ -70,9 +71,11 @@ function ConsultaAvanceGeneral() {
                     value={convocatoria}
                     onChange={(e) => {
 
-                        const valor = e.target.value;
+                       const valor = e.target.value;
 
                         setConvocatoria(valor);
+
+                        cargarAvance(valor);
 
                     }}
                 >
@@ -107,5 +110,44 @@ function ConsultaAvanceGeneral() {
 );
 
 } 
+
+const cargarAvance = async (convocatoriaSeleccionada) => {
+
+    if (!convocatoriaSeleccionada) {
+
+        setAvance([]);
+        return;
+
+    }
+
+    try {
+
+        const res = await fetch(
+            `${API_URL}/avance-prueba/${encodeURIComponent(convocatoriaSeleccionada)}`
+        );
+
+        if (!res.ok) {
+
+            throw new Error("Error consultando información");
+
+        }
+
+        const data = await res.json();
+
+        console.log("DATOS DEL BACKEND");
+
+        console.log(data);
+
+        setAvance(data.indicadores || []);
+
+    } catch (error) {
+
+        console.error(error);
+
+        setAvance([]);
+
+    }
+
+};
 
 export default ConsultaAvanceGeneral;
