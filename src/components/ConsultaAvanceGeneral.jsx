@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./ConsultaAvanceGeneral.css";
+import { exportarAvanceGeneral } from "../utils/ExportadorExcel";
 
 const API_URL = "https://erp-unilibre-production.up.railway.app";
 
@@ -343,6 +344,15 @@ function ConsultaAvanceGeneral() {
                     </select>
 
                 </div>
+
+                <button
+                  className="btn-exportar"
+                  onClick={exportarAvanceGeneral}
+    >
+
+                  📥 Exportar Excel
+
+                </button>
 
             </div>
 
