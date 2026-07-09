@@ -141,8 +141,8 @@ worksheet.addImage(
 
         ext: {
 
-            width: 120,
-            height: 48
+            width: 180,
+            height: 68
 
         }
 
