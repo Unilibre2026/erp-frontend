@@ -98,7 +98,7 @@ function ConsultaAvanceGeneral() {
             setVacantes(filtradas);
 
             // ==========================
-            // CIUDADES (INDICADOR)
+            // CIUDADES
             // ==========================
 
             const ciudadesUnicas = [
@@ -142,6 +142,75 @@ function ConsultaAvanceGeneral() {
     };
 
     // ==========================
+    // CANTIDAD POR CIUDAD Y ROL
+    // ==========================
+
+    const obtenerCantidad = (ciudad, rol) => {
+
+        return vacantes
+            .filter(
+                v =>
+                    v.indicador === ciudad &&
+                    v.rol === rol
+            )
+            .reduce(
+                (total, v) =>
+                    total + Number(v.num_expertos || 0),
+                0
+            );
+
+    };
+
+    // ==========================
+    // TOTAL POR CIUDAD
+    // ==========================
+
+    const obtenerTotalCiudad = (ciudad) => {
+
+        return vacantes
+            .filter(v => v.indicador === ciudad)
+            .reduce(
+                (total, v) =>
+                    total + Number(v.num_expertos || 0),
+                0
+            );
+
+    };
+
+    // ==========================
+    // TOTAL POR ROL
+    // ==========================
+
+    const obtenerTotalRol = (rol) => {
+
+        return vacantes
+            .filter(v => v.rol === rol)
+            .reduce(
+                (total, v) =>
+                    total + Number(v.num_expertos || 0),
+                0
+            );
+
+    };
+
+    // ==========================
+    // TOTAL GENERAL
+    // ==========================
+
+    const obtenerTotalGeneral = () => {
+
+        return vacantes.reduce(
+
+            (total, v) =>
+                total + Number(v.num_expertos || 0),
+
+            0
+
+        );
+
+    };
+
+    // ==========================
     // RETURN
     // ==========================
 
@@ -162,7 +231,9 @@ function ConsultaAvanceGeneral() {
                     </label>
 
                     <select
+
                         value={convocatoria}
+
                         onChange={(e) => {
 
                             const valor = e.target.value;
@@ -172,6 +243,7 @@ function ConsultaAvanceGeneral() {
                             cargarVacantes(valor);
 
                         }}
+
                     >
 
                         <option value="">
@@ -186,7 +258,9 @@ function ConsultaAvanceGeneral() {
                                     key={index}
                                     value={c}
                                 >
+
                                     {c}
+
                                 </option>
 
                             ))
@@ -199,109 +273,133 @@ function ConsultaAvanceGeneral() {
 
             </div>
 
-            {/* Temporal para evitar warning de React */}
-
-            <div style={{ display: "none" }}>
-
-                {vacantes.length}
-                {ciudades.length}
-                {roles.length}
-
-            </div>
-
             {/* ==========================
                 TABLA
             ========================== */}
 
-            {convocatoria && (
+            {
 
-                <div className="tabla-avance-general">
+                convocatoria && (
 
-                    <table>
+                    <div className="tabla-avance-general">
 
-                        <thead>
+                        <table>
 
-                            <tr>
+                            <thead>
 
-                                <th>Ciudad</th>
+                                <tr>
+
+                                    <th>Ciudad</th>
+
+                                    {
+
+                                        roles.map((rol, index) => (
+
+                                            <th key={index}>
+                                                {rol}
+                                            </th>
+
+                                        ))
+
+                                    }
+
+                                    <th>Total</th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
 
                                 {
 
-                                    roles.map((rol, index) => (
+                                    ciudades.map((ciudad, index) => (
 
-                                        <th key={index}>
-                                            {rol}
-                                        </th>
+                                        <tr key={index}>
+
+                                            <td>
+
+                                                {ciudad}
+
+                                            </td>
+
+                                            {
+
+                                                roles.map((rol, i) => (
+
+                                                    <td key={i}>
+
+                                                        {obtenerCantidad(ciudad, rol)}
+
+                                                    </td>
+
+                                                ))
+
+                                            }
+
+                                            <td>
+
+                                                <strong>
+
+                                                    {obtenerTotalCiudad(ciudad)}
+
+                                                </strong>
+
+                                            </td>
+
+                                        </tr>
 
                                     ))
 
                                 }
 
-                                <th>Total</th>
+                                <tr>
 
-                            </tr>
+                                    <td>
 
-                        </thead>
+                                        <strong>Total</strong>
 
-                        <tbody>
+                                    </td>
 
-                            {
+                                    {
 
-                                ciudades.map((ciudad, index) => (
+                                        roles.map((rol, index) => (
 
-                                    <tr key={index}>
+                                            <td key={index}>
 
-                                        <td>
-                                            {ciudad}
-                                        </td>
+                                                <strong>
 
-                                        {
+                                                    {obtenerTotalRol(rol)}
 
-                                            roles.map((rol, i) => (
+                                                </strong>
 
-                                                <td key={i}></td>
+                                            </td>
 
-                                            ))
+                                        ))
 
-                                        }
+                                    }
 
-                                        <td></td>
+                                    <td>
 
-                                    </tr>
+                                        <strong>
 
-                                ))
+                                            {obtenerTotalGeneral()}
 
-                            }
+                                        </strong>
 
-                            <tr>
+                                    </td>
 
-                                <td>
+                                </tr>
 
-                                    <strong>Total</strong>
+                            </tbody>
 
-                                </td>
+                        </table>
 
-                                {
+                    </div>
 
-                                    roles.map((rol, index) => (
+                )
 
-                                        <td key={index}></td>
-
-                                    ))
-
-                                }
-
-                                <td></td>
-
-                            </tr>
-
-                        </tbody>
-
-                    </table>
-
-                </div>
-
-            )}
+            }
 
         </div>
 
