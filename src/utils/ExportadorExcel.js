@@ -40,14 +40,6 @@ const logoId = workbook.addImage({
 
     if (!Array.isArray(vacantes)) vacantes = [];
 
-    //=====================================
-    // ANCHO DE COLUMNAS
-    //=====================================
-
-    console.log("Convocatoria:", convocatoria);
-    console.log("Ciudades:", ciudades);
-    console.log("Roles:", roles);
-    console.log("Vacantes:", vacantes);
 
 //=====================================
 // ANCHO DE COLUMNAS
@@ -72,12 +64,13 @@ columnas.push({ width: 14 });
 columnas.push({ width: 14 });
 
 worksheet.columns = columnas;
+worksheet.properties.defaultRowHeight = 22;
 
 //=====================================
 // TITULO
 //=====================================
 
-const ultimaColumna = worksheet.columnCount;
+
 
 // Título centrado dejando espacio para el logo a la derecha
 worksheet.mergeCells(2, 2, 2, 10);
@@ -141,15 +134,15 @@ worksheet.addImage(
 
         tl: {
 
-            col: 10.2,   // Entre las columnas K y L
-            row: 0.6
+            col: 10.8,
+            row: 0.7
 
         },
 
         ext: {
 
-            width: 165,
-            height: 60
+            width: 120,
+            height: 48
 
         }
 
