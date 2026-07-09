@@ -38,10 +38,14 @@ function ConsultaAvanceGeneral() {
             const data = await res.json();
 
             const unicas = [
+
                 ...new Set(
+
                     data.map(c => c.nombre_convocatoria)
+
                 )
-            ];
+
+            ].sort((a, b) => a.localeCompare(b, "es"));
 
             setConvocatorias(unicas);
 
@@ -73,12 +77,19 @@ function ConsultaAvanceGeneral() {
             const token = localStorage.getItem("token");
 
             const res = await fetch(
+
                 `${API_URL}/vacantes`,
+
                 {
+
                     headers: {
+
                         Authorization: `Bearer ${token}`
+
                     }
+
                 }
+
             );
 
             if (!res.ok) {
@@ -92,7 +103,9 @@ function ConsultaAvanceGeneral() {
             const lista = data.vacantes || data || [];
 
             const filtradas = lista.filter(
+
                 v => v.convocatoria === convocatoriaSeleccionada
+
             );
 
             setVacantes(filtradas);
@@ -102,32 +115,31 @@ function ConsultaAvanceGeneral() {
             // ==========================
 
             const ciudadesUnicas = [
+
                 ...new Set(
+
                     filtradas.map(v => v.indicador)
+
                 )
-            ];
+
+            ].sort((a, b) => a.localeCompare(b, "es"));
 
             // ==========================
             // ROLES
             // ==========================
 
             const rolesUnicos = [
+
                 ...new Set(
+
                     filtradas.map(v => v.rol)
+
                 )
-            ];
+
+            ].sort((a, b) => a.localeCompare(b, "es"));
 
             setCiudades(ciudadesUnicas);
             setRoles(rolesUnicos);
-
-            console.log("===== VACANTES =====");
-            console.table(filtradas);
-
-            console.log("===== CIUDADES =====");
-            console.table(ciudadesUnicas);
-
-            console.log("===== ROLES =====");
-            console.table(rolesUnicos);
 
         } catch (error) {
 
@@ -142,21 +154,30 @@ function ConsultaAvanceGeneral() {
     };
 
     // ==========================
-    // CANTIDAD POR CIUDAD Y ROL
+    // REQUERIDOS POR CIUDAD Y ROL
     // ==========================
 
     const obtenerCantidad = (ciudad, rol) => {
 
         return vacantes
+
             .filter(
+
                 v =>
+
                     v.indicador === ciudad &&
                     v.rol === rol
+
             )
+
             .reduce(
+
                 (total, v) =>
+
                     total + Number(v.num_expertos || 0),
+
                 0
+
             );
 
     };
@@ -168,11 +189,21 @@ function ConsultaAvanceGeneral() {
     const obtenerTotalCiudad = (ciudad) => {
 
         return vacantes
-            .filter(v => v.indicador === ciudad)
+
+            .filter(
+
+                v => v.indicador === ciudad
+
+            )
+
             .reduce(
+
                 (total, v) =>
+
                     total + Number(v.num_expertos || 0),
+
                 0
+
             );
 
     };
@@ -184,11 +215,21 @@ function ConsultaAvanceGeneral() {
     const obtenerTotalRol = (rol) => {
 
         return vacantes
-            .filter(v => v.rol === rol)
+
+            .filter(
+
+                v => v.rol === rol
+
+            )
+
             .reduce(
+
                 (total, v) =>
+
                     total + Number(v.num_expertos || 0),
+
                 0
+
             );
 
     };
@@ -202,6 +243,7 @@ function ConsultaAvanceGeneral() {
         return vacantes.reduce(
 
             (total, v) =>
+
                 total + Number(v.num_expertos || 0),
 
             0
@@ -216,7 +258,7 @@ function ConsultaAvanceGeneral() {
 
     return (
 
-        <div className="consulta-avance-general">
+                <div className="consulta-avance-general">
 
             <h2>
                 Consulta avance general
@@ -273,10 +315,6 @@ function ConsultaAvanceGeneral() {
 
             </div>
 
-            {/* ==========================
-                TABLA
-            ========================== */}
-
             {
 
                 convocatoria && (
@@ -287,88 +325,78 @@ function ConsultaAvanceGeneral() {
 
                             <thead>
 
-    <tr>
+                                <tr>
 
-        <th rowSpan="2">
-            Ciudad
-        </th>
+                                    <th rowSpan="2">
+                                        Ciudad
+                                    </th>
 
-        {
+                                    {
 
-            roles.map((rol, index) => (
+                                        roles.map((rol) => (
 
-                <th
-                    key={index}
-                    colSpan="3"
-                    className="titulo-rol"
-                >
+                                            <th
+                                                key={rol}
+                                                colSpan={3}
+                                                className="titulo-rol"
+                                            >
 
-                    {rol}
+                                                {rol}
 
-                </th>
+                                            </th>
 
-            ))
+                                        ))
 
-        }
+                                    }
 
-        <th
-            colSpan="3"
-            className="titulo-total"
-        >
-            Total
-        </th>
+                                    <th
+                                        colSpan={3}
+                                        className="titulo-total"
+                                    >
 
-    </tr>
+                                        Total
 
-    <tr>
+                                    </th>
 
-        {
+                                </tr>
 
-            roles.map((rol, index) => (
+                                <tr>
 
-                <>
+                                    {
 
-                    <th key={`r-${index}`}>
-                        Requerido
-                    </th>
+                                        roles.map((rol) => (
 
-                    <th key={`c-${index}`}>
-                        Reclutado
-                    </th>
+                                            <React.Fragment key={rol}>
 
-                    <th key={`p-${index}`}>
-                        % avance
-                    </th>
+                                                <th>Requerido</th>
 
-                </>
+                                                <th>Reclutado</th>
 
-            ))
+                                                <th>% avance</th>
 
-        }
+                                            </React.Fragment>
 
-        <th>
-            Requerido
-        </th>
+                                        ))
 
-        <th>
-            Reclutado
-        </th>
+                                    }
 
-        <th>
-            % avance
-        </th>
+                                    <th>Requerido</th>
 
-    </tr>
+                                    <th>Reclutado</th>
 
-</thead>
+                                    <th>% avance</th>
+
+                                </tr>
+
+                            </thead>
 
                             <tbody>
 
                                 {
 
-                                    ciudades.map((ciudad, index) => (
+                                    ciudades.map((ciudad) => (
 
-                                        <tr key={index}>
+                                        <tr key={ciudad}>
 
                                             <td>
 
@@ -378,17 +406,41 @@ function ConsultaAvanceGeneral() {
 
                                             {
 
-                                                roles.map((rol, i) => (
+                                                roles.map((rol) => (
 
-                                                    <td key={i}>
+                                                    <React.Fragment key={rol}>
 
-                                                        {obtenerCantidad(ciudad, rol)}
+                                                        {/* REQUERIDO */}
 
-                                                    </td>
+                                                        <td>
+
+                                                            {obtenerCantidad(ciudad, rol)}
+
+                                                        </td>
+
+                                                        {/* RECLUTADO */}
+
+                                                        <td>
+
+                                                            0
+
+                                                        </td>
+
+                                                        {/* % AVANCE */}
+
+                                                        <td>
+
+                                                            0,0%
+
+                                                        </td>
+
+                                                    </React.Fragment>
 
                                                 ))
 
                                             }
+
+                                            {/* TOTAL */}
 
                                             <td>
 
@@ -400,33 +452,79 @@ function ConsultaAvanceGeneral() {
 
                                             </td>
 
+                                            <td>
+
+                                                <strong>
+
+                                                    0
+
+                                                </strong>
+
+                                            </td>
+
+                                            <td>
+
+                                                <strong>
+
+                                                    0,0%
+
+                                                </strong>
+
+                                            </td>
+
                                         </tr>
 
                                     ))
 
                                 }
 
+                                {/* FILA TOTAL */}
+
                                 <tr>
 
                                     <td>
 
-                                        <strong>Total</strong>
+                                        <strong>TOTAL</strong>
 
                                     </td>
 
                                     {
 
-                                        roles.map((rol, index) => (
+                                        roles.map((rol) => (
 
-                                            <td key={index}>
+                                            <React.Fragment key={rol}>
 
-                                                <strong>
+                                                <td>
 
-                                                    {obtenerTotalRol(rol)}
+                                                    <strong>
 
-                                                </strong>
+                                                        {obtenerTotalRol(rol)}
 
-                                            </td>
+                                                    </strong>
+
+                                                </td>
+
+                                                <td>
+
+                                                    <strong>
+
+                                                        0
+
+                                                    </strong>
+
+                                                </td>
+
+                                                <td>
+
+                                                    <strong>
+
+                                                        0,0%
+
+                                                    </strong>
+
+                                                </td>
+
+                                            </React.Fragment>
 
                                         ))
 
@@ -437,6 +535,26 @@ function ConsultaAvanceGeneral() {
                                         <strong>
 
                                             {obtenerTotalGeneral()}
+
+                                        </strong>
+
+                                    </td>
+
+                                    <td>
+
+                                        <strong>
+
+                                            0
+
+                                        </strong>
+
+                                    </td>
+
+                                    <td>
+
+                                        <strong>
+
+                                            0,0%
 
                                         </strong>
 
