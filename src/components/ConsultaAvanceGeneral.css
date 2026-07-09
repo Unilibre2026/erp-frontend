@@ -81,8 +81,7 @@
         PRIMERA COLUMNA
 ==================================*/
 
-.tabla-avance-general th:first-child,
-.tabla-avance-general td:first-child{
+.col-ciudad{
 
     width:230px;
     min-width:230px;
@@ -92,14 +91,16 @@
 
     padding-left:12px;
 
+    border-right:3px solid #0b5d74 !important;
+
 }
 
 /*==================================
         RESTO DE COLUMNAS
 ==================================*/
 
-.tabla-avance-general th:not(:first-child),
-.tabla-avance-general td:not(:first-child){
+.tabla-avance-general th:not(.col-ciudad),
+.tabla-avance-general td:not(.col-ciudad){
 
     width:78px;
     min-width:78px;
@@ -194,7 +195,7 @@
 
 .fila-total{
 
-    background:#f4f4f4;
+    background:#FCE4EC;      /* rosado claro */
 
     font-weight:bold;
 
@@ -218,5 +219,16 @@
 
     background:#fafafa;
     font-weight:bold;
+
+}
+
+/*==================================
+        color separador de primer columna y primer rol
+==================================*/
+
+
+.col-ciudad{
+
+    border-right:3px solid #0b5d74 !important;
 
 }
