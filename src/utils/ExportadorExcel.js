@@ -154,16 +154,26 @@ worksheet.addImage(
 // INFORMACIÓN
 //=====================================
 
-    worksheet.getCell("A5").value = "Convocatoria";
-    worksheet.getCell("B5").value = convocatoria;
+worksheet.getCell("A5").value = "Convocatoria";
+worksheet.getCell("B5").value = convocatoria;
 
-    worksheet.getCell("A6").value = "Fecha";
-    worksheet.getCell("B6").value = new Date();
-    worksheet.getCell("B6").numFmt = "dd/mm/yyyy hh:mm";
+// ← AQUÍ va el código de fecha Colombia
 
-    //Ajustar ancho de columnas de información//
-    worksheet.getColumn(1).width = 25;
-    worksheet.getColumn(2).width = 28;
+const ahora = new Date();
+
+const fechaColombia = new Date(
+    ahora.toLocaleString("en-US", {
+        timeZone: "America/Bogota"
+    })
+);
+
+worksheet.getCell("A6").value = "Fecha";
+worksheet.getCell("B6").value = fechaColombia;
+worksheet.getCell("B6").numFmt = "dd/mm/yyyy hh:mm";
+
+// Ajustar ancho de columnas...
+worksheet.getColumn(1).width = 25;
+worksheet.getColumn(2).width = 28;
 
     //=====================================
     // ENCABEZADOS
