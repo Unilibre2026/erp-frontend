@@ -73,68 +73,61 @@ columnas.push({ width: 14 });
 
 worksheet.columns = columnas;
 
-    //=====================================
-    // TITULO
-    //=====================================
+//=====================================
+// TITULO
+//=====================================
 
-    const ultimaColumna = worksheet.columnCount;
+const ultimaColumna = worksheet.columnCount;
 
-    // Reservamos las columnas A y B para el logo
+// Título centrado dejando espacio para el logo a la derecha
+worksheet.mergeCells(2, 2, 2, 10);
 
-    worksheet.mergeCells(2, 3, 2, ultimaColumna);
+worksheet.getCell("B2").value = "UNIVERSIDAD LIBRE";
 
-    worksheet.getCell("C2").value = "UNIVERSIDAD LIBRE";
-
-    worksheet.getCell("C2").font = {
+worksheet.getCell("B2").font = {
 
     bold: true,
-    size: 20,
-    color: { argb: "0B5D74" }
+    size: 22,
+    color: { argb: "0B5D74" },
+    name: "Calibri"
 
 };
 
-worksheet.getCell("C2").alignment = {
+worksheet.getCell("B2").alignment = {
 
     horizontal: "center",
     vertical: "middle"
 
 };
 
-    worksheet.getCell("A2").font = {
-
-        bold: true,
-        size: 20,
-        color: { argb: "0B5D74" }
-
-    };
-
-    worksheet.getCell("A2").alignment = {
-
-        horizontal: "center"
-
-    };
-
+// Altura de la fila del título
+worksheet.getRow(2).height = 40;    
 //=====================================
 // SUBTITULO
 //=====================================
 
-worksheet.mergeCells(3, 3, 3, ultimaColumna);
+// Subtítulo centrado dejando espacio para el logo
+worksheet.mergeCells(3, 2, 3, 10);
 
-worksheet.getCell("C3").value = "CONSULTA AVANCE GENERAL";
+worksheet.getCell("B3").value = "CONSULTA AVANCE GENERAL";
 
-worksheet.getCell("C3").font = {
+worksheet.getCell("B3").font = {
 
     bold: true,
-    size: 16
+    size: 16,
+    name: "Calibri"
 
 };
 
-worksheet.getCell("C3").alignment = {
+worksheet.getCell("B3").alignment = {
 
     horizontal: "center",
     vertical: "middle"
 
 };
+
+// Altura de la fila del subtítulo
+worksheet.getRow(3).height = 28;
 
 //=====================================
 // INSERTAR LOGO
@@ -147,21 +140,26 @@ worksheet.addImage(
     {
 
         tl: {
-            col: 0.15,
-            row: 1.15
+
+            col: 10.2,   // Entre las columnas K y L
+            row: 0.6
+
         },
 
         ext: {
-            width: 90,
-            height: 90
+
+            width: 165,
+            height: 60
+
         }
 
     }
 
 );
-    //=====================================
-    // INFORMACIÓN
-    //=====================================
+
+//=====================================
+// INFORMACIÓN
+//=====================================
 
     worksheet.getCell("A5").value = "Convocatoria";
     worksheet.getCell("B5").value = convocatoria;
