@@ -25,6 +25,11 @@ export async function exportarAvanceGeneral(
     // ANCHO DE COLUMNAS
     //=====================================
 
+    console.log("Convocatoria:", convocatoria);
+    console.log("Ciudades:", ciudades);
+    console.log("Roles:", roles);
+    console.log("Vacantes:", vacantes);
+
     worksheet.columns = [];
 
     worksheet.columns.push({ width: 25 }); // Ciudad
