@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./ConsultaAvanceGeneral.css";
 
 const API_URL = "https://erp-unilibre-production.up.railway.app";
