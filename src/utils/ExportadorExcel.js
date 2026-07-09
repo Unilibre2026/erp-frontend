@@ -1,5 +1,6 @@
 import ExcelJS from "exceljs";
 import { saveAs } from "file-saver";
+import Logo from "../assets/logo_unilibre.png";
 
 export async function exportarAvanceGeneral(
     convocatoria,
@@ -14,6 +15,24 @@ export async function exportarAvanceGeneral(
     workbook.created = new Date();
 
     const worksheet = workbook.addWorksheet("Avance General");
+
+//=====================================
+// CARGAR LOGO
+//=====================================
+
+const response = await fetch(Logo);
+
+const blob = await response.blob();
+
+const buffer = await blob.arrayBuffer();
+
+const logoId = workbook.addImage({
+
+    buffer,
+
+    extension: "png"
+
+});
 
     if (!Array.isArray(ciudades)) ciudades = [];
 
@@ -60,9 +79,18 @@ worksheet.columns = columnas;
 
     const ultimaColumna = worksheet.columnCount;
 
-    worksheet.mergeCells(2, 1, 2, ultimaColumna);
+    // Reservamos las columnas A y B para el logo
 
-    worksheet.getCell("A2").value = "UNIVERSIDAD LIBRE";
+    worksheet.mergeCells(2, 3, 2, ultimaColumna);
+
+    worksheet.getCell("C2").value = "UNIVERSIDAD LIBRE";
+
+    worksheet.getCell("C2").alignment = {
+
+    horizontal: "center",
+    vertical: "middle"
+
+};
 
     worksheet.getCell("A2").font = {
 
@@ -82,9 +110,16 @@ worksheet.columns = columnas;
     // SUBTITULO
     //=====================================
 
-    worksheet.mergeCells(3, 1, 3, ultimaColumna);
+    worksheet.mergeCells(3,3,3,ultimaColumna);
 
-    worksheet.getCell("A3").value = "CONSULTA AVANCE GENERAL";
+    worksheet.getCell("C3").value = "CONSULTA AVANCE GENERAL";
+
+    worksheet.getCell("C3").alignment = {
+
+    horizontal:"center",
+    vertical:"middle"
+
+};
 
     worksheet.getCell("A3").font = {
 
