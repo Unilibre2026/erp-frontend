@@ -1,3 +1,6 @@
+import ExcelJS from "exceljs";
+import { saveAs } from "file-saver";
+
 export async function exportarAvanceGeneral(
     convocatoria,
     ciudades,
@@ -140,7 +143,7 @@ export async function exportarAvanceGeneral(
     // ROLES
     //------------------------------------
 
-    let columna = 2;
+    let columna = 1;
 
     roles.forEach((rol) => {
 
@@ -284,6 +287,115 @@ export async function exportarAvanceGeneral(
         };
 
     }
+
+    //=====================================
+// FUNCIONES AUXILIARES
+//=====================================
+
+const obtenerCantidad = (ciudad, rol) => {
+
+    return vacantes
+        .filter(v =>
+
+            v.indicador === ciudad &&
+            v.rol === rol
+
+        )
+        .reduce(
+
+            (total, v) => total + Number(v.num_expertos || 0),
+
+            0
+
+        );
+
+};
+
+const obtenerTotalCiudad = (ciudad) => {
+
+    return vacantes
+        .filter(v => v.indicador === ciudad)
+        .reduce(
+
+            (total, v) => total + Number(v.num_expertos || 0),
+
+            0
+
+        );
+
+};
+
+const obtenerTotalRol = (rol) => {
+
+    return vacantes
+        .filter(v => v.rol === rol)
+        .reduce(
+
+            (total, v) => total + Number(v.num_expertos || 0),
+
+            0
+
+        );
+
+};
+
+const obtenerTotalGeneral = () => {
+
+    return vacantes.reduce(
+
+        (total, v) => total + Number(v.num_expertos || 0),
+
+        0
+
+    );
+
+};
+
+//=====================================
+// DATOS DE LA TABLA
+//=====================================
+
+let fila = 11;
+
+ciudades.forEach((ciudad) => {
+
+    let columna = 1;
+
+    worksheet.getCell(fila, columna).value = ciudad;
+
+    columna++;
+
+    roles.forEach((rol) => {
+
+        worksheet.getCell(fila, columna).value =
+            obtenerCantidad(ciudad, rol);
+
+        columna++;
+
+        worksheet.getCell(fila, columna).value = 0;
+
+        columna++;
+
+        worksheet.getCell(fila, columna).value = "0,0%";
+
+        columna++;
+
+    });
+
+    worksheet.getCell(fila, columna).value =
+        obtenerTotalCiudad(ciudad);
+
+    columna++;
+
+    worksheet.getCell(fila, columna).value = 0;
+
+    columna++;
+
+    worksheet.getCell(fila, columna).value = "0,0%";
+
+    fila++;
+
+});
 
     //=====================================
     // GUARDAR
