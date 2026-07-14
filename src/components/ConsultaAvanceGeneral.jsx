@@ -15,6 +15,8 @@ function ConsultaAvanceGeneral() {
 
     const [vacantes, setVacantes] = useState([]);
 
+    const [reclutados, setReclutados] = useState([]);
+
     const [ciudades, setCiudades] = useState([]);
 
     const [roles, setRoles] = useState([]);
@@ -116,6 +118,22 @@ function ConsultaAvanceGeneral() {
             );
 
             setVacantes(filtradas);
+
+// ================================
+// RECLUTADOS
+// ================================
+
+     const resReclutados = await fetch(
+      `${API_URL}/avance-general`
+);
+
+if (!resReclutados.ok) {
+    throw new Error("Error consultando reclutados");
+}
+
+      const dataReclutados = await resReclutados.json();
+
+       setReclutados(dataReclutados.reclutados || []);
 
             // ================================
             // CIUDADES
