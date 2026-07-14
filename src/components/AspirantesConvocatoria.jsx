@@ -85,13 +85,11 @@ const cargarArchivo = async () => {
            header: 1
          })[0];
 
-         const columnasEsperadas = [
+        const columnasEsperadas = [
 
-    "convocatoria",
-
-    "documento",
-
-    "nombre"
+         "convocatoria",
+         "documento",
+         "nombre"
 
 ];
 
@@ -126,9 +124,9 @@ if (!archivoValido) {
 // LIMPIAR DATOS
 // ==========================================
 
- const filasLimpias = filas.map(fila => ({
+const filasLimpias = filas.map(fila => ({
 
-    convocatoria: convocatoria,
+    convocatoria: String(fila.convocatoria ?? "").trim(),
 
     documento: String(fila.documento ?? "").trim(),
 
@@ -169,7 +167,55 @@ if (registrosInvalidos.length > 0) {
 }
 
 
-console.log(filasLimpias);
+try {
+
+    const token = localStorage.getItem("token");
+    const usuario = localStorage.getItem("usuario");
+
+    const res = await fetch(
+
+        `${API_URL}/aspirantes-convocatoria/cargar`,
+
+        {
+
+            method: "POST",
+
+            headers: {
+
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+
+            },
+
+            body: JSON.stringify({
+
+                usuario,
+                aspirantes: filasLimpias
+
+            })
+
+        }
+
+    );
+
+    const resultado = await res.json();
+
+    if (!res.ok) {
+
+        throw new Error(resultado.detail || "Error al cargar los aspirantes.");
+
+    }
+
+    alert(resultado.mensaje);
+
+}
+catch (error) {
+
+    console.error(error);
+
+    alert(error.message);
+
+}
 
     };
 
