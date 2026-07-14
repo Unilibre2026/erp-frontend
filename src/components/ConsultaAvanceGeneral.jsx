@@ -583,6 +583,18 @@ function ConsultaAvanceGeneral() {
 
                 <td className="dato total">
 
+                    <strong>0</strong>
+
+                </td>
+
+                <td className="dato total">
+
+                    <strong>0</strong>
+
+                </td>
+
+                <td className="dato total">
+
                     <strong>0,0%</strong>
 
                 </td>
