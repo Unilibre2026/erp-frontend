@@ -123,18 +123,17 @@ function ConsultaAvanceGeneral() {
 // RECLUTADOS
 // ================================
 
-     const resReclutados = await fetch(
-      `${API_URL}/avance-general`
+const resReclutados = await fetch(
+    `${API_URL}/avance-general`
 );
 
 if (!resReclutados.ok) {
     throw new Error("Error consultando reclutados");
 }
 
-      const dataReclutados = await resReclutados.json();
+const dataReclutados = await resReclutados.json();
 
-       setReclutados(dataReclutados.reclutados || []);
-
+setReclutados(dataReclutados.reclutados || []);
             // ================================
             // CIUDADES
             // ================================
@@ -218,6 +217,22 @@ if (!resReclutados.ok) {
             );
 
     };
+
+    const obtenerReclutados = (ciudad, rol) => {
+
+    const registro = reclutados.find(
+
+        r =>
+
+            r.convocatoria === convocatoria &&
+            r.eje === ciudad &&
+            r.rol === rol
+
+    );
+
+    return registro ? registro.reclutados : 0;
+
+};
 
     // ==========================================
     // TOTAL POR CIUDAD
@@ -559,7 +574,7 @@ if (!resReclutados.ok) {
 
                             <td className="dato reclutado">
 
-                                0
+                              {obtenerReclutados(ciudad, rol)}
 
                             </td>
 
