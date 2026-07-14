@@ -344,7 +344,7 @@ table th {
 
 }
 
-table td:nth-child(12) {
+/*table td:nth-child(12) {
   padding: 0;
   vertical-align: top;
 }
@@ -352,7 +352,7 @@ table td:nth-child(12) {
 table td:nth-child(13) {
   padding: 0;
   vertical-align: top;
-}
+}*/
 
 .tabla-convocatorias {
   width: 50%;
