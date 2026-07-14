@@ -649,25 +649,35 @@ function ConsultaAvanceGeneral() {
 
         <td className="dato total">
 
-            <strong>
+    <strong>
+        {obtenerTotalGeneral()}
+    </strong>
 
-                {obtenerTotalGeneral()}
+</td>
 
-            </strong>
+<td className="dato total">
 
-        </td>
+    <strong>0</strong>
 
-        <td className="dato total">
+</td>
 
-            <strong>0</strong>
+<td className="dato total">
 
-        </td>
+    <strong>0</strong>
 
-        <td className="dato total">
+</td>
 
-            <strong>0,0%</strong>
+<td className="dato total">
 
-        </td>
+    <strong>0</strong>
+
+</td>
+
+<td className="dato total">
+
+    <strong>0,0%</strong>
+
+</td>
 
     </tr>
 
