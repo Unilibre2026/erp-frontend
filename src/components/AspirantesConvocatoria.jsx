@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./AspirantesConvocatoria.css";
 
+const API_URL = "https://erp-unilibre-production.up.railway.app";
+
 function AspirantesConvocatoria() {
 
     // ==========================================
