@@ -545,6 +545,14 @@ function ConsultaAvanceGeneral() {
 
                             </td>
 
+                            <td className="dato pre-aprobado">
+                                0
+                            </td>
+
+                            <td className="dato aprobado">
+                                0
+                            </td>
+
                             <td className="dato porcentaje fin-rol">
 
                                 0,0%
