@@ -7,11 +7,53 @@ function AspirantesConvocatoria() {
     // ESTADOS
     // ==========================================
 
-    const [convocatorias] = useState([]);
+    const [convocatorias, setConvocatorias] = useState([]);
     const [convocatoria, setConvocatoria] = useState("");
 
     const [archivo, setArchivo] = useState(null);
-    
+
+// ==========================================
+// CARGAR CONVOCATORIAS
+// ==========================================
+
+    useEffect(() => {
+
+    cargarConvocatorias();
+
+}, []);
+
+
+
+const cargarConvocatorias = async () => {
+
+    try {
+
+        const res = await fetch(`${API_URL}/convocatorias`);
+
+        const data = await res.json();
+
+        const lista = [
+
+            ...new Set(
+
+                data.map(c => c.nombre_convocatoria)
+
+            )
+
+        ].sort((a, b) => a.localeCompare(b, "es"));
+
+        setConvocatorias(lista);
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+    }
+
+};
+
     return (
 
         <div className="aspirantes-convocatoria">
