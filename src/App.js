@@ -370,6 +370,12 @@ if (!usuario) {
   </button>
 )}
 
+{puedeVer("aspirantes_convocatoria") && (
+    <button onClick={() => setVista("aspirantes_convocatoria")}>
+        Aspirantes por convocatoria
+    </button>
+)}
+
 
         {puedeVer("convocatorias") && (
   <button onClick={() => setVista("convocatorias")}>
@@ -450,6 +456,7 @@ if (!usuario) {
   {vista === "consulta_cnsc" && (<ConsultaCNSC />)}
   {vista === "avance_prueba" && (<AvancePrueba />)}  
   {vista === "carga" && <CargaMasiva />}
+  {vista === "aspirantes_convocatoria" && (<AspirantesConvocatoria />)}
   {vista === "convocatorias" && <Convocatorias />}
   {vista === "indicadores" && <Indicadores />}
   {vista === "usuarios" && <Usuarios />}
