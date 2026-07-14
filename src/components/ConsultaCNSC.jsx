@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./ConsultaCNSC.css";
+import { exportarConsultaCNSC } from "../utils/ExportadorConsultaCNSC";
 
 const API_URL = "https://erp-unilibre-production.up.railway.app";
 
@@ -187,12 +188,29 @@ function ConsultaCNSC() {
                     </select>
 
                 </div>
+               <button
 
-                <button className="btn-exportar">
+                 className="btn-exportar"
 
-                    📥 Exportar Excel
+                 disabled={!convocatoria || datos.length === 0}
 
-                </button>
+                 onClick={() =>
+
+                 exportarConsultaCNSC(
+
+                  convocatoria,
+
+                  datos
+
+        )
+
+    }
+
+>
+
+    📥 Exportar Excel
+
+</button>
 
             </div>
 
