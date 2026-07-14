@@ -349,7 +349,7 @@ if (!usuario) {
   </button>
 )}
 
-{puedeVer("consulta_CNSC") && (
+{puedeVer("consulta_cnsc") && (
   <button onClick={() => setVista("consulta_cnsc")}>
     Consulta CNSC
   </button>
