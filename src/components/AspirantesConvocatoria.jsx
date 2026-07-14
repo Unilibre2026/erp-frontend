@@ -7,12 +7,11 @@ function AspirantesConvocatoria() {
     // ESTADOS
     // ==========================================
 
-    const [convocatorias, setConvocatorias] = useState([]);
+    const [convocatorias] = useState([]);
     const [convocatoria, setConvocatoria] = useState("");
 
     const [archivo, setArchivo] = useState(null);
-    const [datos, setDatos] = useState([]);
-
+    
     return (
 
         <div className="aspirantes-convocatoria">
