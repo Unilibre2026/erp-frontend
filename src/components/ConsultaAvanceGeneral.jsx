@@ -234,53 +234,9 @@ setReclutados(dataReclutados.reclutados || []);
 
 };
 
-// ==========================================
-// RECLUTADOS POR CIUDAD Y ROL
-// ==========================================
-
-const obtenerReclutados = (ciudad, rol) => {
-
-    const registro = reclutados.find(
-
-        r =>
-
-            r.convocatoria === convocatoria &&
-            r.eje === ciudad &&
-            r.rol === rol
-
-    );
-
-    return registro ? registro.reclutados : 0;
-
-};
 
 
-// ==========================================
-// TOTAL RECLUTADOS POR ROL
-// ==========================================
 
-const obtenerTotalReclutadosRol = (rol) => {
-
-    return reclutados
-
-        .filter(
-
-            r =>
-
-                r.convocatoria === convocatoria &&
-                r.rol === rol
-
-        )
-
-        .reduce(
-
-            (total, r) => total + Number(r.reclutados),
-
-            0
-
-        );
-
-};
 
 const obtenerTotalReclutadosRol = (rol) => {
 
