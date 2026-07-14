@@ -717,44 +717,29 @@ const obtenerTotalGeneralReclutados = () => {
 
         {
 
-            roles.map((rol) => (
+           roles.map((rol) => (
 
-             <React.Fragment key={rol}>
+    <React.Fragment key={rol}>
 
-             <td className="dato total">
+        <td className="dato total">
+            <strong>{obtenerTotalRol(rol)}</strong>
+        </td>
 
-              <strong>
-                {obtenerTotalRol(rol)}
-              </strong>
+        <td className="dato total">
+            <strong>{obtenerTotalReclutadosRol(rol)}</strong>
+        </td>
 
-              </td>
+        <td className="dato total">
+            <strong>0</strong>
+        </td>
 
-             <td className="dato total">
+        <td className="dato total">
+            <strong>0</strong>
+        </td>
 
-              <strong>
-                {obtenerTotalReclutadosRol(rol)}
-              </strong>
-
-             </td>
-
-             <td className="dato total">
-
-                <strong>0</strong>
-
-             <td className="dato total">
-
-              <strong>
-
-                {obtenerTotalGeneralReclutados()}
-
-               </strong>
-
-             </td>
-             <td className="dato total fin-rol">
-
-               <strong>0,0%</strong>
-
-             </td>
+        <td className="dato total fin-rol">
+            <strong>0,0%</strong>
+        </td>
 
     </React.Fragment>
 
