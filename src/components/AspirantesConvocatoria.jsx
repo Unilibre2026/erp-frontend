@@ -1,7 +1,19 @@
 import React from "react";
-import "./AspirantesConvocatoria.css";
+import React, { useEffect, useState } from "react";
 
 function AspirantesConvocatoria() {
+
+
+    // ==========================================
+    // ESTADOS
+    // ==========================================
+
+    const [convocatorias, setConvocatorias] = useState([]);
+    const [convocatoria, setConvocatoria] = useState("");
+
+    const [archivo, setArchivo] = useState(null);
+    const [datos, setDatos] = useState([]);
+
 
     return (
 
@@ -10,6 +22,50 @@ function AspirantesConvocatoria() {
             <h2>
                 Aspirantes por convocatoria
             </h2>
+
+
+            <div className="campo">
+
+    <label>
+
+        Convocatoria
+
+    </label>
+
+    <select
+
+        value={convocatoria}
+
+        onChange={(e) => setConvocatoria(e.target.value)}
+
+    >
+
+        <option value="">
+
+            Seleccione convocatoria
+
+        </option>
+
+        {
+
+            convocatorias.map((c) => (
+
+                <option
+                    key={c}
+                    value={c}
+                >
+
+                    {c}
+
+                </option>
+
+            ))
+
+        }
+
+    </select>
+
+</div>
 
             <div className="barra-superior">
 
