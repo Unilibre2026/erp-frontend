@@ -485,6 +485,18 @@ function ConsultaAvanceGeneral() {
 
                                     <th className="subtitulo">
 
+                                        Pre aprobado
+
+                                    </th>
+
+                                    <th className="subtitulo">
+
+                                        Aprobado
+
+                                    </th>
+
+                                    <th className="subtitulo">
+
                                         % avance
 
                                     </th>
