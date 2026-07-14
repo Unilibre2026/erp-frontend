@@ -607,33 +607,43 @@ function ConsultaAvanceGeneral() {
 
             roles.map((rol) => (
 
-                <React.Fragment key={rol}>
+             <React.Fragment key={rol}>
 
-                    <td className="dato total">
+             <td className="dato total">
 
-                        <strong>
+              <strong>
+                {obtenerTotalRol(rol)}
+              </strong>
 
-                            {obtenerTotalRol(rol)}
+              </td>
 
-                        </strong>
+             <td className="dato total">
 
-                    </td>
+              <strong>0</strong>
 
-                    <td className="dato total">
+             </td>
 
-                        <strong>0</strong>
+             <td className="dato total">
 
-                    </td>
+                <strong>0</strong>
 
-                    <td className="dato total fin-rol">
+             </td>
 
-                        <strong>0,0%</strong>
+             <td className="dato total">
 
-                    </td>
+                <strong>0</strong>
 
-                </React.Fragment>
+             </td>
 
-            ))
+             <td className="dato total fin-rol">
+
+               <strong>0,0%</strong>
+
+             </td>
+
+    </React.Fragment>
+
+))
 
         }
 
