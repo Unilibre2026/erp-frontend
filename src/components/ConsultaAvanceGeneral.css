@@ -73,7 +73,9 @@
 
     border:1px solid #7f7f7f;
     text-align:center;
-    padding:0px;
+    vertical-align: middle;
+    padding-top:4px;
+    padding-bottom:4px;
 
 }
 
@@ -236,17 +238,29 @@
         FILA TOTAL
 ==================================*/
 
-.fila-total td{
+.fila-total{
 
-    background:#FCE4EC;
+    background:#D6EEF5;
 
     font-weight:bold;
 
 }
 
+.fila-total td{
+
+    background:#D6EEF5;
+
+    font-weight:bold;
+
+    font-size:21px;
+
+    vertical-align:middle;
+
+}
+
 .fila-total .col-ciudad{
 
-    background:#FCE4EC;
+    background:#D6EEF5;
 
 }
 
