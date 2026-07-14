@@ -17,6 +17,8 @@ import ExcelJS from "exceljs";
 import { saveAs } from "file-saver";
 import Aprobaciones from "./components/Aprobaciones";
 
+import ConsultaCNSC from "./components/ConsultaCNSC";
+
 const API_URL = "https://erp-unilibre-production.up.railway.app";
 
 
@@ -347,6 +349,12 @@ if (!usuario) {
   </button>
 )}
 
+{puedeVer("avance_general") && (
+  <button onClick={() => setVista("consulta_cnsc")}>
+    Consulta CNSC
+  </button>
+)}
+
 {puedeVer("avance_prueba") && (
   <button onClick={() => setVista("avance_prueba")}>
     Avance por prueba
@@ -437,6 +445,7 @@ if (!usuario) {
   {vista === "formulario" && <Formulario />}
   {vista === "consulta" && <Consultas />}
   {vista === "avance_general" && (<AvanceGeneral />)}
+  {vista === "consulta_cnsc" && (<ConsultaCNSC />)}
   {vista === "avance_prueba" && (<AvancePrueba />)}  
   {vista === "carga" && <CargaMasiva />}
   {vista === "convocatorias" && <Convocatorias />}

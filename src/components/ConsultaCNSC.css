@@ -1,0 +1,50 @@
+.consulta-cnsc{
+
+    padding:20px;
+
+}
+
+.consulta-cnsc h2{
+
+    color:#123b6d;
+    margin-bottom:25px;
+
+}
+
+.barra-superior{
+
+    display:flex;
+    gap:20px;
+    align-items:flex-end;
+
+}
+
+.campo{
+
+    display:flex;
+    flex-direction:column;
+
+}
+
+.campo label{
+
+    font-weight:bold;
+    margin-bottom:5px;
+
+}
+
+.campo select{
+
+    width:350px;
+    height:38px;
+    font-size:14px;
+    padding:5px;
+
+}
+
+.tabla-cnsc{
+
+    margin-top:20px;
+    overflow-x:auto;
+
+}
