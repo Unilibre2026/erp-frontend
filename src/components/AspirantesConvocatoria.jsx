@@ -27,7 +27,7 @@ function AspirantesConvocatoria() {
                 </div>
 
                 <button className="btn-consultar">
-                    Consultar
+                    Cargar archivo
                 </button>
 
                 <button className="btn-exportar">
