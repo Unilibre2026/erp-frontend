@@ -1,0 +1,71 @@
+import React from "react";
+import "./AspirantesConvocatoria.css";
+
+function AspirantesConvocatoria() {
+
+    return (
+
+        <div className="aspirantes-convocatoria">
+
+            <h2>
+                Aspirantes por convocatoria
+            </h2>
+
+            <div className="barra-superior">
+
+                <div className="campo">
+
+                    <label>
+                        Archivo Excel
+                    </label>
+
+                    <input
+                        type="file"
+                        accept=".xlsx,.xls"
+                    />
+
+                </div>
+
+                <button className="btn-consultar">
+                    Consultar
+                </button>
+
+                <button className="btn-exportar">
+                    📥 Exportar Excel
+                </button>
+
+            </div>
+
+            <div className="tabla-aspirantes">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Convocatoria</th>
+
+                            <th>Documento</th>
+
+                            <th>Nombre</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    );
+
+}
+
+export default AspirantesConvocatoria;

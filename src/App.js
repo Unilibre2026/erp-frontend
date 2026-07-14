@@ -19,6 +19,8 @@ import Aprobaciones from "./components/Aprobaciones";
 
 import ConsultaCNSC from "./components/ConsultaCNSC";
 
+import AspirantesConvocatoria from "./components/AspirantesConvocatoria";
+
 const API_URL = "https://erp-unilibre-production.up.railway.app";
 
 
