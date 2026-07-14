@@ -741,14 +741,15 @@ const obtenerTotalGeneralReclutados = () => {
 
                 <strong>0</strong>
 
-             </td>
-
              <td className="dato total">
 
-                <strong>0</strong>
+              <strong>
+
+                {obtenerTotalGeneralReclutados()}
+
+               </strong>
 
              </td>
-
              <td className="dato total fin-rol">
 
                <strong>0,0%</strong>
@@ -771,7 +772,11 @@ const obtenerTotalGeneralReclutados = () => {
 
 <td className="dato total">
 
-    <strong>0</strong>
+    <strong>
+
+        {obtenerTotalGeneralReclutados()}
+
+    </strong>
 
 </td>
 
