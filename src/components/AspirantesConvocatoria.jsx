@@ -1,8 +1,7 @@
-import React from "react";
 import React, { useEffect, useState } from "react";
+import "./AspirantesConvocatoria.css";
 
 function AspirantesConvocatoria() {
-
 
     // ==========================================
     // ESTADOS
@@ -14,83 +13,110 @@ function AspirantesConvocatoria() {
     const [archivo, setArchivo] = useState(null);
     const [datos, setDatos] = useState([]);
 
-
     return (
 
         <div className="aspirantes-convocatoria">
 
             <h2>
+
                 Aspirantes por convocatoria
+
             </h2>
 
-
-            <div className="campo">
-
-    <label>
-
-        Convocatoria
-
-    </label>
-
-    <select
-
-        value={convocatoria}
-
-        onChange={(e) => setConvocatoria(e.target.value)}
-
-    >
-
-        <option value="">
-
-            Seleccione convocatoria
-
-        </option>
-
-        {
-
-            convocatorias.map((c) => (
-
-                <option
-                    key={c}
-                    value={c}
-                >
-
-                    {c}
-
-                </option>
-
-            ))
-
-        }
-
-    </select>
-
-</div>
+            {/*======================================
+                    BARRA SUPERIOR
+            ======================================*/}
 
             <div className="barra-superior">
+
+                {/* Convocatoria */}
 
                 <div className="campo">
 
                     <label>
+
+                        Convocatoria
+
+                    </label>
+
+                    <select
+
+                        value={convocatoria}
+
+                        onChange={(e) => setConvocatoria(e.target.value)}
+
+                    >
+
+                        <option value="">
+
+                            Seleccione convocatoria
+
+                        </option>
+
+                        {
+
+                            convocatorias.map((c) => (
+
+                                <option
+                                    key={c}
+                                    value={c}
+                                >
+
+                                    {c}
+
+                                </option>
+
+                            ))
+
+                        }
+
+                    </select>
+
+                </div>
+
+                {/* Archivo */}
+
+                <div className="campo">
+
+                    <label>
+
                         Archivo Excel
+
                     </label>
 
                     <input
                         type="file"
                         accept=".xlsx,.xls"
+                        onChange={(e) => setArchivo(e.target.files[0])}
                     />
 
                 </div>
 
-                <button className="btn-consultar">
-                    Cargar archivo
+                {/* Botones */}
+
+                <button
+                    className="btn-consultar"
+                    disabled={!convocatoria || !archivo}
+                >
+
+                    📤 Cargar archivo
+
                 </button>
 
-                <button className="btn-exportar">
+                <button
+                    className="btn-exportar"
+                    disabled={!convocatoria}
+                >
+
                     📥 Exportar Excel
+
                 </button>
 
             </div>
+
+            {/*======================================
+                    TABLA
+            ======================================*/}
 
             <div className="tabla-aspirantes">
 
