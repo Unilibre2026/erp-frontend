@@ -395,27 +395,27 @@ function ConsultaAvanceGeneral() {
 
                                         roles.map((rol) => (
 
-                                            <th
+                                         <th
 
-                                                key={rol}
+                                           key={rol}
 
-                                                colSpan={3}
+                                           colSpan={5}
 
-                                                className="titulo-rol"
+                                           className="titulo-rol"
 
-                                            >
+                                        >
 
-                                                {rol}
+                                          {rol}
 
-                                            </th>
+                                     </th>
 
-                                        ))
+))
 
                                     }
 
                                     <th
 
-                                        colSpan={3}
+                                        colSpan={5}
 
                                         className="titulo-total"
 
@@ -444,6 +444,18 @@ function ConsultaAvanceGeneral() {
                                                 <th className="subtitulo">
 
                                                     Reclutado
+
+                                                </th>
+
+                                                <th className="subtitulo">
+
+                                                    Pre aprobado
+
+                                                </th>
+
+                                                <th className="subtitulo">
+
+                                                    Aprobado
 
                                                 </th>
 
