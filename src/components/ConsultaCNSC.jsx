@@ -11,6 +11,7 @@ function ConsultaCNSC() {
 
     const [convocatorias, setConvocatorias] = useState([]);
     const [convocatoria, setConvocatoria] = useState("");
+    const [datos, setDatos] = useState([]);
 
     // ==========================================
     // CARGAR CONVOCATORIAS
@@ -52,6 +53,74 @@ function ConsultaCNSC() {
 
     };
 
+    // ==========================================
+    // CONSULTAR INFORMACIÓN
+    // ==========================================
+
+    const cargarConsulta = async (convocatoriaSeleccionada) => {
+
+        if (!convocatoriaSeleccionada) {
+
+            setDatos([]);
+
+            return;
+
+        }
+
+        try {
+
+            const token = localStorage.getItem("token");
+
+            const res = await fetch(
+
+                `${API_URL}/consulta-cnsc`,
+
+                {
+
+                    headers: {
+
+                        Authorization: `Bearer ${token}`
+
+                    }
+
+                }
+
+            );
+
+            if (!res.ok) {
+
+                throw new Error("Error consultando información");
+
+            }
+
+            const data = await res.json();
+
+            const filtrados = (data.datos || []).filter(
+
+                fila =>
+
+                    fila.convocatoria === convocatoriaSeleccionada
+
+            );
+
+            setDatos(filtrados);
+
+        }
+
+        catch (error) {
+
+            console.error(error);
+
+            setDatos([]);
+
+        }
+
+    };
+
+    // ==========================================
+    // RETURN
+    // ==========================================
+
     return (
 
         <div className="consulta-cnsc">
@@ -80,11 +149,15 @@ function ConsultaCNSC() {
 
                         value={convocatoria}
 
-                        onChange={(e) =>
+                        onChange={(e) => {
 
-                            setConvocatoria(e.target.value)
+                            const valor = e.target.value;
 
-                        }
+                            setConvocatoria(valor);
+
+                            cargarConsulta(valor);
+
+                        }}
 
                     >
 
@@ -152,6 +225,28 @@ function ConsultaCNSC() {
                     </thead>
 
                     <tbody>
+
+                        {
+                            datos.map((fila, index) => (
+
+                                <tr key={index}>
+
+                                    <td>{fila.convocatoria}</td>
+
+                                    <td>{fila.fecha_creacion}</td>
+
+                                    <td>{fila.tipo_novedad}</td>
+
+                                    <td>{fila.eje}</td>
+
+                                    <td>{fila.rol}</td>
+
+                                    <td>{fila.nombre}</td>
+
+                                </tr>
+
+                            ))
+                        }
 
                     </tbody>
 
