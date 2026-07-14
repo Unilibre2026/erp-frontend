@@ -261,6 +261,18 @@ const obtenerTotalReclutadosRol = (rol) => {
 
 };
 
+const obtenerTotalGeneralReclutados = () => {
+
+    return reclutados.reduce(
+
+        (total, r) => total + Number(r.reclutados),
+
+        0
+
+    );
+
+};
+
     // ==========================================
     // TOTAL POR CIUDAD
     // ==========================================
@@ -286,6 +298,30 @@ const obtenerTotalReclutadosRol = (rol) => {
             );
 
     };
+
+
+    const obtenerTotalReclutadosCiudad = (ciudad) => {
+
+    return reclutados
+
+        .filter(
+
+            r =>
+
+                r.convocatoria === convocatoria &&
+                r.eje === ciudad
+
+        )
+
+        .reduce(
+
+            (total, r) => total + Number(r.reclutados),
+
+            0
+
+        );
+
+};
 
     // ==========================================
     // TOTAL POR ROL
@@ -637,9 +673,13 @@ const obtenerTotalReclutadosRol = (rol) => {
 
                 <td className="dato total">
 
-                    <strong>0</strong>
+                  <strong>
 
-                </td>
+                    {obtenerTotalReclutadosCiudad(ciudad)}
+
+                   </strong>
+
+                </td> 
 
                 <td className="dato total">
 
