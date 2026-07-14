@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./AspirantesConvocatoria.css";
+import * as XLSX from "xlsx";
 
 const API_URL = "https://erp-unilibre-production.up.railway.app";
 
@@ -53,6 +54,126 @@ const cargarConvocatorias = async () => {
         console.error(error);
 
     }
+
+};
+
+const cargarArchivo = async () => {
+
+    if (!archivo) {
+
+        alert("Seleccione un archivo.");
+
+        return;
+
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = async (e) => {
+
+        const data = new Uint8Array(e.target.result);
+
+        const workbook = XLSX.read(data, {
+
+            type: "array"
+
+        });
+
+        const hoja = workbook.Sheets[workbook.SheetNames[0]];
+
+        const encabezados = XLSX.utils.sheet_to_json(hoja, {
+           header: 1
+         })[0];
+
+         const columnasEsperadas = [
+
+    "convocatoria",
+
+    "documento",
+
+    "nombre"
+
+];
+
+const encabezadosArchivo = encabezados.map(c =>
+
+    String(c).trim().toLowerCase()
+
+);
+
+const archivoValido = columnasEsperadas.every(columna =>
+
+    encabezadosArchivo.includes(columna)
+
+);
+
+if (!archivoValido) {
+
+    alert(
+
+        "El archivo no tiene la estructura esperada."
+
+    );
+
+    return;
+
+}
+
+
+        const filas = XLSX.utils.sheet_to_json(hoja);
+
+// ==========================================
+// LIMPIAR DATOS
+// ==========================================
+
+ const filasLimpias = filas.map(fila => ({
+
+    convocatoria: convocatoria,
+
+    documento: String(fila.documento ?? "").trim(),
+
+    nombre: String(fila.nombre ?? "").trim()
+
+}));
+
+// ==========================================
+// VALIDAR QUE EL ARCHIVO TENGA REGISTROS
+// ==========================================
+
+if (filasLimpias.length === 0) {
+
+    alert("El archivo no contiene registros.");
+
+    return;
+
+}
+
+// ==========================================
+// VALIDAR CAMPOS OBLIGATORIOS
+// ==========================================
+
+const registrosInvalidos = filasLimpias.filter(
+
+    fila => !fila.documento || !fila.nombre
+
+);
+
+if (registrosInvalidos.length > 0) {
+
+    alert(
+        `Se encontraron ${registrosInvalidos.length} registros sin documento o nombre.`
+    );
+
+    return;
+
+}
+
+
+console.log(filasLimpias);
+
+    };
+
+    reader.readAsArrayBuffer(archivo);
 
 };
 
@@ -138,13 +259,15 @@ const cargarConvocatorias = async () => {
                 {/* Botones */}
 
                 <button
-                    className="btn-consultar"
-                    disabled={!convocatoria || !archivo}
-                >
+                 
+                  className="btn-consultar"
+                  disabled={!convocatoria || !archivo}
+                  onClick={cargarArchivo}
+               >
 
-                    📤 Cargar archivo
+                📤 Cargar archivo
 
-                </button>
+</button>
 
                 <button
                     className="btn-exportar"
