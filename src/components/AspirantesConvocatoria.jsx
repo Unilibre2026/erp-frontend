@@ -307,13 +307,14 @@ catch (error) {
                 {/* Botones */}
 
                 <button
-                 
-                  className="btn-consultar"
-                  disabled={!convocatoria || !archivo}
-                  onClick={cargarArchivo}
-               >
 
-                📤 Cargar archivo
+                 className="btn-consultar"
+                 disabled={!archivo}
+                  onClick={cargarArchivo}
+
+>
+
+    📤 Cargar archivo
 
 </button>
 
