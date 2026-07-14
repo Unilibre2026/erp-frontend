@@ -59,6 +59,8 @@ const cargarConvocatorias = async () => {
 
 const cargarArchivo = async () => {
 
+    console.log("Entró a cargarArchivo");
+
     if (!archivo) {
 
         alert("Seleccione un archivo.");
