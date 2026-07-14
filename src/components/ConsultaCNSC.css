@@ -49,6 +49,63 @@
 
 }
 
+.tabla-cnsc{
+
+    margin-top:20px;
+    overflow-x:auto;
+
+}
+
+/*==================================
+        TABLA
+==================================*/
+
+.tabla-cnsc table{
+
+    border-collapse:collapse;
+    table-layout:fixed;
+
+}
+
+/*==================================
+        CELDAS
+==================================*/
+
+.tabla-cnsc th,
+.tabla-cnsc td{
+
+    border:1px solid #7f7f7f;
+
+    padding:8px;
+
+    vertical-align:middle;
+
+}
+
+/*==================================
+        ENCABEZADOS
+==================================*/
+
+.tabla-cnsc th{
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    text-align:center;
+
+}
+
+/*==================================
+        DATOS
+==================================*/
+
+.tabla-cnsc td{
+
+    font-size:20px;
+
+}
+
 /*==================================
         ANCHOS DE COLUMNAS
 ==================================*/
@@ -128,5 +185,13 @@
 
     text-align:left;
     padding-left:12px;
+
+}
+
+.tabla-cnsc td{
+
+    font-size:18px;
+
+    line-height:1.4;
 
 }
