@@ -15,6 +15,8 @@ function AspirantesConvocatoria() {
 
     const [archivo, setArchivo] = useState(null);
 
+    const [datos, setDatos] = useState([]);
+
 // ==========================================
 // CARGAR CONVOCATORIAS
 // ==========================================
@@ -52,6 +54,62 @@ const cargarConvocatorias = async () => {
     catch (error) {
 
         console.error(error);
+
+    }
+
+};
+
+// ==========================================
+// CONSULTAR ASPIRANTES
+// ==========================================
+
+const cargarAspirantes = async (convocatoriaSeleccionada) => {
+
+    if (!convocatoriaSeleccionada) {
+
+        setDatos([]);
+
+        return;
+
+    }
+
+    try {
+
+        const token = localStorage.getItem("token");
+
+        const res = await fetch(
+
+            `${API_URL}/aspirantes-convocatoria/${encodeURIComponent(convocatoriaSeleccionada)}`,
+
+            {
+
+                headers: {
+
+                    Authorization: `Bearer ${token}`
+
+                }
+
+            }
+
+        );
+
+        if (!res.ok) {
+
+            throw new Error("Error consultando aspirantes.");
+
+        }
+
+        const data = await res.json();
+
+        setDatos(data.datos || []);
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        setDatos([]);
 
     }
 
@@ -253,11 +311,19 @@ catch (error) {
 
                     <select
 
-                        value={convocatoria}
+                      value={convocatoria}
 
-                        onChange={(e) => setConvocatoria(e.target.value)}
+                      onChange={(e) => {
 
-                    >
+                       const valor = e.target.value;
+
+                         setConvocatoria(valor);
+
+                         cargarAspirantes(valor);
+
+    }}
+
+>
 
                         <option value="">
 
