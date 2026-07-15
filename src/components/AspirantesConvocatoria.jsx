@@ -419,7 +419,25 @@ catch (error) {
 
                     <tbody>
 
-                    </tbody>
+    {
+
+                     datos.map((fila, index) => (
+
+                      <tr key={index}>
+
+                        <td>{fila.convocatoria}</td>
+
+                        <td>{fila.documento}</td>
+
+                        <td>{fila.nombre}</td>
+
+            </tr>
+
+        ))
+
+    }
+
+</tbody>
 
                 </table>
 
