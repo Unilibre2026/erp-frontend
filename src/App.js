@@ -916,11 +916,29 @@ if (name === "nivel") {
 
       const data = await res.json();
 
-      const nombre =
-        data?.nombre_completo ||
-        data?.nombre ||
-        data?.nombre_experto ||
-        null;
+      if (data.bloqueado) {
+
+      alert(data.mensaje);
+
+      setEstadoExperto(false);
+
+      setForm((prev) => ({
+      ...prev,
+      documento_experto: "",
+      nombre_experto: ""
+  }));
+
+  documentoRef.current?.focus();
+
+  return;
+}
+
+
+    const nombre =
+    data?.nombre_completo ||
+    data?.nombre ||
+    data?.nombre_experto ||
+    null;
 
       if (!nombre) {
         setEstadoExperto(false);
