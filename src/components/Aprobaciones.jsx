@@ -227,7 +227,7 @@ export default function Aprobaciones() {
                </h2>
                 <small
                   style={{
-                  fontSize: "16px",      // Cambia el tamaño
+                  fontSize: "25px",      // Cambia el tamaño
                   fontWeight: "600",     // Opcional: seminegrita
                   color: "#ffffff"       // Si quieres cambiar el color
                   }}
