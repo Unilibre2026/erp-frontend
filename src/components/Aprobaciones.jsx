@@ -75,7 +75,7 @@ export default function Aprobaciones() {
           <thead style={{ background: "#f2f2f2" }}>
             <tr>
               <th className="col-novedad">Novedad</th>
-              <th>Hoja de Vida</th>
+              <th>Resumen perfil</th>
               <th className="col-estado">Estado</th>
               <th className="col-acciones">Acciones</th>
               <th className="col-documento">Documento</th>
@@ -223,7 +223,7 @@ export default function Aprobaciones() {
                   }}
                 >          
                  <User size={28} color="#ffffff" />
-                  Hoja de Vida del Experto
+                  .
                </h2>
                 <small>Resumen Ejecutivo del Perfil</small>
               </div>
