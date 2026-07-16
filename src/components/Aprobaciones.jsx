@@ -285,13 +285,13 @@ export default function Aprobaciones() {
 
       <p><strong>Rol:</strong> {expertoSeleccionado.rol}</p>
 
-      <p><strong>Responsable:</strong> {expertoSeleccionado.responsable}</p>
+      <p><strong>Responsable de la novedad:</strong> {expertoSeleccionado.responsable}</p>
 
-      <p><strong>Ciudad:</strong> {expertoSeleccionado.observaciones}</p>
+      <p><strong>Ciudad de domicilio:</strong> {expertoSeleccionado.observaciones}</p>
 
       <p><strong>Disponibilidad:</strong> {expertoSeleccionado.validador}</p>
 
-      <p><strong>Contacto futuro:</strong> {expertoSeleccionado.contactar_futuro}</p>
+      <p><strong>Contactar en futuras convocatorias:</strong> {expertoSeleccionado.contactar_futuro}</p>
 
       <p><strong>Fecha:</strong> {expertoSeleccionado.fecha_creacion}</p>
 
