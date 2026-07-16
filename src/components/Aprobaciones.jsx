@@ -21,12 +21,45 @@ export default function Aprobaciones() {
   };
 
   const decidir = async (id, aprobacion) => {
-    let justificacion = null;
+  let justificacion = null;
 
-    if (aprobacion === "NO APROBADO") {
-      justificacion = prompt("Escribe la justificación:");
-      if (!justificacion) return;
-    }
+  if (aprobacion === "APROBADO") {
+    const confirmar = window.confirm(
+      "¿Está seguro de aprobar esta novedad?\n\nEsta acción enviará la información a la base de datos y no podrá deshacerse."
+    );
+
+    if (!confirmar) return;
+  }
+
+  if (aprobacion === "NO APROBADO") {
+    justificacion = prompt("Escriba la justificación del rechazo:");
+    if (!justificacion) return;
+  }
+
+  const payload = {
+    numero_novedad: id,
+    aprobacion,
+    justificacion_aprobacion: justificacion,
+  };
+
+  try {
+    setLoadingId(id);
+
+    await fetch(`${API_URL}/aprobaciones/decidir`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+
+    cargarPendientes();
+  } catch (error) {
+    console.log("Error enviando decisión:", error);
+  } finally {
+    setLoadingId(null);
+  }
+};
 
     const payload = {
       numero_novedad: id,
