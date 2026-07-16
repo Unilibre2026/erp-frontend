@@ -225,7 +225,15 @@ export default function Aprobaciones() {
                  <User size={28} color="#ffffff" />
                   .
                </h2>
-                <small>Resumen Ejecutivo del Perfil</small>
+                <small
+                  style={{
+                  fontSize: "16px",      // Cambia el tamaño
+                  fontWeight: "600",     // Opcional: seminegrita
+                  color: "#ffffff"       // Si quieres cambiar el color
+                  }}
+                >
+                 Resumen Ejecutivo del Perfil
+                </small>
               </div>
 
               <button
