@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { FileUser, User } from "lucide-react";
 
-
 const API_URL = "https://erp-unilibre-production.up.railway.app";
 
 export default function Aprobaciones() {
@@ -21,45 +20,22 @@ export default function Aprobaciones() {
   };
 
   const decidir = async (id, aprobacion) => {
-  let justificacion = null;
+    let justificacion = null;
 
-  if (aprobacion === "APROBADO") {
-    const confirmar = window.confirm(
-      "¿Está seguro de aprobar esta novedad?\n\nEsta acción enviará la información a la base de datos y no podrá deshacerse."
-    );
+    // Confirmación antes de aprobar
+    if (aprobacion === "APROBADO") {
+      const confirmar = window.confirm(
+        "¿Está seguro de aprobar esta novedad?\n\nEsta acción enviará la información a la base de datos y no podrá deshacerse."
+      );
 
-    if (!confirmar) return;
-  }
+      if (!confirmar) return;
+    }
 
-  if (aprobacion === "NO APROBADO") {
-    justificacion = prompt("Escriba la justificación del rechazo:");
-    if (!justificacion) return;
-  }
-
-  const payload = {
-    numero_novedad: id,
-    aprobacion,
-    justificacion_aprobacion: justificacion,
-  };
-
-  try {
-    setLoadingId(id);
-
-    await fetch(`${API_URL}/aprobaciones/decidir`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    });
-
-    cargarPendientes();
-  } catch (error) {
-    console.log("Error enviando decisión:", error);
-  } finally {
-    setLoadingId(null);
-  }
-};
+    // Solicitar justificación cuando no se aprueba
+    if (aprobacion === "NO APROBADO") {
+      justificacion = prompt("Escriba la justificación del rechazo:");
+      if (!justificacion) return;
+    }
 
     const payload = {
       numero_novedad: id,
@@ -101,10 +77,10 @@ export default function Aprobaciones() {
         style={{ overflowX: "auto" }}
       >
         <table
-         className="tabla-aprobaciones"
-         border="1"
+          className="tabla-aprobaciones"
+          border="1"
           cellPadding="10"
-      >
+        >
           <thead style={{ background: "#f2f2f2" }}>
             <tr>
               <th className="col-novedad">Novedad</th>
@@ -146,16 +122,16 @@ export default function Aprobaciones() {
                   <td>{item.id}</td>
 
                   <td style={{ textAlign: "center" }}>
-                   <button
-                    className="btn-hoja-vida"
-                    title="Ver hoja de vida"
-                    onClick={() => {
-                      console.log(item);
-                      setExpertoSeleccionado(item);
-                    }}
-                   >
-                    <FileUser strokeWidth={2} />
-                   </button>
+                    <button
+                      className="btn-hoja-vida"
+                      title="Ver hoja de vida"
+                      onClick={() => {
+                        console.log(item);
+                        setExpertoSeleccionado(item);
+                      }}
+                    >
+                      <FileUser strokeWidth={2} />
+                    </button>
                   </td>
 
                   <td style={{ textAlign: "center" }}>
@@ -211,23 +187,25 @@ export default function Aprobaciones() {
                   <td>{item.motivo_retiro}</td>
                   <td>{item.observaciones}</td>
                   <td>{item.contactar_futuro}</td>
+
                   <td>
-                   <div className="scroll-aprobaciones">
-                    {item.justificacion}
-                   </div>
+                    <div className="scroll-aprobaciones">
+                      {item.justificacion}
+                    </div>
                   </td>
 
                   <td>
-                   <div className="scroll-aprobaciones">
-                    {item.perfil_laboral}
-                   </div>
+                    <div className="scroll-aprobaciones">
+                      {item.perfil_laboral}
+                    </div>
                   </td>
 
                   <td>
-                   <div className="scroll-aprobaciones">
-                    {item.perfil_academico}
-                   </div>
+                    <div className="scroll-aprobaciones">
+                      {item.perfil_academico}
+                    </div>
                   </td>
+
                   <td>{item.validador}</td>
                   <td>{item.fecha_creacion}</td>
                 </tr>
@@ -237,7 +215,7 @@ export default function Aprobaciones() {
         </table>
       </div>
 
-      {expertoSeleccionado && (
+            {expertoSeleccionado && (
         <div
           className="modal-overlay"
           onClick={() => setExpertoSeleccionado(null)}
@@ -254,18 +232,18 @@ export default function Aprobaciones() {
                     alignItems: "center",
                     gap: "10px",
                   }}
-                >          
-                 <User size={28} color="#ffffff" />
-                  .
-               </h2>
+                >
+                  <User size={28} color="#ffffff" />
+                </h2>
+
                 <small
                   style={{
-                  fontSize: "25px",      // Cambia el tamaño
-                  fontWeight: "600",     // Opcional: seminegrita
-                  color: "#ffffff"       // Si quieres cambiar el color
+                    fontSize: "25px",
+                    fontWeight: "600",
+                    color: "#ffffff",
                   }}
                 >
-                 Resumen Ejecutivo del Perfil
+                  Resumen Ejecutivo del Perfil
                 </small>
               </div>
 
@@ -278,110 +256,116 @@ export default function Aprobaciones() {
             </div>
 
             <div className="modal-body">
+              <div className="perfil-header">
+                <div className="perfil-avatar">
+                  <User
+                    size={48}
+                    color="#ffffff"
+                    strokeWidth={2.2}
+                  />
+                </div>
 
-  <div className="perfil-header">
+                <div className="perfil-info">
+                  <h2>{expertoSeleccionado.nombre}</h2>
 
-    <div className="perfil-avatar">
-     <User
-       size={48}
-       color="#ffffff"
-       strokeWidth={2.2}
-      />
-    </div>
+                  <p>
+                    <strong>Documento:</strong>{" "}
+                    {expertoSeleccionado.documento_experto}
+                  </p>
 
-    <div className="perfil-info">
-      <h2>{expertoSeleccionado.nombre}</h2>
+                  <p>
+                    <strong>Convocatoria:</strong>{" "}
+                    {expertoSeleccionado.convocatoria}
+                  </p>
+                </div>
+              </div>
 
-      <p>
-        <strong>Documento:</strong> {expertoSeleccionado.documento_experto}
-      </p>
+              <div className="perfil-grid">
+                <div className="card-perfil">
+                  <h3>Información General</h3>
 
-      <p>
-        <strong>Convocatoria:</strong> {expertoSeleccionado.convocatoria}
-      </p>
+                  <p>
+                    <strong>Tipo de novedad:</strong>{" "}
+                    {expertoSeleccionado.tipo_novedad}
+                  </p>
 
-    </div>
+                  <p>
+                    <strong>Indicador:</strong>{" "}
+                    {expertoSeleccionado.eje}
+                  </p>
 
-  </div>
+                  <p>
+                    <strong>Nivel:</strong>{" "}
+                    {expertoSeleccionado.nivel}
+                  </p>
 
+                  <p>
+                    <strong>Rol:</strong>{" "}
+                    {expertoSeleccionado.rol}
+                  </p>
 
-  <div className="perfil-grid">
+                  <p>
+                    <strong>Responsable de la novedad:</strong>{" "}
+                    {expertoSeleccionado.responsable}
+                  </p>
 
-    <div className="card-perfil">
-      <h3>Información General</h3>
+                  <p>
+                    <strong>Ciudad de domicilio:</strong>{" "}
+                    {expertoSeleccionado.observaciones}
+                  </p>
 
-      <p><strong>Tipo de novedad:</strong> {expertoSeleccionado.tipo_novedad}</p>
+                  <p>
+                    <strong>Disponibilidad:</strong>{" "}
+                    {expertoSeleccionado.validador}
+                  </p>
 
-      <p><strong>Indicador:</strong> {expertoSeleccionado.eje}</p>
+                  <p>
+                    <strong>Contactar en futuras convocatorias:</strong>{" "}
+                    {expertoSeleccionado.contactar_futuro}
+                  </p>
 
-      <p><strong>Nivel:</strong> {expertoSeleccionado.nivel}</p>
+                  <p>
+                    <strong>Fecha:</strong>{" "}
+                    {expertoSeleccionado.fecha_creacion}
+                  </p>
+                </div>
 
-      <p><strong>Rol:</strong> {expertoSeleccionado.rol}</p>
+                <div className="card-perfil">
+                  <h3>Justificación</h3>
 
-      <p><strong>Responsable de la novedad:</strong> {expertoSeleccionado.responsable}</p>
+                  <div className="texto-card">
+                    {expertoSeleccionado.justificacion}
+                  </div>
+                </div>
 
-      <p><strong>Ciudad de domicilio:</strong> {expertoSeleccionado.observaciones}</p>
+                <div className="card-perfil card-alta">
+                  <h3>Perfil Laboral</h3>
 
-      <p><strong>Disponibilidad:</strong> {expertoSeleccionado.validador}</p>
+                  <div className="texto-card">
+                    {expertoSeleccionado.perfil_laboral}
+                  </div>
+                </div>
 
-      <p><strong>Contactar en futuras convocatorias:</strong> {expertoSeleccionado.contactar_futuro}</p>
+                <div className="card-perfil card-alta">
+                  <h3>Perfil Académico</h3>
 
-      <p><strong>Fecha:</strong> {expertoSeleccionado.fecha_creacion}</p>
+                  <div className="texto-card">
+                    {expertoSeleccionado.perfil_academico}
+                  </div>
+                </div>
 
-    </div>
+                <div className="card-perfil">
+                  <h3>Motivo del retiro</h3>
 
-
-    <div className="card-perfil">
-
-      <h3>Justificación</h3>
-
-      <div className="texto-card">
-       {expertoSeleccionado.justificacion}
-    </div>
-
-    </div>
-
-
-    <div className="card-perfil card-alta">
-      <h3>Perfil Laboral</h3>
-
-      <div className="texto-card">
-       {expertoSeleccionado.perfil_laboral}
-  </div>
-
-
-    </div>
-
-
-    <div className="card-perfil card-alta">
-     <h3>Perfil Académico</h3>
-
-     <div className="texto-card">
-      {expertoSeleccionado.perfil_academico}
-  </div>
-</div>
-
-    
-
-
-    <div className="card-perfil">
-
-      <h3>Motivo del retiro</h3>
-
-      <div className="texto-card">
-       {expertoSeleccionado.motivo_retiro}
-    </div>
-
-    </div>
-
-  </div>
-
-</div>
-
+                  <div className="texto-card">
+                    {expertoSeleccionado.motivo_retiro}
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       )}
-
     </div>
   );
 }
