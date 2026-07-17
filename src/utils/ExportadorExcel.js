@@ -418,8 +418,13 @@ const obtenerReclutados = (ciudad, rol) => {
         r.rol === rol
     );
 
-    return dato ? Number(dato.reclutados) : 0;
+    console.log({
+        ciudad,
+        rol,
+        encontrado: dato
+    });
 
+    return dato ? Number(dato.reclutados) : 0;
 };
 //------------------------------
 // PRE APROBADOS
