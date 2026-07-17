@@ -65,6 +65,8 @@ roles.forEach(() => {
 columnas.push({ width: 14 });
 columnas.push({ width: 14 });
 columnas.push({ width: 14 });
+columnas.push({ width: 14 });
+columnas.push({ width: 14 });
 
 worksheet.columns = columnas;
 worksheet.properties.defaultRowHeight = 22;
@@ -269,11 +271,11 @@ worksheet.getColumn(2).width = 28;
 
         worksheet.getCell(filaSubtitulos, columna).value = "Requerido";
         worksheet.getCell(filaSubtitulos, columna + 1).value = "Reclutado";
-        worksheet.getCell(filaSubtitulos, columna + 2).value = "% avance";
+        worksheet.getCell(filaSubtitulos, columna + 2).value = "Pre aprobado";
         worksheet.getCell(filaSubtitulos, columna + 3).value = "Aprobado";
         worksheet.getCell(filaSubtitulos, columna + 4).value = "% avance";
 
-        for (let i = 0; i < 3; i++) {
+        for (let i = 0; i < 5; i++) {
 
             const celda = worksheet.getCell(
                 filaSubtitulos,

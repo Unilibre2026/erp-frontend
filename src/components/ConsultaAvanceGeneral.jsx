@@ -443,18 +443,17 @@ const obtenerTotalGeneralReclutados = () => {
 
                 <button
                   className="btn-exportar"
-                  onClick={() =>
-                   exportarAvanceGeneral(
-                 convocatoria,
-                 ciudades,
-                 roles,
-                 vacantes
+                 onClick={() =>
+                  exportarAvanceGeneral(
+                    convocatoria,
+                    ciudades,
+                    roles,
+                    vacantes,
+                    reclutados
         )
     }
 >
-
-                 📥 Exportar Excel
-
+    📥 Exportar Excel
 </button>
 
             </div>
