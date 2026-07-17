@@ -411,10 +411,6 @@ const obtenerRequeridos = (ciudad, rol) => {
 
 };
 
-//------------------------------
-// RECLUTADOS
-//------------------------------
-
 const obtenerReclutados = (ciudad, rol) => {
 
     const dato = reclutados.find(r =>
@@ -425,7 +421,6 @@ const obtenerReclutados = (ciudad, rol) => {
     return dato ? Number(dato.reclutados) : 0;
 
 };
-
 //------------------------------
 // PRE APROBADOS
 //------------------------------
