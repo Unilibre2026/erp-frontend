@@ -17,6 +17,14 @@ export async function exportarAvanceGeneral(
 
     const worksheet = workbook.addWorksheet("Avance General");
 
+    console.log("========== EXPORTAR EXCEL ==========");
+    console.log("Vacantes:", vacantes);
+    console.log("Reclutados:", reclutados);
+
+ if (reclutados.length > 0) {
+    console.log("Primer reclutado:", reclutados[0]);
+}
+
 //=====================================
 // CARGAR LOGO
 //=====================================
