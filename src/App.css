@@ -1236,3 +1236,32 @@ thead th {
     }
 
 }
+
+@media (max-width:768px){
+
+    .sidebar{
+
+        position: fixed;
+
+        left: -280px;
+
+        top: 0;
+
+        width: 260px;
+
+        height: 100vh;
+
+        transition: left .3s ease;
+
+        z-index: 9998;
+
+        overflow-y: auto;
+    }
+
+    .sidebar.sidebar-abierto{
+
+        left: 0;
+
+    }
+
+}
