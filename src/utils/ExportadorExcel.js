@@ -6,7 +6,8 @@ export async function exportarAvanceGeneral(
     convocatoria,
     ciudades = [],
     roles = [],
-    vacantes = []
+    vacantes = [],
+    reclutados = []
 ) {
 
     const workbook = new ExcelJS.Workbook();
@@ -53,9 +54,11 @@ const columnas = [
 
 roles.forEach(() => {
 
-    columnas.push({ width: 14 });
-    columnas.push({ width: 14 });
-    columnas.push({ width: 14 });
+    columnas.push({ width: 14 }); // Requerido
+    columnas.push({ width: 14 }); // Reclutado
+    columnas.push({ width: 14 }); // Pre aprobado
+    columnas.push({ width: 14 }); // Aprobado
+    columnas.push({ width: 14 }); // % avance
 
 });
 
@@ -235,7 +238,7 @@ worksheet.getColumn(2).width = 28;
             filaRoles,
             columna,
             filaRoles,
-            columna + 2
+            columna + 4
         );
 
         const tituloRol = worksheet.getCell(filaRoles, columna);
@@ -267,6 +270,8 @@ worksheet.getColumn(2).width = 28;
         worksheet.getCell(filaSubtitulos, columna).value = "Requerido";
         worksheet.getCell(filaSubtitulos, columna + 1).value = "Reclutado";
         worksheet.getCell(filaSubtitulos, columna + 2).value = "% avance";
+        worksheet.getCell(filaSubtitulos, columna + 3).value = "Aprobado";
+        worksheet.getCell(filaSubtitulos, columna + 4).value = "% avance";
 
         for (let i = 0; i < 3; i++) {
 
@@ -298,7 +303,7 @@ worksheet.getColumn(2).width = 28;
 
         }
 
-        columna += 3;
+        columna += 5;
 
     });
 
@@ -310,7 +315,7 @@ worksheet.getColumn(2).width = 28;
         filaRoles,
         columna,
         filaRoles,
-        columna + 2
+        columna + 4
     );
 
     const tituloTotal = worksheet.getCell(filaRoles, columna);
@@ -340,9 +345,11 @@ worksheet.getColumn(2).width = 28;
 
     worksheet.getCell(filaSubtitulos, columna).value = "Requerido";
     worksheet.getCell(filaSubtitulos, columna + 1).value = "Reclutado";
-    worksheet.getCell(filaSubtitulos, columna + 2).value = "% avance";
+    worksheet.getCell(filaSubtitulos, columna + 2).value = "Pre aprobado";
+    worksheet.getCell(filaSubtitulos, columna + 3).value = "Aprobado";
+    worksheet.getCell(filaSubtitulos, columna + 4).value = "% avance";
 
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 5; i++) {
 
         const celda = worksheet.getCell(
             filaSubtitulos,
@@ -372,40 +379,131 @@ worksheet.getColumn(2).width = 28;
 
     }
 
-    //=====================================
+//=====================================
 // FUNCIONES AUXILIARES
 //=====================================
 
-const obtenerCantidad = (ciudad, rol) => {
+//------------------------------
+// VACANTES REQUERIDAS
+//------------------------------
+
+const obtenerRequeridos = (ciudad, rol) => {
 
     return vacantes
         .filter(v =>
-
             v.indicador === ciudad &&
             v.rol === rol
-
         )
         .reduce(
-
-            (total, v) => total + Number(v.num_expertos || 0),
-
+            (t, v) => t + Number(v.num_expertos || 0),
             0
-
         );
 
 };
 
-const obtenerTotalCiudad = (ciudad) => {
+//------------------------------
+// RECLUTADOS
+//------------------------------
+
+const obtenerReclutados = (ciudad, rol) => {
+
+    return reclutados.filter(r =>
+        r.indicador === ciudad &&
+        r.rol === rol
+    ).length;
+
+};
+
+//------------------------------
+// PRE APROBADOS
+//------------------------------
+
+const obtenerPreAprobados = (ciudad, rol) => {
+
+    return reclutados.filter(r =>
+        r.indicador === ciudad &&
+        r.rol === rol &&
+        r.estado === "PRE APROBADO"
+    ).length;
+
+};
+
+//------------------------------
+// APROBADOS
+//------------------------------
+
+const obtenerAprobados = (ciudad, rol) => {
+
+    return reclutados.filter(r =>
+        r.indicador === ciudad &&
+        r.rol === rol &&
+        r.estado === "APROBADO"
+    ).length;
+
+};
+
+//------------------------------
+// TOTAL REQUERIDOS CIUDAD
+//------------------------------
+
+const obtenerTotalRequeridosCiudad = (ciudad) => {
 
     return vacantes
         .filter(v => v.indicador === ciudad)
         .reduce(
-
-            (total, v) => total + Number(v.num_expertos || 0),
-
+            (t, v) => t + Number(v.num_expertos || 0),
             0
-
         );
+
+};
+
+//------------------------------
+// TOTAL RECLUTADOS CIUDAD
+//------------------------------
+
+const obtenerTotalReclutadosCiudad = (ciudad) => {
+
+    return reclutados.filter(r =>
+        r.indicador === ciudad
+    ).length;
+
+};
+
+//------------------------------
+// TOTAL PRE APROBADOS CIUDAD
+//------------------------------
+
+const obtenerTotalPreAprobadosCiudad = (ciudad) => {
+
+    return reclutados.filter(r =>
+        r.indicador === ciudad &&
+        r.estado === "PRE APROBADO"
+    ).length;
+
+};
+
+//------------------------------
+// TOTAL APROBADOS CIUDAD
+//------------------------------
+
+const obtenerTotalAprobadosCiudad = (ciudad) => {
+
+    return reclutados.filter(r =>
+        r.indicador === ciudad &&
+        r.estado === "APROBADO"
+    ).length;
+
+};
+
+//------------------------------
+// PORCENTAJE
+//------------------------------
+
+const calcularPorcentaje = (requeridos, reclutados) => {
+
+    if (requeridos === 0) return 0;
+
+    return reclutados / requeridos;
 
 };
 
@@ -425,33 +523,66 @@ ciudades.forEach((ciudad) => {
 
     columna++;
 
+    let totalRequeridosCiudad = 0;
+    let totalReclutadosCiudad = 0;
+    let totalPreCiudad = 0;
+    let totalAprobadosCiudad = 0;
+
     roles.forEach((rol) => {
 
-        worksheet.getCell(fila, columna).value =
-            obtenerCantidad(ciudad, rol);
+        const requeridos = obtenerRequeridos(ciudad, rol);
+        const reclutadosRol = obtenerReclutados(ciudad, rol);
+        const preRol = obtenerPreAprobados(ciudad, rol);
+        const aprobadosRol = obtenerAprobados(ciudad, rol);
 
+        totalRequeridosCiudad += requeridos;
+        totalReclutadosCiudad += reclutadosRol;
+        totalPreCiudad += preRol;
+        totalAprobadosCiudad += aprobadosRol;
+
+        worksheet.getCell(fila, columna).value = requeridos;
         columna++;
 
-        worksheet.getCell(fila, columna).value = 0;
-
+        worksheet.getCell(fila, columna).value = reclutadosRol;
         columna++;
 
-        worksheet.getCell(fila, columna).value = "0,0%";
+        worksheet.getCell(fila, columna).value = preRol;
+        columna++;
+
+        worksheet.getCell(fila, columna).value = aprobadosRol;
+        columna++;
+
+        const porcentaje = calcularPorcentaje(
+            requeridos,
+            reclutadosRol
+        );
+
+        worksheet.getCell(fila, columna).value = porcentaje;
+        worksheet.getCell(fila, columna).numFmt = "0.0%";
 
         columna++;
 
     });
 
+    worksheet.getCell(fila, columna).value = totalRequeridosCiudad;
+    columna++;
+
+    worksheet.getCell(fila, columna).value = totalReclutadosCiudad;
+    columna++;
+
+    worksheet.getCell(fila, columna).value = totalPreCiudad;
+    columna++;
+
+    worksheet.getCell(fila, columna).value = totalAprobadosCiudad;
+    columna++;
+
     worksheet.getCell(fila, columna).value =
-        obtenerTotalCiudad(ciudad);
+        calcularPorcentaje(
+            totalRequeridosCiudad,
+            totalReclutadosCiudad
+        );
 
-    columna++;
-
-    worksheet.getCell(fila, columna).value = 0;
-
-    columna++;
-
-    worksheet.getCell(fila, columna).value = "0,0%";
+    worksheet.getCell(fila, columna).numFmt = "0.0%";
 
     fila++;
 
