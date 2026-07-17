@@ -414,17 +414,18 @@ const obtenerRequeridos = (ciudad, rol) => {
 const obtenerReclutados = (ciudad, rol) => {
 
     const dato = reclutados.find(r =>
-        r.eje === ciudad &&
-        r.rol === rol
+        String(r.eje).trim() === String(ciudad).trim() &&
+        String(r.rol).trim() === String(rol).trim()
     );
 
-    console.log({
-        ciudad,
-        rol,
-        encontrado: dato
-    });
+    if (dato) {
+        console.log("ENCONTRADO:", ciudad, rol, dato.reclutados);
+    } else {
+        console.log("NO ENCONTRADO:", ciudad, rol);
+    }
 
     return dato ? Number(dato.reclutados) : 0;
+
 };
 //------------------------------
 // PRE APROBADOS
