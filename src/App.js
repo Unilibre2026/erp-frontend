@@ -96,6 +96,10 @@ const esAdmin =
   };
 
 const [vista, setVista] = useState("formulario");
+
+// Estado del menú hamburguesa para celulares
+const [menuAbierto, setMenuAbierto] = useState(false);
+
   const [rolForm, setRolForm] = useState({
     convocatoria: "",
     rol: ""
@@ -324,8 +328,15 @@ if (!usuario) {
 }
 
 
-  return (
-    <div className="container">
+ return (
+  <div className="container">
+
+    <button
+      className="btn-menu"
+      onClick={() => setMenuAbierto(!menuAbierto)}
+    >
+      ☰
+    </button>
 
     
 

@@ -1212,3 +1212,27 @@ thead th {
     margin:0;
     color:#123b6d;
 }
+
+.btn-menu {
+    display: none;
+}
+
+@media (max-width: 768px) {
+
+    .btn-menu {
+        display: block;
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        width: 45px;
+        height: 45px;
+        border: none;
+        border-radius: 8px;
+        background: #0b5d74;
+        color: white;
+        font-size: 26px;
+        cursor: pointer;
+        z-index: 9999;
+    }
+
+}
