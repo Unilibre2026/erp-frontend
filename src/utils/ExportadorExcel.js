@@ -442,58 +442,6 @@ const obtenerAprobados = (ciudad, rol) => {
 
 };
 
-//------------------------------
-// TOTAL REQUERIDOS CIUDAD
-//------------------------------
-
-const obtenerTotalRequeridosCiudad = (ciudad) => {
-
-    return vacantes
-        .filter(v => v.indicador === ciudad)
-        .reduce(
-            (t, v) => t + Number(v.num_expertos || 0),
-            0
-        );
-
-};
-
-//------------------------------
-// TOTAL RECLUTADOS CIUDAD
-//------------------------------
-
-const obtenerTotalReclutadosCiudad = (ciudad) => {
-
-    return reclutados.filter(r =>
-        r.indicador === ciudad
-    ).length;
-
-};
-
-//------------------------------
-// TOTAL PRE APROBADOS CIUDAD
-//------------------------------
-
-const obtenerTotalPreAprobadosCiudad = (ciudad) => {
-
-    return reclutados.filter(r =>
-        r.indicador === ciudad &&
-        r.estado === "PRE APROBADO"
-    ).length;
-
-};
-
-//------------------------------
-// TOTAL APROBADOS CIUDAD
-//------------------------------
-
-const obtenerTotalAprobadosCiudad = (ciudad) => {
-
-    return reclutados.filter(r =>
-        r.indicador === ciudad &&
-        r.estado === "APROBADO"
-    ).length;
-
-};
 
 //------------------------------
 // PORCENTAJE
