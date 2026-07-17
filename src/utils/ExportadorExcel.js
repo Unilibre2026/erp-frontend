@@ -417,10 +417,12 @@ const obtenerRequeridos = (ciudad, rol) => {
 
 const obtenerReclutados = (ciudad, rol) => {
 
-    return reclutados.filter(r =>
-        r.indicador === ciudad &&
+    const dato = reclutados.find(r =>
+        r.eje === ciudad &&
         r.rol === rol
-    ).length;
+    );
+
+    return dato ? Number(dato.reclutados) : 0;
 
 };
 
