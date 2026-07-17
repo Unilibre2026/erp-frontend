@@ -341,7 +341,7 @@ if (!usuario) {
 
         {puedeVer("consulta") && (
   <button onClick={() => setVista("consulta")}>
-    Consultas
+    Consulta general de novedades
   </button>
 )}
 
