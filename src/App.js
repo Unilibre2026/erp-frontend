@@ -100,6 +100,11 @@ const [vista, setVista] = useState("formulario");
 // Estado del menú hamburguesa para celulares
 const [menuAbierto, setMenuAbierto] = useState(false);
 
+const cambiarVista = (nuevaVista) => {
+  setVista(nuevaVista);
+  setMenuAbierto(false);
+};
+
   const [rolForm, setRolForm] = useState({
     convocatoria: "",
     rol: ""
@@ -344,99 +349,99 @@ if (!usuario) {
         <h2 className="titulo-sidebar">Reclutamiento</h2>
 
         {puedeVer("formulario") && (
-  <button onClick={() => setVista("formulario")}>
+  <button onClick={() => cambiarVista("formulario")}>
     Formulario
   </button>
 )}
       
 
         {puedeVer("consulta") && (
-  <button onClick={() => setVista("consulta")}>
+  <button onClick={() => cambiarVista("consulta")}>
     Consulta general de novedades
   </button>
 )}
 
 {puedeVer("avance_general") && (
-  <button onClick={() => setVista("avance_general")}>
+  <button onClick={() => cambiarVista("avance_general")}>
     Consulta avance general
   </button>
 )}
 
 {puedeVer("consulta_cnsc") && (
-  <button onClick={() => setVista("consulta_cnsc")}>
+  <button onClick={() => cambiarVista("consulta_cnsc")}>
     Consulta CNSC
   </button>
 )}
 
 {puedeVer("avance_prueba") && (
-  <button onClick={() => setVista("avance_prueba")}>
+  <button onClick={() => cambiarVista("avance_prueba")}>
     Avance por prueba
   </button>
 )}
 
         
         {puedeVer("carga") && (
-  <button onClick={() => setVista("carga")}>
+  <button onClick={() => cambiarVista("carga")}>
     Carga masiva de expertos
   </button>
 )}
 
 {puedeVer("aspirantes_convocatoria") && (
-    <button onClick={() => setVista("aspirantes_convocatoria")}>
+    <button onClick={() => cambiarVista("aspirantes_convocatoria")}>
         Aspirantes por convocatoria
     </button>
 )}
 
 
         {puedeVer("convocatorias") && (
-  <button onClick={() => setVista("convocatorias")}>
+  <button onClick={() => cambiarVista("convocatorias")}>
     Crear convocatorias
   </button>
 )}
 
 {puedeVer("indicadores") && (
-  <button onClick={() => setVista("indicadores")}>
+  <button onClick={() => cambiarVista("indicadores")}>
     Crear indicadores
   </button>
 )}
 
 {puedeVer("roles") && (
-  <button onClick={() => setVista("Crear rol")}>
+  <button onClick={() => cambiarVista("Crear rol")}>
     Crear rol
   </button>
 )}
 
 {puedeVer("vacantes") && (
-  <button onClick={() => setVista("Autorizar vacantes")}>
+  <button onClick={() => cambiarVista("Autorizar vacantes")}>
     Autorizar vacantes
   </button>
 )}
 
 {puedeVer("observaciones_expertos") && (
-  <button onClick={() => setVista("Cargar observaciones de expertos")}>
+  <button onClick={() => cambiarVista("Cargar observaciones de expertos")}>
     Cargar observaciones de expertos
   </button>
 )}
 
 {puedeVer("perfiles_sugeridos_indicador") && (
-  <button onClick={() => setVista("Cargar perfiles sugeridos por indicador")}>
+  <button onClick={() => cambiarVista("Cargar perfiles sugeridos por indicador")}>
     Cargar perfiles sugeridos por indicador
   </button>
 )}
         {puedeVer("usuarios") && (
-  <button onClick={() => setVista("usuarios")}>
+  <button onClick={() => cambiarVista("usuarios")}>
     Crear usuarios
   </button>
 )}
 
 {puedeVer("aprobaciones") && (
-  <button onClick={() => setVista("aprobaciones")}>
+  <button onClick={() => cambiarVista("aprobaciones")}>
     Aprobaciones
   </button>
 )}
 
 {puedeVer("usuarios") && (
-<button onClick={() => setVista("permisos_modulos")}>
+<button onClick={() => cambiarVista("permisos_modulos")}>
   Permisos módulos
 </button>
 
