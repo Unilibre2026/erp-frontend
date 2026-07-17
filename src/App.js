@@ -332,15 +332,15 @@ if (!usuario) {
   <div className="container">
 
     <button
-      className="btn-menu"
-      onClick={() => setMenuAbierto(!menuAbierto)}
+     className="btn-menu"
+     onClick={() => setMenuAbierto(!menuAbierto)}
     >
-      ☰
-    </button>
+     ☰
+</button>
 
     
 
-      <div className="sidebar">
+      <div className={`sidebar ${menuAbierto ? "sidebar-abierto" : ""}`}>
         <h2 className="titulo-sidebar">Reclutamiento</h2>
 
         {puedeVer("formulario") && (
