@@ -2046,6 +2046,7 @@ function Consultas() {
         <thead>
           <tr>
             <th>N. novedad</th>
+            <th>Status</th>
             <th>Documento</th>
             <th>Nombre del experto</th>
             <th>Convocatoria</th>
