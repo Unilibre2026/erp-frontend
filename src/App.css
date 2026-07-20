@@ -1306,9 +1306,13 @@ thead th {
     width: 110px;
 }
 
-.consulta-novedades .col-id{
+.consulta-novedades td.col-id{
     width: 60px;
     font-size: 60px;
     font-weight: bold;
     text-align: center;
+}
+
+.consulta-novedades th.col-id{
+    font-size: 18px;
 }
