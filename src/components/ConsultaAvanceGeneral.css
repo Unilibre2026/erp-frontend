@@ -372,3 +372,29 @@
     }
 
 }
+
+.status-badge {
+  display: inline-block;
+  min-width: 110px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+}
+
+/* Pendiente */
+.status-pendiente {
+  background-color: #f4b400;
+}
+
+/* Pre-aprobado */
+.status-preaprobado {
+  background-color: #1a73e8;
+}
+
+/* Subsanar */
+.status-subsanar {
+  background-color: #8e44ad;
+}

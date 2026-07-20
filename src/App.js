@@ -2070,7 +2070,21 @@ function Consultas() {
           {filtrados.map((i, idx) => (
             <tr key={idx}>
               <td>{i.id}</td>
-              <td>{i.status}</td>
+              <td>
+                <span
+                  className={`status-badge ${
+                  i.status === "Pendiente"
+                  ? "status-pendiente"
+                  : i.status === "Pre-aprobado"
+                  ? "status-preaprobado"
+                  : i.status === "SUBSANAR"
+                  ? "status-subsanar"
+                  : ""
+    }`}
+  >
+    {i.status}
+  </span>
+</td>
               <td>{i.documento_experto}</td>
               <td>{i.nombre}</td>
               <td>{i.convocatoria}</td>
