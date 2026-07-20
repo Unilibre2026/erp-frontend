@@ -1305,3 +1305,10 @@ thead th {
 .consulta-novedades .col-documento {
     width: 110px;
 }
+
+.consulta-novedades .col-id{
+    width: 60px;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+}
