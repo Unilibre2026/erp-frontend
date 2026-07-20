@@ -2044,27 +2044,39 @@ function Consultas() {
 
   <div className="grupo-busqueda">
 
-    <select
-      className="filtro-consulta"
-      onChange={(e) => setCampoBusqueda(e.target.value)}
-    >
-      <option value="documento_experto">Documento</option>
-      <option value="nombre">Nombre</option>
-      <option value="tipo_novedad">Tipo</option>
-      <option value="convocatoria">Convocatoria</option>
-      <option value="responsable">Responsable de la novedad</option>
-    </select>
+    <label className="titulo-filtro">
+      Buscar por
+    </label>
 
-    <input
-      className="filtro-consulta"
-      placeholder="Buscar..."
-      value={textoBusqueda}
-      onChange={(e) => setTextoBusqueda(e.target.value)}
-    />
+    <div className="controles-busqueda">
+
+      <select
+        className="filtro-consulta"
+        onChange={(e) => setCampoBusqueda(e.target.value)}
+      >
+        <option value="documento_experto">Documento</option>
+        <option value="nombre">Nombre</option>
+        <option value="tipo_novedad">Tipo</option>
+        <option value="convocatoria">Convocatoria</option>
+        <option value="responsable">Responsable de la novedad</option>
+      </select>
+
+      <input
+        className="filtro-consulta"
+        placeholder="Buscar..."
+        value={textoBusqueda}
+        onChange={(e) => setTextoBusqueda(e.target.value)}
+      />
+
+    </div>
 
   </div>
 
   <div className="grupo-status">
+
+    <label className="titulo-filtro">
+      Estado de la novedad
+    </label>
 
     <select
       className="filtro-consulta"
