@@ -2011,7 +2011,7 @@ function Consultas() {
 };
 
   return (
-    <div>
+    <div className="consulta-novedades">
       <h2>CONSULTA GENERAL DE NOVEDADES</h2>
 
       <button
@@ -2042,78 +2042,95 @@ function Consultas() {
         onChange={(e) => setTextoBusqueda(e.target.value)}
       />
 
-      <table border="1">
+      <table border="1" className="tabla-novedades">
         <thead>
           <tr>
-            <th>N. novedad</th>
-            <th>Status</th>
-            <th>Documento</th>
-            <th>Nombre del experto</th>
-            <th>Convocatoria</th>
-            <th>Tipo de novedad</th>
-            <th>Eje/indicador</th>
-            <th>Nivel</th>
-            <th>Rol</th>
-            <th>Responsable de la novedad</th>
-            <th>Motivo del retiro</th>
-            <th>Ciudad de domicilio</th>
-            <th>Contactar en futuras convocaorias</th>
-            <th>Justificación de la asignación</th>
-            <th>Perfil laboral</th>
-            <th>Perfil académico</th>
-            <th>Disponibilidad de tiempo</th>
-            <th>Fecha de la novedad</th>
+            <th className="col-id">N. novedad</th>
+            <th className="col-status">Status</th>
+            <th className="col-documento">Documento</th>
+            <th className="col-nombre">Nombre del experto</th>
+            <th className="col-convocatoria">Convocatoria</th>
+            <th className="col-tipo">Tipo de novedad</th>
+            <th className="col-eje">Eje/indicador</th>
+            <th className="col-nivel">Nivel</th>
+            <th className="col-rol">Rol</th>
+            <th className="col-responsable">Responsable de la novedad</th>
+            <th className="col-motivo">Motivo del retiro</th>
+            <th className="col-ciudad">Ciudad de domicilio</th>
+            <th className="col-contactar">Contactar en futuras convocatorias</th>
+            <th className="col-justificacion">Justificación de la asignación</th>
+            <th className="col-perfil-laboral">Perfil laboral</th>
+            <th className="col-perfil-academico">Perfil académico</th>
+            <th className="col-disponibilidad">Disponibilidad de tiempo</th>
+            <th className="col-fecha">Fecha de la novedad</th>
           </tr>
         </thead>
 
         <tbody>
           {filtrados.map((i, idx) => (
-            <tr key={idx}>
-              <td>{i.id}</td>
-              <td>
-                <span
-                  className={`status-badge ${
-                  i.status === "Pendiente"
-                  ? "status-pendiente"
-                  : i.status === "Pre-aprobado"
-                  ? "status-preaprobado"
-                  : i.status === "SUBSANAR"
-                  ? "status-subsanar"
-                  : ""
-    }`}
-  >
-    {i.status}
-  </span>
-</td>
-              <td>{i.documento_experto}</td>
-              <td>{i.nombre}</td>
-              <td>{i.convocatoria}</td>
-              <td>{i.tipo_novedad}</td>
-              <td>{i.eje}</td>
-              <td>{i.nivel}</td>
-              <td>{i.rol}</td>
-              <td>{i.responsable}</td>
-              <td>{i.motivo_retiro}</td> 
-              <td>
-  <div className="scroll-columna-12">
-    {i.observaciones}
-  </div>
-</td>             
-              <td>{i.contactar_futuro}</td>
-              <td>
+           <tr key={idx}>
+    <td className="col-id">{i.id}</td>
+
+    <td className="col-status">
+        <span
+            className={`status-badge ${
+                i.status === "Pendiente"
+                    ? "status-pendiente"
+                    : i.status === "Pre-aprobado"
+                    ? "status-preaprobado"
+                    : i.status === "SUBSANAR"
+                    ? "status-subsanar"
+                    : ""
+            }`}
+        >
+            {i.status}
+        </span>
+    </td>
+
+    <td className="col-documento">{i.documento_experto}</td>
+
+    <td className="col-nombre">{i.nombre}</td>
+
+    <td className="col-convocatoria">{i.convocatoria}</td>
+
+    <td className="col-tipo">{i.tipo_novedad}</td>
+
+    <td className="col-eje">{i.eje}</td>
+
+    <td className="col-nivel">{i.nivel}</td>
+
+    <td className="col-rol">{i.rol}</td>
+
+    <td className="col-responsable">{i.responsable}</td>
+
+    <td className="col-motivo">{i.motivo_retiro}</td>
+
+    <td className="col-ciudad">
         <div className="scroll-columna-12">
-          {i.justificacion}
+            {i.observaciones}
         </div>
-      </td>
-                 <td>
+    </td>
+
+    <td className="col-contactar">{i.contactar_futuro}</td>
+
+    <td className="col-justificacion">
         <div className="scroll-columna-12">
-          {i.perfil_laboral}
+            {i.justificacion}
         </div>
-      </td>
-              <td>{i.perfil_academico}</td>
-              <td>{i.validador}</td>
-              <td>{i.fecha_creacion}</td>
-            </tr>
+    </td>
+
+    <td className="col-perfil-laboral">
+        <div className="scroll-columna-12">
+            {i.perfil_laboral}
+        </div>
+    </td>
+
+    <td className="col-perfil-academico">{i.perfil_academico}</td>
+
+    <td className="col-disponibilidad">{i.validador}</td>
+
+    <td className="col-fecha">{i.fecha_creacion}</td>
+</tr>
           ))}
         </tbody>
       </table>

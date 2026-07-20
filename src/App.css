@@ -1270,3 +1270,38 @@ thead th {
     }
 
 }
+
+/* =====================================================
+   CONSULTA GENERAL DE NOVEDADES
+===================================================== */
+
+.consulta-novedades .tabla-novedades{
+    width:100%;
+    border-collapse:collapse;
+    table-layout:fixed;
+}
+
+.consulta-novedades .tabla-novedades th{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:12px;
+    font-weight:bold;
+    text-align:center;
+}
+
+.consulta-novedades .tabla-novedades td{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:11px;
+    vertical-align:top;
+}
+
+.consulta-novedades .col-id {
+    width: 60px;
+}
+
+.consulta-novedades .col-status {
+    width: 120px;
+}
+
+.consulta-novedades .col-documento {
+    width: 110px;
+}
