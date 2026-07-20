@@ -16,6 +16,7 @@ function ConsultaAvanceGeneral() {
     const [vacantes, setVacantes] = useState([]);
 
     const [reclutados, setReclutados] = useState([]);
+    const [preAprobados, setPreAprobados] = useState([]);
 
     const [ciudades, setCiudades] = useState([]);
 
@@ -134,6 +135,7 @@ if (!resReclutados.ok) {
 const dataReclutados = await resReclutados.json();
 
 setReclutados(dataReclutados.reclutados || []);
+setPreAprobados(dataReclutados.pre_aprobados || []);
             // ================================
             // CIUDADES
             // ================================
@@ -234,6 +236,22 @@ setReclutados(dataReclutados.reclutados || []);
 
 };
 
+const obtenerPreAprobados = (ciudad, rol) => {
+
+    const registro = preAprobados.find(
+
+        p =>
+
+            p.convocatoria === convocatoria &&
+            p.indicador === ciudad &&
+            p.rol === rol
+
+    );
+
+    return registro ? registro.pre_aprobados : 0;
+
+};
+
 
 
 
@@ -261,11 +279,46 @@ const obtenerTotalReclutadosRol = (rol) => {
 
 };
 
+const obtenerTotalPreAprobadosRol = (rol) => {
+
+    return preAprobados
+
+        .filter(
+
+            p =>
+
+                p.convocatoria === convocatoria &&
+                p.rol === rol
+
+        )
+
+        .reduce(
+
+            (total, p) => total + Number(p.pre_aprobados),
+
+            0
+
+        );
+
+};
+
 const obtenerTotalGeneralReclutados = () => {
 
     return reclutados.reduce(
 
         (total, r) => total + Number(r.reclutados),
+
+        0
+
+    );
+
+};
+
+const obtenerTotalGeneralPreAprobados = () => {
+
+    return preAprobados.reduce(
+
+        (total, p) => total + Number(p.pre_aprobados),
 
         0
 
@@ -316,6 +369,29 @@ const obtenerTotalGeneralReclutados = () => {
         .reduce(
 
             (total, r) => total + Number(r.reclutados),
+
+            0
+
+        );
+
+};
+
+const obtenerTotalPreAprobadosCiudad = (ciudad) => {
+
+    return preAprobados
+
+        .filter(
+
+            p =>
+
+                p.convocatoria === convocatoria &&
+                p.indicador === ciudad
+
+        )
+
+        .reduce(
+
+            (total, p) => total + Number(p.pre_aprobados),
 
             0
 
@@ -641,7 +717,7 @@ const obtenerTotalGeneralReclutados = () => {
                             </td>
 
                             <td className="dato pre-aprobado">
-                                0
+                                {obtenerPreAprobados(ciudad, rol)}
                             </td>
 
                             <td className="dato aprobado">
@@ -682,7 +758,7 @@ const obtenerTotalGeneralReclutados = () => {
 
                 <td className="dato total">
 
-                    <strong>0</strong>
+                    <strong>{obtenerTotalPreAprobadosCiudad(ciudad)}</strong>
 
                 </td>
 
