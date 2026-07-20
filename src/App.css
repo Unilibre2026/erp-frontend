@@ -1330,20 +1330,31 @@ thead th {
 
 .barra-filtros{
     display:flex;
-    align-items:center;
+    align-items:flex-start;
+    gap:20px;
     margin-bottom:15px;
 }
 
 .grupo-busqueda{
     display:flex;
-    gap:10px;
-    align-items:center;
+    flex-direction:column;
     padding-right:20px;
-    margin-right:20px;
     border-right:1px solid #d9d9d9;
 }
 
 .grupo-status{
     display:flex;
-    align-items:center;
+    flex-direction:column;
+}
+
+.controles-busqueda{
+    display:flex;
+    gap:10px;
+}
+
+.titulo-filtro{
+    font-size:12px;
+    font-weight:600;
+    color:#555;
+    margin-bottom:6px;
 }
