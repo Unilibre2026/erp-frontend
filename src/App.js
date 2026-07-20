@@ -2040,32 +2040,46 @@ function Consultas() {
       📥 Descargar Excel
       </button>
 
-      <select 
-       className="filtro-consulta"
-       onChange={(e) => setCampoBusqueda(e.target.value)}>
-        <option value="documento_experto">Documento</option>
-        <option value="nombre">Nombre</option>
-        <option value="tipo_novedad">Tipo de novedad</option>
-        <option value="convocatoria">Convocatoria</option>
-        <option value="responsable">Responsable de la novedad</option>
-      </select>
+      <div className="barra-filtros">
 
-      <input
-        className="filtro-consulta"      
-        placeholder="Buscar..."
-        value={textoBusqueda}
-        onChange={(e) => setTextoBusqueda(e.target.value)}
-      />
+  <div className="grupo-busqueda">
 
-      <select
-       value={statusFiltro}
-       onChange={(e) => setStatusFiltro(e.target.value)}
-      >
-       <option value="Todos">Todos los estados</option>
-       <option value="Pendiente">Pendiente</option>
-       <option value="Pre-aprobado">Pre-aprobado</option>
-       <option value="SUBSANAR">SUBSANAR</option>
-</select>
+    <select
+      className="filtro-consulta"
+      onChange={(e) => setCampoBusqueda(e.target.value)}
+    >
+      <option value="documento_experto">Documento</option>
+      <option value="nombre">Nombre</option>
+      <option value="tipo_novedad">Tipo</option>
+      <option value="convocatoria">Convocatoria</option>
+      <option value="responsable">Responsable de la novedad</option>
+    </select>
+
+    <input
+      className="filtro-consulta"
+      placeholder="Buscar..."
+      value={textoBusqueda}
+      onChange={(e) => setTextoBusqueda(e.target.value)}
+    />
+
+  </div>
+
+  <div className="grupo-status">
+
+    <select
+      className="filtro-consulta"
+      value={statusFiltro}
+      onChange={(e) => setStatusFiltro(e.target.value)}
+    >
+      <option value="Todos">Todos los estados</option>
+      <option value="Pendiente">Pendiente</option>
+      <option value="Pre-aprobado">Pre-aprobado</option>
+      <option value="SUBSANAR">SUBSANAR</option>
+    </select>
+
+  </div>
+
+</div>
 
       <table border="1" className="tabla-novedades">
         <thead>
