@@ -2070,6 +2070,7 @@ function Consultas() {
           {filtrados.map((i, idx) => (
             <tr key={idx}>
               <td>{i.id}</td>
+              <td>{i.status}</td>
               <td>{i.documento_experto}</td>
               <td>{i.nombre}</td>
               <td>{i.convocatoria}</td>
