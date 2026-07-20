@@ -555,6 +555,22 @@ ciudades.forEach((ciudad) => {
 
 });
 
+const obtenerTotalReclutadosRol = (rol) => {
+
+    return reclutados
+        .filter(r => String(r.rol).trim() === String(rol).trim())
+        .reduce((t, r) => t + Number(r.reclutados || 0), 0);
+
+};
+
+const obtenerTotalPreAprobadosRol = (rol) => {
+
+    return preAprobados
+        .filter(p => String(p.rol).trim() === String(rol).trim())
+        .reduce((t, p) => t + Number(p.pre_aprobados || 0), 0);
+
+};
+
 
 //=====================================
 // FILA TOTAL
@@ -585,11 +601,13 @@ roles.forEach((rol) => {
     worksheet.getCell(fila, columnaTotal).value = requerido;
     columnaTotal++;
 
-    worksheet.getCell(fila, columnaTotal).value = 0;
-    columnaTotal++;
+    worksheet.getCell(fila, columnaTotal).value =
+    obtenerTotalReclutadosRol(rol);
+     columnaTotal++;
 
-    worksheet.getCell(fila, columnaTotal).value = 0;
-    columnaTotal++;
+    worksheet.getCell(fila, columnaTotal).value =
+    obtenerTotalPreAprobadosRol(rol);
+     columnaTotal++;
 
     worksheet.getCell(fila, columnaTotal).value = 0;
     columnaTotal++;
