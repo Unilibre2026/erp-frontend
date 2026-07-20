@@ -525,7 +525,8 @@ const obtenerTotalPreAprobadosCiudad = (ciudad) => {
                     ciudades,
                     roles,
                     vacantes,
-                    reclutados
+                    reclutados,
+                    preAprobados
         )
     }
 >

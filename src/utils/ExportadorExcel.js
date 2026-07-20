@@ -7,7 +7,8 @@ export async function exportarAvanceGeneral(
     ciudades = [],
     roles = [],
     vacantes = [],
-    reclutados = []
+    reclutados = [],
+    preAprobados = []
 ) {
 
     const workbook = new ExcelJS.Workbook();
@@ -48,6 +49,8 @@ const logoId = workbook.addImage({
     if (!Array.isArray(roles)) roles = [];
 
     if (!Array.isArray(vacantes)) vacantes = [];
+
+    if (!Array.isArray(preAprobados)) preAprobados = [];
 
 
 //=====================================
@@ -433,11 +436,14 @@ const obtenerReclutados = (ciudad, rol) => {
 
 const obtenerPreAprobados = (ciudad, rol) => {
 
-    return reclutados.filter(r =>
-        r.indicador === ciudad &&
-        r.rol === rol &&
-        r.estado === "PRE APROBADO"
-    ).length;
+    const dato = preAprobados.find(p =>
+
+        String(p.indicador).trim() === String(ciudad).trim() &&
+        String(p.rol).trim() === String(rol).trim()
+
+    );
+
+    return dato ? Number(dato.pre_aprobados) : 0;
 
 };
 
