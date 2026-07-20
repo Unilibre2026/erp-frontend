@@ -1934,6 +1934,7 @@ function Consultas() {
   const [datos, setDatos] = useState([]);
   const [campoBusqueda, setCampoBusqueda] = useState("documento_experto");
   const [textoBusqueda, setTextoBusqueda] = useState("");
+  const [statusFiltro, setStatusFiltro] = useState("Todos");
 
   useEffect(() => {
     fetch(`${API_URL}/novedades`)
@@ -1946,12 +1947,22 @@ function Consultas() {
   }, []);
 
   const filtrados = datos.filter((item) => {
-    if (!textoBusqueda) return true;
 
-    return String(item?.[campoBusqueda] || "")
+  // Filtro por texto
+  const coincideTexto =
+    !textoBusqueda ||
+    String(item?.[campoBusqueda] || "")
       .toLowerCase()
       .includes(textoBusqueda.toLowerCase());
-  });
+
+  // Filtro por status
+  const coincideStatus =
+    statusFiltro === "Todos" ||
+    item.status === statusFiltro;
+
+  return coincideTexto && coincideStatus;
+
+});
 
   const exportarExcel = async () => {
   const workbook = new ExcelJS.Workbook();
@@ -2041,6 +2052,16 @@ function Consultas() {
         value={textoBusqueda}
         onChange={(e) => setTextoBusqueda(e.target.value)}
       />
+
+      <select
+       value={statusFiltro}
+       onChange={(e) => setStatusFiltro(e.target.value)}
+      >
+       <option value="Todos">Todos los estados</option>
+       <option value="Pendiente">Pendiente</option>
+       <option value="Pre-aprobado">Pre-aprobado</option>
+       <option value="SUBSANAR">SUBSANAR</option>
+</select>
 
       <table border="1" className="tabla-novedades">
         <thead>
