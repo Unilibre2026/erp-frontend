@@ -1316,3 +1316,14 @@ thead th {
 .consulta-novedades th.col-id{
     font-size: 18px;
 }
+
+.consulta-novedades .filtro-consulta{
+    width: 220px;
+    height: 34px;
+    padding: 0 8px;
+    margin-bottom: 8px;
+    border: 1px solid #bfc6d1;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 13px;
+}

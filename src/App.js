@@ -2040,7 +2040,9 @@ function Consultas() {
       📥 Descargar Excel
       </button>
 
-      <select onChange={(e) => setCampoBusqueda(e.target.value)}>
+      <select 
+       className="filtro-consulta"
+       onChange={(e) => setCampoBusqueda(e.target.value)}>
         <option value="documento_experto">Documento</option>
         <option value="nombre">Nombre</option>
         <option value="tipo_novedad">Tipo de novedad</option>
@@ -2049,6 +2051,7 @@ function Consultas() {
       </select>
 
       <input
+        className="filtro-consulta"      
         placeholder="Buscar..."
         value={textoBusqueda}
         onChange={(e) => setTextoBusqueda(e.target.value)}
