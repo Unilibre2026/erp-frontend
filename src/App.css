@@ -1327,3 +1327,23 @@ thead th {
     box-sizing: border-box;
     font-size: 13px;
 }
+
+.barra-filtros{
+    display:flex;
+    align-items:center;
+    margin-bottom:15px;
+}
+
+.grupo-busqueda{
+    display:flex;
+    gap:10px;
+    align-items:center;
+    padding-right:20px;
+    margin-right:20px;
+    border-right:1px solid #d9d9d9;
+}
+
+.grupo-status{
+    display:flex;
+    align-items:center;
+}
