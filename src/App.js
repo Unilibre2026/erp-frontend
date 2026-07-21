@@ -21,6 +21,8 @@ import ConsultaCNSC from "./components/ConsultaCNSC";
 
 import AspirantesConvocatoria from "./components/AspirantesConvocatoria";
 
+import { exportarExpertos } from "./utils/ExportadorExpertos";
+
 const API_URL = "https://erp-unilibre-production.up.railway.app";
 
 
@@ -1841,15 +1843,30 @@ function CargaMasiva() {
 
       
        {/* SUBIDA EXCEL */}
-       <input
-        type="file"
-        accept=".xlsx"
-        onChange={(e) => setArchivo(e.target.files[0])}
-      />
+<input
+  type="file"
+  accept=".xlsx"
+  onChange={(e) => setArchivo(e.target.files[0])}
+/>
 
-      <button onClick={subirExcel}>
-        Subir Excel
-      </button> 
+<button onClick={subirExcel}>
+  Subir Excel
+</button>
+
+<button
+  onClick={() => exportarExpertos(expertosFiltrados)}
+  style={{
+    marginLeft: "10px",
+    backgroundColor: "#1F4E78",
+    color: "white",
+    border: "none",
+    padding: "8px 14px",
+    borderRadius: "4px",
+    cursor: "pointer"
+  }}
+>
+  📥 Exportar Excel
+</button>
      {/* TABLA DE EXPERTOS */}
       <h3 style={{ marginTop: "20px" }}>Listado de Expertos</h3>
       <div style={{ margin: "15px 0" }}>
