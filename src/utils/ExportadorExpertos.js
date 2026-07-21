@@ -28,12 +28,12 @@ export async function exportarExpertos(expertos = []) {
 
     worksheet.addImage(logoId, {
         tl: {
-            col: 0.2,
-            row: 0.3
+            col: 0.1,
+            row: 0.2
         },
         ext: {
-            width: 95,
-            height: 95
+            width: 70,
+            height: 70
         }
     });
 
@@ -102,40 +102,24 @@ export async function exportarExpertos(expertos = []) {
     // =========================
 
     worksheet.columns = [
-        {
-            header: "Documento",
-            key: "id",
-            width: 18
-        },
-        {
-            header: "Nombre",
-            key: "nombre",
-            width: 40
-        },
+    { key: "id", width: 18 },
+    { key: "nombre", width: 40 },
+    { key: "correo", width: 35 },
+    { key: "telefono", width: 18 },
+    { key: "telefono_2", width: 18 },
+    { key: "perfil_profesional", width: 70 },
+    { key: "nivel_academico", width: 28 }
+];
 
-        { header: "Teléfono", key: "telefono", width: 18 },
-
-        { header: "Teléfono 2", key: "telefono_2", width: 18 },
-
-        {
-            header: "Correo",
-            key: "correo",
-            width: 35
-        },
-        {
-            header: "Perfil profesional",
-            key: "perfil_profesional",
-            width: 70
-        },
-        {
-            header: "Nivel académico",
-            key: "nivel_academico",
-            width: 28
-        }
-    ];
-
-    worksheet.getRow(8).values =
-        worksheet.columns.map(c => c.header);
+    worksheet.getRow(8).values = [
+    "Documento",
+    "Nombre",
+    "Correo",
+    "Teléfono",
+    "Teléfono 2",
+    "Perfil profesional",
+    "Nivel académico"
+];
 
     worksheet.getRow(8).height = 25;
 
