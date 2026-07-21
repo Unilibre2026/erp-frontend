@@ -747,7 +747,7 @@ function Formulario() {
   const [indicadores, setIndicadores] = useState([]);
   const [niveles, setNiveles] = useState([]);
   const [roles, setRoles] = useState([]);
-  const [observacionExperto, setObservacionExperto] = useState("");
+  
   
 
   const documentoRef = useRef(null);
