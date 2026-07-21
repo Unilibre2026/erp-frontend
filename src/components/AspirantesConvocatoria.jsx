@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./AspirantesConvocatoria.css";
 import * as XLSX from "xlsx";
+import { exportarAspirantes } from "../utils/ExportadorAspirantes";
 
 const API_URL = "https://erp-unilibre-production.up.railway.app";
 
