@@ -385,13 +385,12 @@ catch (error) {
 </button>
 
                 <button
-                    className="btn-exportar"
-                    disabled={!convocatoria}
-                >
-
-                    📥 Exportar Excel
-
-                </button>
+                  className="btn-exportar"
+                  disabled={!convocatoria || datos.length === 0}
+                  onClick={() => exportarAspirantes(convocatoria, datos)}
+>
+    📥 Exportar Excel
+</button>
 
             </div>
 
