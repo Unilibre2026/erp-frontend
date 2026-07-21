@@ -741,11 +741,14 @@ function Formulario() {
 
   const [loadingBusqueda, setLoadingBusqueda] = useState(false);
   const [estadoExperto, setEstadoExperto] = useState(null);
+  const [bloqueado, setBloqueado] = useState(false);
   const [convocatorias, setConvocatorias] = useState([]);
   const [bloquearBusqueda, setBloquearBusqueda] = useState(false);
   const [indicadores, setIndicadores] = useState([]);
   const [niveles, setNiveles] = useState([]);
   const [roles, setRoles] = useState([]);
+  const [observacionExperto, setObservacionExperto] = useState("");
+  
 
   const documentoRef = useRef(null);
 
@@ -922,10 +925,11 @@ if (name === "nivel") {
       const res = await fetch(`${API_URL}/experto/${documento}`);
 
       if (!res.ok) {
-        setEstadoExperto(false);
-        setForm((prev) => ({ ...prev, nombre_experto: "" }));
-        return;
-      }
+       setEstadoExperto(false);
+       setBloqueado(false);
+       setForm((prev) => ({ ...prev, nombre_experto: "" }));
+       return;
+}
 
 
       
@@ -933,21 +937,30 @@ if (name === "nivel") {
       const data = await res.json();
 
       if (data.bloqueado) {
+       alert(data.mensaje);
 
-      alert(data.mensaje);
+       setEstadoExperto(true);
 
-      setEstadoExperto(false);
-
-      setForm((prev) => ({
-      ...prev,
-      documento_experto: "",
-      nombre_experto: ""
+       setForm((prev) => ({
+         ...prev,
+         documento_experto: data.documento,
+         nombre_experto: data.nombre_completo,
+         telefono: data.telefono || "",
+         telefono_2: data.telefono_2 || "",
+         correo_personal: data.correo_personal || "",
+         correo_institucional: data.correo_institucional || "",
+         perfil_profesional: data.perfil_profesional || "",
+         nivel_academico: data.nivel_academico || "",
+         perfil_academico: data.perfil_academico || "",
+         descripcion_cargos: data.descripcion_cargos || ""
   }));
 
-  documentoRef.current?.focus();
+  setBloqueado(true);
 
   return;
 }
+
+  setBloqueado(false);
 
 
     const nombre =
@@ -958,6 +971,7 @@ if (name === "nivel") {
 
       if (!nombre) {
         setEstadoExperto(false);
+        setBloqueado(false);
         setForm((prev) => ({ ...prev, nombre_experto: "" }));
         return;
       }
@@ -1591,7 +1605,12 @@ if (form.tipo_novedad === "Ingreso") {
      
      
 
-      <button onClick={guardar}>Guardar</button>
+     <button
+       onClick={guardar}
+       disabled={bloqueado}
+>
+  Guardar
+</button>
     </div>
   );
 }
