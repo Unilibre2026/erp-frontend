@@ -1889,6 +1889,8 @@ function CargaMasiva() {
             <th>ID</th>
             <th>Nombre</th>
             <th>Correo</th>
+            <th>Teléfono</th>
+            <th>Teléfono 2</th>
             <th>Perfil profesional</th>
             <th>Nivel académico</th>
             <th>Acciones</th>
@@ -1902,6 +1904,8 @@ function CargaMasiva() {
               <td>{exp.id}</td>
               <td>{exp.nombre}</td>
               <td>{exp.correo}</td>
+              <td>{exp.telefono}</td>
+              <td>{exp.telefono_2}</td>
               <td>{exp.perfil_profesional}</td>
               <td>{exp.nivel_academico}</td>
 

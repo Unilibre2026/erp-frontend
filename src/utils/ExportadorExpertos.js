@@ -112,6 +112,11 @@ export async function exportarExpertos(expertos = []) {
             key: "nombre",
             width: 40
         },
+
+        { header: "Teléfono", key: "telefono", width: 18 },
+
+        { header: "Teléfono 2", key: "telefono_2", width: 18 },
+
         {
             header: "Correo",
             key: "correo",
@@ -186,6 +191,10 @@ export async function exportarExpertos(expertos = []) {
             nombre: exp.nombre,
 
             correo: exp.correo,
+
+            telefono: exp.telefono,
+
+            telefono_2: exp.telefono_2,
 
             perfil_profesional: exp.perfil_profesional,
 
