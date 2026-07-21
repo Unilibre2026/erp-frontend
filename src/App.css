@@ -1491,3 +1491,10 @@ thead th {
     cursor:not-allowed;
     opacity:1;
 }
+
+.btn-guardar:disabled{
+    background:#d32f2f;
+    color:white;
+    cursor:not-allowed;
+    opacity:1;
+}
