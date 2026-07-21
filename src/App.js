@@ -1693,6 +1693,7 @@ function CargaMasiva() {
 
   const [archivo, setArchivo] = useState(null);
    const [expertos, setExpertos] = useState([]);
+   const [textoBusqueda, setTextoBusqueda] = useState("");
 
    const API_URL = "https://erp-unilibre-production.up.railway.app";
 
@@ -1727,6 +1728,44 @@ function CargaMasiva() {
   useEffect(() => {
     obtenerExpertos();
   }, []);
+
+  const expertosFiltrados = expertos.filter((exp) => {
+
+  if (!textoBusqueda) return true;
+
+  const texto = textoBusqueda.toLowerCase();
+
+  return (
+    String(exp.id || "")
+      .toLowerCase()
+      .includes(texto)
+
+    ||
+
+    String(exp.nombre || "")
+      .toLowerCase()
+      .includes(texto)
+
+    ||
+
+    String(exp.correo || "")
+      .toLowerCase()
+      .includes(texto)
+
+    ||
+
+    String(exp.perfil_profesional || "")
+      .toLowerCase()
+      .includes(texto)
+
+    ||
+
+    String(exp.nivel_academico || "")
+      .toLowerCase()
+      .includes(texto)
+  );
+
+});
 
   // =========================
   // SUBIR EXCEL
@@ -1813,6 +1852,19 @@ function CargaMasiva() {
       </button> 
      {/* TABLA DE EXPERTOS */}
       <h3 style={{ marginTop: "20px" }}>Listado de Expertos</h3>
+      <div style={{ margin: "15px 0" }}>
+       <input
+        type="text"
+        placeholder="Buscar por documento, nombre, correo, perfil o nivel académico..."
+        value={textoBusqueda}
+        onChange={(e) => setTextoBusqueda(e.target.value)}
+        style={{
+        width: "450px",
+        padding: "8px",
+        fontSize: "14px"
+    }}
+  />
+</div>
 
       <table border="1" width="100%">
         <thead>
@@ -1826,7 +1878,7 @@ function CargaMasiva() {
 
         <tbody>
           {Array.isArray(expertos) &&
-            expertos.map((exp) => (
+            expertosFiltrados.map((exp) => (
             <tr key={exp.id}>
               <td>{exp.id}</td>
               <td>{exp.nombre}</td>
