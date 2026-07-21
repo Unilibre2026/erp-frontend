@@ -742,8 +742,10 @@ function Formulario() {
   const [loadingBusqueda, setLoadingBusqueda] = useState(false);
   const [estadoExperto, setEstadoExperto] = useState(null);
   const [bloqueado, setBloqueado] = useState(false);
+  const [mensajeBloqueo, setMensajeBloqueo] = useState("");
   const [convocatorias, setConvocatorias] = useState([]);
   const [bloquearBusqueda, setBloquearBusqueda] = useState(false);
+  const [observacionesExperto, setObservacionesExperto] = useState([]);
   const [indicadores, setIndicadores] = useState([]);
   const [niveles, setNiveles] = useState([]);
   const [roles, setRoles] = useState([]);
@@ -935,9 +937,10 @@ if (name === "nivel") {
       
 
       const data = await res.json();
+      setObservacionesExperto(data.observaciones || []);
 
       if (data.bloqueado) {
-       alert(data.mensaje);
+       setMensajeBloqueo(data.mensaje);
 
        setEstadoExperto(true);
 
@@ -961,6 +964,7 @@ if (name === "nivel") {
 }
 
   setBloqueado(false);
+  setMensajeBloqueo("");
 
 
     const nombre =
@@ -971,6 +975,7 @@ if (name === "nivel") {
 
       if (!nombre) {
         setEstadoExperto(false);
+        setMensajeBloqueo("");
         setBloqueado(false);
         setForm((prev) => ({ ...prev, nombre_experto: "" }));
         return;
@@ -1611,6 +1616,70 @@ if (form.tipo_novedad === "Ingreso") {
 >
   Guardar
 </button>
+
+{mensajeBloqueo && (
+  <div className="mensaje-bloqueo">
+    <strong>⚠ Atención</strong><br />
+    {mensajeBloqueo}
+  </div>
+)}
+
+{observacionesExperto.length > 0 && (
+  <div className="panel-observaciones">
+
+    <div className="titulo-observaciones">
+      Historial de observaciones del experto
+    </div>
+
+    <div className="contenedor-observaciones">
+
+      {observacionesExperto.map((obs, index) => (
+
+        <div className="tarjeta-observacion" key={index}>
+
+          <div className="fila-observacion">
+
+            <div>
+              <strong>Fecha</strong><br />
+              {obs.fecha
+                ? new Date(obs.fecha).toLocaleDateString("es-CO")
+                : ""}
+            </div>
+
+            <div>
+              <strong>Proceso de selección</strong><br />
+              {obs.proceso_de_seleccion}
+            </div>
+
+          </div>
+
+          <div className="fila-observacion">
+
+            <div>
+              <strong>Responsable de la observación</strong><br />
+              {obs.responsable_de_la_observacion}
+            </div>
+
+          </div>
+
+          <div className="observacion-texto">
+
+            <strong>Observación</strong>
+
+            <div className="contenido-observacion">
+              {obs.observacion}
+            </div>
+
+          </div>
+
+        </div>
+
+      ))}
+
+    </div>
+
+  </div>
+)}
     </div>
   );
 }
