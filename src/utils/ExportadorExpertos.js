@@ -26,6 +26,11 @@ export async function exportarExpertos(expertos = []) {
         extension: "png"
     });
 
+    worksheet.getRow(1).height = 18;
+    worksheet.getRow(2).height = 22;
+    worksheet.getRow(3).height = 22;
+    worksheet.getRow(4).height = 18;
+
     worksheet.addImage(logoId, {
         tl: {
             col: 0.1,
