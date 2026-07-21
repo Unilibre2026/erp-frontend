@@ -1872,6 +1872,8 @@ function CargaMasiva() {
             <th>ID</th>
             <th>Nombre</th>
             <th>Correo</th>
+            <th>Perfil profesional</th>
+            <th>Nivel académico</th>
             <th>Acciones</th>
           </tr>
         </thead>
@@ -1883,6 +1885,8 @@ function CargaMasiva() {
               <td>{exp.id}</td>
               <td>{exp.nombre}</td>
               <td>{exp.correo}</td>
+              <td>{exp.perfil_profesional}</td>
+              <td>{exp.nivel_academico}</td>
 
               <td>
                 <button onClick={() => eliminarExperto(exp.id)}>
