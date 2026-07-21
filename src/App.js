@@ -1306,7 +1306,7 @@ if (form.tipo_novedad === "Ingreso") {
         marginBottom: "4px"
       }}
     >
-      Caiudad de aplicació o Indicador
+      Ciudad de aplicación o Indicador
     </label>
 
     <select
