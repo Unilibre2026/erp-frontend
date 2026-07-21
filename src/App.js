@@ -1611,10 +1611,11 @@ if (form.tipo_novedad === "Ingreso") {
      
 
      <button
-       onClick={guardar}
-       disabled={bloqueado}
+    className="btn-guardar"
+    onClick={guardar}
+    disabled={bloqueado}
 >
-  Guardar
+    Guardar
 </button>
 
 {mensajeBloqueo && (
