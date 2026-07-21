@@ -86,8 +86,8 @@ export async function exportarAspirantes(
 
     worksheet.addImage(logoId, {
         tl: {
-            col: 3.2,
-            row: 0.5
+            col: 0.2,
+            row: 0.4
         },
         ext: {
             width: 180,
@@ -104,15 +104,18 @@ export async function exportarAspirantes(
 
     const ahora = new Date();
 
-    const fechaColombia = new Date(
-        ahora.toLocaleString("en-US", {
-            timeZone: "America/Bogota"
-        })
-    );
+    const fechaBogota = ahora.toLocaleString("es-CO", {
+    timeZone: "America/Bogota",
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false
+});
 
-    worksheet.getCell("A6").value = "Fecha";
-    worksheet.getCell("B6").value = fechaColombia;
-    worksheet.getCell("B6").numFmt = "dd/mm/yyyy hh:mm";
+worksheet.getCell("A6").value = "Fecha";
+worksheet.getCell("B6").value = fechaBogota;
 
     //=====================================
     // ENCABEZADOS DE LA TABLA
