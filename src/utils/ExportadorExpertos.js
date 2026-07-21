@@ -37,7 +37,7 @@ export async function exportarExpertos(expertos = []) {
             row: 0.2
         },
         ext: {
-            width: 70,
+            width: 120,
             height: 70
         }
     });
