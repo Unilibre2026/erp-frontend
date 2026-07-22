@@ -8,6 +8,9 @@ export default function ConsultaSubsanacion() {
 
     const [datos, setDatos] = useState([]);
     const [expertoSeleccionado, setExpertoSeleccionado] = useState(null);
+    const [perfilLaboral, setPerfilLaboral] = useState("");
+    const [perfilAcademico, setPerfilAcademico] = useState("");
+    const [disponibilidad, setDisponibilidad] = useState("");
 
     useEffect(() => {
         cargarSubsanaciones();
@@ -101,12 +104,20 @@ export default function ConsultaSubsanacion() {
                                     <td style={{ textAlign: "center" }}>
 
                                         <button
-                                            className="btn-ver-subsanacion"
-                                            title="Ver hoja de vida"
-                                            onClick={() => setExpertoSeleccionado(item)}
-                                        >
-                                            <FileUser strokeWidth={2} />
-                                        </button>
+                                          className="btn-ver-subsanacion"
+                                          title="Ver hoja de vida"
+                                          onClick={() => {
+
+                                             setExpertoSeleccionado(item);
+
+                                             setPerfilLaboral(item.perfil_laboral || "");
+                                             setPerfilAcademico(item.perfil_academico || "");
+                                             setDisponibilidad(item.disponibilidad_tiempo || "");
+
+    }}
+>
+    <FileUser strokeWidth={2} />
+</button>
 
                                     </td>
 
@@ -284,6 +295,44 @@ export default function ConsultaSubsanacion() {
     </div>
 
 </div>
+
+<div className="card-perfil">
+
+    <h3>Perfil del Experto</h3>
+
+    <div className="texto-perfil">
+
+        <h4>Perfil Laboral</h4>
+
+        <p>
+            {expertoSeleccionado.perfil_laboral || "No registra información."}
+        </p>
+
+    </div>
+
+    <div className="texto-perfil">
+
+        <h4>Perfil Académico</h4>
+
+        <p>
+            {expertoSeleccionado.perfil_academico || "No registra información."}
+        </p>
+
+    </div>
+
+    <div className="texto-perfil">
+
+        <h4>Disponibilidad</h4>
+
+        <p>
+            {expertoSeleccionado.disponibilidad_tiempo || "No registra información."}
+        </p>
+
+    </div>
+
+</div>
+
+
 
                             </div>
 

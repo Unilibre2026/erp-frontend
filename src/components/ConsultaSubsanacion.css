@@ -93,3 +93,57 @@
     font-size:15px;
     color:#111827;
 }
+
+.texto-perfil{
+
+    margin-top:20px;
+
+}
+
+.texto-perfil:first-of-type{
+
+    margin-top:0;
+
+}
+
+.texto-perfil h4{
+
+    margin:0 0 10px;
+    color:#1f2937;
+    font-size:18px;
+    font-weight:600;
+
+}
+
+.texto-perfil p{
+
+    margin:0;
+    line-height:1.7;
+    color:#4b5563;
+    text-align:justify;
+    white-space:pre-wrap;
+
+}
+
+.textarea-subsanacion{
+
+    width:100%;
+    min-height:140px;
+    padding:12px;
+    border:1px solid #d1d5db;
+    border-radius:8px;
+    font-size:14px;
+    line-height:1.6;
+    resize:vertical;
+    box-sizing:border-box;
+    font-family:inherit;
+
+}
+
+.textarea-subsanacion:focus{
+
+    outline:none;
+    border-color:#2563eb;
+    box-shadow:0 0 0 3px rgba(37,99,235,.15);
+
+}
