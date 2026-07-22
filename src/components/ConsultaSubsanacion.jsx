@@ -397,18 +397,20 @@ export default function ConsultaSubsanacion() {
 <div className="acciones-subsanacion">
 
     <button
+        className="btn-guardar-subsanacion"
+        type="button"
+    >
+        Guardar Subsanación
+    </button>
+
+    <button
         className="btn-retirar-novedad"
         type="button"
     >
         Retirar novedad
     </button>
 
-    <button
-        className="btn-guardar-subsanacion"
-        type="button"
-    >
-        Guardar Subsanación
-    </button>
+    
 
 </div>
 
