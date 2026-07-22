@@ -347,18 +347,7 @@ export default function ConsultaSubsanacion() {
 
 </div>
 
-    <div className="texto-perfil">
-
-        <h4>Perfil Académico</h4>
-
-        <textarea
-            className="textarea-subsanacion"
-            rows={6}
-            value={perfilAcademico}
-            onChange={(e) => setPerfilAcademico(e.target.value)}
-/>
-
-    </div>
+ 
 
     
 </div>
