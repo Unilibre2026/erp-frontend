@@ -101,6 +101,7 @@ export default function Aprobaciones() {
   <div className="grupo-filtro">
     <label>Buscar por</label>
     <select
+      className="select-buscar-por"
       value={campoBusqueda}
       onChange={(e) => setCampoBusqueda(e.target.value)}
     >

@@ -1541,3 +1541,7 @@ thead th {
 .grupo-filtro input{
     width:200px;
 }
+
+.select-buscar-por{
+    width: 230px !important;
+}
