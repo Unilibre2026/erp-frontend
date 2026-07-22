@@ -313,9 +313,21 @@ export default function ConsultaSubsanacion() {
     <h3>Perfil del Experto</h3>
 
     
-    <div className="texto-perfil">
+ <div className="texto-perfil">
 
-    <h4>Justificación</h4>
+    <div className="titulo-edicion">
+
+        <h4>Justificación</h4>
+
+        <button
+            type="button"
+            className="btn-modificar"
+            onClick={() => setEditarJustificacion(!editarJustificacion)}
+        >
+            {editarJustificacion ? "Bloquear" : "Modificar"}
+        </button>
+
+    </div>
 
     <textarea
         className="textarea-subsanacion"
@@ -326,11 +338,23 @@ export default function ConsultaSubsanacion() {
         placeholder="Describa las correcciones realizadas para atender las observaciones."
     />
 
-</div>
+</div>   
 
 <div className="texto-perfil">
 
-    <h4>Perfil Laboral</h4>
+    <div className="titulo-edicion">
+
+        <h4>Perfil Laboral</h4>
+
+        <button
+            type="button"
+            className="btn-modificar"
+            onClick={() => setEditarPerfilLaboral(!editarPerfilLaboral)}
+        >
+            {editarPerfilLaboral ? "Bloquear" : "Modificar"}
+        </button>
+
+    </div>
 
     <textarea
         className="textarea-subsanacion"
@@ -342,17 +366,49 @@ export default function ConsultaSubsanacion() {
 
 </div>
 
+
+
 <div className="texto-perfil">
 
-    <h4>Perfil Académico</h4>
+    <div className="titulo-edicion">
+
+        <h4>Perfil Académico</h4>
+
+        <button
+            type="button"
+            className="btn-modificar"
+            onClick={() => setEditarPerfilAcademico(!editarPerfilAcademico)}
+        >
+            {editarPerfilAcademico ? "Bloquear" : "Modificar"}
+        </button>
+
+    </div>
 
     <textarea
         className="textarea-subsanacion"
         rows={6}
         value={perfilAcademico}
-        readOnly={!editarPerfilLaboral}
+        readOnly={!editarPerfilAcademico}
         onChange={(e) => setPerfilAcademico(e.target.value)}
     />
+
+</div>
+
+<div className="acciones-subsanacion">
+
+    <button
+        className="btn-retirar-novedad"
+        type="button"
+    >
+        Retirar novedad
+    </button>
+
+    <button
+        className="btn-guardar-subsanacion"
+        type="button"
+    >
+        Guardar Subsanación
+    </button>
 
 </div>
 

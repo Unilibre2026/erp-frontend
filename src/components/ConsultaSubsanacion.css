@@ -147,3 +147,90 @@
     box-shadow:0 0 0 3px rgba(37,99,235,.15);
 
 }
+
+.titulo-edicion{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:10px;
+}
+
+.btn-modificar{
+    background:#ec4899;
+    color:#fff;
+    border:none;
+    padding:8px 18px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:13px;
+    font-weight:600;
+    transition:.2s;
+}
+
+.btn-modificar:hover{
+    background:#db2777;
+}
+
+.textarea-subsanacion[readonly]{
+    background:#fafafa;
+    cursor:text;
+}
+
+.acciones-subsanacion{
+    display:flex;
+    justify-content:center;
+    margin-top:30px;
+}
+
+.btn-guardar-subsanacion{
+    background:#2563eb;
+    color:white;
+    border:none;
+    padding:14px 34px;
+    border-radius:10px;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.btn-guardar-subsanacion:hover{
+    background:#1d4ed8;
+}
+
+.acciones-subsanacion{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    margin-top:30px;
+}
+
+.btn-guardar-subsanacion{
+    background:#2563eb;
+    color:#fff;
+    border:none;
+    padding:14px 34px;
+    border-radius:10px;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+}
+
+.btn-retirar-novedad{
+    background:#dc2626;
+    color:#fff;
+    border:none;
+    padding:14px 34px;
+    border-radius:10px;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+}
+
+.btn-retirar-novedad:hover{
+    background:#b91c1c;
+}
+
+.btn-guardar-subsanacion:hover{
+    background:#1d4ed8;
+}
