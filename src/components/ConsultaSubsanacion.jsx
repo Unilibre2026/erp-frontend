@@ -24,18 +24,20 @@ export default function ConsultaSubsanacion() {
                     <thead>
 
                         <tr>
+    <td>{item.id}</td>
 
-                            <th>N. novedad</th>
-                            <th>Status</th>
-                            <th>Documento</th>
-                            <th>Nombre del experto</th>
-                            <th>Tipo de novedad</th>
-                            <th>Eje / Indicador</th>
-                            <th>Nivel</th>
-                            <th>Responsable de la novedad</th>
-                            <th>Acción</th>
+    <td>
+        {/* Aquí irá el ojo */}
+    </td>
 
-                        </tr>
+    <td>{item.status}</td>
+    <td>{item.documento_experto}</td>
+    <td>{item.nombre}</td>
+    <td>{item.tipo_novedad}</td>
+    <td>{item.eje}</td>
+    <td>{item.nivel}</td>
+    <td>{item.responsable}</td>
+</tr>
 
                     </thead>
 
@@ -44,7 +46,7 @@ export default function ConsultaSubsanacion() {
                         <tr>
 
                             <td
-                                colSpan="9"
+                                colSpan={9}
                                 style={{
                                     textAlign: "center",
                                     padding: "40px"
