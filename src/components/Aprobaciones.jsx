@@ -122,7 +122,7 @@ export default function Aprobaciones() {
     />
   </div>
 
-  <div className="grupo-filtro">
+  <div className="grupo-filtro estado">
     <label>Estado</label>
     <select
       value={estadoFiltro}

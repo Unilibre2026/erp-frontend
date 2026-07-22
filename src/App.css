@@ -1498,3 +1498,46 @@ thead th {
     cursor:not-allowed;
     opacity:1;
 }
+
+/* =========================================
+   FILTROS - APROBACIONES
+========================================= */
+
+.filtros-aprobaciones{
+    display:flex;
+    align-items:flex-start;
+    gap:20px;
+    margin-bottom:15px;
+}
+
+.grupo-filtro{
+    display:flex;
+    flex-direction:column;
+}
+
+.grupo-filtro.estado{
+    padding-left:20px;
+    border-left:1px solid #d9d9d9;
+}
+
+.grupo-filtro label{
+    font-size:12px;
+    font-weight:600;
+    color:#555;
+    margin-bottom:6px;
+}
+
+.grupo-filtro select,
+.grupo-filtro input{
+    width:170px;
+    height:34px;
+    padding:0 8px;
+    border:1px solid #bfc6d1;
+    border-radius:4px;
+    box-sizing:border-box;
+    font-size:13px;
+}
+
+.grupo-filtro input{
+    width:200px;
+}
