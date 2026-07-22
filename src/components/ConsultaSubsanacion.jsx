@@ -304,9 +304,12 @@ export default function ConsultaSubsanacion() {
 
         <h4>Perfil Laboral</h4>
 
-        <p>
-            {expertoSeleccionado.perfil_laboral || "No registra información."}
-        </p>
+        <textarea
+         className="textarea-subsanacion"
+         rows={6}
+         value={perfilLaboral}
+         onChange={(e) => setPerfilLaboral(e.target.value)}
+/>
 
     </div>
 
@@ -314,9 +317,12 @@ export default function ConsultaSubsanacion() {
 
         <h4>Perfil Académico</h4>
 
-        <p>
-            {expertoSeleccionado.perfil_academico || "No registra información."}
-        </p>
+        <textarea
+            className="textarea-subsanacion"
+            rows={6}
+            value={perfilAcademico}
+            onChange={(e) => setPerfilAcademico(e.target.value)}
+/>
 
     </div>
 
@@ -324,9 +330,12 @@ export default function ConsultaSubsanacion() {
 
         <h4>Disponibilidad</h4>
 
-        <p>
-            {expertoSeleccionado.disponibilidad_tiempo || "No registra información."}
-        </p>
+        <textarea
+          className="textarea-subsanacion"
+          rows={6}
+          value={disponibilidad}
+          onChange={(e) => setDisponibilidad(e.target.value)}
+/>
 
     </div>
 
