@@ -184,11 +184,13 @@ cargarSubsanaciones();
                                              setExpertoSeleccionado(item);
                                              setPerfilLaboral(item.perfil_laboral || "");
                                              setPerfilAcademico(item.perfil_academico || "");
+                                             setJustificacion(item.justificacion_asignacion || "");
                                              
-                                             setJustificacion("");
+                                             
                                              setEditarPerfilLaboral(false);
                                              setEditarPerfilAcademico(false);
-                                             setJustificacion(item.justificacion_asignacion || "");
+                                             setEditarJustificacion(false);
+                                             
     }}
 >
     <FileUser strokeWidth={2} />
@@ -362,7 +364,7 @@ cargarSubsanaciones();
 
         <div>
             <strong>Disponibilidad</strong>
-            <p>{expertoSeleccionado.disponibilidad_tiempo}</p>
+            <p>{expertoSeleccionado.validador}</p>
         </div>
 
         <div>
