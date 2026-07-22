@@ -99,11 +99,11 @@ export default function ConsultaSubsanacion() {
                 <td style={{ textAlign: "center" }}>
 
     <button
-        className="btn-ver-subsanacion"
-        onClick={() => console.log(item.id)}
-    >
-        <FileUser size={45} />
-    </button>
+         className="btn-ver-subsanacion"
+         onClick={() => console.log(item.id)}
+>
+    <FileUser strokeWidth={2} />
+</button>
 
 </td>
                 <td>{item.status}</td>
