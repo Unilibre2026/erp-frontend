@@ -16,6 +16,7 @@ import PermisosModulos from "./components/PermisosModulos";
 import ExcelJS from "exceljs";
 import { saveAs } from "file-saver";
 import Aprobaciones from "./components/Aprobaciones";
+import ConsultaSubsanacion from "./components/ConsultaSubsanacion";
 
 import ConsultaCNSC from "./components/ConsultaCNSC";
 
@@ -442,6 +443,12 @@ if (!usuario) {
   </button>
 )}
 
+{puedeVer("consulta_subsanacion") && (
+  <button onClick={() => cambiarVista("consulta_subsanacion")}>
+    Consulta de subsanación
+  </button>
+)}
+
 {puedeVer("usuarios") && (
 <button onClick={() => cambiarVista("permisos_modulos")}>
   Permisos módulos
@@ -480,6 +487,9 @@ if (!usuario) {
   {vista === "usuarios" && <Usuarios />}
   {vista === "permisos_modulos" && <PermisosModulos />}
   {vista === "aprobaciones" && <Aprobaciones />}
+  {vista === "consulta_subsanacion" && (
+  <ConsultaSubsanacion />
+)}
 
 
   {vista === "Cargar observaciones de expertos" && (
