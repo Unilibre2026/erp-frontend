@@ -44,6 +44,74 @@ export default function ConsultaSubsanacion() {
 
     };
 
+    const guardarSubsanacion = async () => {
+
+    try {
+
+        const token = localStorage.getItem("token");
+        const subsanadoPor = localStorage.getItem("usuario");
+
+        const body = {
+
+            numero_novedad: expertoSeleccionado.numero_novedad,
+            convocatoria: expertoSeleccionado.convocatoria,
+            tipo_novedad: expertoSeleccionado.tipo_novedad,
+            eje: expertoSeleccionado.eje,
+            nivel: expertoSeleccionado.nivel,
+            rol: expertoSeleccionado.rol,
+
+            nombre: expertoSeleccionado.nombre,
+            documento_experto: expertoSeleccionado.documento_experto,
+
+            responsable: expertoSeleccionado.responsable,
+
+            motivo_retiro: expertoSeleccionado.motivo_retiro,
+
+            observaciones: expertoSeleccionado.justificacion_aprobacion,
+
+            contactar_futuro:
+                expertoSeleccionado.contactar_futuras_convocatorias,
+
+            justificacion: justificacion,
+
+            perfil_laboral: perfilLaboral,
+            perfil_academico: perfilAcademico,
+
+            validador: expertoSeleccionado.validador,
+
+            subsanado_por: subsanadoPor
+
+        };
+
+        const res = await fetch(`${API_URL}/subsanaciones`, {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
+    },
+    body: JSON.stringify(body)
+});
+
+const data = await res.json();
+
+if (!res.ok) {
+    throw new Error(data.detail || "Error al guardar la subsanación");
+}
+
+alert("Subsanación guardada correctamente.");
+
+setExpertoSeleccionado(null);
+
+cargarSubsanaciones();
+
+    } catch (error) {
+
+        console.error(error);
+
+    }
+
+};
+
     return (
 
         <div style={{ padding: "20px" }}>
@@ -112,7 +180,7 @@ export default function ConsultaSubsanacion() {
                                           title="Ver hoja de vida"
                                           onClick={() => {
 
-                                             setExpertoSeleccionado(item);
+                                             
 
                                              setPerfilLaboral(item.perfil_laboral || "");
                                              setPerfilAcademico(item.perfil_academico || "");
@@ -399,6 +467,7 @@ export default function ConsultaSubsanacion() {
     <button
         className="btn-guardar-subsanacion"
         type="button"
+        onClick={guardarSubsanacion}
     >
         Guardar Subsanación
     </button>
