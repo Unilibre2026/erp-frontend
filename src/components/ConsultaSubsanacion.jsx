@@ -1,6 +1,38 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+
+const API_URL = "https://erp-unilibre-production.up.railway.app";
 
 export default function ConsultaSubsanacion() {
+
+    const [datos, setDatos] = useState([]);
+
+    useEffect(() => {
+        cargarSubsanaciones();
+    }, []);
+
+    const cargarSubsanaciones = async () => {
+
+        try {
+
+            const token = localStorage.getItem("token");
+
+            const res = await fetch(`${API_URL}/aprobaciones/subsanaciones`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+
+            const data = await res.json();
+
+            setDatos(Array.isArray(data) ? data : []);
+
+        } catch (error) {
+
+            console.error(error);
+
+        }
+
+    };
 
     return (
 
@@ -48,7 +80,7 @@ export default function ConsultaSubsanacion() {
                                     padding: "40px"
                                 }}
                             >
-                                No hay registros
+                                datos.map(...)
                             </td>
 
                         </tr>
