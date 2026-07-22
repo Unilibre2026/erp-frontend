@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FileUser } from "lucide-react";
+import { FileUser, User } from "lucide-react";
 import "./ConsultaSubsanacion.css";
 
 const API_URL = "https://erp-unilibre-production.up.railway.app";
@@ -7,6 +7,7 @@ const API_URL = "https://erp-unilibre-production.up.railway.app";
 export default function ConsultaSubsanacion() {
 
     const [datos, setDatos] = useState([]);
+    const [expertoSeleccionado, setExpertoSeleccionado] = useState(null);
 
     useEffect(() => {
         cargarSubsanaciones();
@@ -73,58 +74,161 @@ export default function ConsultaSubsanacion() {
 
                     <tbody>
 
-    {datos.length === 0 ? (
+                        {datos.length === 0 ? (
 
-        <tr>
+                            <tr>
 
-            <td
-                colSpan={9}
-                style={{
-                    textAlign: "center",
-                    padding: "40px"
-                }}
-            >
-                No hay registros
-            </td>
+                                <td
+                                    colSpan={9}
+                                    style={{
+                                        textAlign: "center",
+                                        padding: "40px"
+                                    }}
+                                >
+                                    No hay registros
+                                </td>
 
-        </tr>
+                            </tr>
 
-    ) : (
+                        ) : (
 
-        datos.map((item) => (
+                            datos.map((item) => (
 
-            <tr key={item.id}>
+                                <tr key={item.numero_novedad}>
 
-                <td>{item.id}</td>
-                <td style={{ textAlign: "center" }}>
+                                    <td>{item.numero_novedad}</td>
 
-    <button
-         className="btn-ver-subsanacion"
-         onClick={() => console.log(item.id)}
->
-    <FileUser strokeWidth={2} />
-</button>
+                                    <td style={{ textAlign: "center" }}>
 
-</td>
-                <td>{item.status}</td>
-                <td>{item.documento_experto}</td>
-                <td>{item.nombre}</td>
-                <td>{item.tipo_novedad}</td>
-                <td>{item.eje}</td>
-                <td>{item.nivel}</td>
-                <td>{item.responsable}</td>
+                                        <button
+                                            className="btn-ver-subsanacion"
+                                            title="Ver hoja de vida"
+                                            onClick={() => setExpertoSeleccionado(item)}
+                                        >
+                                            <FileUser strokeWidth={2} />
+                                        </button>
 
-            </tr>
+                                    </td>
 
-        ))
+                                    <td>{item.status}</td>
+                                    <td>{item.documento_experto}</td>
+                                    <td>{item.nombre}</td>
+                                    <td>{item.tipo_novedad}</td>
+                                    <td>{item.eje}</td>
+                                    <td>{item.nivel}</td>
+                                    <td>{item.responsable}</td>
 
-    )}
+                                </tr>
 
-</tbody>
+                            ))
+
+                        )}
+
+                    </tbody>
 
                 </table>
 
             </div>
+
+            {expertoSeleccionado && (
+
+                <div
+                    className="modal-overlay"
+                    onClick={() => setExpertoSeleccionado(null)}
+                >
+
+                    <div
+                        className="modal-hoja-vida"
+                        onClick={(e) => e.stopPropagation()}
+                    >
+
+                        <div className="modal-header">
+
+                            <div>
+
+                                <h2
+                                    style={{
+                                        display: "flex",
+                                        alignItems: "center",
+                                        gap: "10px",
+                                    }}
+                                >
+                                    <User size={28} color="#ffffff" />
+                                </h2>
+
+                                <small
+                                    style={{
+                                        fontSize: "25px",
+                                        fontWeight: "600",
+                                        color: "#ffffff",
+                                    }}
+                                >
+                                    Resumen Ejecutivo del Perfil
+                                </small>
+
+                            </div>
+
+                            <button
+                                className="btn-cerrar-modal"
+                                onClick={() => setExpertoSeleccionado(null)}
+                            >
+                                ✕
+                            </button>
+
+                        </div>
+
+                        <div className="modal-body">
+
+                            <div className="perfil-header">
+
+                                <div className="perfil-avatar">
+
+                                    <User
+                                        size={48}
+                                        color="#ffffff"
+                                        strokeWidth={2.2}
+                                    />
+
+                                </div>
+
+                                <div className="perfil-info">
+
+                                    <h2>{expertoSeleccionado.nombre}</h2>
+
+                                    <p>
+                                        <strong>Documento:</strong>{" "}
+                                        {expertoSeleccionado.documento_experto}
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                            <div className="perfil-grid">
+
+                                <div className="card-perfil">
+
+                                    <h3>Información General</h3>
+
+                                    <p><strong>Tipo de novedad:</strong> {expertoSeleccionado.tipo_novedad}</p>
+
+                                    <p><strong>Indicador:</strong> {expertoSeleccionado.eje}</p>
+
+                                    <p><strong>Nivel:</strong> {expertoSeleccionado.nivel}</p>
+
+                                    <p><strong>Responsable de la novedad:</strong> {expertoSeleccionado.responsable}</p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            )}
 
         </div>
 
