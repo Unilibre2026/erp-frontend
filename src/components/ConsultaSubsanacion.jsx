@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Eye } from "lucide-react";
+import { FileUser } from "lucide-react";
 import "./ConsultaSubsanacion.css";
 
 const API_URL = "https://erp-unilibre-production.up.railway.app";
