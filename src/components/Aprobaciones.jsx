@@ -107,7 +107,7 @@ export default function Aprobaciones() {
       value={campoBusqueda}
       onChange={(e) => setCampoBusqueda(e.target.value)}
     >
-      <option value="documento_experto">Documento</option>
+      <option value="documento">Documento</option>
       <option value="nombre">Nombre</option>
       <option value="convocatoria">Convocatoria</option>
       <option value="id">Novedad</option>
