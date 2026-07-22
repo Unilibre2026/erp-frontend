@@ -200,11 +200,29 @@ export default function Aprobaciones() {
                     </button>
                   </td>
 
-                  <td style={{ textAlign: "center" }}>
-                    <span className="status-pill pending">
-                      🟡 Pendiente
-                    </span>
-                  </td>
+                 <td style={{ textAlign: "center" }}>
+  <span
+    style={{
+      display: "inline-block",
+      padding: "4px 10px",
+      borderRadius: "20px",
+      fontSize: "12px",
+      fontWeight: "bold",
+      backgroundColor:
+        item.estado === "Subsanado" ? "#f3e8ff" : "#fff7cc",
+      color:
+        item.estado === "Subsanado" ? "#7e22ce" : "#996500",
+      border:
+        item.estado === "Subsanado"
+          ? "1px solid #c084fc"
+          : "1px solid #f4d03f"
+    }}
+  >
+    {item.estado === "Subsanado"
+      ? "🟣 Subsanado"
+      : "🟡 Pendiente"}
+  </span>
+</td>
 
                   <td style={{ textAlign: "center" }}>
                     <div
