@@ -306,7 +306,21 @@ export default function ConsultaSubsanacion() {
 
     <h3>Perfil del Experto</h3>
 
+    
     <div className="texto-perfil">
+
+        <h4>Justificación</h4>
+
+        <textarea
+            className="textarea-subsanacion"
+            rows={5}
+            value={justificacion}
+            onChange={(e) => setJustificacion(e.target.value)}
+            placeholder="Describa las correcciones realizadas para atender las observaciones."
+        />
+
+    </div>
+
 
         <h4>Perfil Laboral</h4>
 
