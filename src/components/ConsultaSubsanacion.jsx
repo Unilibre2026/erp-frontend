@@ -321,16 +321,16 @@ export default function ConsultaSubsanacion() {
 
         <button
             type="button"
-            className="btn-modificar"
+            className={`btn-modificar ${editarJustificacion ? "activo" : ""}`}
             onClick={() => setEditarJustificacion(!editarJustificacion)}
         >
-            {editarJustificacion ? "Bloquear" : "Modificar"}
+            {editarJustificacion ? "Modificando información" : "Modificar"}
         </button>
 
     </div>
 
     <textarea
-        className="textarea-subsanacion"
+        className={`textarea-subsanacion ${editarJustificacion ? "editando" : ""}`}
         rows={5}
         value={justificacion}
         readOnly={!editarJustificacion}
@@ -348,16 +348,16 @@ export default function ConsultaSubsanacion() {
 
         <button
             type="button"
-            className="btn-modificar"
+            className={`btn-modificar ${editarPerfilLaboral ? "activo" : ""}`}
             onClick={() => setEditarPerfilLaboral(!editarPerfilLaboral)}
         >
-            {editarPerfilLaboral ? "Mofificando información" : "Modificar"}
+            {editarPerfilLaboral ? "Modificando información" : "Modificar"}
         </button>
 
     </div>
 
     <textarea
-        className="textarea-subsanacion"
+        className={`textarea-subsanacion ${editarPerfilLaboral ? "editando" : ""}`}
         rows={6}
         value={perfilLaboral}
         readOnly={!editarPerfilLaboral}
@@ -376,16 +376,16 @@ export default function ConsultaSubsanacion() {
 
         <button
             type="button"
-            className="btn-modificar"
+            className={`btn-modificar ${editarPerfilAcademico ? "activo" : ""}`}
             onClick={() => setEditarPerfilAcademico(!editarPerfilAcademico)}
         >
-            {editarPerfilAcademico ? "Bloquear" : "Modificar"}
+            {editarPerfilAcademico ? "Modificando información" : "Modificar"}
         </button>
 
     </div>
 
     <textarea
-        className="textarea-subsanacion"
+        className={`textarea-subsanacion ${editarPerfilAcademico ? "editando" : ""}`}
         rows={6}
         value={perfilAcademico}
         readOnly={!editarPerfilAcademico}
