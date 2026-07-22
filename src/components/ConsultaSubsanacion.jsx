@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Eye } from "lucide-react";
+import "./ConsultaSubsanacion.css";
 
 const API_URL = "https://erp-unilibre-production.up.railway.app";
 
@@ -97,13 +98,11 @@ export default function ConsultaSubsanacion() {
                 <td>{item.id}</td>
                 <td style={{ textAlign: "center" }}>
 
-    <Eye
-        size={18}
-        style={{
-            cursor: "pointer",
-            color: "#2563eb"
-        }}
-    />
+    <button
+        className="btn-ver-subsanacion"
+    >
+        <Eye size={18} />
+    </button>
 
 </td>
                 <td>{item.status}</td>
