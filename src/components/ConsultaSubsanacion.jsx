@@ -120,7 +120,7 @@ export default function ConsultaSubsanacion() {
                                              setJustificacion("");
                                              setEditarPerfilLaboral(false);
                                              setEditarPerfilAcademico(false);
-                                             setEditarJustificacion(false);
+                                             setJustificacion(item.justificacion_asignacion || "");
     }}
 >
     <FileUser strokeWidth={2} />
