@@ -59,7 +59,7 @@ export default function ConsultaSubsanacion() {
 
                         <tr>
                             <th>N. novedad</th>
-                            <th>Acción</th>
+                            <th>Ver información</th>
                             <th>Status</th>
                             <th>Documento</th>
                             <th>Nombre del experto</th>
@@ -102,7 +102,7 @@ export default function ConsultaSubsanacion() {
         className="btn-ver-subsanacion"
         onClick={() => console.log(item.id)}
     >
-        <FileUser size={26} />
+        <FileUser size={45} />
     </button>
 
 </td>
