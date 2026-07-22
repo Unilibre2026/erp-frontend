@@ -249,17 +249,34 @@ export default function ConsultaSubsanacion() {
 
                                 <div className="card-perfil">
 
-                                    <h3>Información General</h3>
+    <h3>Información de la novedad</h3>
 
-                                    <p><strong>Tipo de novedad:</strong> {expertoSeleccionado.tipo_novedad}</p>
+    <p>
+        <strong>Número de novedad:</strong>{" "}
+        {expertoSeleccionado.numero_novedad}
+    </p>
 
-                                    <p><strong>Indicador:</strong> {expertoSeleccionado.eje}</p>
+    <p>
+        <strong>Convocatoria:</strong>{" "}
+        {expertoSeleccionado.convocatoria}
+    </p>
 
-                                    <p><strong>Nivel:</strong> {expertoSeleccionado.nivel}</p>
+    <p>
+        <strong>Tipo de novedad:</strong>{" "}
+        {expertoSeleccionado.tipo_novedad}
+    </p>
 
-                                    <p><strong>Responsable de la novedad:</strong> {expertoSeleccionado.responsable}</p>
+    <p>
+        <strong>Responsable:</strong>{" "}
+        {expertoSeleccionado.responsable}
+    </p>
 
-                                </div>
+    <p>
+        <strong>Fecha de creación:</strong>{" "}
+        {new Date(expertoSeleccionado.fecha_creacion).toLocaleDateString("es-CO")}
+    </p>
+
+</div>
 
                             </div>
 
