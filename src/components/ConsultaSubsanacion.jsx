@@ -194,7 +194,7 @@ export default function ConsultaSubsanacion() {
 
         <div>
 
-            <strong>Fecha del rechazo</strong>
+            <strong>Fecha de notificación</strong>
 
             <p>
                {new Date(expertoSeleccionado.fecha_aprobacion).toLocaleString("es-CO", {
