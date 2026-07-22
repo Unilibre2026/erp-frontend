@@ -249,80 +249,60 @@ export default function ConsultaSubsanacion() {
 
                                 <div className="card-perfil">
 
-    <h3>Información de la novedad</h3>
-
-    <p>
-        <strong>Número de novedad:</strong>{" "}
-        {expertoSeleccionado.numero_novedad}
-    </p>
-
-    <p>
-        <strong>Convocatoria:</strong>{" "}
-        {expertoSeleccionado.convocatoria}
-    </p>
-
-    <p>
-        <strong>Tipo de novedad:</strong>{" "}
-        {expertoSeleccionado.tipo_novedad}
-    </p>
-
-    <p>
-        <strong>Responsable:</strong>{" "}
-        {expertoSeleccionado.responsable}
-    </p>
-
-    <p>
-        <strong>Fecha de creación:</strong>{" "}
-        {new Date(expertoSeleccionado.fecha_creacion).toLocaleDateString("es-CO")}
-    </p>
-
-</div>
-
-
-<div className="card-perfil">
-
-    <h3>Información del experto</h3>
+    <h3>Información General</h3>
 
     <div className="info-grid">
 
         <div>
+            <strong>Número de novedad</strong>
+            <p>{expertoSeleccionado.numero_novedad}</p>
+        </div>
 
+        <div>
+            <strong>Convocatoria</strong>
+            <p>{expertoSeleccionado.convocatoria}</p>
+        </div>
+
+        <div>
             <strong>Documento</strong>
-
             <p>{expertoSeleccionado.documento_experto}</p>
-
         </div>
 
         <div>
-
-            <strong>Nombre</strong>
-
+            <strong>Nombre del experto</strong>
             <p>{expertoSeleccionado.nombre}</p>
-
         </div>
 
         <div>
+            <strong>Tipo de novedad</strong>
+            <p>{expertoSeleccionado.tipo_novedad}</p>
+        </div>
 
+        <div>
             <strong>Indicador</strong>
-
             <p>{expertoSeleccionado.eje}</p>
-
         </div>
 
         <div>
-
             <strong>Nivel</strong>
-
             <p>{expertoSeleccionado.nivel}</p>
-
         </div>
 
         <div>
-
             <strong>Rol</strong>
-
             <p>{expertoSeleccionado.rol}</p>
+        </div>
 
+        <div>
+            <strong>Responsable</strong>
+            <p>{expertoSeleccionado.responsable}</p>
+        </div>
+
+        <div>
+            <strong>Fecha de creación</strong>
+            <p>
+                {new Date(expertoSeleccionado.fecha_creacion).toLocaleDateString("es-CO")}
+            </p>
         </div>
 
     </div>
