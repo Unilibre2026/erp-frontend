@@ -10,7 +10,7 @@ export default function ConsultaSubsanacion() {
     const [expertoSeleccionado, setExpertoSeleccionado] = useState(null);
     const [perfilLaboral, setPerfilLaboral] = useState("");
     const [perfilAcademico, setPerfilAcademico] = useState("");
-    const [disponibilidad, setDisponibilidad] = useState("");
+    
     const [justificacion, setJustificacion] = useState("");
 
     useEffect(() => {
@@ -113,7 +113,7 @@ export default function ConsultaSubsanacion() {
 
                                              setPerfilLaboral(item.perfil_laboral || "");
                                              setPerfilAcademico(item.perfil_academico || "");
-                                             setDisponibilidad(item.disponibilidad_tiempo || "");
+                                             
                                              setJustificacion("");
     }}
 >
