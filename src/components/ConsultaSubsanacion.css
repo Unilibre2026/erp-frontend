@@ -73,3 +73,23 @@
     line-height:1.6;
     white-space:pre-wrap;
 }
+
+.info-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+    margin-top:15px;
+}
+
+.info-grid strong{
+    display:block;
+    color:#374151;
+    margin-bottom:6px;
+    font-size:14px;
+}
+
+.info-grid p{
+    margin:0;
+    font-size:15px;
+    color:#111827;
+}

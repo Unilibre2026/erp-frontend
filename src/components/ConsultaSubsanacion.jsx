@@ -278,6 +278,57 @@ export default function ConsultaSubsanacion() {
 
 </div>
 
+
+<div className="card-perfil">
+
+    <h3>Información del experto</h3>
+
+    <div className="info-grid">
+
+        <div>
+
+            <strong>Documento</strong>
+
+            <p>{expertoSeleccionado.documento_experto}</p>
+
+        </div>
+
+        <div>
+
+            <strong>Nombre</strong>
+
+            <p>{expertoSeleccionado.nombre}</p>
+
+        </div>
+
+        <div>
+
+            <strong>Indicador</strong>
+
+            <p>{expertoSeleccionado.eje}</p>
+
+        </div>
+
+        <div>
+
+            <strong>Nivel</strong>
+
+            <p>{expertoSeleccionado.nivel}</p>
+
+        </div>
+
+        <div>
+
+            <strong>Rol</strong>
+
+            <p>{expertoSeleccionado.rol}</p>
+
+        </div>
+
+    </div>
+
+</div>
+
                             </div>
 
                         </div>
