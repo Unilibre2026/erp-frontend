@@ -132,7 +132,7 @@ export default function Aprobaciones() {
       <option value="Todos">Todos los estados</option>
       <option value="Pendiente">Pendiente</option>
       <option value="Pre-aprobado">Pre-aprobado</option>
-      <option value="Subsanar">Subsanar</option>
+      <option value="Subsanado">Subsanado</option>
     </select>
   </div>
 
