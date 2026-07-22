@@ -100,8 +100,9 @@ export default function ConsultaSubsanacion() {
 
     <button
         className="btn-ver-subsanacion"
+        onClick={() => console.log(item.id)}
     >
-        <Eye size={18} />
+        <FileUser size={18} />
     </button>
 
 </td>
