@@ -72,7 +72,7 @@ export default function Aprobaciones() {
   // ===== FILTRO DE LA TABLA =====
   const datosFiltrados = pendientes.filter((item) => {
 
-     console.log(item.documento, item.documento_experto);
+     
 
     const valorBusqueda = String(item[campoBusqueda] || "")
       .toLowerCase()
