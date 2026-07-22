@@ -11,6 +11,7 @@ export default function ConsultaSubsanacion() {
     const [perfilLaboral, setPerfilLaboral] = useState("");
     const [perfilAcademico, setPerfilAcademico] = useState("");
     const [disponibilidad, setDisponibilidad] = useState("");
+    const [justificacion, setJustificacion] = useState("");
 
     useEffect(() => {
         cargarSubsanaciones();
@@ -113,7 +114,7 @@ export default function ConsultaSubsanacion() {
                                              setPerfilLaboral(item.perfil_laboral || "");
                                              setPerfilAcademico(item.perfil_academico || "");
                                              setDisponibilidad(item.disponibilidad_tiempo || "");
-
+                                             setJustificacion("");
     }}
 >
     <FileUser strokeWidth={2} />
@@ -286,6 +287,11 @@ export default function ConsultaSubsanacion() {
         </div>
 
         <div>
+            <strong>Disponibilidad</strong>
+            <p>{expertoSeleccionado.disponibilidad_tiempo}</p>
+        </div>
+
+        <div>
             <strong>Fecha de creación</strong>
             <p>
                 {new Date(expertoSeleccionado.fecha_creacion).toLocaleDateString("es-CO")}
@@ -326,19 +332,7 @@ export default function ConsultaSubsanacion() {
 
     </div>
 
-    <div className="texto-perfil">
-
-        <h4>Disponibilidad</h4>
-
-        <textarea
-          className="textarea-subsanacion"
-          rows={6}
-          value={disponibilidad}
-          onChange={(e) => setDisponibilidad(e.target.value)}
-/>
-
-    </div>
-
+    
 </div>
 
 
