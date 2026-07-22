@@ -12,6 +12,9 @@ export default function ConsultaSubsanacion() {
     const [perfilAcademico, setPerfilAcademico] = useState("");
     
     const [justificacion, setJustificacion] = useState("");
+    const [editarPerfilLaboral, setEditarPerfilLaboral] = useState(false);
+    const [editarPerfilAcademico, setEditarPerfilAcademico] = useState(false);
+    const [editarJustificacion, setEditarJustificacion] = useState(false);
 
     useEffect(() => {
         cargarSubsanaciones();
@@ -115,6 +118,9 @@ export default function ConsultaSubsanacion() {
                                              setPerfilAcademico(item.perfil_academico || "");
                                              
                                              setJustificacion("");
+                                             setEditarPerfilLaboral(false);
+                                             setEditarPerfilAcademico(false);
+                                             setEditarJustificacion(false);
     }}
 >
     <FileUser strokeWidth={2} />
@@ -315,6 +321,7 @@ export default function ConsultaSubsanacion() {
         className="textarea-subsanacion"
         rows={5}
         value={justificacion}
+        readOnly={!editarJustificacion}
         onChange={(e) => setJustificacion(e.target.value)}
         placeholder="Describa las correcciones realizadas para atender las observaciones."
     />
@@ -329,6 +336,7 @@ export default function ConsultaSubsanacion() {
         className="textarea-subsanacion"
         rows={6}
         value={perfilLaboral}
+        readOnly={!editarPerfilLaboral}
         onChange={(e) => setPerfilLaboral(e.target.value)}
     />
 
@@ -342,6 +350,7 @@ export default function ConsultaSubsanacion() {
         className="textarea-subsanacion"
         rows={6}
         value={perfilAcademico}
+        readOnly={!editarPerfilLaboral}
         onChange={(e) => setPerfilAcademico(e.target.value)}
     />
 
