@@ -163,7 +163,7 @@ export default function ConsultaSubsanacion() {
                                         color: "#ffffff",
                                     }}
                                 >
-                                    Resumen Ejecutivo del Perfil
+                                    Gestión de Subsanación
                                 </small>
 
                             </div>
@@ -178,6 +178,39 @@ export default function ConsultaSubsanacion() {
                         </div>
 
                         <div className="modal-body">
+                            <div className="card-observaciones">
+
+    <h3>Observaciones</h3>
+
+    <div className="observaciones-grid">
+
+        <div>
+
+            <strong>Estado</strong>
+
+            <p>{expertoSeleccionado.aprobacion}</p>
+
+        </div>
+
+        <div>
+
+            <strong>Fecha del rechazo</strong>
+
+            <p>{expertoSeleccionado.fecha_aprobacion}</p>
+
+        </div>
+
+    </div>
+
+    <div className="observaciones-texto">
+
+        <strong>Observaciones</strong>
+
+        <p>{expertoSeleccionado.justificacion_aprobacion}</p>
+
+    </div>
+
+</div>
 
                             <div className="perfil-header">
 

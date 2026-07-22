@@ -33,3 +33,43 @@
     transform: scale(1.08);
 
 }
+
+.card-observaciones{
+    background:#fff8e8;
+    border-left:6px solid #f59e0b;
+    border-radius:10px;
+    padding:20px;
+    margin-bottom:25px;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
+
+.card-observaciones h3{
+    margin:0 0 18px;
+    color:#92400e;
+    font-size:22px;
+}
+
+.observaciones-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+    margin-bottom:18px;
+}
+
+.observaciones-grid strong,
+.observaciones-texto strong{
+    display:block;
+    margin-bottom:6px;
+    color:#374151;
+}
+
+.observaciones-grid p{
+    margin:0;
+    font-weight:600;
+}
+
+.observaciones-texto p{
+    margin-top:8px;
+    line-height:1.6;
+    white-space:pre-wrap;
+}
