@@ -351,7 +351,7 @@ export default function ConsultaSubsanacion() {
             className="btn-modificar"
             onClick={() => setEditarPerfilLaboral(!editarPerfilLaboral)}
         >
-            {editarPerfilLaboral ? "Bloquear" : "Modificar"}
+            {editarPerfilLaboral ? "Mofificando información" : "Modificar"}
         </button>
 
     </div>
