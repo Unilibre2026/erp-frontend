@@ -309,29 +309,43 @@ export default function ConsultaSubsanacion() {
     
     <div className="texto-perfil">
 
-        <h4>Justificación</h4>
+    <h4>Justificación</h4>
 
-        <textarea
-            className="textarea-subsanacion"
-            rows={5}
-            value={justificacion}
-            onChange={(e) => setJustificacion(e.target.value)}
-            placeholder="Describa las correcciones realizadas para atender las observaciones."
-        />
+    <textarea
+        className="textarea-subsanacion"
+        rows={5}
+        value={justificacion}
+        onChange={(e) => setJustificacion(e.target.value)}
+        placeholder="Describa las correcciones realizadas para atender las observaciones."
+    />
 
-    </div>
+</div>
 
+<div className="texto-perfil">
 
-        <h4>Perfil Laboral</h4>
+    <h4>Perfil Laboral</h4>
 
-        <textarea
-         className="textarea-subsanacion"
-         rows={6}
-         value={perfilLaboral}
-         onChange={(e) => setPerfilLaboral(e.target.value)}
-/>
+    <textarea
+        className="textarea-subsanacion"
+        rows={6}
+        value={perfilLaboral}
+        onChange={(e) => setPerfilLaboral(e.target.value)}
+    />
 
-    </div>
+</div>
+
+<div className="texto-perfil">
+
+    <h4>Perfil Académico</h4>
+
+    <textarea
+        className="textarea-subsanacion"
+        rows={6}
+        value={perfilAcademico}
+        onChange={(e) => setPerfilAcademico(e.target.value)}
+    />
+
+</div>
 
     <div className="texto-perfil">
 
