@@ -181,7 +181,7 @@ cargarSubsanaciones();
                                           onClick={() => {
 
                                              
-
+                                             setExpertoSeleccionado(item);
                                              setPerfilLaboral(item.perfil_laboral || "");
                                              setPerfilAcademico(item.perfil_academico || "");
                                              
