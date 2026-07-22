@@ -220,32 +220,8 @@ export default function ConsultaSubsanacion() {
 
 </div>
 
-                            <div className="perfil-header">
-
-                                <div className="perfil-avatar">
-
-                                    <User
-                                        size={48}
-                                        color="#ffffff"
-                                        strokeWidth={2.2}
-                                    />
-
-                                </div>
-
-                                <div className="perfil-info">
-
-                                    <h2>{expertoSeleccionado.nombre}</h2>
-
-                                    <p>
-                                        <strong>Documento:</strong>{" "}
-                                        {expertoSeleccionado.documento_experto}
-                                    </p>
-
-                                </div>
-
-                            </div>
-
-                            <div className="perfil-grid">
+                            
+                            
 
                                 <div className="card-perfil">
 
@@ -315,7 +291,7 @@ export default function ConsultaSubsanacion() {
 
                     </div>
 
-                </div>
+            
 
             )}
 
