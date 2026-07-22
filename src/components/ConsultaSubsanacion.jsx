@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Eye } from "lucide-react";
 
 const API_URL = "https://erp-unilibre-production.up.railway.app";
 
@@ -94,7 +95,17 @@ export default function ConsultaSubsanacion() {
             <tr key={item.id}>
 
                 <td>{item.id}</td>
-                <td>👁</td>
+                <td style={{ textAlign: "center" }}>
+
+    <Eye
+        size={18}
+        style={{
+            cursor: "pointer",
+            color: "#2563eb"
+        }}
+    />
+
+</td>
                 <td>{item.status}</td>
                 <td>{item.documento_experto}</td>
                 <td>{item.nombre}</td>
