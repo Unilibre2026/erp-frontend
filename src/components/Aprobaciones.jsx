@@ -7,6 +7,9 @@ export default function Aprobaciones() {
   const [pendientes, setPendientes] = useState([]);
   const [loadingId, setLoadingId] = useState(null);
   const [expertoSeleccionado, setExpertoSeleccionado] = useState(null);
+  const [campoBusqueda, setCampoBusqueda] = useState("documento");
+  const [textoBusqueda, setTextoBusqueda] = useState("");
+  const [estadoFiltro, setEstadoFiltro] = useState("Todos");
 
   const cargarPendientes = async () => {
     try {
@@ -66,11 +69,73 @@ export default function Aprobaciones() {
     cargarPendientes();
   }, []);
 
+  // ===== FILTRO DE LA TABLA =====
+  const datosFiltrados = pendientes.filter((item) => {
+
+    const valorBusqueda = String(item[campoBusqueda] || "")
+      .toLowerCase()
+      .trim();
+
+    const coincideBusqueda = valorBusqueda.includes(
+      textoBusqueda.toLowerCase().trim()
+    );
+
+    const estado = item.estado || "Pendiente";
+
+    const coincideEstado =
+      estadoFiltro === "Todos" ||
+      estado === estadoFiltro;
+
+    return coincideBusqueda && coincideEstado;
+  });
+
+
   return (
     <div style={{ padding: "20px" }}>
       <h2 style={{ marginBottom: "15px" }}>
         Pendientes de aprobación
       </h2>
+
+      <div className="filtros-aprobaciones">
+
+  <div className="grupo-filtro">
+    <label>Buscar por</label>
+    <select
+      value={campoBusqueda}
+      onChange={(e) => setCampoBusqueda(e.target.value)}
+    >
+      <option value="documento_experto">Documento</option>
+      <option value="nombre">Nombre</option>
+      <option value="convocatoria">Convocatoria</option>
+      <option value="id">Novedad</option>
+      <option value="responsable">Responsable de la novedad</option>
+    </select>
+  </div>
+
+  <div className="grupo-filtro">
+    <label>&nbsp;</label>
+    <input
+      type="text"
+      placeholder="Buscar..."
+      value={textoBusqueda}
+      onChange={(e) => setTextoBusqueda(e.target.value)}
+    />
+  </div>
+
+  <div className="grupo-filtro">
+    <label>Estado</label>
+    <select
+      value={estadoFiltro}
+      onChange={(e) => setEstadoFiltro(e.target.value)}
+    >
+      <option value="Todos">Todos los estados</option>
+      <option value="Pendiente">Pendiente</option>
+      <option value="Pre-aprobado">Pre-aprobado</option>
+      <option value="Subsanar">Subsanar</option>
+    </select>
+  </div>
+
+</div>
 
       <div
         className="table-wrapper"
@@ -107,7 +172,7 @@ export default function Aprobaciones() {
           </thead>
 
           <tbody>
-            {pendientes.length === 0 ? (
+            {datosFiltrados.length === 0 ? (
               <tr>
                 <td
                   colSpan="19"
@@ -117,7 +182,7 @@ export default function Aprobaciones() {
                 </td>
               </tr>
             ) : (
-              pendientes.map((item) => (
+              datosFiltrados.map((item) => (
                 <tr key={item.id}>
                   <td>{item.id}</td>
 
