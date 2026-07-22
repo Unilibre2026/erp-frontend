@@ -102,7 +102,7 @@ export default function ConsultaSubsanacion() {
         className="btn-ver-subsanacion"
         onClick={() => console.log(item.id)}
     >
-        <FileUser size={18} />
+        <FileUser size={26} />
     </button>
 
 </td>
