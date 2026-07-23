@@ -2235,8 +2235,9 @@ function Consultas() {
         <option value="tipo_novedad">Tipo</option>
         <option value="convocatoria">Convocatoria</option>
         <option value="responsable">Responsable de la novedad</option>
-      </select>
         <option value="eje">Eje/Indicador</option>
+      </select>
+        
 
       <input
         className="filtro-consulta"
