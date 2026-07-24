@@ -460,7 +460,7 @@ const obtenerTotalPreAprobadosCiudad = (ciudad) => {
             </h2>
 
             {/*======================================
-                    FILTRO
+                    FILTROS
             =======================================*/}
 
             <div className="barra-superior">
