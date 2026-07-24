@@ -905,6 +905,28 @@ const obtenerTotalPreAprobadosCiudad = (ciudad) => {
 
             }
 
+// =========================
+// TABLA RECLUTADOS
+// =========================
+
+{
+    convocatoria &&
+    tipoAnalisis === "reclutados" && (
+
+        <div className="tabla-avance-general">
+
+            <table>
+
+                ...
+
+            </table>
+
+        </div>
+
+    )
+
+}
+
         </div>
 
     );
