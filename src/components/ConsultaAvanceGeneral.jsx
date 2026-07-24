@@ -915,13 +915,328 @@ const obtenerTotalPreAprobadosCiudad = (ciudad) => {
 
         <div className="tabla-avance-general">
 
-            <table>
+                        <table>
 
-                ...
+                            <thead>
 
-            </table>
+                                <tr>
 
-        </div>
+                                    <th
+
+                                        className="col-ciudad"
+
+                                        rowSpan="2"
+
+                                    >
+
+                                        Ciudad
+
+                                    </th>
+
+                                    {
+
+                                        roles.map((rol) => (
+
+                                         <th
+
+                                           key={rol}
+
+                                           colSpan={5}
+
+                                           className="titulo-rol"
+
+                                        >
+
+                                          {rol}
+
+                                     </th>
+
+))
+
+                                    }
+
+                                    <th
+
+                                        colSpan={5}
+
+                                        className="titulo-total"
+
+                                    >
+
+                                        Total
+
+                                    </th>
+
+                                </tr>
+
+                                <tr>
+
+                                    {
+
+                                        roles.map((rol) => (
+
+                                            <React.Fragment key={rol}>
+
+                                                <th className="subtitulo">
+
+                                                    Requerido
+
+                                                </th>
+
+                                                <th className="subtitulo">
+
+                                                    Reclutado
+
+                                                </th>
+
+                                                <th className="subtitulo">
+
+                                                    Pre aprobado
+
+                                                </th>
+
+                                                <th className="subtitulo">
+
+                                                    Aprobado
+
+                                                </th>
+
+                                                <th className="subtitulo fin-rol">
+
+                                                    % avance
+
+                                                </th>
+
+                                            </React.Fragment>
+
+                                        ))
+
+                                    }
+
+                                    <th className="subtitulo">
+
+                                        Requerido
+
+                                    </th>
+
+                                    <th className="subtitulo">
+
+                                        Reclutado
+
+                                    </th>
+
+                                    <th className="subtitulo">
+
+                                        Pre aprobado
+
+                                    </th>
+
+                                    <th className="subtitulo">
+
+                                        Aprobado
+
+                                    </th>
+
+                                    <th className="subtitulo">
+
+                                        % avance
+
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+
+    {
+
+        ciudades.map((ciudad) => (
+
+            <tr key={ciudad}>
+
+                {/* ==========================
+                        CIUDAD
+                ========================== */}
+
+                <td className="col-ciudad">
+
+                    {ciudad}
+
+                </td>
+
+                {/* ==========================
+                        ROLES
+                ========================== */}
+
+                {
+
+                    roles.map((rol) => (
+
+                        <React.Fragment key={rol}>
+
+                            <td className="dato requerido">
+
+                                {obtenerCantidad(ciudad, rol)}
+
+                            </td>
+
+                            <td className="dato reclutado">
+
+                              {obtenerReclutados(ciudad, rol)}
+
+                            </td>
+
+                            <td className="dato pre-aprobado">
+                                {obtenerPreAprobados(ciudad, rol)}
+                            </td>
+
+                            <td className="dato aprobado">
+                                0
+                            </td>
+
+                            <td className="dato porcentaje fin-rol">
+
+                                0,0%
+
+                            </td>
+
+                        </React.Fragment>
+
+                    ))
+
+                }
+
+                <td className="dato total">
+
+                    <strong>
+
+                        {obtenerTotalCiudad(ciudad)}
+
+                    </strong>
+
+                </td>
+
+                <td className="dato total">
+
+                  <strong>
+
+                    {obtenerTotalReclutadosCiudad(ciudad)}
+
+                   </strong>
+
+                </td> 
+
+                <td className="dato total">
+
+                    <strong>{obtenerTotalPreAprobadosCiudad(ciudad)}</strong>
+
+                </td>
+
+                <td className="dato total">
+
+                    <strong>0</strong>
+
+                </td>
+
+                <td className="dato total">
+
+                    <strong>0,0%</strong>
+
+                </td>
+
+            </tr>
+
+        ))
+
+    }
+
+    {/* FILA TOTAL */}
+
+    <tr className="fila-total">
+
+        <td className="col-ciudad">
+
+            <strong>TOTAL</strong>
+
+        </td>
+
+        {
+
+           roles.map((rol) => (
+
+    <React.Fragment key={rol}>
+
+        <td className="dato total">
+            <strong>{obtenerTotalRol(rol)}</strong>
+        </td>
+
+        <td className="dato total">
+            <strong>{obtenerTotalReclutadosRol(rol)}</strong>
+        </td>
+
+        <td className="dato total">
+            <strong>{obtenerTotalPreAprobadosRol(rol)}</strong>
+        </td>
+
+        <td className="dato total">
+            <strong>0</strong>
+        </td>
+
+        <td className="dato total fin-rol">
+            <strong>0,0%</strong>
+        </td>
+
+    </React.Fragment>
+
+))
+
+        }
+
+        <td className="dato total">
+
+    <strong>
+        {obtenerTotalGeneral()}
+    </strong>
+
+</td>
+
+<td className="dato total">
+
+    <strong>
+
+        {obtenerTotalGeneralReclutados()}
+
+    </strong>
+
+</td>
+
+<td className="dato total">
+
+    <strong>{obtenerTotalGeneralPreAprobados()}</strong>
+
+</td>
+
+<td className="dato total">
+
+    <strong>0</strong>
+
+</td>
+
+<td className="dato total">
+
+    <strong>0,0%</strong>
+
+</td>
+
+    </tr>
+
+</tbody>
+
+                        </table>
+
+                    </div>
+
 
     )
 
