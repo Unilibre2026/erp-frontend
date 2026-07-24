@@ -1092,14 +1092,6 @@ const obtenerTotalPreAprobadosCiudad = (ciudad) => {
             <strong>{obtenerTotalReclutadosRol(rol)}</strong>
         </td>
 
-        <td className="dato total">
-            <strong>{obtenerTotalPreAprobadosRol(rol)}</strong>
-        </td>
-
-        <td className="dato total">
-            <strong>0</strong>
-        </td>
-
         <td className="dato total fin-rol">
             <strong>0,0%</strong>
         </td>
@@ -1111,36 +1103,6 @@ const obtenerTotalPreAprobadosCiudad = (ciudad) => {
         }
 
         <td className="dato total">
-
-    <strong>
-        {obtenerTotalGeneral()}
-    </strong>
-
-</td>
-
-<td className="dato total">
-
-    <strong>
-
-        {obtenerTotalGeneralReclutados()}
-
-    </strong>
-
-</td>
-
-<td className="dato total">
-
-    <strong>{obtenerTotalGeneralPreAprobados()}</strong>
-
-</td>
-
-<td className="dato total">
-
-    <strong>0</strong>
-
-</td>
-
-<td className="dato total">
 
     <strong>0,0%</strong>
 
