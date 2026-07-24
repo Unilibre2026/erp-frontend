@@ -182,7 +182,7 @@ worksheet.getColumn(1).width = 25;
 
 worksheet.getColumn(2).width = 28;
 
-}
+
 
 //=====================================
 // ENCABEZADOS
@@ -506,4 +506,93 @@ ciudades.forEach((ciudad) => {
     fila++;
 
 });
+
+//=====================================
+// FILA TOTAL
+//=====================================
+
+let columnaTotal = 1;
+
+worksheet.getCell(fila, columnaTotal).value = "TOTAL";
+
+worksheet.getCell(fila, columnaTotal).font = {
+
+    bold: true
+
+};
+
+worksheet.getCell(fila, columnaTotal).fill = {
+
+    type: "pattern",
+    pattern: "solid",
+    fgColor: { argb: "FCE4EC" }
+
+};
+
+columnaTotal++;
+
+let totalGeneralRequeridos = 0;
+let totalGeneralReclutados = 0;
+
+roles.forEach((rol) => {
+
+    const requerido = vacantes
+        .filter(v => v.rol === rol)
+        .reduce(
+            (t, v) => t + Number(v.num_expertos || 0),
+            0
+        );
+
+    const reclutado = obtenerTotalReclutadosRol(rol);
+
+    totalGeneralRequeridos += requerido;
+    totalGeneralReclutados += reclutado;
+
+    worksheet.getCell(fila, columnaTotal).value = requerido;
+    columnaTotal++;
+
+    worksheet.getCell(fila, columnaTotal).value = reclutado;
+    columnaTotal++;
+
+    worksheet.getCell(fila, columnaTotal).value =
+        calcularPorcentaje(
+            requerido,
+            reclutado
+        );
+
+    worksheet.getCell(fila, columnaTotal).numFmt = "0.0%";
+
+    columnaTotal++;
+
+});
+
+worksheet.getCell(fila, columnaTotal).value = totalGeneralRequeridos;
+columnaTotal++;
+
+worksheet.getCell(fila, columnaTotal).value = totalGeneralReclutados;
+columnaTotal++;
+
+worksheet.getCell(fila, columnaTotal).value =
+    calcularPorcentaje(
+        totalGeneralRequeridos,
+        totalGeneralReclutados
+    );
+
+worksheet.getCell(fila, columnaTotal).numFmt = "0.0%";
+
+//=====================================
+// GUARDAR ARCHIVO
+//=====================================
+
+const buffer = await workbook.xlsx.writeBuffer();
+
+saveAs(
+
+    new Blob([buffer]),
+
+    "Consulta_Reclutados.xlsx"
+
+);
+
+}
 
