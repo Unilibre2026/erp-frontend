@@ -906,8 +906,8 @@ const obtenerTotalPreAprobadosCiudad = (ciudad) => {
             }
 
  {/* =========================
-                TABLA RECLUTADOS
-     ========================= */}
+        TABLA RECLUTADOS
+========================= */}
 
 {
     convocatoria &&
@@ -915,103 +915,55 @@ const obtenerTotalPreAprobadosCiudad = (ciudad) => {
 
         <div className="tabla-avance-general">
 
-                        <table>
+            <table>
 
-                            <thead>
+                <thead>
 
-                                <tr>
+                    <tr>
 
-                                    <th
+                        <th
+                            className="col-ciudad"
+                            rowSpan="2"
+                        >
+                            Ciudad
+                        </th>
 
-                                        className="col-ciudad"
+                        {
 
-                                        rowSpan="2"
+                            roles.map((rol) => (
 
-                                    >
+                                <th
+                                    key={rol}
+                                    colSpan={3}
+                                    className="titulo-rol"
+                                >
 
-                                        Ciudad
+                                    {rol}
 
-                                    </th>
+                                </th>
 
-                                    {
+                            ))
 
-                                        roles.map((rol) => (
+                        }
 
-                                         <th
+                        <th
+                            colSpan={3}
+                            className="titulo-total"
+                        >
 
-                                           key={rol}
+                            Total
 
-                                           colSpan={5}
+                        </th>
 
-                                           className="titulo-rol"
+                    </tr>
 
-                                        >
+                    <tr>
 
-                                          {rol}
+                        {
 
-                                     </th>
+                            roles.map((rol) => (
 
-))
-
-                                    }
-
-                                    <th
-
-                                        colSpan={5}
-
-                                        className="titulo-total"
-
-                                    >
-
-                                        Total
-
-                                    </th>
-
-                                </tr>
-
-                                <tr>
-
-                                    {
-
-                                        roles.map((rol) => (
-
-                                            <React.Fragment key={rol}>
-
-                                                <th className="subtitulo">
-
-                                                    Requerido
-
-                                                </th>
-
-                                                <th className="subtitulo">
-
-                                                    Reclutado
-
-                                                </th>
-
-                                                <th className="subtitulo">
-
-                                                    Pre aprobado
-
-                                                </th>
-
-                                                <th className="subtitulo">
-
-                                                    Aprobado
-
-                                                </th>
-
-                                                <th className="subtitulo fin-rol">
-
-                                                    % avance
-
-                                                </th>
-
-                                            </React.Fragment>
-
-                                        ))
-
-                                    }
+                                <React.Fragment key={rol}>
 
                                     <th className="subtitulo">
 
@@ -1025,35 +977,47 @@ const obtenerTotalPreAprobadosCiudad = (ciudad) => {
 
                                     </th>
 
-                                    <th className="subtitulo">
-
-                                        Pre aprobado
-
-                                    </th>
-
-                                    <th className="subtitulo">
-
-                                        Aprobado
-
-                                    </th>
-
-                                    <th className="subtitulo">
+                                    <th className="subtitulo fin-rol">
 
                                         % avance
 
                                     </th>
 
-                                </tr>
+                                </React.Fragment>
 
-                            </thead>
+                            ))
 
-                            <tbody>
+                        }
 
-    {
+                        <th className="subtitulo">
 
-        ciudades.map((ciudad) => (
+                            Requerido
 
-            <tr key={ciudad}>
+                        </th>
+
+                        <th className="subtitulo">
+
+                            Reclutado
+
+                        </th>
+
+                        <th className="subtitulo">
+
+                            % avance
+
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {
+
+                        ciudades.map((ciudad) => (
+
+                            <tr key={ciudad}>
 
                 {/* ==========================
                         CIUDAD
