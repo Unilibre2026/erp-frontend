@@ -1192,7 +1192,7 @@ const obtenerTotalPreAprobadosCiudad = (ciudad) => {
 
                     </tr>
 
-                </tbody>
+                 </tbody>
 
             </table>
 
@@ -1201,3 +1201,11 @@ const obtenerTotalPreAprobadosCiudad = (ciudad) => {
     )
 
 }
+
+        </div>
+
+    );
+
+}
+
+export default ConsultaAvanceGeneral;
