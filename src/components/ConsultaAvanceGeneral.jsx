@@ -1229,6 +1229,187 @@ const obtenerTotalPreAprobadosCiudad = (ciudad) => {
 
 }
 
+{/* =========================
+        TABLA CONSOLIDADO
+========================= */}
+
+{
+    convocatoria &&
+    tipoAnalisis === "consolidado" && (
+
+        <div className="tabla-avance-general">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        {
+
+                            roles.map((rol) => (
+
+                                <th
+                                    key={rol}
+                                    colSpan={3}
+                                    className="titulo-rol"
+                                >
+
+                                    {rol}
+
+                                </th>
+
+                            ))
+
+                        }
+
+                        <th
+                            colSpan={3}
+                            className="titulo-total"
+                        >
+
+                            TOTAL
+
+                        </th>
+
+                    </tr>
+
+                    <tr>
+
+                        {
+
+                            roles.map((rol) => (
+
+                                <React.Fragment key={rol}>
+
+                                    <th className="subtitulo">
+
+                                        Requerido
+
+                                    </th>
+
+                                    <th className="subtitulo">
+
+                                        Reclutado
+
+                                    </th>
+
+                                    <th className="subtitulo fin-rol">
+
+                                        % avance
+
+                                    </th>
+
+                                </React.Fragment>
+
+                            ))
+
+                        }
+
+                        <th className="subtitulo">
+
+                            Requerido
+
+                        </th>
+
+                        <th className="subtitulo">
+
+                            Reclutado
+
+                        </th>
+
+                        <th className="subtitulo">
+
+                            % avance
+
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        {
+
+                            roles.map((rol) => (
+
+                                <React.Fragment key={rol}>
+
+                                    <td className="dato requerido">
+
+                                        {obtenerTotalRol(rol)}
+
+                                    </td>
+
+                                    <td className="dato reclutado">
+
+                                        {obtenerTotalReclutadosRol(rol)}
+
+                                    </td>
+
+                                    <td className="dato porcentaje fin-rol">
+
+                                        {obtenerPorcentaje(
+                                            obtenerTotalRol(rol),
+                                            obtenerTotalReclutadosRol(rol)
+                                        )}
+
+                                    </td>
+
+                                </React.Fragment>
+
+                            ))
+
+                        }
+
+                        <td className="dato total">
+
+                            <strong>
+
+                                {obtenerTotalGeneral()}
+
+                            </strong>
+
+                        </td>
+
+                        <td className="dato total">
+
+                            <strong>
+
+                                {obtenerTotalGeneralReclutados()}
+
+                            </strong>
+
+                        </td>
+
+                        <td className="dato total">
+
+                            <strong>
+
+                                {obtenerPorcentaje(
+                                    obtenerTotalGeneral(),
+                                    obtenerTotalGeneralReclutados()
+                                )}
+
+                            </strong>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    )
+
+}
+
         </div>
 
     );

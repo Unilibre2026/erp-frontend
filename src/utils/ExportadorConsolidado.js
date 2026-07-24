@@ -190,7 +190,7 @@ roles.forEach((rol) => {
 
     const celdaRol = worksheet.getCell(filaRoles, columna);
 
-    celdaRol.value = rol.rol;
+    celdaRol.value = rol;
 
     celdaRol.font = {
         bold: true,
@@ -311,13 +311,28 @@ let totalReclutados = 0;
 
 roles.forEach((rol) => {
 
-    const requerido = Number(vacantes.find(v => v.rol === rol.rol)?.cantidad || 0);
+    const requerido = vacantes
+        .filter(v => v.rol === rol)
+        .reduce(
+            (total, v) => total + Number(v.num_expertos || 0),
+            0
+        );
 
-    const reclutado = Number(reclutados.find(r => r.rol === rol.rol)?.cantidad || 0);
+    const reclutado = reclutados
+        .filter(
+            r =>
+                r.convocatoria === convocatoria &&
+                r.rol === rol
+        )
+        .reduce(
+            (total, r) => total + Number(r.reclutados || 0),
+            0
+        );
 
-    const porcentaje = requerido > 0
-        ? reclutado / requerido
-        : 0;
+    const porcentaje =
+        requerido > 0
+            ? reclutado / requerido
+            : 0;
 
     worksheet.getCell(filaDatos, col).value = requerido;
 
@@ -333,6 +348,19 @@ roles.forEach((rol) => {
     col += 3;
 
 });
+
+const porcentajeTotal =
+    totalVacantes > 0
+        ? totalReclutados / totalVacantes
+        : 0;
+
+worksheet.getCell(filaDatos, col).value = totalVacantes;
+
+worksheet.getCell(filaDatos, col + 1).value = totalReclutados;
+
+worksheet.getCell(filaDatos, col + 2).value = porcentajeTotal;
+
+worksheet.getCell(filaDatos, col + 2).numFmt = "0.0%";
 
 const porcentajeTotal =
     totalVacantes > 0
