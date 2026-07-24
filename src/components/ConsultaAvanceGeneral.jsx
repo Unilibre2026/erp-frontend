@@ -1070,52 +1070,63 @@ const obtenerTotalPreAprobadosCiudad = (ciudad) => {
 
     {/* FILA TOTAL */}
 
-    <tr className="fila-total">
+<tr className="fila-total">
 
-        <td className="col-ciudad">
+    <td className="col-ciudad">
 
-            <strong>TOTAL</strong>
+        <strong>TOTAL</strong>
 
-        </td>
+    </td>
 
-        {
+    {
 
-           roles.map((rol) => (
+        roles.map((rol) => (
 
-    <React.Fragment key={rol}>
+            <React.Fragment key={rol}>
 
-        <td className="dato total">
-            <strong>{obtenerTotalRol(rol)}</strong>
-        </td>
+                <td className="dato total">
+                    <strong>{obtenerTotalRol(rol)}</strong>
+                </td>
 
-        <td className="dato total">
-            <strong>{obtenerTotalReclutadosRol(rol)}</strong>
-        </td>
+                <td className="dato total">
+                    <strong>{obtenerTotalReclutadosRol(rol)}</strong>
+                </td>
 
-        <td className="dato total fin-rol">
-            <strong>0,0%</strong>
-        </td>
+                <td className="dato total fin-rol">
+                    <strong>0,0%</strong>
+                </td>
 
-    </React.Fragment>
+            </React.Fragment>
 
-))
+        ))
 
-        }
+    }
 
-        <td className="dato total">
+    <td className="dato total">
 
-    <strong>0,0%</strong>
+        <strong>{obtenerTotalGeneral()}</strong>
 
-</td>
+    </td>
 
-    </tr>
+    <td className="dato total">
+
+        <strong>{obtenerTotalGeneralReclutados()}</strong>
+
+    </td>
+
+    <td className="dato total">
+
+        <strong>0,0%</strong>
+
+    </td>
+
+</tr>
 
 </tbody>
 
                         </table>
 
                     </div>
-
 
     )
 
@@ -1127,5 +1138,4 @@ const obtenerTotalPreAprobadosCiudad = (ciudad) => {
 
 }
 
-export default ConsultaAvanceGeneral;                               
-
+export default ConsultaAvanceGeneral;
