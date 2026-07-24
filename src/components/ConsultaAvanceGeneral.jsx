@@ -22,6 +22,8 @@ function ConsultaAvanceGeneral() {
 
     const [roles, setRoles] = useState([]);
 
+    const [tipoAnalisis, setTipoAnalisis] = useState("preaprobados");
+
     // ==========================================
     // CARGAR CONVOCATORIAS
     // ==========================================
@@ -463,77 +465,107 @@ const obtenerTotalPreAprobadosCiudad = (ciudad) => {
 
             <div className="barra-superior">
 
-                <div className="campo">
+    {/* Convocatoria */}
+    <div className="campo">
 
-                    <label>
+        <label>
 
-                        Convocatoria
+            Convocatoria
 
-                    </label>
+        </label>
 
-                    <select
+        <select
+            value={convocatoria}
+            onChange={(e) => {
 
-                        value={convocatoria}
+                const valor = e.target.value;
 
-                        onChange={(e) => {
+                setConvocatoria(valor);
 
-                            const valor = e.target.value;
+                cargarVacantes(valor);
 
-                            setConvocatoria(valor);
+            }}
+        >
 
-                            cargarVacantes(valor);
+            <option value="">
 
-                        }}
+                Seleccione convocatoria
 
-                    >
+            </option>
 
-                        <option value="">
+            {convocatorias.map((c) => (
 
-                            Seleccione convocatoria
+                <option
+                    key={c}
+                    value={c}
+                >
+                    {c}
+                </option>
 
-                        </option>
+            ))}
 
-                        {
+        </select>
 
-                            convocatorias.map((c) => (
+    </div>
 
-                                <option
+    {/* NUEVO FILTRO */}
 
-                                    key={c}
+    <div className="campo">
 
-                                    value={c}
+        <label>
 
-                                >
+            Tipo de análisis
 
-                                    {c}
+        </label>
 
-                                </option>
+        <select
+            value={tipoAnalisis}
+            onChange={(e) => setTipoAnalisis(e.target.value)}
+        >
 
-                            ))
+            <option value="preaprobados">
 
-                        }
+                Pre-aprobados
 
-                    </select>
+            </option>
 
-                </div>
+            <option value="reclutados">
 
-                <button
-                  className="btn-exportar"
-                 onClick={() =>
-                  exportarAvanceGeneral(
-                    convocatoria,
-                    ciudades,
-                    roles,
-                    vacantes,
-                    reclutados,
-                    preAprobados
-        )
-    }
->
-    📥 Exportar Excel
-</button>
+                Reclutados
 
-            </div>
+            </option>
+
+            <option value="consolidado">
+
+                Consolidado
+
+            </option>
+
+        </select>
+
+    </div>
+
+    {/* Botón */}
+
+    <button
+        className="btn-exportar"
+        onClick={() =>
+            exportarAvanceGeneral(
+                convocatoria,
+                ciudades,
+                roles,
+                vacantes,
+                reclutados,
+                preAprobados
+            )
+        }
+    >
+
+        📥 Exportar Excel
+
+    </button>
+
+</div>
 
             {/*======================================
                     TABLA
