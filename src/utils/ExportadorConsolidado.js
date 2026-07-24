@@ -347,3 +347,39 @@ worksheet.getCell(filaDatos, col + 2).value = porcentajeTotal;
 
 worksheet.getCell(filaDatos, col + 2).numFmt = "0.0%";
 
+//=====================================
+// FORMATO FILA DE DATOS
+//=====================================
+
+for (let c = 1; c <= worksheet.columnCount; c++) {
+
+    const celda = worksheet.getCell(filaDatos, c);
+
+    celda.alignment = {
+        horizontal: "center",
+        vertical: "middle"
+    };
+
+    celda.border = {
+        top: { style: "thin" },
+        left: { style: "thin" },
+        bottom: { style: "thin" },
+        right: { style: "thin" }
+    };
+
+}
+
+worksheet.getRow(filaDatos).height = 22;
+
+//=====================================
+// GUARDAR EXCEL
+//=====================================
+
+const buffer = await workbook.xlsx.writeBuffer();
+
+saveAs(
+    new Blob([buffer]),
+    `Consolidado_${convocatoria}.xlsx`
+);
+
+}
