@@ -238,6 +238,8 @@ setPreAprobados(dataReclutados.pre_aprobados || []);
 
 };
 
+
+
 const obtenerPreAprobados = (ciudad, rol) => {
 
     const registro = preAprobados.find(
@@ -568,7 +570,7 @@ const obtenerTotalPreAprobadosCiudad = (ciudad) => {
 </div>
 
             {/*======================================
-                    TABLA
+                    TABLA PREAPROBADOS
             =======================================*/}
 
             {
