@@ -362,18 +362,7 @@ worksheet.getCell(filaDatos, col + 2).value = porcentajeTotal;
 
 worksheet.getCell(filaDatos, col + 2).numFmt = "0.0%";
 
-const porcentajeTotal =
-    totalVacantes > 0
-        ? totalReclutados / totalVacantes
-        : 0;
 
-worksheet.getCell(filaDatos, col).value = totalVacantes;
-
-worksheet.getCell(filaDatos, col + 1).value = totalReclutados;
-
-worksheet.getCell(filaDatos, col + 2).value = porcentajeTotal;
-
-worksheet.getCell(filaDatos, col + 2).numFmt = "0.0%";
 
 //=====================================
 // FORMATO FILA DE DATOS
