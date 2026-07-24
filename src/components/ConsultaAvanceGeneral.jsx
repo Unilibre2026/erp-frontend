@@ -238,6 +238,16 @@ setPreAprobados(dataReclutados.pre_aprobados || []);
 
 };
 
+const obtenerPorcentaje = (requerido, reclutado) => {
+
+    if (Number(requerido) === 0) return "0,0%";
+
+    return `${((Number(reclutado) / Number(requerido)) * 100)
+        .toFixed(1)
+        .replace(".", ",")}%`;
+
+};
+
 
 
 const obtenerPreAprobados = (ciudad, rol) => {
@@ -1014,128 +1024,180 @@ const obtenerTotalPreAprobadosCiudad = (ciudad) => {
 
                             <tr key={ciudad}>
 
-                {/* ==========================
-                        CIUDAD
-                ========================== */}
+                                <td className="col-ciudad">
 
-                <td className="col-ciudad">
+                                    {ciudad}
 
-                    {ciudad}
+                                </td>
 
-                </td>
+                                {
 
-                {/* ==========================
-                        ROLES
-                ========================== */}
+                                    roles.map((rol) => (
 
-                {
+                                        <React.Fragment key={rol}>
 
-                    roles.map((rol) => (
+                                            <td className="dato requerido">
 
-                        <React.Fragment key={rol}>
+                                                {obtenerCantidad(ciudad, rol)}
 
-    <td className="dato requerido">
-        {obtenerCantidad(ciudad, rol)}
-    </td>
+                                            </td>
 
-    <td className="dato reclutado">
-        {obtenerReclutados(ciudad, rol)}
-    </td>
+                                            <td className="dato reclutado">
 
-    <td className="dato porcentaje fin-rol">
-        0,0%
-    </td>
+                                                {obtenerReclutados(ciudad, rol)}
 
-</React.Fragment>
-                    ))
+                                            </td>
 
-                }
+                                            <td className="dato porcentaje fin-rol">
 
-<td className="dato total">
-    <strong>{obtenerTotalCiudad(ciudad)}</strong>
-</td>
+                                                {obtenerPorcentaje(
+                                                    obtenerCantidad(ciudad, rol),
+                                                    obtenerReclutados(ciudad, rol)
+                                                )}
 
-<td className="dato total">
-    <strong>{obtenerTotalReclutadosCiudad(ciudad)}</strong>
-</td>
+                                            </td>
 
-<td className="dato total">
-    <strong>0,0%</strong>
-</td>
-            </tr>
+                                        </React.Fragment>
 
-        ))
+                                    ))
 
-    }
+                                }
 
-    {/* FILA TOTAL */}
+                                <td className="dato total">
 
-<tr className="fila-total">
+                                    <strong>
 
-    <td className="col-ciudad">
+                                        {obtenerTotalCiudad(ciudad)}
 
-        <strong>TOTAL</strong>
+                                    </strong>
 
-    </td>
+                                </td>
 
-    {
+                                <td className="dato total">
 
-        roles.map((rol) => (
+                                    <strong>
 
-            <React.Fragment key={rol}>
+                                        {obtenerTotalReclutadosCiudad(ciudad)}
 
-                <td className="dato total">
-                    <strong>{obtenerTotalRol(rol)}</strong>
-                </td>
+                                    </strong>
 
-                <td className="dato total">
-                    <strong>{obtenerTotalReclutadosRol(rol)}</strong>
-                </td>
+                                </td>
 
-                <td className="dato total fin-rol">
-                    <strong>0,0%</strong>
-                </td>
+                                <td className="dato total">
 
-            </React.Fragment>
+                                    <strong>
 
-        ))
+                                        {obtenerPorcentaje(
+                                            obtenerTotalCiudad(ciudad),
+                                            obtenerTotalReclutadosCiudad(ciudad)
+                                        )}
 
-    }
+                                    </strong>
 
-    <td className="dato total">
+                                </td>
 
-        <strong>{obtenerTotalGeneral()}</strong>
+                            </tr>
 
-    </td>
+                        ))
 
-    <td className="dato total">
+                    }
 
-        <strong>{obtenerTotalGeneralReclutados()}</strong>
+                    {/* FILA TOTAL */}
 
-    </td>
+                    <tr className="fila-total">
 
-    <td className="dato total">
+                        <td className="col-ciudad">
 
-        <strong>0,0%</strong>
+                            <strong>TOTAL</strong>
 
-    </td>
+                        </td>
 
-</tr>
+                        {
 
-</tbody>
+                            roles.map((rol) => (
 
-                        </table>
+                                <React.Fragment key={rol}>
 
-                    </div>
+                                    <td className="dato total">
+
+                                        <strong>
+
+                                            {obtenerTotalRol(rol)}
+
+                                        </strong>
+
+                                    </td>
+
+                                    <td className="dato total">
+
+                                        <strong>
+
+                                            {obtenerTotalReclutadosRol(rol)}
+
+                                        </strong>
+
+                                    </td>
+
+                                    <td className="dato total fin-rol">
+
+                                        <strong>
+
+                                            {obtenerPorcentaje(
+                                                obtenerTotalRol(rol),
+                                                obtenerTotalReclutadosRol(rol)
+                                            )}
+
+                                        </strong>
+
+                                    </td>
+
+                                </React.Fragment>
+
+                            ))
+
+                        }
+
+                        <td className="dato total">
+
+                            <strong>
+
+                                {obtenerTotalGeneral()}
+
+                            </strong>
+
+                        </td>
+
+                        <td className="dato total">
+
+                            <strong>
+
+                                {obtenerTotalGeneralReclutados()}
+
+                            </strong>
+
+                        </td>
+
+                        <td className="dato total">
+
+                            <strong>
+
+                                {obtenerPorcentaje(
+                                    obtenerTotalGeneral(),
+                                    obtenerTotalGeneralReclutados()
+                                )}
+
+                            </strong>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
 
     )
 
 }
-
-        </div>
-
-    );
-
-}
-
-export default ConsultaAvanceGeneral;
