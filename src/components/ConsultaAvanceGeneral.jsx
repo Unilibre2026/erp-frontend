@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./ConsultaAvanceGeneral.css";
 import { exportarAvanceGeneral } from "../utils/ExportadorExcel";
+import { exportarReclutados } from "../utils/ExportadorReclutados";
+
 
 const API_URL = "https://erp-unilibre-production.up.railway.app";
 
@@ -560,8 +562,11 @@ const obtenerTotalPreAprobadosCiudad = (ciudad) => {
     {/* Botón */}
 
     <button
-        className="btn-exportar"
-        onClick={() =>
+    className="btn-exportar"
+    onClick={() => {
+
+        if (tipoAnalisis === "preaprobados") {
+
             exportarAvanceGeneral(
                 convocatoria,
                 ciudades,
@@ -569,13 +574,26 @@ const obtenerTotalPreAprobadosCiudad = (ciudad) => {
                 vacantes,
                 reclutados,
                 preAprobados
-            )
+            );
+
+        } else if (tipoAnalisis === "reclutados") {
+
+            exportarReclutados(
+                convocatoria,
+                ciudades,
+                roles,
+                vacantes,
+                reclutados
+            );
+
         }
-    >
 
-        📥 Exportar Excel
+    }}
+>
 
-    </button>
+    📥 Exportar Excel
+
+</button>
 
 </div>
 
