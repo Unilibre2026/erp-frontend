@@ -737,38 +737,23 @@ const obtenerTotalPreAprobadosCiudad = (ciudad) => {
 
                     roles.map((rol) => (
 
-                        <React.Fragment key={rol}>
+    <React.Fragment key={rol}>
 
-                            <td className="dato requerido">
+        <td className="dato total">
+            <strong>{obtenerTotalRol(rol)}</strong>
+        </td>
 
-                                {obtenerCantidad(ciudad, rol)}
+        <td className="dato total">
+            <strong>{obtenerTotalReclutadosRol(rol)}</strong>
+        </td>
 
-                            </td>
+        <td className="dato total fin-rol">
+            <strong>0,0%</strong>
+        </td>
 
-                            <td className="dato reclutado">
+    </React.Fragment>
 
-                              {obtenerReclutados(ciudad, rol)}
-
-                            </td>
-
-                            <td className="dato pre-aprobado">
-                                {obtenerPreAprobados(ciudad, rol)}
-                            </td>
-
-                            <td className="dato aprobado">
-                                0
-                            </td>
-
-                            <td className="dato porcentaje fin-rol">
-
-                                0,0%
-
-                            </td>
-
-                        </React.Fragment>
-
-                    ))
-
+))
                 }
 
                 <td className="dato total">
