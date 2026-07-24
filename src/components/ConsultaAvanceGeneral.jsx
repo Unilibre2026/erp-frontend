@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./ConsultaAvanceGeneral.css";
 import { exportarAvanceGeneral } from "../utils/ExportadorExcel";
 import { exportarReclutados } from "../utils/ExportadorReclutados";
+import { exportarConsolidado } from "../utils/ExportadorConsolidado";
 
 
 const API_URL = "https://erp-unilibre-production.up.railway.app";
@@ -586,6 +587,15 @@ const obtenerTotalPreAprobadosCiudad = (ciudad) => {
                 reclutados
             );
 
+        } else if (tipoAnalisis === "consolidado") {
+
+            exportarConsolidado(
+                convocatoria,
+                roles,
+                vacantes,
+                reclutados
+            );
+
         }
 
     }}
@@ -594,7 +604,6 @@ const obtenerTotalPreAprobadosCiudad = (ciudad) => {
     📥 Exportar Excel
 
 </button>
-
 </div>
 
             {/*======================================
