@@ -1051,44 +1051,17 @@ const obtenerTotalPreAprobadosCiudad = (ciudad) => {
 
                 }
 
-                <td className="dato total">
+<td className="dato total">
+    <strong>{obtenerTotalCiudad(ciudad)}</strong>
+</td>
 
-                    <strong>
+<td className="dato total">
+    <strong>{obtenerTotalReclutadosCiudad(ciudad)}</strong>
+</td>
 
-                        {obtenerTotalCiudad(ciudad)}
-
-                    </strong>
-
-                </td>
-
-                <td className="dato total">
-
-                  <strong>
-
-                    {obtenerTotalReclutadosCiudad(ciudad)}
-
-                   </strong>
-
-                </td> 
-
-                <td className="dato total">
-
-                    <strong>{obtenerTotalPreAprobadosCiudad(ciudad)}</strong>
-
-                </td>
-
-                <td className="dato total">
-
-                    <strong>0</strong>
-
-                </td>
-
-                <td className="dato total">
-
-                    <strong>0,0%</strong>
-
-                </td>
-
+<td className="dato total">
+    <strong>0,0%</strong>
+</td>
             </tr>
 
         ))
