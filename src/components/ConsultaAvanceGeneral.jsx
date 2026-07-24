@@ -1039,34 +1039,19 @@ const obtenerTotalPreAprobadosCiudad = (ciudad) => {
 
                         <React.Fragment key={rol}>
 
-                            <td className="dato requerido">
+    <td className="dato requerido">
+        {obtenerCantidad(ciudad, rol)}
+    </td>
 
-                                {obtenerCantidad(ciudad, rol)}
+    <td className="dato reclutado">
+        {obtenerReclutados(ciudad, rol)}
+    </td>
 
-                            </td>
+    <td className="dato porcentaje fin-rol">
+        0,0%
+    </td>
 
-                            <td className="dato reclutado">
-
-                              {obtenerReclutados(ciudad, rol)}
-
-                            </td>
-
-                            <td className="dato pre-aprobado">
-                                {obtenerPreAprobados(ciudad, rol)}
-                            </td>
-
-                            <td className="dato aprobado">
-                                0
-                            </td>
-
-                            <td className="dato porcentaje fin-rol">
-
-                                0,0%
-
-                            </td>
-
-                        </React.Fragment>
-
+</React.Fragment>
                     ))
 
                 }
