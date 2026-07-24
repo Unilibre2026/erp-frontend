@@ -118,7 +118,7 @@ worksheet.getRow(2).height = 40;
 // Subtítulo centrado dejando espacio para el logo
 worksheet.mergeCells(3, 2, 3, 10);
 
-worksheet.getCell("B3").value = "CONSULTA AVANCE GENERAL";
+worksheet.getCell("B3").value = "CONSULTA AVANCE GENERAL - APROBADOS";
 
 worksheet.getCell("B3").font = {
 

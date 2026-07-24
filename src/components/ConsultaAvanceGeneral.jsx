@@ -540,7 +540,7 @@ const obtenerTotalPreAprobadosCiudad = (ciudad) => {
 
             <option value="preaprobados">
 
-                Pre-aprobados
+                Aprobados
 
             </option>
 
