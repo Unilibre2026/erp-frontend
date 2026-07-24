@@ -905,9 +905,9 @@ const obtenerTotalPreAprobadosCiudad = (ciudad) => {
 
             }
 
-// =========================
-// TABLA RECLUTADOS
-// =========================
+ {/* =========================
+                TABLA RECLUTADOS
+     ========================= */}
 
 {
     convocatoria &&
