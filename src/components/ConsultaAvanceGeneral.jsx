@@ -573,7 +573,9 @@ const obtenerTotalPreAprobadosCiudad = (ciudad) => {
 
             {
 
-                convocatoria && (
+                convocatoria && 
+                tipoAnalisis === "preaprobados" && (
+
 
                     <div className="tabla-avance-general">
 
