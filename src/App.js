@@ -24,7 +24,7 @@ import AspirantesConvocatoria from "./components/AspirantesConvocatoria";
 
 import { exportarExpertos } from "./utils/ExportadorExpertos";
 
-import AprobacionVRM from "./AprobacionVRM";
+import AprobacionVRM from "./components/AprobacionVRM";
 
 const API_URL = "https://erp-unilibre-production.up.railway.app";
 
