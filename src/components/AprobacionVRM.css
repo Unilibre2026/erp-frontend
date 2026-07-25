@@ -1,0 +1,24 @@
+.filtros-vrm {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+.filtros-vrm select,
+.filtros-vrm input {
+    height: 36px;
+    padding: 0 10px;
+    border: 1px solid #cfcfcf;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.filtros-vrm select {
+    width: 240px;
+}
+
+.filtros-vrm input {
+    width: 220px;
+}
