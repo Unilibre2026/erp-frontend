@@ -24,6 +24,8 @@ import AspirantesConvocatoria from "./components/AspirantesConvocatoria";
 
 import { exportarExpertos } from "./utils/ExportadorExpertos";
 
+import AprobacionVRM from "./AprobacionVRM";
+
 const API_URL = "https://erp-unilibre-production.up.railway.app";
 
 
@@ -356,6 +358,14 @@ if (!usuario) {
     Formulario
   </button>
 )}
+
+{puedeVer("aprobacion_vrm") && (
+  <button onClick={() => cambiarVista("aprobacion_vrm")}>
+    Aprobación VRM
+  </button>
+)}
+
+
       
 
         {puedeVer("consulta") && (
@@ -476,6 +486,7 @@ if (!usuario) {
 
         <>
   {vista === "formulario" && <Formulario />}
+  {vista === "aprobacion_vrm" && <AprobacionVRM />}
   {vista === "consulta" && <Consultas />}
   {vista === "avance_general" && (<AvanceGeneral />)}
   {vista === "consulta_cnsc" && (<ConsultaCNSC />)}
