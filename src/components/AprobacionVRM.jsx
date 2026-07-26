@@ -18,6 +18,7 @@ useEffect(() => {
 
 const cargarDatos = async () => {
   try {
+    console.log("API_URL:", API_URL);
     const res = await fetch(`${API_URL}/aprobacion-vrm`);
     const data = await res.json();
 
