@@ -3179,6 +3179,7 @@ return (
             <th>ID</th>
             <th>Convocatoria</th>
             <th>Indicador</th>
+            <th>Rol</th>
             <th>Perfil</th>
             <th>Confirma perfil</th>
             <th>Acción</th>
@@ -3198,6 +3199,8 @@ return (
               <td>{i.convocatoria}</td>
 
               <td>{i.indicador}</td>
+
+              <td>{i.rol}</td>
 
               <td>{i.perfil}</td>
 
