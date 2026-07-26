@@ -1555,25 +1555,20 @@ thead th {
     cursor:pointer;
     font-size:13px;
 }
-
-.btn-modificar:hover{
-    background:#1565c0;
+.btn-modificar{
+    background:#1976d2 !important;
+    color:#fff;
 }
 
 .btn-editando{
-    background:#e91e63;
-    color:white;
-    border:none;
-    padding:6px 12px;
-    border-radius:6px;
-    cursor:pointer;
-    font-weight:600;
-    transition:all .2s ease;
+    background:#e91e63 !important;
+    color:#fff !important;
 }
 
 .btn-editando:hover{
-    background:#d81b60;
+    background:#d81b60 !important;
 }
+
 .textarea-bloqueado{
     width:100%;
     min-height:180px;
