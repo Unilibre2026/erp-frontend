@@ -9,54 +9,78 @@ function AprobacionVRM() {
 
   const API_URL = "https://erp-unilibre-production.up.railway.app";
 
-const [datos, setDatos] = useState([]);
+  const [datos, setDatos] = useState([]);
 
-useEffect(() => {
-  cargarDatos();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-}, []);
+  useEffect(() => {
+    cargarDatos();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-const cargarDatos = async () => {
-  try {
-    console.log("API_URL:", API_URL);
-    const res = await fetch(`${API_URL}/aprobacion-vrm`);
-    const data = await res.json();
+  const cargarDatos = async () => {
+    try {
+      console.log("API_URL:", API_URL);
 
-    setDatos(data);
-  } catch (error) {
-    console.error(error);
-  }
-};
+      const res = await fetch(`${API_URL}/aprobacion-vrm`);
+      const data = await res.json();
 
-const decidirVRM = async (numeroNovedad, aprobacion) => {
-  let justificacion = null;
+      setDatos(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-  // Confirmación antes de aprobar
-  if (aprobacion === "APROBADO") {
-    const confirmar = window.confirm(
-      "¿Está seguro de aprobar esta novedad?\n\nEsta acción enviará la información a la base de datos y no podrá deshacerse."
-    );
+  const decidirVRM = async (numeroNovedad, aprobacion) => {
+    let justificacion = null;
 
-    if (!confirmar) return;
-  }
+    // Confirmación antes de aprobar
+    if (aprobacion === "APROBADO") {
+      const confirmar = window.confirm(
+        "¿Está seguro de aprobar esta novedad?\n\nEsta acción enviará la información a la base de datos y no podrá deshacerse."
+      );
 
-  // Solicitar justificación cuando no se aprueba
-  if (aprobacion === "NO APROBADO") {
-    justificacion = prompt("Escriba la justificación del rechazo:");
+      if (!confirmar) return;
+    }
 
-    if (!justificacion) return;
-  }
+    // Solicitar justificación cuando no se aprueba
+    if (aprobacion === "NO APROBADO") {
+      justificacion = prompt("Escriba la justificación del rechazo:");
 
-  console.log({
-    numero_novedad: numeroNovedad,
-    aprobacion,
-    justificacion,
-  });
-};
+      if (!justificacion) return;
+    }
 
- 
-   
+    try {
+      const res = await fetch(`${API_URL}/aprobacion-vrm`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          numero_novedad: numeroNovedad,
+          validacion: aprobacion,
+          justificacion: justificacion,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        alert(data.mensaje || "Ocurrió un error.");
+        return;
+      }
+
+      alert(data.mensaje);
+
+      // Recargar la información
+      cargarDatos();
+
+    } catch (error) {
+      console.error(error);
+      alert("Error de comunicación con el servidor.");
+    }
+  };
+
   console.log(datos);
+
   return (
     <div className="aprobacion-vrm">
 
@@ -100,92 +124,92 @@ const decidirVRM = async (numeroNovedad, aprobacion) => {
 
           <thead>
 
-  <tr>
+            <tr>
 
-    <th style={{ minWidth: "90px" }}>N. Novedad</th>
+              <th style={{ minWidth: "90px" }}>N. Novedad</th>
 
-    <th style={{ minWidth: "170px" }}>Validación</th>
+              <th style={{ minWidth: "170px" }}>Validación</th>
 
+              <th style={{ minWidth: "150px" }}>Fecha novedad</th>
 
-    <th style={{ minWidth: "150px" }}>Fecha novedad</th>
+              <th style={{ minWidth: "220px" }}>Convocatoria</th>
 
-    <th style={{ minWidth: "220px" }}>Convocatoria</th>
+              <th style={{ minWidth: "320px" }}>Eje / Indicador</th>
 
-    <th style={{ minWidth: "320px" }}>Eje / Indicador</th>
+              <th style={{ minWidth: "100px" }}>Nivel</th>
 
-    <th style={{ minWidth: "100px" }}>Nivel</th>
+              <th style={{ minWidth: "180px" }}>Rol</th>
 
-    <th style={{ minWidth: "180px" }}>Rol</th>
+              <th style={{ minWidth: "300px" }}>Nombres y apellidos experto</th>
 
-    <th style={{ minWidth: "300px" }}>Nombres y apellidos experto</th>
+              <th style={{ minWidth: "140px" }}>Documento</th>
 
-    <th style={{ minWidth: "140px" }}>Documento</th>
+              <th style={{ minWidth: "520px" }}>Perfil requerido</th>
 
-    <th style={{ minWidth: "520px" }}>Perfil requerido</th>
+              <th style={{ minWidth: "180px" }}>
+                ¿Cuenta con experiencia en la entidad?
+              </th>
 
-    <th style={{ minWidth: "180px" }}>
-      ¿Cuenta con experiencia en la entidad?
-    </th>
+            </tr>
 
-  </tr>
+          </thead>
 
-</thead>
           <tbody>
 
-{datos.map((item) => (
+            {datos.map((item) => (
 
-<tr key={item.id}>
+              <tr key={item.id}>
 
-    <td>{item.id}</td>
+                <td>{item.id}</td>
 
-    <td style={{ textAlign: "center" }}>
-        <div
-            style={{
-                display: "flex",
-                gap: "6px",
-                justifyContent: "center",
-                flexWrap: "wrap",
-            }}
-        >
-            <button
-                className="btn-aprobar"
-                onClick={() => decidirVRM(item.id, "APROBADO")}
-            >
-                Aprobado
-            </button>
+                <td style={{ textAlign: "center" }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      gap: "6px",
+                      justifyContent: "center",
+                      flexWrap: "wrap",
+                    }}
+                  >
+                    <button
+                      className="btn-aprobar"
+                      onClick={() => decidirVRM(item.id, "APROBADO")}
+                    >
+                      Aprobado
+                    </button>
 
-            <button
-                className="btn-rechazar"
-                onClick={() => decidirVRM(item.id, "NO APROBADO")}
-            >
-                No aprobado
-            </button>
-        </div>
-    </td>
+                    <button
+                      className="btn-rechazar"
+                      onClick={() => decidirVRM(item.id, "NO APROBADO")}
+                    >
+                      No aprobado
+                    </button>
+                  </div>
+                </td>
 
-    <td>{item.fecha_creacion}</td>
+                <td>{item.fecha_creacion}</td>
 
-    <td>{item.convocatoria}</td>
+                <td>{item.convocatoria}</td>
 
-    <td>{item.eje}</td>
+                <td>{item.eje}</td>
 
-    <td>{item.nivel}</td>
+                <td>{item.nivel}</td>
 
-    <td>{item.rol}</td>
+                <td>{item.rol}</td>
 
-    <td>{item.nombre}</td>
+                <td>{item.nombre}</td>
 
-    <td>{item.documento_experto}</td>
+                <td>{item.documento_experto}</td>
 
-    <td>{item.perfil_requerido}</td>
+                <td>{item.perfil_requerido}</td>
 
-    <td>{item.experiencia_entidad}</td>
+                <td>{item.experiencia_entidad}</td>
 
-</tr>
+              </tr>
 
-))}
+            ))}
 
-</tbody>
+          </tbody>
 
         </table>
 
