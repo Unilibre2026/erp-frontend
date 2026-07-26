@@ -3037,7 +3037,7 @@ const cumpleRol =
 return (
   cumpleConvocatoria &&
   cumpleIndicador &&
-  cumpleRol &&
+  cumpleRol
   
 );
   });
