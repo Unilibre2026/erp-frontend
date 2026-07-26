@@ -58,6 +58,7 @@ function AprobacionVRM() {
           numero_novedad: numeroNovedad,
           validacion: aprobacion,
           justificacion: justificacion,
+          usuario_gestion: localStorage.getItem("usuario")
         }),
       });
 
