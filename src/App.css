@@ -1592,3 +1592,12 @@ thead th {
     font-family:inherit;
     font-size:14px;
 }
+
+.modal-footer-aprobacion{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:35px;          /* separación entre botones */
+    margin-top:30px;   /* separación respecto a las tarjetas */
+    margin-bottom:10px;
+}
