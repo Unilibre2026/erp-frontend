@@ -171,9 +171,10 @@ useEffect(() => {
 
       <div className="filtros-vrm">
 
-        <select
-          value={convocatoria}
-          onChange={(e) => setConvocatoria(e.target.value)}
+      <select
+        value={convocatoria}
+        onChange={(e) => setConvocatoria(e.target.value)}
+        style={{ width: "260px" }}
 >
   <option value="">
     Todas las convocatorias
