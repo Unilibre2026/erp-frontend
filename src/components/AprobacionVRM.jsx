@@ -174,7 +174,7 @@ useEffect(() => {
       <select
         value={convocatoria}
         onChange={(e) => setConvocatoria(e.target.value)}
-        style={{ width: "260px" }}
+        style={{ width: "360px" }}
 >
   <option value="">
     Todas las convocatorias
