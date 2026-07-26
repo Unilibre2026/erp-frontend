@@ -1546,3 +1546,50 @@ thead th {
     width: 230px !important;
 }
 
+.btn-modificar{
+    background:#1976d2;
+    color:#fff;
+    border:none;
+    padding:6px 12px;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:13px;
+}
+
+.btn-modificar:hover{
+    background:#1565c0;
+}
+
+.btn-editando{
+    background:#2e7d32;
+    color:#fff;
+    border:none;
+    padding:6px 12px;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:13px;
+}
+
+.textarea-bloqueado{
+    width:100%;
+    min-height:180px;
+    resize:vertical;
+    border:1px solid #d6d6d6;
+    border-radius:8px;
+    padding:12px;
+    background:#f7f7f7;
+    font-family:inherit;
+    font-size:14px;
+}
+
+.textarea-editando{
+    width:100%;
+    min-height:180px;
+    resize:vertical;
+    border:2px solid #28a745;
+    border-radius:8px;
+    padding:12px;
+    background:#f1fff4;
+    font-family:inherit;
+    font-size:14px;
+}

@@ -10,6 +10,13 @@ export default function Aprobaciones() {
   const [campoBusqueda, setCampoBusqueda] = useState("documento");
   const [textoBusqueda, setTextoBusqueda] = useState("");
   const [estadoFiltro, setEstadoFiltro] = useState("Todos");
+  const [editandoJustificacion, setEditandoJustificacion] = useState(false);
+  const [editandoPerfilLaboral, setEditandoPerfilLaboral] = useState(false);
+  const [editandoPerfilAcademico, setEditandoPerfilAcademico] = useState(false);
+
+  const [justificacionEditada, setJustificacionEditada] = useState("");
+  const [perfilLaboralEditado, setPerfilLaboralEditado] = useState("");
+  const [perfilAcademicoEditado, setPerfilAcademicoEditado] = useState("");
 
   const cargarPendientes = async () => {
     try {
@@ -193,10 +200,19 @@ export default function Aprobaciones() {
                     <button
                       className="btn-hoja-vida"
                       title="Ver hoja de vida"
-                      onClick={() => {
+                     onClick={() => {
                         console.log(item);
+
                         setExpertoSeleccionado(item);
-                      }}
+
+                        setJustificacionEditada(item.justificacion || "");
+                        setPerfilLaboralEditado(item.perfil_laboral || "");
+                        setPerfilAcademicoEditado(item.perfil_academico || "");
+
+                        setEditandoJustificacion(false);
+                        setEditandoPerfilLaboral(false);
+                        setEditandoPerfilAcademico(false);
+}}
                     >
                       <FileUser strokeWidth={2} />
                     </button>
@@ -417,13 +433,48 @@ export default function Aprobaciones() {
                 </div>
 
                 <div className="card-perfil">
-                  <h3>Justificación</h3>
 
-                  <div className="texto-card">
-                    {expertoSeleccionado.justificacion}
-                  </div>
-                </div>
+  <div
+    style={{
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      marginBottom: "10px",
+    }}
+  >
+    <h3 style={{ margin: 0 }}>Justificación</h3>
 
+    <button
+      className={
+        editandoJustificacion
+          ? "btn-editando"
+          : "btn-modificar"
+      }
+      onClick={() =>
+        setEditandoJustificacion(!editandoJustificacion)
+      }
+    >
+      {editandoJustificacion
+        ? "Editando..."
+        : "Modificar"}
+    </button>
+  </div>
+
+  <textarea
+    value={justificacionEditada}
+    onChange={(e) =>
+      setJustificacionEditada(e.target.value)
+    }
+    disabled={!editandoJustificacion}
+    className={
+      editandoJustificacion
+        ? "textarea-editando"
+        : "textarea-bloqueado"
+    }
+    rows={8}
+  />
+
+</div>
                 <div className="card-perfil card-alta">
                   <h3>Perfil Laboral</h3>
 
