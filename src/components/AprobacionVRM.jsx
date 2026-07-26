@@ -7,6 +7,34 @@ function AprobacionVRM() {
   const [nombre, setNombre] = useState("");
   const [indicador, setIndicador] = useState("");
 
+const decidirVRM = async (numeroNovedad, aprobacion) => {
+  let justificacion = null;
+
+  // Confirmación antes de aprobar
+  if (aprobacion === "APROBADO") {
+    const confirmar = window.confirm(
+      "¿Está seguro de aprobar esta novedad?\n\nEsta acción enviará la información a la base de datos y no podrá deshacerse."
+    );
+
+    if (!confirmar) return;
+  }
+
+  // Solicitar justificación cuando no se aprueba
+  if (aprobacion === "NO APROBADO") {
+    justificacion = prompt("Escriba la justificación del rechazo:");
+
+    if (!justificacion) return;
+  }
+
+  console.log({
+    numero_novedad: numeroNovedad,
+    aprobacion,
+    justificacion,
+  });
+};
+
+
+
   return (
     <div className="aprobacion-vrm">
 
@@ -86,9 +114,29 @@ function AprobacionVRM() {
 
 <td>185</td>
 
-<td>
-    <button className="btn-aprobar">Aprobado</button>
-    <button className="btn-rechazar">No aprobado</button>
+<td style={{ textAlign: "center" }}>
+  <div
+    style={{
+      display: "flex",
+      gap: "6px",
+      justifyContent: "center",
+      flexWrap: "wrap",
+    }}
+  >
+    <button
+      className="btn-aprobar"
+      onClick={() => decidirVRM(185, "APROBADO")}
+    >
+      Aprobado
+    </button>
+
+    <button
+      className="btn-rechazar"
+      onClick={() => decidirVRM(185, "NO APROBADO")}
+    >
+      No aprobado
+    </button>
+  </div>
 </td>
 
 
