@@ -2901,7 +2901,7 @@ function PerfilesSugeridos() {
 
   const [indicador, setIndicador] = useState("");
 
-  const [perfil, setPerfil] = useState("");
+
   const [rol, setRol] = useState("");
 
   // =========================
@@ -3028,9 +3028,7 @@ const filtrados = safeDatos.filter((i) => {
       !indicador ||
       i.indicador === indicador;
 
-   const cumplePerfil =
-  !perfil ||
-  i.perfil === perfil;
+  
 
 const cumpleRol =
   !rol ||
