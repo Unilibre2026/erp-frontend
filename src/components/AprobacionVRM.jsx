@@ -56,23 +56,22 @@ function AprobacionVRM() {
 
     <th style={{ minWidth: "170px" }}>Validación</th>
 
-    <th style={{ minWidth: "180px" }}>Justificación</th>
 
     <th style={{ minWidth: "150px" }}>Fecha novedad</th>
 
     <th style={{ minWidth: "220px" }}>Convocatoria</th>
 
-    <th style={{ minWidth: "260px" }}>Eje / Indicador</th>
+    <th style={{ minWidth: "320px" }}>Eje / Indicador</th>
 
     <th style={{ minWidth: "100px" }}>Nivel</th>
 
     <th style={{ minWidth: "180px" }}>Rol</th>
 
-    <th style={{ minWidth: "260px" }}>Nombres y apellidos experto</th>
+    <th style={{ minWidth: "300px" }}>Nombres y apellidos experto</th>
 
     <th style={{ minWidth: "140px" }}>Documento</th>
 
-    <th style={{ minWidth: "420px" }}>Perfil requerido</th>
+    <th style={{ minWidth: "520px" }}>Perfil requerido</th>
 
     <th style={{ minWidth: "180px" }}>
       ¿Cuenta con experiencia en la entidad?
@@ -92,7 +91,7 @@ function AprobacionVRM() {
     <button className="btn-rechazar">No aprobado</button>
 </td>
 
-<td></td>
+
 
 <td>22/07/2026 13:52</td>
 
