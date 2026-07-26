@@ -11,12 +11,12 @@ export default function Aprobaciones() {
   const [textoBusqueda, setTextoBusqueda] = useState("");
   const [estadoFiltro, setEstadoFiltro] = useState("Todos");
   const [editandoJustificacion, setEditandoJustificacion] = useState(false);
-  // const [editandoPerfilLaboral, setEditandoPerfilLaboral] = useState(false);
-// const [editandoPerfilAcademico, setEditandoPerfilAcademico] = useState(false);
+  const [editandoPerfilLaboral, setEditandoPerfilLaboral] = useState(false);
+  const [editandoPerfilAcademico, setEditandoPerfilAcademico] = useState(false);
 
   const [justificacionEditada, setJustificacionEditada] = useState("");
-  // const [editandoPerfilLaboral, setEditandoPerfilLaboral] = useState(false);
-// const [editandoPerfilAcademico, setEditandoPerfilAcademico] = useState(false);
+  const [editandoPerfilLaboral, setEditandoPerfilLaboral] = useState(false);
+  const [editandoPerfilAcademico, setEditandoPerfilAcademico] = useState(false);
 
   const cargarPendientes = async () => {
     try {
@@ -206,12 +206,12 @@ export default function Aprobaciones() {
                         setExpertoSeleccionado(item);
 
                         setJustificacionEditada(item.justificacion || "");
-                        // setPerfilLaboralEditado(item.perfil_laboral || "");
-                        // setPerfilAcademicoEditado(item.perfil_academico || "");
+                        setPerfilLaboralEditado(item.perfil_laboral || "");
+                        setPerfilAcademicoEditado(item.perfil_academico || "");
 
                         setEditandoJustificacion(false);
-                        // setEditandoPerfilLaboral(false);
-                        // setEditandoPerfilAcademico(false);
+                        setEditandoPerfilLaboral(false);
+                        setEditandoPerfilAcademico(false);
 }}
                     >
                       <FileUser strokeWidth={2} />
@@ -476,21 +476,78 @@ export default function Aprobaciones() {
 
 </div>
                 <div className="card-perfil card-alta">
-                  <h3>Perfil Laboral</h3>
 
-                  <div className="texto-card">
-                    {expertoSeleccionado.perfil_laboral}
-                  </div>
-                </div>
+  <div className="card-header-edicion">
+    <h3>Perfil Laboral</h3>
+
+    <button
+      className={
+        editandoPerfilLaboral
+          ? "btn-editando"
+          : "btn-modificar"
+      }
+      onClick={() =>
+        setEditandoPerfilLaboral(!editandoPerfilLaboral)
+      }
+    >
+      {editandoPerfilLaboral
+        ? "Editando..."
+        : "Modificar"}
+    </button>
+  </div>
+
+  <textarea
+    value={perfilLaboralEditado}
+    onChange={(e) =>
+      setPerfilLaboralEditado(e.target.value)
+    }
+    disabled={!editandoPerfilLaboral}
+    className={
+      editandoPerfilLaboral
+        ? "textarea-editando"
+        : "textarea-bloqueado"
+    }
+    rows={10}
+  />
+
+</div>
 
                 <div className="card-perfil card-alta">
-                  <h3>Perfil Académico</h3>
 
-                  <div className="texto-card">
-                    {expertoSeleccionado.perfil_academico}
-                  </div>
-                </div>
+  <div className="card-header-edicion">
+    <h3>Perfil Académico</h3>
 
+    <button
+      className={
+        editandoPerfilAcademico
+          ? "btn-editando"
+          : "btn-modificar"
+      }
+      onClick={() =>
+        setEditandoPerfilAcademico(!editandoPerfilAcademico)
+      }
+    >
+      {editandoPerfilAcademico
+        ? "Editando..."
+        : "Modificar"}
+    </button>
+  </div>
+
+  <textarea
+    value={perfilAcademicoEditado}
+    onChange={(e) =>
+      setPerfilAcademicoEditado(e.target.value)
+    }
+    disabled={!editandoPerfilAcademico}
+    className={
+      editandoPerfilAcademico
+        ? "textarea-editando"
+        : "textarea-bloqueado"
+    }
+    rows={10}
+  />
+
+</div>
                 <div className="card-perfil">
                   <h3>Motivo del retiro</h3>
 
