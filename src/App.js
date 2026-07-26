@@ -2902,6 +2902,7 @@ function PerfilesSugeridos() {
   const [indicador, setIndicador] = useState("");
 
   const [perfil, setPerfil] = useState("");
+  const [rol, setRol] = useState("");
 
   // =========================
   // CARGAR DATOS PERFILES SUGERIDOS
@@ -3027,15 +3028,20 @@ const filtrados = safeDatos.filter((i) => {
       !indicador ||
       i.indicador === indicador;
 
-    const cumplePerfil =
-      !perfil ||
-      i.perfil === perfil;
+   const cumplePerfil =
+  !perfil ||
+  i.perfil === perfil;
 
-    return (
-      cumpleConvocatoria &&
-      cumpleIndicador &&
-      cumplePerfil
-    );
+const cumpleRol =
+  !rol ||
+  i.rol === rol;
+
+return (
+  cumpleConvocatoria &&
+  cumpleIndicador &&
+  cumpleRol &&
+  cumplePerfil
+);
   });
 
   return (
@@ -3066,6 +3072,8 @@ const filtrados = safeDatos.filter((i) => {
 
           setIndicador("");
 
+          setRol("");
+
           setPerfil("");
         }}
       >
@@ -3092,6 +3100,7 @@ const filtrados = safeDatos.filter((i) => {
 
           setIndicador(e.target.value);
 
+          setRol("");
           setPerfil("");
         }}
       >
