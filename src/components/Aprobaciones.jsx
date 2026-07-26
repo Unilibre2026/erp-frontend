@@ -54,8 +54,11 @@ export default function Aprobaciones() {
       numero_novedad: id,
       aprobacion,
       justificacion_aprobacion: justificacion,
-    };
 
+      justificacion: justificacionEditada,
+      perfil_laboral: perfilLaboralEditado,
+      perfil_academico: perfilAcademicoEditado,
+};
     try {
       setLoadingId(id);
 
@@ -246,41 +249,9 @@ export default function Aprobaciones() {
 </td>
 
                   <td style={{ textAlign: "center" }}>
-                    <div
-                      style={{
-                        display: "flex",
-                        gap: "6px",
-                        justifyContent: "center",
-                        flexWrap: "wrap",
-                      }}
-                    >
-                      <button
-                        className="btn-aprobar"
-                        disabled={loadingId === item.id}
-                        onClick={() =>
-                          decidir(item.id, "APROBADO")
-                        }
-                      >
-                        {loadingId === item.id
-                          ? "..."
-                          : "Aprobado"}
-                      </button>
-
-                      <button
-                        className="btn-rechazar"
-                        disabled={loadingId === item.id}
-                        onClick={() =>
-                          decidir(
-                            item.id,
-                            "NO APROBADO"
-                          )
-                        }
-                      >
-                        No aprobado
-                      </button>
-                    </div>
-                  </td>
-
+                   —
+                   </td>
+                                               
                   <td>{item.documento_experto}</td>
                   <td>{item.nombre}</td>
                   <td>{item.convocatoria}</td>
@@ -558,6 +529,38 @@ export default function Aprobaciones() {
                     {expertoSeleccionado.motivo_retiro}
                   </div>
                 </div>
+
+                <div className="modal-footer-aprobacion">
+
+  <button
+    className="btn-rechazar"
+    disabled={loadingId === expertoSeleccionado.id}
+    onClick={() =>
+      decidir(
+        expertoSeleccionado.id,
+        "NO APROBADO"
+      )
+    }
+  >
+    No aprobado
+  </button>
+
+  <button
+    className="btn-aprobar"
+    disabled={loadingId === expertoSeleccionado.id}
+    onClick={() =>
+      decidir(
+        expertoSeleccionado.id,
+        "APROBADO"
+      )
+    }
+  >
+    {loadingId === expertoSeleccionado.id
+      ? "..."
+      : "Aprobado"}
+  </button>
+
+</div>
               </div>
             </div>
           </div>
