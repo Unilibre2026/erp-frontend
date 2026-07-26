@@ -71,6 +71,8 @@ export default function Aprobaciones() {
       });
 
       cargarPendientes();
+      setExpertoSeleccionado(null);
+      
     } catch (error) {
       console.log("Error enviando decisión:", error);
     } finally {
