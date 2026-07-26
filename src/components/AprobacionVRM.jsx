@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./AprobacionVRM.css";
 
 function AprobacionVRM() {
-  const [convocatorias, setConvocatorias] = useState([]);
+  
   const [convocatoria, setConvocatoria] = useState("");
   const [documento, setDocumento] = useState("");
   const [nombre, setNombre] = useState("");
@@ -10,34 +10,86 @@ function AprobacionVRM() {
 
   const API_URL = "https://erp-unilibre-production.up.railway.app";
 
-  const [datos, setDatos] = useState([]);
+const [convocatorias, setConvocatorias] = useState([]);
+const [datos, setDatos] = useState([]);
 
-  useEffect(() => {
+// ==========================================
+// CONSULTAR DATOS
+// ==========================================
+
+const cargarDatos = async () => {
+
+  try {
+
+    console.log("API_URL:", API_URL);
+
+    const params = new URLSearchParams();
+
+    if (convocatoria) params.append("convocatoria", convocatoria);
+    if (documento) params.append("documento", documento);
+    if (nombre) params.append("nombre", nombre);
+    if (indicador) params.append("indicador", indicador);
+
+    const res = await fetch(
+      `${API_URL}/aprobacion-vrm?${params.toString()}`
+    );
+
+    const data = await res.json();
+
+    setDatos(data);
+
+  } catch (error) {
+
+    console.error(error);
+
+  }
+
+};
+
+// ==========================================
+// CONSULTAR CONVOCATORIAS
+// ==========================================
+
+const cargarConvocatorias = async () => {
+
+  try {
+
+    const res = await fetch(`${API_URL}/convocatorias`);
+
+    const data = await res.json();
+
+    const lista = [
+
+      ...new Set(
+        data.map(c => c.nombre_convocatoria)
+      )
+
+    ].sort((a, b) => a.localeCompare(b, "es"));
+
+    setConvocatorias(lista);
+
+  } catch (error) {
+
+    console.error(error);
+
+  }
+
+};
+
+// ==========================================
+// USE EFFECTS
+// ==========================================
+
+useEffect(() => {
+
+  cargarConvocatorias();
+
+}, []);
+
+// eslint-disable-next-line react-hooks/exhaustive-deps
+useEffect(() => {
   cargarDatos();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
 }, [convocatoria, documento, nombre, indicador]);
-
-  const cargarDatos = async () => {
-    try {
-      console.log("API_URL:", API_URL);
-
-      const params = new URLSearchParams();
-
-      if (convocatoria) params.append("convocatoria", convocatoria);
-      if (documento) params.append("documento", documento);
-      if (nombre) params.append("nombre", nombre);
-      if (indicador) params.append("indicador", indicador);
-
-  const res = await fetch(
-    `${API_URL}/aprobacion-vrm?${params.toString()}`
-  );
-      const data = await res.json();
-
-      setDatos(data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
   const decidirVRM = async (numeroNovedad, aprobacion) => {
     let justificacion = null;
@@ -90,6 +142,8 @@ function AprobacionVRM() {
     }
   };
 
+  
+
   console.log(datos);
 
   const formatearFecha = (fecha) => {
@@ -119,9 +173,20 @@ function AprobacionVRM() {
         <select
           value={convocatoria}
           onChange={(e) => setConvocatoria(e.target.value)}
-        >
-          <option value="">Todas las convocatorias</option>
-        </select>
+>
+  <option value="">
+    Todas las convocatorias
+  </option>
+
+  {convocatorias.map((c) => (
+    <option
+      key={c}
+      value={c}
+    >
+      {c}
+    </option>
+  ))}
+</select>
 
         <input
           type="text"
