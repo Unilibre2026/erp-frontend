@@ -11,12 +11,12 @@ export default function Aprobaciones() {
   const [textoBusqueda, setTextoBusqueda] = useState("");
   const [estadoFiltro, setEstadoFiltro] = useState("Todos");
   const [editandoJustificacion, setEditandoJustificacion] = useState(false);
-  const [editandoPerfilLaboral, setEditandoPerfilLaboral] = useState(false);
-  const [editandoPerfilAcademico, setEditandoPerfilAcademico] = useState(false);
+  // const [editandoPerfilLaboral, setEditandoPerfilLaboral] = useState(false);
+// const [editandoPerfilAcademico, setEditandoPerfilAcademico] = useState(false);
 
   const [justificacionEditada, setJustificacionEditada] = useState("");
-  const [perfilLaboralEditado, setPerfilLaboralEditado] = useState("");
-  const [perfilAcademicoEditado, setPerfilAcademicoEditado] = useState("");
+  // const [editandoPerfilLaboral, setEditandoPerfilLaboral] = useState(false);
+// const [editandoPerfilAcademico, setEditandoPerfilAcademico] = useState(false);
 
   const cargarPendientes = async () => {
     try {
@@ -206,12 +206,12 @@ export default function Aprobaciones() {
                         setExpertoSeleccionado(item);
 
                         setJustificacionEditada(item.justificacion || "");
-                        setPerfilLaboralEditado(item.perfil_laboral || "");
-                        setPerfilAcademicoEditado(item.perfil_academico || "");
+                        // setPerfilLaboralEditado(item.perfil_laboral || "");
+                        // setPerfilAcademicoEditado(item.perfil_academico || "");
 
                         setEditandoJustificacion(false);
-                        setEditandoPerfilLaboral(false);
-                        setEditandoPerfilAcademico(false);
+                        // setEditandoPerfilLaboral(false);
+                        // setEditandoPerfilAcademico(false);
 }}
                     >
                       <FileUser strokeWidth={2} />
