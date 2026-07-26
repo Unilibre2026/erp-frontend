@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./AprobacionVRM.css";
 
 function AprobacionVRM() {
@@ -6,6 +6,26 @@ function AprobacionVRM() {
   const [documento, setDocumento] = useState("");
   const [nombre, setNombre] = useState("");
   const [indicador, setIndicador] = useState("");
+
+  const API_URL = process.env.REACT_APP_API_URL;
+
+const [datos, setDatos] = useState([]);
+
+useEffect(() => {
+  cargarDatos();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+}, []);
+
+const cargarDatos = async () => {
+  try {
+    const res = await fetch(`${API_URL}/aprobacion-vrm`);
+    const data = await res.json();
+
+    setDatos(data);
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 const decidirVRM = async (numeroNovedad, aprobacion) => {
   let justificacion = null;
@@ -33,8 +53,9 @@ const decidirVRM = async (numeroNovedad, aprobacion) => {
   });
 };
 
-
-
+ 
+   
+  console.log(datos);
   return (
     <div className="aprobacion-vrm">
 
