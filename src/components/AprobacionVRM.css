@@ -37,3 +37,21 @@
 .tabla-vrm td:nth-child(2) {
     text-align: center;
 }
+
+/* Número de novedad */
+.tabla-vrm tbody td:first-child {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Desde Fecha novedad hasta Documento */
+.tabla-vrm tbody td:nth-child(3),
+.tabla-vrm tbody td:nth-child(4),
+.tabla-vrm tbody td:nth-child(5),
+.tabla-vrm tbody td:nth-child(6),
+.tabla-vrm tbody td:nth-child(7),
+.tabla-vrm tbody td:nth-child(8),
+.tabla-vrm tbody td:nth-child(9) {
+    font-size: 15px;
+}
+
