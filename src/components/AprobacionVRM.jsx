@@ -205,7 +205,7 @@ function AprobacionVRM() {
                   </div>
                 </td>
 
-                <td>{item.fecha_creacion}</td>
+                <td>{formatearFecha(item.fecha_creacion)}</td>
 
                 <td>{item.convocatoria}</td>
 
