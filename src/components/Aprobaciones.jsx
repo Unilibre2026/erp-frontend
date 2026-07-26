@@ -169,7 +169,6 @@ export default function Aprobaciones() {
               <th className="col-novedad">Novedad</th>
               <th>Resumen perfil</th>
               <th className="col-estado">Estado</th>
-              <th className="col-acciones">Acciones</th>
               <th className="col-documento">Documento</th>
               <th className="col-nombre">Nombre</th>
               <th className="col-convocatoria">Convocatoria</th>
@@ -250,9 +249,7 @@ export default function Aprobaciones() {
   </span>
 </td>
 
-                  <td style={{ textAlign: "center" }}>
-                   —
-                   </td>
+                  
                                                
                   <td>{item.documento_experto}</td>
                   <td>{item.nombre}</td>
