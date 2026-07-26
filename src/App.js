@@ -3038,7 +3038,7 @@ return (
   cumpleConvocatoria &&
   cumpleIndicador &&
   cumpleRol &&
-  cumplePerfil
+  
 );
   });
 
