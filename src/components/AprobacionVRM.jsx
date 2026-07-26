@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import "./AprobacionVRM.css";
 
 function AprobacionVRM() {
@@ -17,7 +17,7 @@ const [datos, setDatos] = useState([]);
 // CONSULTAR DATOS
 // ==========================================
 
-const cargarDatos = async () => {
+const cargarDatos = useCallback(async () => {
 
   try {
 
@@ -38,13 +38,13 @@ const cargarDatos = async () => {
 
     setDatos(data);
 
-  } catch (error) {
+ } catch (error) {
 
-    console.error(error);
+  console.error(error);
 
-  }
+}
 
-};
+}, [convocatoria, documento, nombre, indicador]);
 
 // ==========================================
 // CONSULTAR CONVOCATORIAS
@@ -86,10 +86,11 @@ useEffect(() => {
 
 }, []);
 
-// eslint-disable-next-line react-hooks/exhaustive-deps
 useEffect(() => {
+
   cargarDatos();
-}, [convocatoria, documento, nombre, indicador]);
+
+}, [cargarDatos]);
 
   const decidirVRM = async (numeroNovedad, aprobacion) => {
     let justificacion = null;
