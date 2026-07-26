@@ -82,6 +82,23 @@ function AprobacionVRM() {
 
   console.log(datos);
 
+  const formatearFecha = (fecha) => {
+    if (!fecha) return "";
+
+    const f = new Date(fecha);
+
+    return f.toLocaleString("es-CO", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
+    });
+  };
+
+  console.log(datos);
+
   return (
     <div className="aprobacion-vrm">
 
@@ -127,7 +144,7 @@ function AprobacionVRM() {
 
             <tr>
 
-              <th style={{ minWidth: "90px" }}>N. Novedad</th>
+              <th style={{ minWidth: "70px" }}>N. Novedad</th>
 
               <th style={{ minWidth: "170px" }}>Validación</th>
 
