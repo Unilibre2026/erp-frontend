@@ -7,16 +7,19 @@ export default function Aprobaciones() {
   const [pendientes, setPendientes] = useState([]);
   const [loadingId, setLoadingId] = useState(null);
   const [expertoSeleccionado, setExpertoSeleccionado] = useState(null);
+
   const [campoBusqueda, setCampoBusqueda] = useState("documento");
   const [textoBusqueda, setTextoBusqueda] = useState("");
   const [estadoFiltro, setEstadoFiltro] = useState("Todos");
+
   const [editandoJustificacion, setEditandoJustificacion] = useState(false);
   const [editandoPerfilLaboral, setEditandoPerfilLaboral] = useState(false);
   const [editandoPerfilAcademico, setEditandoPerfilAcademico] = useState(false);
 
   const [justificacionEditada, setJustificacionEditada] = useState("");
-  const [editandoPerfilLaboral, setEditandoPerfilLaboral] = useState(false);
-  const [editandoPerfilAcademico, setEditandoPerfilAcademico] = useState(false);
+  const [perfilLaboralEditado, setPerfilLaboralEditado] = useState("");
+  const [perfilAcademicoEditado, setPerfilAcademicoEditado] = useState("");
+  
 
   const cargarPendientes = async () => {
     try {
