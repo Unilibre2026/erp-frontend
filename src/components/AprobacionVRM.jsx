@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./AprobacionVRM.css";
 
 function AprobacionVRM() {
+  const [convocatorias, setConvocatorias] = useState([]);
   const [convocatoria, setConvocatoria] = useState("");
   const [documento, setDocumento] = useState("");
   const [nombre, setNombre] = useState("");
@@ -12,15 +13,24 @@ function AprobacionVRM() {
   const [datos, setDatos] = useState([]);
 
   useEffect(() => {
-    cargarDatos();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  cargarDatos();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+}, [convocatoria, documento, nombre, indicador]);
 
   const cargarDatos = async () => {
     try {
       console.log("API_URL:", API_URL);
 
-      const res = await fetch(`${API_URL}/aprobacion-vrm`);
+      const params = new URLSearchParams();
+
+      if (convocatoria) params.append("convocatoria", convocatoria);
+      if (documento) params.append("documento", documento);
+      if (nombre) params.append("nombre", nombre);
+      if (indicador) params.append("indicador", indicador);
+
+  const res = await fetch(
+    `${API_URL}/aprobacion-vrm?${params.toString()}`
+  );
       const data = await res.json();
 
       setDatos(data);
