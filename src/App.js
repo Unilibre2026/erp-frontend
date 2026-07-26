@@ -3064,104 +3064,73 @@ return (
 
       {/* FILTROS */}
 
-      <select
-        value={convocatoria}
-        onChange={(e) => {
+<select
+  value={convocatoria}
+  onChange={(e) => {
+    setConvocatoria(e.target.value);
+    setIndicador("");
+    setRol("");
+  }}
+>
+  <option value="">
+    Todas las convocatorias
+  </option>
 
-          setConvocatoria(e.target.value);
+  {[...new Set(datos.map(i => i.convocatoria))].map((c, idx) => (
+    <option key={idx} value={c}>
+      {c}
+    </option>
+  ))}
+</select>
 
-          setIndicador("");
+<select
+  value={indicador}
+  onChange={(e) => {
+    setIndicador(e.target.value);
+    setRol("");
+  }}
+>
+  <option value="">
+    Todos los indicadores
+  </option>
 
-          setRol("");
+  {[...new Set(
+    datos
+      .filter(i =>
+        !convocatoria ||
+        i.convocatoria === convocatoria
+      )
+      .map(i => i.indicador)
+  )].map((ind, idx) => (
+    <option key={idx} value={ind}>
+      {ind}
+    </option>
+  ))}
+</select>
 
-          setPerfil("");
-        }}
-      >
+<select
+  value={rol}
+  onChange={(e) => setRol(e.target.value)}
+>
+  <option value="">
+    Todos los roles
+  </option>
 
-        <option value="">
-          Todas las convocatorias
-        </option>
-
-        {[...new Set(
-          datos.map(i => i.convocatoria)
-        )].map((c, idx) => (
-
-          <option key={idx} value={c}>
-            {c}
-          </option>
-
-        ))}
-
-      </select>
-
-      <select
-        value={indicador}
-        onChange={(e) => {
-
-          setIndicador(e.target.value);
-
-          setRol("");
-          setPerfil("");
-        }}
-      >
-
-        <option value="">
-          Todos los indicadores
-        </option>
-
-        {[...new Set(
-
-          datos
-            .filter(i =>
-              !convocatoria ||
-              i.convocatoria === convocatoria
-            )
-            .map(i => i.indicador)
-
-        )].map((ind, idx) => (
-
-          <option key={idx} value={ind}>
-            {ind}
-          </option>
-
-        ))}
-
-      </select>
-
-      <select
-        value={perfil}
-        onChange={(e) => setPerfil(e.target.value)}
-      >
-
-        <option value="">
-          Todos los perfiles
-        </option>
-
-        {[...new Set(
-
-          datos
-            .filter(i =>
-
-              (!convocatoria ||
-                i.convocatoria === convocatoria)
-
-              &&
-
-              (!indicador ||
-                i.indicador === indicador)
-
-            )
-            .map(i => i.perfil)
-
-        )].map((p, idx) => (
-
-          <option key={idx} value={p}>
-            {p}
-          </option>
-
-        ))}
-
-      </select>
+  {[...new Set(
+    datos
+      .filter(i =>
+        (!convocatoria ||
+          i.convocatoria === convocatoria) &&
+        (!indicador ||
+          i.indicador === indicador)
+      )
+      .map(i => i.rol)
+  )].map((r, idx) => (
+    <option key={idx} value={r}>
+      {r}
+    </option>
+  ))}
+</select>
 
       <hr />
 
