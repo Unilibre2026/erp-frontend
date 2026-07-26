@@ -132,58 +132,58 @@ const decidirVRM = async (numeroNovedad, aprobacion) => {
 </thead>
           <tbody>
 
-<tr>
+{datos.map((item) => (
 
-<td>185</td>
+<tr key={item.id}>
 
-<td style={{ textAlign: "center" }}>
-  <div
-    style={{
-      display: "flex",
-      gap: "6px",
-      justifyContent: "center",
-      flexWrap: "wrap",
-    }}
-  >
-    <button
-      className="btn-aprobar"
-      onClick={() => decidirVRM(185, "APROBADO")}
-    >
-      Aprobado
-    </button>
+    <td>{item.id}</td>
 
-    <button
-      className="btn-rechazar"
-      onClick={() => decidirVRM(185, "NO APROBADO")}
-    >
-      No aprobado
-    </button>
-  </div>
-</td>
+    <td style={{ textAlign: "center" }}>
+        <div
+            style={{
+                display: "flex",
+                gap: "6px",
+                justifyContent: "center",
+                flexWrap: "wrap",
+            }}
+        >
+            <button
+                className="btn-aprobar"
+                onClick={() => decidirVRM(item.id, "APROBADO")}
+            >
+                Aprobado
+            </button>
 
+            <button
+                className="btn-rechazar"
+                onClick={() => decidirVRM(item.id, "NO APROBADO")}
+            >
+                No aprobado
+            </button>
+        </div>
+    </td>
 
+    <td>{item.fecha_creacion}</td>
 
-<td>22/07/2026 13:52</td>
+    <td>{item.convocatoria}</td>
 
-<td>PRÁCTICAS ACUEDUCTO</td>
+    <td>{item.eje}</td>
 
-<td>TEC_GUA1_Guardabosques_TÉCNICO</td>
+    <td>{item.nivel}</td>
 
-<td>TÉCNICO</td>
+    <td>{item.rol}</td>
 
-<td>Juez / Aplicador</td>
+    <td>{item.nombre}</td>
 
-<td>JOSE GERMAN MENDEZ PARRA</td>
+    <td>{item.documento_experto}</td>
 
-<td>80820433</td>
+    <td>{item.perfil_requerido}</td>
 
-<td>
-Ingeniero forestal con 2 años de experiencia en el eje evaluativo.
-</td>
-
-<td>NO APLICA</td>
+    <td>{item.experiencia_entidad}</td>
 
 </tr>
+
+))}
 
 </tbody>
 
