@@ -7,7 +7,7 @@ function AprobacionVRM() {
   const [nombre, setNombre] = useState("");
   const [indicador, setIndicador] = useState("");
 
-  const API_URL = process.env.REACT_APP_API_URL;
+  const API_URL = "https://erp-unilibre-production.up.railway.app";
 
 const [datos, setDatos] = useState([]);
 
