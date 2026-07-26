@@ -361,6 +361,11 @@ export default function Aprobaciones() {
                   <h3>Información General</h3>
 
                   <p>
+                     <strong>Número de novedad:</strong>{" "}
+                     {expertoSeleccionado.id}
+                 </p>
+
+                  <p>
                     <strong>Tipo de novedad:</strong>{" "}
                     {expertoSeleccionado.tipo_novedad}
                   </p>
