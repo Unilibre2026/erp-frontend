@@ -339,37 +339,7 @@ export default function Aprobaciones() {
                     color="#ffffff"
                     strokeWidth={2.2}
                   />
-                  <div className="modal-footer-aprobacion">
-
-  <button
-    className="btn-rechazar"
-    disabled={loadingId === expertoSeleccionado.id}
-    onClick={() =>
-      decidir(
-        expertoSeleccionado.id,
-        "NO APROBADO"
-      )
-    }
-  >
-    No aprobado
-  </button>
-
-  <button
-    className="btn-aprobar"
-    disabled={loadingId === expertoSeleccionado.id}
-    onClick={() =>
-      decidir(
-        expertoSeleccionado.id,
-        "APROBADO"
-      )
-    }
-  >
-    {loadingId === expertoSeleccionado.id
-      ? "..."
-      : "Aprobado"}
-  </button>
-
-</div>
+                  
                 </div>
 
                 <div className="perfil-info">
@@ -560,6 +530,38 @@ export default function Aprobaciones() {
                     {expertoSeleccionado.motivo_retiro}
                   </div>
                 </div>
+
+                <div className="modal-footer-aprobacion">
+
+  <button
+    className="btn-rechazar"
+    disabled={loadingId === expertoSeleccionado.id}
+    onClick={() =>
+      decidir(
+        expertoSeleccionado.id,
+        "NO APROBADO"
+      )
+    }
+  >
+    No aprobado
+  </button>
+
+  <button
+    className="btn-aprobar"
+    disabled={loadingId === expertoSeleccionado.id}
+    onClick={() =>
+      decidir(
+        expertoSeleccionado.id,
+        "APROBADO"
+      )
+    }
+  >
+    {loadingId === expertoSeleccionado.id
+      ? "..."
+      : "Aprobado"}
+  </button>
+
+</div>
 
                 
               </div>
