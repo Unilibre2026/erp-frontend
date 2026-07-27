@@ -79,8 +79,9 @@
    TABLA
 ========================== */
 
-.contenedor-tabla {
-    overflow-x: auto;
+.contenedor-tabla{
+    width:100%;
+    overflow-x:auto;
 }
 
 .contenedor-tabla table {
@@ -152,4 +153,49 @@
 .contenedor-tabla th:last-child,
 .contenedor-tabla td:last-child {
     border-right: none;
+}
+
+/* ==========================
+   DISTRIBUCIÓN DEL PANEL
+========================== */
+
+.panel-superior{
+    display: flex;
+    align-items: flex-start;
+    gap: 25px;
+}
+
+.panel-izquierdo{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.tabla-consolidado{
+    width: 340px;
+    flex-shrink: 0;
+}
+
+.tabla-consolidado table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tabla-consolidado th{
+    background:#0f4c5c;
+    color:#fff;
+    padding:8px;
+    text-align:center;
+}
+
+.tabla-consolidado td{
+    padding:8px;
+    text-align:center;
+    border-bottom:1px solid #e5e7eb;
+}
+
+.fila-total{
+    font-weight:bold;
+    background:#dbeef5;
 }
