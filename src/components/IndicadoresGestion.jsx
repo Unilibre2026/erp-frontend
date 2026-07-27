@@ -5,12 +5,12 @@ const API_URL = "https://erp-unilibre-production.up.railway.app";
 
 function IndicadoresGestion() {
 
-    const [consulta, setConsulta] = useState("productividad_diaria");
+    const [consulta, setConsulta] = useState("gestion_diaria");
     const [convocatoria, setConvocatoria] = useState("");
     const [usuario, setUsuario] = useState("");
 
     const [convocatorias, setConvocatorias] = useState([]);
-    //const [usuarios, setUsuarios] = useState([]);
+    const [usuarios, setUsuarios] = useState([]);
 
     const cargarConvocatorias = async () => {
     try {
@@ -26,6 +26,28 @@ useEffect(() => {
     cargarConvocatorias();
 }, []);
 
+
+const cargarUsuarios = async (convocatoriaSeleccionada) => {
+    if (!convocatoriaSeleccionada) {
+        setUsuarios([]);
+        return;
+    }
+
+    try {
+        const res = await fetch(
+            `${API_URL}/indicadores-gestion/usuarios/${encodeURIComponent(convocatoriaSeleccionada)}`
+        );
+
+        const data = await res.json();
+
+        setUsuarios(data);
+
+    } catch (error) {
+        console.error(error);
+        setUsuarios([]);
+    }
+};
+
     return (
         <div className="indicadores-container">
 
@@ -39,8 +61,8 @@ useEffect(() => {
             value={consulta}
             onChange={(e) => setConsulta(e.target.value)}
         >
-            <option value="productividad_diaria">
-                Productividad diaria
+            <option value="gestion_diaria">
+                Gestión diaria
             </option>
         </select>
     </div>
@@ -48,9 +70,15 @@ useEffect(() => {
     <div className="campo">
         <label>Convocatoria</label>
         
-        <select
-          value={convocatoria}
-          onChange={(e) => setConvocatoria(e.target.value)}
+   <select
+    value={convocatoria}
+    onChange={(e) => {
+        const valor = e.target.value;
+
+        setConvocatoria(valor);
+        setUsuario("");
+        cargarUsuarios(valor);
+    }}
 >
     <option value="">Seleccione...</option>
 
@@ -69,11 +97,20 @@ useEffect(() => {
     <div className="campo">
         <label>Usuario</label>
         <select
-            value={usuario}
-            onChange={(e) => setUsuario(e.target.value)}
+          value={usuario}
+          onChange={(e) => setUsuario(e.target.value)}
+>
+    <option value="">Seleccione...</option>
+
+    {usuarios.map((item) => (
+        <option
+            key={item}
+            value={item}
         >
-            <option value="">Seleccione...</option>
-        </select>
+            {item}
+        </option>
+    ))}
+</select>
     </div>
 
     <div className="acciones">
