@@ -186,6 +186,8 @@ const consultarGestionDiaria = async (convocatoriaSeleccionada, responsableSelec
                             <th>Ingresos Totales</th>
                             <th>Ingresos Usuario</th>
                             <th>% Participación</th>
+                            <th>Ingresos Usuario</th>
+                            <th>% Participación</th>
                         </tr>
                     </thead>
 
@@ -195,27 +197,21 @@ const consultarGestionDiaria = async (convocatoriaSeleccionada, responsableSelec
 
     <tr key={index}>
 
-        <td>{fila.fecha}</td>
+    <td>{fila.fecha}</td>
 
-        <td>
-            {
-                new Date(fila.fecha).toLocaleDateString(
-                    "es-CO",
-                    {
-                        weekday: "long"
-                    }
-                )
+    <td>
+        {new Date(fila.fecha).toLocaleDateString("es-CO", {
+            weekday: "long"
+        })}
+    </td>
 
-            }
-        </td>
+    <td>{fila.ingresos_totales}</td>
 
-        <td>{fila.ingresos_totales}</td>
+    <td>{fila.ingresos_usuario}</td>
 
-        <td>{fila.ingresos_usuario}</td>
+    <td>{fila.participacion}%</td>
 
-        <td>{fila.participacion}%</td>
-
-    </tr>
+</tr>
 
 ))}
 
