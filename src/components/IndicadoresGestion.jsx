@@ -181,11 +181,11 @@ const consultarGestionDiaria = async (convocatoriaSeleccionada, responsableSelec
                 <table>
                     <thead>
                         <tr>
-                            <th>Fecha</th>
-                            <th>Día</th>
-                            <th>Ingresos Totales</th>
-                            <th>Ingresos Usuario</th>
-                            <th>% Participación</th>
+                            <th className="col-fecha">Fecha</th>
+                            <th className="col-dia">Día</th>
+                            <th className="col-total">Ingresos Totales</th>
+                            <th className="col-usuario">Ingresos Usuario</th>
+                            <th className="col-participacion">% Participación</th>
                            
                         </tr>
                     </thead>
