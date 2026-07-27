@@ -470,7 +470,7 @@ if (!usuario) {
 
 {puedeVer("usuarios") && (
 <button onClick={() => setVista("productividad_ingresos")}>
-    Seguimiento diario
+    Análisis de gestión
 </button>
 
 )}
