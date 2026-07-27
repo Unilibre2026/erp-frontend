@@ -48,6 +48,13 @@ const cargarUsuarios = async (convocatoriaSeleccionada) => {
     }
 };
 
+const consultarGestionDiaria = async (convocatoriaSeleccionada, responsableSeleccionado) => {
+
+    console.log("Convocatoria:", convocatoriaSeleccionada);
+    console.log("Responsable:", responsableSeleccionado);
+
+};
+
     return (
         <div className="indicadores-container">
 
@@ -97,8 +104,21 @@ const cargarUsuarios = async (convocatoriaSeleccionada) => {
     <div className="campo">
         <label>Usuario</label>
         <select
-          value={usuario}
-          onChange={(e) => setUsuario(e.target.value)}
+         value={usuario}
+         onChange={(e) => {
+
+        const valor = e.target.value;
+
+        setUsuario(valor);
+
+        if (!valor) return;
+
+        consultarGestionDiaria(
+            convocatoria,
+            valor
+        );
+
+    }}
 >
     <option value="">Seleccione...</option>
 
@@ -113,11 +133,7 @@ const cargarUsuarios = async (convocatoriaSeleccionada) => {
 </select>
     </div>
 
-    <div className="acciones">
-        <button className="btn-consultar">
-            Consultar
-        </button>
-    </div>
+    
 
 </div>
             <div className="indicadores">
