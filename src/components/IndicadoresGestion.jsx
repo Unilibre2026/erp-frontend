@@ -54,11 +54,14 @@ useEffect(() => {
 >
     <option value="">Seleccione...</option>
 
-    {convocatorias.map((item) => (
-        <option key={item} value={item}>
-            {item}
-        </option>
-    ))}
+   {convocatorias.map((item) => (
+    <option
+        key={item.id}
+        value={item.nombre_convocatoria}
+    >
+        {item.nombre_convocatoria}
+    </option>
+))}
 
 </select>
     </div>
