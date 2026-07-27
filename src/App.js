@@ -26,6 +26,8 @@ import { exportarExpertos } from "./utils/ExportadorExpertos";
 
 import AprobacionVRM from "./components/AprobacionVRM";
 
+import ProductividadIngresos from "./components/ProductividadIngresos";
+
 const API_URL = "https://erp-unilibre-production.up.railway.app";
 
 
@@ -466,12 +468,22 @@ if (!usuario) {
 
 )}
 
+{puedeVer("usuarios") && (
+<button onClick={() => setVista("productividad_ingresos")}>
+    Seguimiento diario
+</button>
+
+)}
+
         <button
   onClick={logout}
   style={{ background: "red", color: "white", marginTop: "20px" }}
 >
   Cerrar sesión
 </button>
+
+
+
 
 
 
@@ -489,6 +501,7 @@ if (!usuario) {
   {vista === "aprobacion_vrm" && <AprobacionVRM />}
   {vista === "consulta" && <Consultas />}
   {vista === "avance_general" && (<AvanceGeneral />)}
+  {vista === "productividad_ingresos" && (<ProductividadIngresos />)}
   {vista === "consulta_cnsc" && (<ConsultaCNSC />)}
   {vista === "avance_prueba" && (<AvancePrueba />)}  
   {vista === "carga" && <CargaMasiva />}
