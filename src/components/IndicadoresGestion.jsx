@@ -15,7 +15,7 @@ function IndicadoresGestion() {
     const [ingresosTotales, setIngresosTotales] = useState(0);
     const [ingresosUsuario, setIngresosUsuario] = useState(0);
     const [participacion, setParticipacion] = useState(0);
-    const [detalle, setDetalle] = useState([]);
+    //const [detalle, setDetalle] = useState([]);
 
     const cargarConvocatorias = async () => {
     try {
@@ -69,7 +69,7 @@ const consultarGestionDiaria = async (convocatoriaSeleccionada, responsableSelec
         setIngresosUsuario(data.resumen.ingresos_usuario);
         setParticipacion(data.resumen.participacion);
 
-        setDetalle(data.detalle);
+        //setDetalle(data.detalle);
 
     } catch (error) {
 
