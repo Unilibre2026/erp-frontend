@@ -197,6 +197,8 @@ const consultarGestionDiaria = async (convocatoriaSeleccionada, responsableSelec
 </div>
             <div className="panel-superior">
 
+              <div className="panel-izquierdo">
+
     <div className="indicadores">
 
         <div className="tarjeta">
@@ -215,6 +217,51 @@ const consultarGestionDiaria = async (convocatoriaSeleccionada, responsableSelec
         </div>
 
     </div>
+
+    <div className="contenedor-tabla">
+                <table>
+                    <thead>
+                        <tr>
+                            <th className="col-fecha">Fecha</th>
+                            <th className="col-dia">Día</th>
+                            <th className="col-total">Ingresos Totales</th>
+                            <th className="col-usuario">Ingresos Usuario</th>
+                            <th className="col-participacion">% Participación</th>
+                           
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                     {detalle.map((fila, index) => (
+
+    <tr key={index}>
+
+    <td>{fila.fecha}</td>
+
+    <td>
+        {new Date(fila.fecha).toLocaleDateString("es-CO", {
+            weekday: "long"
+        })}
+    </td>
+
+    <td>{fila.ingresos_totales}</td>
+
+    <td>{fila.ingresos_usuario}</td>
+
+    <td>{fila.participacion}%</td>
+
+</tr>
+
+))}
+
+</tbody>
+
+                </table>
+            </div>
+
+         </div>   
+
 
     <div className="tabla-consolidado">
 
@@ -271,50 +318,12 @@ const consultarGestionDiaria = async (convocatoriaSeleccionada, responsableSelec
 
     </div>
 
-</div>
 
-            <div className="contenedor-tabla">
-                <table>
-                    <thead>
-                        <tr>
-                            <th className="col-fecha">Fecha</th>
-                            <th className="col-dia">Día</th>
-                            <th className="col-total">Ingresos Totales</th>
-                            <th className="col-usuario">Ingresos Usuario</th>
-                            <th className="col-participacion">% Participación</th>
-                           
-                        </tr>
-                    </thead>
+     </div>
 
-                    <tbody>
 
-                     {detalle.map((fila, index) => (
 
-    <tr key={index}>
-
-    <td>{fila.fecha}</td>
-
-    <td>
-        {new Date(fila.fecha).toLocaleDateString("es-CO", {
-            weekday: "long"
-        })}
-    </td>
-
-    <td>{fila.ingresos_totales}</td>
-
-    <td>{fila.ingresos_usuario}</td>
-
-    <td>{fila.participacion}%</td>
-
-</tr>
-
-))}
-
-</tbody>
-
-                </table>
-            </div>
-
+            
         </div>
     );
 }
