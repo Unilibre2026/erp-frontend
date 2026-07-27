@@ -61,13 +61,15 @@
     display: block;
     color: #6b7280;
     margin-bottom: 8px;
-    font-size: 14px;
+    font-size: 16px;
+    font-weight: 500;
 }
 
 .tarjeta h3 {
     margin: 0;
-    font-size: 30px;
+    font-size: 36px;
     color: #2563eb;
+    font-weight: 700;
 }
 
 /* ==========================
@@ -87,16 +89,18 @@
 .contenedor-tabla th {
     background: #2563eb;
     color: white;
-    padding: 10px 6px;
+    padding: 12px 8px;
     text-align: center;
-    font-size: 13px;
+    font-size: 15px;
+    font-weight: 600;
 }
 
 .contenedor-tabla td {
-    padding: 8px 6px;
+    padding: 10px 8px;
     border-bottom: 1px solid #e5e7eb;
     text-align: center;
-    font-size: 13px;
+    font-size: 15px;
+    font-weight: 500;
 }
 
 .contenedor-tabla tbody tr:hover {
@@ -108,21 +112,21 @@
 ========================== */
 
 .col-fecha {
-    width: 50px;
+    width: 30px;
 }
 
 .col-dia {
-    width: 50px;
+    width: 30px;
 }
 
 .col-total {
-    width: 50px;
+    width: 30px;
 }
 
 .col-usuario {
-    width: 50px;
+    width: 30px;
 }
 
 .col-participacion {
-    width: 50px;
+    width: 30px;
 }
