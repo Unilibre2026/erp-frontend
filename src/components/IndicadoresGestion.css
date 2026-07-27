@@ -159,30 +159,18 @@
    DISTRIBUCIÓN DEL PANEL
 ========================== */
 
-.panel-superior{
-    display:flex;
-    align-items:flex-start;
-    gap:30px;
-    justify-content:flex-start;
-}
 
-.panel-izquierdo{
-    width: 820px;
-    display:flex;
-    flex-direction:column;
-    gap:20px;
-    flex-shrink:0;
-}
 
 .tabla-consolidado{
-    width: 360px;
-    flex-shrink: 0;
+    display:flex;
+    justify-content:center;
+    margin-bottom:25px;
 }
 
 .tabla-consolidado table{
     width:auto;
     border-collapse:collapse;
-    table-layout:auto;
+    table-layout:fixed;
 }
 
 .tabla-consolidado th{
@@ -219,15 +207,15 @@
 
 .tabla-consolidado th:nth-child(1),
 .tabla-consolidado td:nth-child(1){
-    width:170px;
+    width:60px;
 }
 
 .tabla-consolidado th:nth-child(2),
 .tabla-consolidado td:nth-child(2){
-    width:70px;
+    width:60px;
 }
 
 .tabla-consolidado th:nth-child(3),
 .tabla-consolidado td:nth-child(3){
-    width:70px;
+    width:60px;
 }
