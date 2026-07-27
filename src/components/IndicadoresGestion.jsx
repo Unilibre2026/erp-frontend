@@ -125,7 +125,7 @@ const consultarGestionDiaria = async (convocatoriaSeleccionada, responsableSelec
 </select>
     </div>
 
-    <div className="campo">
+    <div className="campo campo-usuario">
         <label>Usuario</label>
         <select
          value={usuario}

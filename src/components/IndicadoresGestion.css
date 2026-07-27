@@ -133,3 +133,11 @@
 .col-participacion {
     width: 30px;
 }
+
+.campo-usuario {
+    width: 140px;
+}
+
+.campo-usuario select {
+    width: 100%;
+}
