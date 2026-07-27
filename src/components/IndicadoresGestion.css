@@ -102,7 +102,8 @@
 
 .contenedor-tabla td {
     padding: 5px 8px;
-    border-bottom: 1px solid #e5e7eb;
+    border-bottom: 1px solid #ffffff;
+    border-right: 1px solid #ffffff;
     text-align: center;
     font-size: 18px;
     font-weight: 500;
@@ -142,4 +143,13 @@
 
 .campo-usuario select {
     width: 100%;
+}
+
+.contenedor-tabla th {
+    border-right: 1px solid #ffffff;
+}
+
+.contenedor-tabla th:last-child,
+.contenedor-tabla td:last-child {
+    border-right: none;
 }
