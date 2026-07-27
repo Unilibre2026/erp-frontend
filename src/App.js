@@ -26,7 +26,7 @@ import { exportarExpertos } from "./utils/ExportadorExpertos";
 
 import AprobacionVRM from "./components/AprobacionVRM";
 
-import ProductividadIngresos from "./components/ProductividadIngresos";
+import Indicadoresgestion from "./components/IndicadoresGestion";
 
 const API_URL = "https://erp-unilibre-production.up.railway.app";
 
@@ -469,7 +469,7 @@ if (!usuario) {
 )}
 
 {puedeVer("usuarios") && (
-<button onClick={() => setVista("productividad_ingresos")}>
+<button onClick={() => setVista("indicadores_gestion")}>
     Análisis de gestión
 </button>
 
@@ -501,7 +501,7 @@ if (!usuario) {
   {vista === "aprobacion_vrm" && <AprobacionVRM />}
   {vista === "consulta" && <Consultas />}
   {vista === "avance_general" && (<AvanceGeneral />)}
-  {vista === "productividad_ingresos" && (<ProductividadIngresos />)}
+  {vista === "indicadores_gestion" && (<IndicadoresGestion />)}
   {vista === "consulta_cnsc" && (<ConsultaCNSC />)}
   {vista === "avance_prueba" && (<AvancePrueba />)}  
   {vista === "carga" && <CargaMasiva />}
