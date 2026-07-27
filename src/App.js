@@ -2290,6 +2290,7 @@ function Consultas() {
       <option value="Pendiente">Pendiente</option>
       <option value="Pre-aprobado">Pre-aprobado</option>
       <option value="SUBSANAR">SUBSANAR</option>
+      <option value="APROBADO">APROBADO</option>
     </select>
 
   </div>
@@ -2327,18 +2328,20 @@ function Consultas() {
 
     <td className="col-status">
         <span
-            className={`status-badge ${
-                i.status === "Pendiente"
-                    ? "status-pendiente"
-                    : i.status === "Pre-aprobado"
-                    ? "status-preaprobado"
-                    : i.status === "SUBSANAR"
-                    ? "status-subsanar"
-                    : ""
-            }`}
-        >
-            {i.status}
-        </span>
+    className={`status-badge ${
+        i.status === "Pendiente"
+            ? "status-pendiente"
+            : i.status === "Pre-aprobado"
+            ? "status-preaprobado"
+            : i.status === "SUBSANAR"
+            ? "status-subsanar"
+            : i.status === "APROBADO"
+            ? "status-aprobado"
+            : ""
+    }`}
+>
+    {i.status}
+</span>
     </td>
 
     <td className="col-documento">{i.documento_experto}</td>
