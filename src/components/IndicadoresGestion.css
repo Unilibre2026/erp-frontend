@@ -93,18 +93,20 @@
 .contenedor-tabla th {
     background: #2563eb;
     color: white;
-    padding: 12px 8px;
+    padding: 6px 8px;
     text-align: center;
     font-size: 18px;
     font-weight: 600;
+    line-height: 1.1;
 }
 
 .contenedor-tabla td {
-    padding: 10px 8px;
+    padding: 5px 8px;
     border-bottom: 1px solid #e5e7eb;
     text-align: center;
     font-size: 18px;
     font-weight: 500;
+    line-height: 1.1;
 }
 
 .contenedor-tabla tbody tr:hover {
@@ -135,7 +137,7 @@
 }
 
 .campo-usuario {
-    width: 140px;
+    width: 120px;
 }
 
 .campo-usuario select {
