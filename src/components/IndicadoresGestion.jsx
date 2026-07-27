@@ -16,6 +16,7 @@ function IndicadoresGestion() {
     const [ingresosUsuario, setIngresosUsuario] = useState(0);
     const [participacion, setParticipacion] = useState(0);
     const [detalle, setDetalle] = useState([]);
+    const [consolidado, setConsolidado] = useState([]);
 
     const cargarConvocatorias = async () => {
     try {
@@ -51,6 +52,32 @@ const cargarUsuarios = async (convocatoriaSeleccionada) => {
         console.error(error);
         setUsuarios([]);
     }
+};
+
+const cargarResumenConvocatoria = async (convocatoriaSeleccionada) => {
+
+    if (!convocatoriaSeleccionada) {
+        setConsolidado([]);
+        return;
+    }
+
+    try {
+
+        const res = await fetch(
+            `${API_URL}/indicadores-gestion/resumen-convocatoria/${encodeURIComponent(convocatoriaSeleccionada)}`
+        );
+
+        const data = await res.json();
+
+        setConsolidado(data.consolidado);
+
+    } catch (error) {
+
+        console.error(error);
+        setConsolidado([]);
+
+    }
+
 };
 
 const consultarGestionDiaria = async (convocatoriaSeleccionada, responsableSeleccionado) => {
@@ -104,12 +131,20 @@ const consultarGestionDiaria = async (convocatoriaSeleccionada, responsableSelec
    <select
     value={convocatoria}
     onChange={(e) => {
-        const valor = e.target.value;
+    const valor = e.target.value;
 
-        setConvocatoria(valor);
-        setUsuario("");
-        cargarUsuarios(valor);
-    }}
+    setConvocatoria(valor);
+    setUsuario("");
+
+    cargarUsuarios(valor);
+    cargarResumenConvocatoria(valor);
+
+    // Limpiar la consulta anterior
+    setIngresosTotales(0);
+    setIngresosUsuario(0);
+    setParticipacion(0);
+    setDetalle([]);
+}}
 >
     <option value="">Seleccione...</option>
 
@@ -160,22 +195,83 @@ const consultarGestionDiaria = async (convocatoriaSeleccionada, responsableSelec
     
 
 </div>
-            <div className="indicadores">
-                <div className="tarjeta">
-                    <span>Ingresos Totales</span>
-                    <h3>{ingresosTotales}</h3>
-                </div>
+            <div className="panel-superior">
 
-                <div className="tarjeta">
-                    <span>Ingresos Usuario</span>
-                    <h3>{ingresosUsuario}</h3>
-                </div>
+    <div className="indicadores">
 
-                <div className="tarjeta">
-                    <span>Participación</span>
-                    <h3>{participacion}%</h3>
-                </div>
-            </div>
+        <div className="tarjeta">
+            <span>Ingresos Totales</span>
+            <h3>{ingresosTotales}</h3>
+        </div>
+
+        <div className="tarjeta">
+            <span>Ingresos Usuario</span>
+            <h3>{ingresosUsuario}</h3>
+        </div>
+
+        <div className="tarjeta">
+            <span>Participación</span>
+            <h3>{participacion}%</h3>
+        </div>
+
+    </div>
+
+    <div className="tabla-consolidado">
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>Usuario</th>
+                    <th>Ingresos</th>
+                    <th>%</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {consolidado.map((fila, index) => (
+
+                    <tr key={index}>
+
+                        <td>{fila.usuario}</td>
+
+                        <td>{fila.ingresos_usuario}</td>
+
+                        <td>{fila.participacion}%</td>
+
+                    </tr>
+
+                ))}
+
+                <tr className="fila-total">
+
+                    <td><strong>Total</strong></td>
+
+                    <td>
+                        <strong>
+                            {consolidado.reduce(
+                                (a, b) => a + b.ingresos_usuario,
+                                0
+                            )}
+                        </strong>
+                    </td>
+
+                    <td>
+                        <strong>100%</strong>
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
 
             <div className="contenedor-tabla">
                 <table>
