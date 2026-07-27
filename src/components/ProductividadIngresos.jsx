@@ -4,7 +4,7 @@ import "./ProductividadIngresos.css";
 function ProductividadIngresos() {
     return (
         <div className="productividad-container">
-            <h2>Productividad de Ingresos</h2>
+            <h2>Análisis de gestión</h2>
         </div>
     );
 }
