@@ -1601,3 +1601,47 @@ thead th {
     margin-top:30px;   /* separación respecto a las tarjetas */
     margin-bottom:10px;
 }
+
+.status-aprobado{
+    background: #16A34A;
+    color: #FFFFFF;
+    font-weight: bold;
+    padding: 6px 12px;
+    border-radius: 999px;
+    display: inline-block;
+    text-align: center;
+}
+
+/* =========================
+   ESTADOS CONSULTA NOVEDADES
+========================= */
+
+.status-badge{
+    display:inline-block;
+    min-width:120px;
+    padding:6px 12px;
+    border-radius:999px;
+    text-align:center;
+    font-weight:bold;
+    font-size:12px;
+}
+
+.status-pendiente{
+    background:#FACC15;
+    color:#000;
+}
+
+.status-preaprobado{
+    background:#2563EB;
+    color:#FFF;
+}
+
+.status-subsanar{
+    background:#7C3AED;
+    color:#FFF;
+}
+
+.status-aprobado{
+    background:#16A34A;
+    color:#FFF;
+}
