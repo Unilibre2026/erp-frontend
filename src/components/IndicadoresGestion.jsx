@@ -186,8 +186,7 @@ const consultarGestionDiaria = async (convocatoriaSeleccionada, responsableSelec
                             <th>Ingresos Totales</th>
                             <th>Ingresos Usuario</th>
                             <th>% Participación</th>
-                            <th>Ingresos Usuario</th>
-                            <th>% Participación</th>
+                           
                         </tr>
                     </thead>
 
