@@ -10,7 +10,7 @@ function IndicadoresGestion() {
     const [usuario, setUsuario] = useState("");
 
     const [convocatorias, setConvocatorias] = useState([]);
-    const [usuarios, setUsuarios] = useState([]);
+    //const [usuarios, setUsuarios] = useState([]);
 
     const cargarConvocatorias = async () => {
     try {
