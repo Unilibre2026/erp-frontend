@@ -1,11 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./IndicadoresGestion.css";
+
+const API_URL = "https://erp-unilibre-production.up.railway.app";
 
 function IndicadoresGestion() {
 
     const [consulta, setConsulta] = useState("productividad_diaria");
     const [convocatoria, setConvocatoria] = useState("");
     const [usuario, setUsuario] = useState("");
+
+    const [convocatorias, setConvocatorias] = useState([]);
+    const [usuarios, setUsuarios] = useState([]);
+
+    const cargarConvocatorias = async () => {
+    try {
+        const res = await fetch(`${API_URL}/convocatorias`);
+        const data = await res.json();
+        setConvocatorias(data);
+    } catch (error) {
+        console.error("Error cargando convocatorias:", error);
+    }
+};
+
+useEffect(() => {
+    cargarConvocatorias();
+}, []);
 
     return (
         <div className="indicadores-container">
@@ -28,12 +47,20 @@ function IndicadoresGestion() {
 
     <div className="campo">
         <label>Convocatoria</label>
+        
         <select
-            value={convocatoria}
-            onChange={(e) => setConvocatoria(e.target.value)}
-        >
-            <option value="">Seleccione...</option>
-        </select>
+          value={convocatoria}
+          onChange={(e) => setConvocatoria(e.target.value)}
+>
+    <option value="">Seleccione...</option>
+
+    {convocatorias.map((item) => (
+        <option key={item} value={item}>
+            {item}
+        </option>
+    ))}
+
+</select>
     </div>
 
     <div className="campo">
