@@ -26,7 +26,7 @@ import { exportarExpertos } from "./utils/ExportadorExpertos";
 
 import AprobacionVRM from "./components/AprobacionVRM";
 
-import Indicadoresgestion from "./components/IndicadoresGestion";
+import IndicadoresGestion from "./components/IndicadoresGestion";
 
 const API_URL = "https://erp-unilibre-production.up.railway.app";
 
