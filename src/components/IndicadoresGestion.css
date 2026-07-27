@@ -81,13 +81,11 @@
 
 .contenedor-tabla {
     overflow-x: auto;
-    display: flex;
-    justify-content: flex-start;
 }
 
 .contenedor-tabla table {
     width: auto;
-    min-width: 720px;
+    min-width: 900px;
     border-collapse: collapse;
     margin: 0;
 }
@@ -97,7 +95,7 @@
     color: white;
     padding: 12px 8px;
     text-align: center;
-    font-size: 24px;
+    font-size: 18px;
     font-weight: 600;
 }
 
@@ -105,18 +103,13 @@
     padding: 10px 8px;
     border-bottom: 1px solid #e5e7eb;
     text-align: center;
-    font-size: 24px;
+    font-size: 18px;
     font-weight: 500;
 }
 
 .contenedor-tabla tbody tr:hover {
     background: #f8fafc;
 }
-
-.contenedor-tabla table {
-    margin: 0 auto;
-}
-
 /* ==========================
    ANCHO DE COLUMNAS
 ========================== */
