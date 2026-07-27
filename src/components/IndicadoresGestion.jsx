@@ -191,7 +191,7 @@ const consultarGestionDiaria = async (convocatoriaSeleccionada, responsableSelec
 
                     <tbody>
 
-{detalle.map((fila, index) => (
+                     {detalle.map((fila, index) => (
 
     <tr key={index}>
 
