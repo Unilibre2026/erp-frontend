@@ -2171,6 +2171,7 @@ function Consultas() {
 
   sheet.columns = [
     { header: "ID", key: "id", width: 10 },
+    { header: "Status", key: "status", width: 18 },
     { header: "Documento", key: "documento_experto", width: 20 },
     { header: "Nombre", key: "nombre", width: 25 },
     { header: "Convocatoria", key: "convocatoria", width: 25 },
@@ -2192,6 +2193,7 @@ function Consultas() {
   filtrados.forEach((i) => {
     sheet.addRow({
       id: i.id,
+      status: i.status,
       documento_experto: i.documento_experto,
       nombre: i.nombre,
       convocatoria: i.convocatoria,
