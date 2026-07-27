@@ -355,6 +355,13 @@ if (!usuario) {
       <div className={`sidebar ${menuAbierto ? "sidebar-abierto" : ""}`}>
         <h2 className="titulo-sidebar">Reclutamiento</h2>
 
+        {puedeVer("indicadores_gestion") && (
+<button onClick={() => setVista("indicadores_gestion")}>
+    Análisis de gestión
+</button>
+
+)}
+
         {puedeVer("formulario") && (
   <button onClick={() => cambiarVista("formulario")}>
     Formulario
@@ -468,12 +475,7 @@ if (!usuario) {
 
 )}
 
-{puedeVer("indicadores_gestion") && (
-<button onClick={() => setVista("indicadores_gestion")}>
-    Análisis de gestión
-</button>
 
-)}
 
         <button
   onClick={logout}
