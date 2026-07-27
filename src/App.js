@@ -468,7 +468,7 @@ if (!usuario) {
 
 )}
 
-{puedeVer("usuarios") && (
+{puedeVer("indicadores_gestion") && (
 <button onClick={() => setVista("indicadores_gestion")}>
     Análisis de gestión
 </button>
@@ -511,8 +511,7 @@ if (!usuario) {
   {vista === "usuarios" && <Usuarios />}
   {vista === "permisos_modulos" && <PermisosModulos />}
   {vista === "aprobaciones" && <Aprobaciones />}
-  {vista === "consulta_subsanacion" && (
-  <ConsultaSubsanacion />
+  {vista === "consulta_subsanacion" && (<ConsultaSubsanacion />
 )}
 
 
