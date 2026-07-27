@@ -175,13 +175,14 @@
 }
 
 .tabla-consolidado{
-    width: 520px;
+    width: 360px;
     flex-shrink: 0;
 }
 
 .tabla-consolidado table{
-    width: 100%;
-    border-collapse: collapse;
+    width:auto;
+    border-collapse:collapse;
+    table-layout:auto;
 }
 
 .tabla-consolidado th{
@@ -218,15 +219,15 @@
 
 .tabla-consolidado th:nth-child(1),
 .tabla-consolidado td:nth-child(1){
-    width: 260px;
+    width:170px;
 }
 
 .tabla-consolidado th:nth-child(2),
 .tabla-consolidado td:nth-child(2){
-    width: 110px;
+    width:70px;
 }
 
 .tabla-consolidado th:nth-child(3),
 .tabla-consolidado td:nth-child(3){
-    width: 90px;
+    width:70px;
 }
