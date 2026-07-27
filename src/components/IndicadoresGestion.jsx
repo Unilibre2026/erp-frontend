@@ -111,6 +111,62 @@ const consultarGestionDiaria = async (convocatoriaSeleccionada, responsableSelec
 
             <h2>Indicadores de Gestión</h2>
 
+            <div className="tabla-consolidado">
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>Usuario</th>
+                    <th>Ingresos</th>
+                    <th>%</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {consolidado.map((fila, index) => (
+
+                    <tr key={index}>
+
+                        <td>{fila.usuario}</td>
+
+                        <td>{fila.ingresos_usuario}</td>
+
+                        <td>{fila.participacion}%</td>
+
+                    </tr>
+
+                ))}
+
+                <tr className="fila-total">
+
+                    <td><strong>Total</strong></td>
+
+                    <td>
+                        <strong>
+                            {consolidado.reduce(
+                                (a, b) => a + b.ingresos_usuario,
+                                0
+                            )}
+                        </strong>
+                    </td>
+
+                    <td>
+                        <strong>100%</strong>
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
                  <div className="filtros">
 
     <div className="campo">
@@ -263,61 +319,7 @@ const consultarGestionDiaria = async (convocatoriaSeleccionada, responsableSelec
          </div>   
 
 
-    <div className="tabla-consolidado">
-
-        <table>
-
-            <thead>
-
-                <tr>
-                    <th>Usuario</th>
-                    <th>Ingresos</th>
-                    <th>%</th>
-                </tr>
-
-            </thead>
-
-            <tbody>
-
-                {consolidado.map((fila, index) => (
-
-                    <tr key={index}>
-
-                        <td>{fila.usuario}</td>
-
-                        <td>{fila.ingresos_usuario}</td>
-
-                        <td>{fila.participacion}%</td>
-
-                    </tr>
-
-                ))}
-
-                <tr className="fila-total">
-
-                    <td><strong>Total</strong></td>
-
-                    <td>
-                        <strong>
-                            {consolidado.reduce(
-                                (a, b) => a + b.ingresos_usuario,
-                                0
-                            )}
-                        </strong>
-                    </td>
-
-                    <td>
-                        <strong>100%</strong>
-                    </td>
-
-                </tr>
-
-            </tbody>
-
-        </table>
-
-    </div>
-
+    
 
      </div>
 
