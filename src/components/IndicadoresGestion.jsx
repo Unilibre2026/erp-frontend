@@ -12,6 +12,11 @@ function IndicadoresGestion() {
     const [convocatorias, setConvocatorias] = useState([]);
     const [usuarios, setUsuarios] = useState([]);
 
+    const [ingresosTotales, setIngresosTotales] = useState(0);
+    const [ingresosUsuario, setIngresosUsuario] = useState(0);
+    const [participacion, setParticipacion] = useState(0);
+    const [detalle, setDetalle] = useState([]);
+
     const cargarConvocatorias = async () => {
     try {
         const res = await fetch(`${API_URL}/convocatorias`);
@@ -50,8 +55,27 @@ const cargarUsuarios = async (convocatoriaSeleccionada) => {
 
 const consultarGestionDiaria = async (convocatoriaSeleccionada, responsableSeleccionado) => {
 
-    console.log("Convocatoria:", convocatoriaSeleccionada);
-    console.log("Responsable:", responsableSeleccionado);
+    try {
+
+        const res = await fetch(
+            `${API_URL}/indicadores-gestion/gestion-diaria/${encodeURIComponent(convocatoriaSeleccionada)}/${encodeURIComponent(responsableSeleccionado)}`
+        );
+
+        const data = await res.json();
+
+        console.log(data);
+
+        setIngresosTotales(data.resumen.ingresos_totales);
+        setIngresosUsuario(data.resumen.ingresos_usuario);
+        setParticipacion(data.resumen.participacion);
+
+        setDetalle(data.detalle);
+
+    } catch (error) {
+
+        console.error(error);
+
+    }
 
 };
 
@@ -139,17 +163,17 @@ const consultarGestionDiaria = async (convocatoriaSeleccionada, responsableSelec
             <div className="indicadores">
                 <div className="tarjeta">
                     <span>Ingresos Totales</span>
-                    <h3>0</h3>
+                    <h3>{ingresosTotales}</h3>
                 </div>
 
                 <div className="tarjeta">
                     <span>Ingresos Usuario</span>
-                    <h3>0</h3>
+                    <h3>{ingresosUsuario}</h3>
                 </div>
 
                 <div className="tarjeta">
                     <span>Participación</span>
-                    <h3>0%</h3>
+                    <h3>{participacion}%</h3>
                 </div>
             </div>
 
