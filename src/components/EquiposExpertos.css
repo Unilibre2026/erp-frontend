@@ -1,7 +1,8 @@
 .equipos-expertos {
+    max-width: 1100px;
+    margin: 0 auto;
     padding: 20px;
 }
-
 .filtros-equipos {
     display: flex;
     gap: 25px;
@@ -66,12 +67,10 @@
     width:100%;
 }
 
-.encabezado-tabla{
-    display:flex;
-    align-items:center;
-    font-weight:bold;
-    border-bottom:2px solid #d9d9d9;
-    padding:10px 0;
+.encabezado-tabla,
+.fila-equipo {
+    display: flex;
+    align-items: center;
 }
 
 .fila-equipo{
@@ -81,22 +80,25 @@
     border-bottom:1px solid #ececec;
 }
 
-.col-documento{
-    width:180px;
+.col-documento {
+    width: 150px;
+    flex-shrink: 0;
 }
 
-.col-nombre{
-    flex:1;
+.col-nombre {
+    width: 420px;
+    flex-shrink: 0;
 }
 
-.col-estado{
-    width:150px;
+.col-estado {
+    width: 120px;
+    flex-shrink: 0;
 }
 
-.col-disponibilidad{
-    width:220px;
+.col-disponibilidad {
+    width: 220px;
+    flex-shrink: 0;
 }
-
 .estado-aprobado{
     color:#2e7d32;
     font-weight:bold;
