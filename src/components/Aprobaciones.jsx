@@ -25,6 +25,7 @@ export default function Aprobaciones() {
     try {
       const res = await fetch(`${API_URL}/aprobaciones/pendientes`);
       const data = await res.json();
+      console.log(data[0]);
 
       setPendientes(Array.isArray(data) ? data : []);
     } catch (error) {
