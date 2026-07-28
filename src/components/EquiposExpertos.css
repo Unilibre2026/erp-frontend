@@ -175,3 +175,25 @@
     border: none !important;
     outline: none !important;
 }
+
+/* ===========================
+   ENCABEZADOS DE LA TABLA
+=========================== */
+
+.equipos-expertos .encabezado-tabla > span,
+.equipos-expertos .encabezado-tabla > div {
+    font-size: 15px;
+    font-weight: 700;
+    color: #0b5f7d;   /* Azul petróleo */
+}
+
+/* ===========================
+   DATOS DE LA TABLA
+=========================== */
+
+.equipos-expertos .fila-equipo > span,
+.equipos-expertos .fila-equipo > div {
+    font-size: 15px;
+    font-weight: 400;
+    color: #000;
+}
