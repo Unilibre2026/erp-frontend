@@ -3,53 +3,45 @@ import "./EquiposExpertos.css";
 
 function EquiposExpertos() {
   return (
-    
+    <div className="equipos-expertos">
 
-      <div className="equipos-expertos">
+      <h2>Equipos de expertos</h2>
 
-    <h2>Equipos de expertos</h2>
-
-    <div className="filtros-equipos">
+      <div className="filtros-equipos">
 
         <div className="grupo-filtro">
-            <label>Convocatoria</label>
-            <select>
-                <option>Seleccione...</option>
-            </select>
+          <label>Convocatoria</label>
+          <select>
+            <option>Seleccione...</option>
+          </select>
         </div>
 
         <div className="grupo-filtro">
-            <label>Ciudad</label>
-            <select>
-                <option>Seleccione...</option>
-            </select>
+          <label>Ciudad</label>
+          <select>
+            <option>Seleccione...</option>
+          </select>
         </div>
 
-    </div>
+      </div>
 
-    <div className="encabezado-informe">
+      <div className="encabezado-informe">
 
-    <div className="logo-informe">
-        <img src={appLogo} alt="Universidad Libre" />
-    </div>
-
-    <div className="datos-informe">
-
-        <p>
+        <div className="datos-informe">
+          <p>
             <strong>Convocatoria:</strong> CNSC Territorial 11
-        </p>
+          </p>
 
-        <p>
+          <p>
             <strong>Ciudad:</strong> Bogotá
-        </p>
+          </p>
+        </div>
+
+      </div>
+
+      <hr />
 
     </div>
-
-</div>
-
-<hr />
-
-</div>
   );
 }
 
