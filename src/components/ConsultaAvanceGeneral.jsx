@@ -397,45 +397,6 @@ const obtenerTotalGeneralAprobados = () => {
 
 };
 
-const obtenerTotalGeneralReclutados = () => {
-
-    return reclutados.reduce(
-
-        (total, r) => total + Number(r.reclutados),
-
-        0
-
-    );
-
-};
-
-const obtenerTotalGeneralPreAprobados = () => {
-
-    return preAprobados.reduce(
-
-        (total, p) => total + Number(p.pre_aprobados),
-
-        0
-
-    );
-
-};
-
-// ==========================================
-// TOTAL GENERAL APROBADOS
-// ==========================================
-
-const obtenerTotalGeneralAprobados = () => {
-
-    return aprobados.reduce(
-
-        (total, a) => total + Number(a.aprobados),
-
-        0
-
-    );
-
-};
 
     // ==========================================
     // TOTAL POR CIUDAD
