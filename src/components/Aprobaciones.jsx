@@ -88,20 +88,15 @@ export default function Aprobaciones() {
  // ===== FILTRO DE LA TABLA =====
   const datosFiltrados = pendientes.filter((item) => {
 
-  const valorBusqueda = String(item[campoBusqueda] ?? "")
-    .toLowerCase()
-    .trim();
+ const valorBusqueda =
+  campoBusqueda === "documento"
+    ? String(item.documento_experto ?? "")
+    : String(item[campoBusqueda] ?? "");
 
-  const texto = textoBusqueda
-    .toLowerCase()
-    .trim();
+const valor = valorBusqueda.toLowerCase().trim();
+const texto = textoBusqueda.toLowerCase().trim();
 
-  console.log({
-    campoBusqueda,
-    valorBusqueda,
-    texto,
-    coincide: valorBusqueda.includes(texto)
-  });
+const coincideBusqueda = valor.includes(texto);
 
   const coincideBusqueda = valorBusqueda.includes(texto);
 
