@@ -71,35 +71,66 @@
     font-weight: bold;
     color: #0b5f7d;
 }
-
 /* ===========================
    TABLA
 =========================== */
 
-.tabla-equipo {
-    margin-top: 18px;
+.equipos-expertos .tabla-equipo {
     width: 100%;
+    margin-top: 18px;
 }
 
-.encabezado-tabla,
-.fila-equipo {
+.equipos-expertos .encabezado-tabla,
+.equipos-expertos .fila-equipo {
     display: grid;
     grid-template-columns: 120px 260px 110px 170px 120px 170px;
     column-gap: 12px;
     align-items: center;
 }
 
-.encabezado-tabla {
+.equipos-expertos .encabezado-tabla {
     padding: 10px 0;
-    font-weight: 600;
     border-bottom: 2px solid #d9d9d9;
 }
 
-.fila-equipo {
+.equipos-expertos .fila-equipo {
     padding: 10px 0;
     border-bottom: 1px solid #ececec;
 }
 
+/* Todos los textos de la tabla */
+
+.equipos-expertos .encabezado-tabla > span,
+.equipos-expertos .fila-equipo > span {
+
+    margin: 0;
+    padding: 0;
+
+    font-family: inherit;
+    font-size: 14px;
+    line-height: 1.4;
+
+    color: #000;
+
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+
+    text-decoration: none;
+
+}
+
+/* Encabezados */
+
+.equipos-expertos .encabezado-tabla > span{
+    font-weight:600;
+}
+
+/* Filas */
+
+.equipos-expertos .fila-equipo > span{
+    font-weight:400;
+}
 
 
 /* ===========================
