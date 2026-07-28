@@ -3,11 +3,17 @@
     margin: 0 auto;
     padding: 20px;
 }
+
+/* ===========================
+   FILTROS
+=========================== */
+
 .filtros-equipos {
     display: flex;
     gap: 25px;
     align-items: flex-end;
     margin-top: 20px;
+    margin-bottom: 25px;
 }
 
 .grupo-filtro {
@@ -25,13 +31,17 @@
     height: 36px;
 }
 
+/* ===========================
+   BLOQUE DEL ROL
+=========================== */
+
 .bloque-rol {
     margin-top: 25px;
 }
 
 .titulo-rol {
     margin: 0;
-    padding: 6px 10px;
+    padding: 8px 12px;
     background-color: #0b5f7d;
     color: white;
     font-size: 18px;
@@ -40,7 +50,7 @@
 
 .resumen-rol {
     display: flex;
-    gap: 50px;
+    gap: 35px;
     align-items: center;
     margin: 15px 0;
 }
@@ -62,49 +72,84 @@
     color: #0b5f7d;
 }
 
-.tabla-equipo{
-    margin-top:20px;
-    width:100%;
+/* ===========================
+   TABLA
+=========================== */
+
+.tabla-equipo {
+    margin-top: 18px;
+    width: 100%;
 }
 
-.encabezado-tabla,
+.encabezado-tabla {
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+    font-weight: 600;
+    border-bottom: 2px solid #d9d9d9;
+}
+
 .fila-equipo {
     display: flex;
     align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #ececec;
 }
 
-.fila-equipo{
-    display:flex;
-    align-items:center;
-    padding:10px 0;
-    border-bottom:1px solid #ececec;
-}
+/* ===========================
+   COLUMNAS
+=========================== */
 
 .col-documento {
-    width: 150px;
-    flex-shrink: 0;
+    width: 120px;
+    min-width: 120px;
 }
 
 .col-nombre {
-    width: 420px;
-    flex-shrink: 0;
+    width: 260px;
+    min-width: 260px;
 }
 
 .col-estado {
-    width: 120px;
-    flex-shrink: 0;
+    width: 110px;
+    min-width: 110px;
 }
 
 .col-disponibilidad {
-    width: 220px;
-    flex-shrink: 0;
-}
-.estado-aprobado{
-    color:#2e7d32;
-    font-weight:bold;
+    width: 170px;
+    min-width: 170px;
 }
 
-.estado-pendiente{
-    color:#c49000;
-    font-weight:bold;
+.col-telefono {
+    width: 120px;
+    min-width: 120px;
+}
+
+.col-ciudad {
+    width: 160px;
+    min-width: 160px;
+}
+
+/* ===========================
+   ESTADOS
+=========================== */
+
+.estado-aprobado {
+    color: #2e7d32;
+    font-weight: 600;
+}
+
+.estado-pendiente {
+    color: #c49000;
+    font-weight: 600;
+}
+
+.estado-preaprobado {
+    color: #1565c0;
+    font-weight: 600;
+}
+
+.estado-subsanado {
+    color: #7b1fa2;
+    font-weight: 600;
 }
