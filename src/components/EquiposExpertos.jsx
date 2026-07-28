@@ -37,7 +37,7 @@ function EquiposExpertos() {
 
   };
 
-  return (
+
   return (
     <div className="equipos-expertos">
 
