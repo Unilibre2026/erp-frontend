@@ -720,11 +720,7 @@ for (let col = 1; col < columnaTotal; col++) {
 
 }
 
-//=====================================
-// GUARDAR
-//=====================================
 
-const buffer = await workbook.xlsx.writeBuffer();
 
 
 
