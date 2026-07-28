@@ -24,6 +24,8 @@ function EquiposExpertos() {
 
       const data = await res.json();
 
+      console.log("Convocatorias:", data);
+
       setConvocatorias(data);
 
     } catch (error) {
