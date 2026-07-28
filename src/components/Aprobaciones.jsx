@@ -85,24 +85,33 @@ export default function Aprobaciones() {
     cargarPendientes();
   }, []);
 
-  // ===== FILTRO DE LA TABLA =====
-  const datosFiltrados = pendientes.filter((item) => {
-
-     
+ // ===== FILTRO DE LA TABLA =====
+const datosFiltrados = pendientes.filter((item) => {
 
   const valorBusqueda = String(item[campoBusqueda] ?? "")
-  .toLowerCase()
-  .trim();
+    .toLowerCase()
+    .trim();
 
   const texto = textoBusqueda
-  .toLowerCase()
-  .trim();
+    .toLowerCase()
+    .trim();
 
-console.log({
-  campoBusqueda,
-  valorBusqueda,
-  texto,
-  coincide: valorBusqueda.includes(texto)
+  console.log({
+    campoBusqueda,
+    valorBusqueda,
+    texto,
+    coincide: valorBusqueda.includes(texto)
+  });
+
+  const coincideBusqueda = valorBusqueda.includes(texto);
+
+  const estado = item.estado || "Pendiente";
+
+  const coincideEstado =
+    estadoFiltro === "Todos" ||
+    estado === estadoFiltro;
+
+  return coincideBusqueda && coincideEstado;
 });
 
 const coincideBusqueda = valorBusqueda.includes(texto);
