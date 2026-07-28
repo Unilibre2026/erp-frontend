@@ -23,3 +23,40 @@
     width: 260px;
     height: 36px;
 }
+
+.bloque-rol {
+    margin-top: 25px;
+}
+
+.titulo-rol {
+    margin: 0;
+    padding: 6px 10px;
+    background-color: #0b5f7d;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.resumen-rol {
+    display: flex;
+    gap: 50px;
+    align-items: center;
+    margin: 15px 0;
+}
+
+.dato-resumen {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.etiqueta {
+    font-weight: 600;
+    color: #444;
+}
+
+.valor {
+    font-size: 20px;
+    font-weight: bold;
+    color: #0b5f7d;
+}
