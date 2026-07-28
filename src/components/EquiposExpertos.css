@@ -1,0 +1,25 @@
+.equipos-expertos {
+    padding: 20px;
+}
+
+.filtros-equipos {
+    display: flex;
+    gap: 25px;
+    align-items: flex-end;
+    margin-top: 20px;
+}
+
+.grupo-filtro {
+    display: flex;
+    flex-direction: column;
+}
+
+.grupo-filtro label {
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.grupo-filtro select {
+    width: 260px;
+    height: 36px;
+}
