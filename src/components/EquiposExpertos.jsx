@@ -72,80 +72,48 @@ function EquiposExpertos() {
 
   <div className="encabezado-tabla">
 
-    <div className="col-documento">
-      Documento
-    </div>
+  <span>Documento</span>
+  <span>Nombre del experto</span>
+  <span>Estado</span>
+  <span>Disponibilidad</span>
+  <span>Teléfono</span>
+  <div>Ciudad de domicilio</div>
 
-    <div className="col-nombre">
-      Nombre del experto
-    </div>
-
-    <div className="col-estado">
-      Estado
-    </div>
-
-    <div className="col-disponibilidad">
-      Disponibilidad
-    </div>
-
-    <div className="col-telefono">
-  Teléfono
 </div>
-
-<div className="col-ciudad">
-  Ciudad de domicilio
-</div>
-
-  </div>
-
   <div className="fila-equipo">
 
-    <div className="col-documento">
-      1022334455
-    </div>
+  <span>1022334455</span>
 
-    <div className="col-nombre">
-      Juan Pérez González
-    </div>
+  <span>Juan Pérez González</span>
 
-    <div className="col-estado estado-aprobado">
-      Aprobado
-    </div>
+  <span className="estado-aprobado">
+    Aprobado
+  </span>
 
-    <div className="col-disponibilidad">
-      Domingo a domingo
-    </div>
+  <span>Domingo a domingo</span>
 
-    <div className="col-telefono">
-  3104567890
+  <span>3104567890</span>
+
+  <div>Bogotá</div>
+
 </div>
-
-<div className="col-ciudad">
-  Bogotá
-</div>
-
-  </div>
-
   <div className="fila-equipo">
 
-    <div className="col-documento">
-      1033445566
-    </div>
+  <span>1033445566</span>
 
-    <div className="col-nombre">
-      Ana Torres
-    </div>
+  <span>Ana Torres</span>
 
-    <div className="col-estado estado-pendiente">
-      Pendiente
-    </div>
+  <span className="estado-pendiente">
+    Pendiente
+  </span>
 
-    <div className="col-disponibilidad">
-      Tiempo completo
-    </div>
+  <span>Tiempo completo</span>
 
-  </div>
+  <span>3104567890</span>
 
+  <span>Bogotá</span>
+
+</div>
 </div>
 
 </div>
