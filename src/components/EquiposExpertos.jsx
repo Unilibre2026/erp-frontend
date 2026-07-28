@@ -67,38 +67,72 @@ function EquiposExpertos() {
   </div>
 
   {/* AQUÍ VA LA TABLA */}
-<table className="tabla-equipo">
 
-  <thead>
-    <tr>
-      <th>Documento</th>
-      <th>Nombre del experto</th>
-      <th>Estado</th>
-      <th>Disponibilidad</th>
-    </tr>
-  </thead>
+<div className="tabla-equipo">
 
-  <tbody>
+  <div className="encabezado-tabla">
 
-    <tr>
-      <td>1022334455</td>
-      <td>Juan Pérez González</td>
-      <td className="estado-aprobado">Aprobado</td>
-      <td>Domingo a domingo</td>
-    </tr>
+    <div className="col-documento">
+      Documento
+    </div>
 
-    <tr>
-      <td>1033445566</td>
-      <td>Ana Torres</td>
-      <td className="estado-pendiente">Pendiente</td>
-      <td>Tiempo completo</td>
-    </tr>
+    <div className="col-nombre">
+      Nombre del experto
+    </div>
 
-  </tbody>
+    <div className="col-estado">
+      Estado
+    </div>
 
-</table>
+    <div className="col-disponibilidad">
+      Disponibilidad
+    </div>
+
+  </div>
+
+  <div className="fila-equipo">
+
+    <div className="col-documento">
+      1022334455
+    </div>
+
+    <div className="col-nombre">
+      Juan Pérez González
+    </div>
+
+    <div className="col-estado estado-aprobado">
+      Aprobado
+    </div>
+
+    <div className="col-disponibilidad">
+      Domingo a domingo
+    </div>
+
+  </div>
+
+  <div className="fila-equipo">
+
+    <div className="col-documento">
+      1033445566
+    </div>
+
+    <div className="col-nombre">
+      Ana Torres
+    </div>
+
+    <div className="col-estado estado-pendiente">
+      Pendiente
+    </div>
+
+    <div className="col-disponibilidad">
+      Tiempo completo
+    </div>
+
+  </div>
+
 </div>
 
+</div>
 <hr />
 
     </div>
