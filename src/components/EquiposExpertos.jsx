@@ -3,31 +3,31 @@ import "./EquiposExpertos.css";
 
 function EquiposExpertos() {
   return (
-    <div>
+    
 
-      <h2>Equipos de expertos</h2>
+      <div className="equipos-expertos">
 
-      <div>
+    <h2>Equipos de expertos</h2>
 
-        <div>
-          <label>Convocatoria</label>
-          <br />
-          <select>
-            <option>Seleccione...</option>
-          </select>
+    <div className="filtros-equipos">
+
+        <div className="grupo-filtro">
+            <label>Convocatoria</label>
+            <select>
+                <option>Seleccione...</option>
+            </select>
         </div>
 
-        <div>
-          <label>Ciudad</label>
-          <br />
-          <select>
-            <option>Seleccione...</option>
-          </select>
+        <div className="grupo-filtro">
+            <label>Ciudad</label>
+            <select>
+                <option>Seleccione...</option>
+            </select>
         </div>
-
-      </div>
 
     </div>
+
+</div>
   );
 }
 
