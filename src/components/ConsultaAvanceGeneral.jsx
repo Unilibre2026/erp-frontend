@@ -888,8 +888,13 @@ const obtenerTotalAprobadosCiudad = (ciudad) => {
 </td>
 
             <td className="dato porcentaje fin-rol">
-                0,0%
-            </td>
+
+             {obtenerPorcentaje(
+             obtenerCantidad(ciudad, rol),
+             obtenerAprobados(ciudad, rol)
+    )}
+
+</td>
 
         </React.Fragment>
 
