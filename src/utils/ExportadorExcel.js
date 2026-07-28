@@ -697,6 +697,35 @@ worksheet.getCell(fila, columnaTotal).value =
 worksheet.getCell(fila, columnaTotal).numFmt = "0.0%";
 columnaTotal++;
 
+worksheet.getCell(fila, columnaTotal).numFmt = "0.0%";
+columnaTotal++;
+
+//=====================================
+// COLOR FILA TOTAL
+//=====================================
+
+for (let col = 1; col < columnaTotal; col++) {
+
+    const celda = worksheet.getCell(fila, col);
+
+    celda.fill = {
+        type: "pattern",
+        pattern: "solid",
+        fgColor: { argb: "FCE4EC" }
+    };
+
+    celda.font = {
+        bold: true
+    };
+
+}
+
+//=====================================
+// GUARDAR
+//=====================================
+
+const buffer = await workbook.xlsx.writeBuffer();
+
 
 
     //=====================================
