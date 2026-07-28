@@ -41,7 +41,7 @@ function EquiposExpertos() {
 
       <hr />
 
-      <div className="bloque-rol">
+<div className="bloque-rol">
 
   <h3 className="titulo-rol">
     COORDINADOR DE TEST
@@ -62,6 +62,72 @@ function EquiposExpertos() {
     <div className="dato-resumen">
       <span className="etiqueta">Aprobados</span>
       <span className="valor">6</span>
+    </div>
+
+  </div>
+
+  {/* AQUÍ VA LA TABLA */}
+
+  <div className="tabla-equipo">
+
+    <div className="encabezado-tabla">
+
+      <div className="col-documento">
+        Documento
+      </div>
+
+      <div className="col-nombre">
+        Nombre del experto
+      </div>
+
+      <div className="col-estado">
+        Estado
+      </div>
+
+      <div className="col-disponibilidad">
+        Disponibilidad
+      </div>
+
+    </div>
+
+    <div className="fila-equipo">
+
+      <div className="col-documento">
+        1022334455
+      </div>
+
+      <div className="col-nombre">
+        Juan Pérez González
+      </div>
+
+      <div className="col-estado estado-aprobado">
+        Aprobado
+      </div>
+
+      <div className="col-disponibilidad">
+        Domingo a domingo
+      </div>
+
+    </div>
+
+    <div className="fila-equipo">
+
+      <div className="col-documento">
+        1033445566
+      </div>
+
+      <div className="col-nombre">
+        Ana Torres
+      </div>
+
+      <div className="col-estado estado-pendiente">
+        Pendiente
+      </div>
+
+      <div className="col-disponibilidad">
+        Tiempo completo
+      </div>
+
     </div>
 
   </div>
