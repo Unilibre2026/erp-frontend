@@ -454,11 +454,14 @@ const obtenerPreAprobados = (ciudad, rol) => {
 
 const obtenerAprobados = (ciudad, rol) => {
 
-    return reclutados.filter(r =>
-        r.indicador === ciudad &&
-        r.rol === rol &&
-        r.estado === "APROBADO"
-    ).length;
+    const dato = aprobados.find(a =>
+
+        String(a.indicador).trim() === String(ciudad).trim() &&
+        String(a.rol).trim() === String(rol).trim()
+
+    );
+
+    return dato ? Number(dato.aprobados) : 0;
 
 };
 
