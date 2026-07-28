@@ -626,9 +626,15 @@ roles.forEach((rol) => {
 
     columnaTotal++;
 
-    worksheet.getCell(fila, columnaTotal).value = "0,0%";
-    
-    columnaTotal++;
+    worksheet.getCell(fila, columnaTotal).value =
+    calcularPorcentaje(
+        requerido,
+        obtenerTotalAprobadosRol(rol)
+    );
+
+worksheet.getCell(fila, columnaTotal).numFmt = "0.0%";
+
+columnaTotal++;
 
 });
 
