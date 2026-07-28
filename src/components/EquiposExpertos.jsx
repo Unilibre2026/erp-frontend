@@ -41,6 +41,35 @@ function EquiposExpertos() {
 
       <hr />
 
+      <div className="bloque-rol">
+
+  <h3 className="titulo-rol">
+    COORDINADOR DE TEST
+  </h3>
+
+  <div className="resumen-rol">
+
+    <div className="dato-resumen">
+      <span className="etiqueta">Requeridos</span>
+      <span className="valor">15</span>
+    </div>
+
+    <div className="dato-resumen">
+      <span className="etiqueta">Reclutados</span>
+      <span className="valor">8</span>
+    </div>
+
+    <div className="dato-resumen">
+      <span className="etiqueta">Aprobados</span>
+      <span className="valor">6</span>
+    </div>
+
+  </div>
+
+</div>
+
+<hr />
+
     </div>
   );
 }
