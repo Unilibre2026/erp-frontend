@@ -27,6 +27,28 @@ function EquiposExpertos() {
 
     </div>
 
+    <div className="encabezado-informe">
+
+    <div className="logo-informe">
+        <img src={appLogo} alt="Universidad Libre" />
+    </div>
+
+    <div className="datos-informe">
+
+        <p>
+            <strong>Convocatoria:</strong> CNSC Territorial 11
+        </p>
+
+        <p>
+            <strong>Ciudad:</strong> Bogotá
+        </p>
+
+    </div>
+
+</div>
+
+<hr />
+
 </div>
   );
 }
