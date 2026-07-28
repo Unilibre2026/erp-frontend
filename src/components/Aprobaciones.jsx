@@ -86,19 +86,17 @@ export default function Aprobaciones() {
   }, []);
 
  // ===== FILTRO DE LA TABLA =====
-  const datosFiltrados = pendientes.filter((item) => {
+const datosFiltrados = pendientes.filter((item) => {
 
- const valorBusqueda =
-  campoBusqueda === "documento"
-    ? String(item.documento_experto ?? "")
-    : String(item[campoBusqueda] ?? "");
+  const valorBusqueda =
+    campoBusqueda === "documento"
+      ? String(item.documento_experto ?? "")
+      : String(item[campoBusqueda] ?? "");
 
-const valor = valorBusqueda.toLowerCase().trim();
-const texto = textoBusqueda.toLowerCase().trim();
+  const valor = valorBusqueda.toLowerCase().trim();
+  const texto = textoBusqueda.toLowerCase().trim();
 
-const coincideBusqueda = valor.includes(texto);
-
-  const coincideBusqueda = valorBusqueda.includes(texto);
+  const coincideBusqueda = valor.includes(texto);
 
   const estado = item.estado || "Pendiente";
 
