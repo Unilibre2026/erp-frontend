@@ -1,7 +1,43 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./EquiposExpertos.css";
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 function EquiposExpertos() {
+
+  const [convocatorias, setConvocatorias] = useState([]);
+  const [convocatoria, setConvocatoria] = useState("");
+
+  const [ciudades, setCiudades] = useState([]);
+  const [ciudad, setCiudad] = useState("");
+
+  const [roles, setRoles] = useState([]);
+
+  useEffect(() => {
+    cargarConvocatorias();
+  }, []);
+
+  const cargarConvocatorias = async () => {
+
+    try {
+
+      const res = await fetch(
+        `${API_URL}/equipos-expertos/convocatorias`
+      );
+
+      const data = await res.json();
+
+      setConvocatorias(data);
+
+    } catch (error) {
+
+      console.error(error);
+
+    }
+
+  };
+
+  return (
   return (
     <div className="equipos-expertos">
 
@@ -17,12 +53,31 @@ function EquiposExpertos() {
         </div>
 
         <div className="grupo-filtro">
-          <label>Ciudad</label>
-          <select>
-            <option>Seleccione...</option>
-          </select>
-        </div>
+  <label>Convocatoria</label>
 
+  <select
+    value={convocatoria}
+    onChange={(e) => setConvocatoria(e.target.value)}
+  >
+
+    <option value="">
+      Seleccione...
+    </option>
+
+    {convocatorias.map((item) => (
+
+      <option
+        key={item.convocatoria}
+        value={item.convocatoria}
+      >
+        {item.convocatoria}
+      </option>
+
+    ))}
+
+  </select>
+
+</div>
       </div>
 
       <div className="encabezado-informe">
