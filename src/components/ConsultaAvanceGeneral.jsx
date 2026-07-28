@@ -668,7 +668,8 @@ const obtenerTotalAprobadosCiudad = (ciudad) => {
                 roles,
                 vacantes,
                 reclutados,
-                preAprobados
+                preAprobados,
+                aprobados
             );
 
         } else if (tipoAnalisis === "reclutados") {

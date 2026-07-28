@@ -8,7 +8,8 @@ export async function exportarAvanceGeneral(
     roles = [],
     vacantes = [],
     reclutados = [],
-    preAprobados = []
+    preAprobados = [],
+    aprobados = []
 ) {
 
     const workbook = new ExcelJS.Workbook();
