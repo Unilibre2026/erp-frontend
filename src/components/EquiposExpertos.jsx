@@ -8,10 +8,7 @@ function EquiposExpertos() {
   const [convocatorias, setConvocatorias] = useState([]);
   const [convocatoria, setConvocatoria] = useState("");
 
-  const [ciudades, setCiudades] = useState([]);
-  const [ciudad, setCiudad] = useState("");
-
-  const [roles, setRoles] = useState([]);
+  
 
   useEffect(() => {
     cargarConvocatorias();
