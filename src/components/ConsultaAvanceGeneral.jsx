@@ -933,11 +933,14 @@ const obtenerTotalAprobadosCiudad = (ciudad) => {
 
                 </td>
 
-                <td className="dato total">
+                <strong>
 
-                    <strong>0,0%</strong>
+                 {obtenerPorcentaje(
+                 obtenerTotalCiudad(ciudad),
+                 obtenerTotalAprobadosCiudad(ciudad)
+    )}
 
-                </td>
+</strong>
 
             </tr>
 
@@ -979,9 +982,14 @@ const obtenerTotalAprobadosCiudad = (ciudad) => {
 
         </td>
 
-        <td className="dato total fin-rol">
-            <strong>0,0%</strong>
-        </td>
+        <strong>
+
+         {obtenerPorcentaje(
+          obtenerTotalRol(rol),
+          obtenerTotalAprobadosRol(rol)
+    )}
+
+</strong>
 
     </React.Fragment>
 
@@ -1021,7 +1029,14 @@ const obtenerTotalAprobadosCiudad = (ciudad) => {
 
 <td className="dato total">
 
-    <strong>0,0%</strong>
+    <strong>
+
+      {obtenerPorcentaje(
+      obtenerTotalGeneral(),
+      obtenerTotalGeneralAprobados()
+    )}
+
+</strong>
 
 </td>
 
