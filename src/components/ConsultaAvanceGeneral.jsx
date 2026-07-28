@@ -373,6 +373,33 @@ const obtenerTotalAprobadosRol = (rol) => {
 const obtenerTotalGeneralReclutados = () => {
 
     return reclutados.reduce(
+        (t, r) => t + Number(r.reclutados || 0),
+        0
+    );
+
+};
+
+const obtenerTotalGeneralPreAprobados = () => {
+
+    return preAprobados.reduce(
+        (t, p) => t + Number(p.pre_aprobados || 0),
+        0
+    );
+
+};
+
+const obtenerTotalGeneralAprobados = () => {
+
+    return aprobados.reduce(
+        (t, a) => t + Number(a.aprobados || 0),
+        0
+    );
+
+};
+
+const obtenerTotalGeneralReclutados = () => {
+
+    return reclutados.reduce(
 
         (total, r) => total + Number(r.reclutados),
 

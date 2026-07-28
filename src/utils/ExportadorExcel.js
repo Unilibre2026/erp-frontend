@@ -649,16 +649,25 @@ const totalGeneral = vacantes.reduce(
 worksheet.getCell(fila, columnaTotal).value = totalGeneral;
 columnaTotal++;
 
-worksheet.getCell(fila, columnaTotal).value = 0;
+worksheet.getCell(fila, columnaTotal).value =
+    obtenerTotalGeneralReclutados();
 columnaTotal++;
 
-worksheet.getCell(fila, columnaTotal).value = 0;
+worksheet.getCell(fila, columnaTotal).value =
+    obtenerTotalGeneralPreAprobados();
 columnaTotal++;
 
-worksheet.getCell(fila, columnaTotal).value = 0;
+worksheet.getCell(fila, columnaTotal).value =
+    obtenerTotalGeneralAprobados();
 columnaTotal++;
 
-worksheet.getCell(fila, columnaTotal).value = "0,0%";
+worksheet.getCell(fila, columnaTotal).value =
+    calcularPorcentaje(
+        totalGeneral,
+        obtenerTotalGeneralAprobados()
+    );
+
+worksheet.getCell(fila, columnaTotal).numFmt = "0.0%";
 columnaTotal++;
 
 
