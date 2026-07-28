@@ -88,6 +88,14 @@ function EquiposExpertos() {
       Disponibilidad
     </div>
 
+    <div className="col-telefono">
+  Teléfono
+</div>
+
+<div className="col-ciudad">
+  Ciudad de domicilio
+</div>
+
   </div>
 
   <div className="fila-equipo">
