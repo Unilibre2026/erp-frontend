@@ -114,17 +114,6 @@ export default function Aprobaciones() {
   return coincideBusqueda && coincideEstado;
 });
 
-const coincideBusqueda = valorBusqueda.includes(texto);
-
-    const estado = item.estado || "Pendiente";
-
-    const coincideEstado =
-      estadoFiltro === "Todos" ||
-      estado === estadoFiltro;
-
-    return coincideBusqueda && coincideEstado;
-  });
-
 
   return (
     <div style={{ padding: "20px" }}>
