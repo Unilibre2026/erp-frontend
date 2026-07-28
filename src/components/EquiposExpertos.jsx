@@ -116,6 +116,14 @@ function EquiposExpertos() {
       Domingo a domingo
     </div>
 
+    <div className="col-telefono">
+  3104567890
+</div>
+
+<div className="col-ciudad">
+  Bogotá
+</div>
+
   </div>
 
   <div className="fila-equipo">
