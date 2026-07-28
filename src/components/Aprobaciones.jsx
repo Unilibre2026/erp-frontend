@@ -86,7 +86,7 @@ export default function Aprobaciones() {
   }, []);
 
  // ===== FILTRO DE LA TABLA =====
-const datosFiltrados = pendientes.filter((item) => {
+  const datosFiltrados = pendientes.filter((item) => {
 
   const valorBusqueda = String(item[campoBusqueda] ?? "")
     .toLowerCase()
