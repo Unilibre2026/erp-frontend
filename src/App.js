@@ -27,6 +27,7 @@ import { exportarExpertos } from "./utils/ExportadorExpertos";
 import AprobacionVRM from "./components/AprobacionVRM";
 
 import IndicadoresGestion from "./components/IndicadoresGestion";
+import EquiposExpertos from "./components/EquiposExpertos";
 
 const API_URL = "https://erp-unilibre-production.up.railway.app";
 
@@ -362,6 +363,13 @@ if (!usuario) {
 
 )}
 
+
+{puedeVer("equipos_expertos") && (
+  <button onClick={() => cambiarVista("equipos_expertos")}>
+    Equipos de expertos
+  </button>
+)}
+
         {puedeVer("formulario") && (
   <button onClick={() => cambiarVista("formulario")}>
     Formulario
@@ -500,6 +508,7 @@ if (!usuario) {
 
         <>
   {vista === "formulario" && <Formulario />}
+  {vista === "equipos_expertos" && <EquiposExpertos />}
   {vista === "aprobacion_vrm" && <AprobacionVRM />}
   {vista === "consulta" && <Consultas />}
   {vista === "avance_general" && (<AvanceGeneral />)}
