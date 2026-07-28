@@ -90,13 +90,22 @@ export default function Aprobaciones() {
 
      
 
-    const valorBusqueda = String(item[campoBusqueda] || "")
-      .toLowerCase()
-      .trim();
+  const valorBusqueda = String(item[campoBusqueda] ?? "")
+  .toLowerCase()
+  .trim();
 
-    const coincideBusqueda = valorBusqueda.includes(
-      textoBusqueda.toLowerCase().trim()
-    );
+  const texto = textoBusqueda
+  .toLowerCase()
+  .trim();
+
+console.log({
+  campoBusqueda,
+  valorBusqueda,
+  texto,
+  coincide: valorBusqueda.includes(texto)
+});
+
+const coincideBusqueda = valorBusqueda.includes(texto);
 
     const estado = item.estado || "Pendiente";
 
