@@ -524,9 +524,9 @@ ciudades.forEach((ciudad) => {
         columna++;
 
         const porcentaje = calcularPorcentaje(
-            requeridos,
-            reclutadosRol
-        );
+           requeridos,
+           aprobadosRol
+);
 
         worksheet.getCell(fila, columna).value = porcentaje;
         worksheet.getCell(fila, columna).numFmt = "0.0%";
