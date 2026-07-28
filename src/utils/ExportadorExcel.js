@@ -575,6 +575,14 @@ const obtenerTotalPreAprobadosRol = (rol) => {
 
 };
 
+const obtenerTotalAprobadosRol = (rol) => {
+
+    return aprobados
+        .filter(a => String(a.rol).trim() === String(rol).trim())
+        .reduce((t, a) => t + Number(a.aprobados || 0), 0);
+
+};
+
 
 //=====================================
 // FILA TOTAL
@@ -613,10 +621,13 @@ roles.forEach((rol) => {
     obtenerTotalPreAprobadosRol(rol);
      columnaTotal++;
 
-    worksheet.getCell(fila, columnaTotal).value = 0;
+    worksheet.getCell(fila, columnaTotal).value =
+    obtenerTotalAprobadosRol(rol);
+
     columnaTotal++;
 
     worksheet.getCell(fila, columnaTotal).value = "0,0%";
+    
     columnaTotal++;
 
 });
@@ -643,6 +654,8 @@ columnaTotal++;
 
 worksheet.getCell(fila, columnaTotal).value = "0,0%";
 columnaTotal++;
+
+
 
     //=====================================
     // GUARDAR
