@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./EquiposExpertos.css";
 
 const API_URL = "https://erp-unilibre-production.up.railway.app";
@@ -11,6 +11,8 @@ function EquiposExpertos() {
   const [ciudades, setCiudades] = useState([]);
   const [ciudad, setCiudad] = useState("");
   const [reporte, setReporte] = useState([]);
+
+  const controllerRef = useRef(null);
 
   useEffect(() => {
     cargarConvocatorias();
@@ -58,26 +60,37 @@ function EquiposExpertos() {
 
  const cargarReporte = async (convocatoria, eje) => {
 
+  // Si hay una consulta anterior en curso, la cancelamos
+  if (controllerRef.current) {
+    controllerRef.current.abort();
+  }
+
+  const controller = new AbortController();
+  controllerRef.current = controller;
+
   try {
 
     const res = await fetch(
-      `${API_URL}/equipos-expertos/reporte/${encodeURIComponent(convocatoria)}/${encodeURIComponent(eje)}`
+      `${API_URL}/equipos-expertos/reporte/${encodeURIComponent(convocatoria)}/${encodeURIComponent(eje)}`,
+      {
+        signal: controller.signal
+      }
     );
 
     const data = await res.json();
-
-    console.log("Reporte:", data);
 
     setReporte(data);
 
   } catch (error) {
 
-    console.error(error);
+    // Ignoramos el error cuando la petición fue cancelada
+    if (error.name !== "AbortError") {
+      console.error(error);
+    }
 
   }
 
 };
-
     return (
 
     <div className="equipos-expertos">
