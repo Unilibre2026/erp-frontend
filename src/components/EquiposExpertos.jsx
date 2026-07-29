@@ -208,12 +208,12 @@ function EquiposExpertos() {
 
             <div className="dato-resumen">
               <span className="etiqueta">Reclutados</span>
-              <span className="valor">8</span>
+              <span className="valor">{item.reclutados}</span>
             </div>
 
             <div className="dato-resumen">
               <span className="etiqueta">Aprobados</span>
-              <span className="valor">6</span>
+              <span className="valor">{item.aprobados}</span>
             </div>
 
           </div>
