@@ -2266,7 +2266,7 @@ function Consultas() {
       >
         <option value="documento_experto">Documento</option>
         <option value="nombre">Nombre</option>
-        <option value="tipo_novedad">Tipo</option>
+        <option value="tipo_novedad">Tipo de novedad</option>
         <option value="convocatoria">Convocatoria</option>
         <option value="responsable">Responsable de la novedad</option>
         <option value="eje">Eje/Indicador</option>
