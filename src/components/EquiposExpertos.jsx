@@ -13,6 +13,7 @@ function EquiposExpertos() {
   const [reporte, setReporte] = useState([]);
 
   const controllerRef = useRef(null);
+  const requestIdRef = useRef(0);
 
   useEffect(() => {
     cargarConvocatorias();
@@ -58,9 +59,12 @@ function EquiposExpertos() {
 
   };
 
- const cargarReporte = async (convocatoria, eje) => {
+  const cargarReporte = async (convocatoria, eje) => {
 
-  // Si hay una consulta anterior en curso, la cancelamos
+  // Número único para esta petición
+  const requestId = ++requestIdRef.current;
+
+  // Cancela la petición anterior
   if (controllerRef.current) {
     controllerRef.current.abort();
   }
@@ -79,11 +83,15 @@ function EquiposExpertos() {
 
     const data = await res.json();
 
+    // Si ya existe una petición más nueva, ignoramos esta respuesta
+    if (requestId !== requestIdRef.current) {
+      return;
+    }
+
     setReporte(data);
 
   } catch (error) {
 
-    // Ignoramos el error cuando la petición fue cancelada
     if (error.name !== "AbortError") {
       console.error(error);
     }
@@ -91,6 +99,7 @@ function EquiposExpertos() {
   }
 
 };
+
     return (
 
     <div className="equipos-expertos">
@@ -152,11 +161,11 @@ function EquiposExpertos() {
               const valor = e.target.value;
 
               setCiudad(valor);
+              setReporte([]);
 
               if (valor) {
-                cargarReporte(convocatoria, valor);
-              }
-
+                  cargarReporte(convocatoria, valor);
+}
             }}
           >
 
