@@ -160,23 +160,23 @@ worksheet.getCell("A5").value = "Convocatoria";
 
 worksheet.getCell("B5").value = convocatoria;
 
-const ahora = new Date();
+// Fecha y hora oficial de Bogotá
 
-const fechaColombia = new Date(
+const fechaColombia = new Intl.DateTimeFormat("es-CO", {
 
-    ahora.toLocaleString("en-US", {
+    timeZone: "America/Bogota",
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false
 
-        timeZone: "America/Bogota"
-
-    })
-
-);
+}).format(new Date());
 
 worksheet.getCell("A6").value = "Fecha";
 
 worksheet.getCell("B6").value = fechaColombia;
-
-worksheet.getCell("B6").numFmt = "dd/mm/yyyy hh:mm";
 
 worksheet.getColumn(1).width = 25;
 
