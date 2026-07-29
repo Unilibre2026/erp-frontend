@@ -222,6 +222,7 @@ function EquiposExpertos() {
 
             <div className="encabezado-tabla">
 
+              <span>Novedad</span>
               <span>Documento</span>
               <span>Nombre del experto</span>
               <span>Estado</span>
@@ -237,6 +238,8 @@ function EquiposExpertos() {
     className="fila-equipo"
     key={experto.documento_experto}
   >
+
+    <span>{experto.novedad_novedad}</span>
 
     <span>{experto.documento_experto}</span>
 
