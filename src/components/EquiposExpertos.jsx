@@ -10,6 +10,8 @@ function EquiposExpertos() {
 
   const [ciudades, setCiudades] = useState([]);
   const [ciudad, setCiudad] = useState("");
+
+  const [roles, setRoles] = useState([]);
   
 
   useEffect(() => {
@@ -55,6 +57,28 @@ function EquiposExpertos() {
     }
 
   };
+
+  const cargarRoles = async (convocatoria, eje) => {
+
+  try {
+
+    const res = await fetch(
+      `${API_URL}/equipos-expertos/roles/${encodeURIComponent(convocatoria)}/${encodeURIComponent(eje)}`
+    );
+
+    const data = await res.json();
+
+    console.log("Roles:", data);
+
+    setRoles(data);
+
+  } catch (error) {
+
+    console.error(error);
+
+  }
+
+};
 
   
 
@@ -112,6 +136,19 @@ function EquiposExpertos() {
           <label>Ciudad</label>
 
          <select
+         value={ciudad}
+         onChange={(e) => {
+
+         const valor = e.target.value;
+
+         setCiudad(valor);
+
+         if (valor !== "") {
+         cargarRoles(convocatoria, valor);
+    }
+
+  }}
+>select
           value={ciudad}
           onChange={(e) => {
 
@@ -166,6 +203,14 @@ function EquiposExpertos() {
       </div>
 
       <hr />
+
+      
+
+<div style={{ display: "none" }}>
+  {roles.length}
+</div>
+
+<div className="bloque-rol"></div>
 
       <div className="bloque-rol">
 
