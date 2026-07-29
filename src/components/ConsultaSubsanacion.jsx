@@ -44,7 +44,17 @@ export default function ConsultaSubsanacion() {
 
     };
 
-    const guardarSubsanacion = async () => {
+    const guardarSubsanacion = async (esRetiro = false) => {
+
+        if (esRetiro) {
+
+    const confirmar = window.confirm(
+        "Esta acción eliminará la novedad del proceso de selección y generará una vacante. ¿Está seguro de continuar?"
+    );
+
+    if (!confirmar) return;
+
+}
 
     try {
 
@@ -65,7 +75,9 @@ export default function ConsultaSubsanacion() {
 
             responsable: expertoSeleccionado.responsable,
 
-            motivo_retiro: expertoSeleccionado.motivo_retiro,
+            motivo_retiro: esRetiro
+                ? "NOVEDAD RETIRADA"
+                : expertoSeleccionado.motivo_retiro,
 
             observaciones: expertoSeleccionado.justificacion_aprobacion,
 
@@ -475,11 +487,12 @@ cargarSubsanaciones();
     </button>
 
     <button
-        className="btn-retirar-novedad"
-        type="button"
-    >
-        Retirar novedad
-    </button>
+       className="btn-retirar-novedad"
+       type="button"
+       onClick={() => guardarSubsanacion(true)}
+>
+    Retirar novedad
+</button>
 
     
 
