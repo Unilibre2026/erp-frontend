@@ -202,7 +202,9 @@ function EquiposExpertos() {
 
             <div className="dato-resumen">
               <span className="etiqueta">Requeridos</span>
-              <span className="valor">15</span>
+              <span className="valor">
+               {item.requeridos}
+              </span>
             </div>
 
             <div className="dato-resumen">
