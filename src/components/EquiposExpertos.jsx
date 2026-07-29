@@ -231,7 +231,34 @@ function EquiposExpertos() {
 
             </div>
 
-            {item.expertos.map((experto) => (
+            {item.expertos.map((experto) => {
+
+  console.log(experto);
+
+  return (
+
+    <div
+      className="fila-equipo"
+      key={experto.documento_experto}
+    >
+
+      <span>{experto.documento_experto}</span>
+
+      <span>{experto.nombre}</span>
+
+      <span>-</span>
+
+      <span>{experto.validador || "-"}</span>
+
+      <span>-</span>
+
+      <span>{experto.observaciones || "-"}</span>
+
+    </div>
+
+  );
+
+})}
 
   <div
     className="fila-equipo"
