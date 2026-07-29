@@ -153,7 +153,7 @@ worksheet.getCell("A5").value = "Convocatoria";
 
 worksheet.getCell("B5").value = convocatoria;
 
-const ahora = new Date();
+
 
 //=====================================
 // FECHA Y HORA DE BOGOTÁ
