@@ -363,56 +363,16 @@ if (!usuario) {
 
 )}
 
-
-{puedeVer("equipos_expertos") && (
-  <button onClick={() => cambiarVista("equipos_expertos")}>
-    Equipos de expertos
+{puedeVer("aprobaciones") && (
+  <button onClick={() => cambiarVista("aprobaciones")}>
+    Aprobaciones
   </button>
 )}
 
-        {puedeVer("formulario") && (
-  <button onClick={() => cambiarVista("formulario")}>
-    Formulario
-  </button>
-)}
 
 {puedeVer("aprobacion_vrm") && (
   <button onClick={() => cambiarVista("aprobacion_vrm")}>
     Aprobación VRM
-  </button>
-)}
-
-
-      
-
-        {puedeVer("consulta") && (
-  <button onClick={() => cambiarVista("consulta")}>
-    Consulta general de novedades
-  </button>
-)}
-
-{puedeVer("avance_general") && (
-  <button onClick={() => cambiarVista("avance_general")}>
-    Consulta avance general
-  </button>
-)}
-
-{puedeVer("consulta_cnsc") && (
-  <button onClick={() => cambiarVista("consulta_cnsc")}>
-    Consulta CNSC
-  </button>
-)}
-
-{puedeVer("avance_prueba") && (
-  <button onClick={() => cambiarVista("avance_prueba")}>
-    Avance por prueba
-  </button>
-)}
-
-        
-        {puedeVer("carga") && (
-  <button onClick={() => cambiarVista("carga")}>
-    Carga masiva de expertos
   </button>
 )}
 
@@ -422,28 +382,21 @@ if (!usuario) {
     </button>
 )}
 
-
-        {puedeVer("convocatorias") && (
-  <button onClick={() => cambiarVista("convocatorias")}>
-    Crear convocatorias
-  </button>
-)}
-
-{puedeVer("indicadores") && (
-  <button onClick={() => cambiarVista("indicadores")}>
-    Crear indicadores
-  </button>
-)}
-
-{puedeVer("roles") && (
-  <button onClick={() => cambiarVista("Crear rol")}>
-    Crear rol
-  </button>
-)}
-
 {puedeVer("vacantes") && (
   <button onClick={() => cambiarVista("Autorizar vacantes")}>
     Autorizar vacantes
+  </button>
+)}
+
+{puedeVer("avance_prueba") && (
+  <button onClick={() => cambiarVista("avance_prueba")}>
+    Avance por prueba
+  </button>
+)}
+
+        {puedeVer("carga") && (
+  <button onClick={() => cambiarVista("carga")}>
+    Carga masiva de expertos
   </button>
 )}
 
@@ -458,15 +411,22 @@ if (!usuario) {
     Cargar perfiles sugeridos por indicador
   </button>
 )}
-        {puedeVer("usuarios") && (
-  <button onClick={() => cambiarVista("usuarios")}>
-    Crear usuarios
+
+{puedeVer("avance_general") && (
+  <button onClick={() => cambiarVista("avance_general")}>
+    Consulta avance general
   </button>
 )}
 
-{puedeVer("aprobaciones") && (
-  <button onClick={() => cambiarVista("aprobaciones")}>
-    Aprobaciones
+{puedeVer("consulta_cnsc") && (
+  <button onClick={() => cambiarVista("consulta_cnsc")}>
+    Consulta CNSC
+  </button>
+)}   
+
+       {puedeVer("consulta") && (
+  <button onClick={() => cambiarVista("consulta")}>
+    Consulta general de novedades
   </button>
 )}
 
@@ -475,6 +435,44 @@ if (!usuario) {
     Consulta de subsanación
   </button>
 )}
+
+{puedeVer("indicadores") && (
+  <button onClick={() => cambiarVista("indicadores")}>
+    Crear indicadores
+  </button>
+)}
+
+        {puedeVer("convocatorias") && (
+  <button onClick={() => cambiarVista("convocatorias")}>
+    Crear convocatorias
+  </button>
+)}
+
+{puedeVer("roles") && (
+  <button onClick={() => cambiarVista("Crear rol")}>
+    Crear rol
+  </button>
+)}
+
+   {puedeVer("usuarios") && (
+  <button onClick={() => cambiarVista("usuarios")}>
+    Crear usuarios
+  </button>
+)}
+
+
+{puedeVer("equipos_expertos") && (
+  <button onClick={() => cambiarVista("equipos_expertos")}>
+    Equipos de expertos
+  </button>
+)}
+
+        {puedeVer("formulario") && (
+  <button onClick={() => cambiarVista("formulario")}>
+    Formulario
+  </button>
+)}
+
 
 {puedeVer("usuarios") && (
 <button onClick={() => cambiarVista("permisos_modulos")}>
