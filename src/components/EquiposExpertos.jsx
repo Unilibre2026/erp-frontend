@@ -233,9 +233,9 @@ function EquiposExpertos() {
 
             {item.expertos.map((experto) => {
 
-  console.log(experto);
+              console.log(experto);
 
-  return (
+             return (
 
     <div
       className="fila-equipo"
