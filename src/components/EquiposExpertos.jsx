@@ -250,17 +250,13 @@ function EquiposExpertos() {
       -
     </span>
 
-    <span>
-      -
-    </span>
+    <span>{experto.validador || "-"}</span>
 
     <span>
       -
     </span>
 
-    <span>
-      -
-    </span>
+    <span>{experto.observaciones || "-"}</span>
 
   </div>
 
