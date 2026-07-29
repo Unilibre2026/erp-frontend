@@ -12,7 +12,6 @@ function EquiposExpertos() {
   const [ciudad, setCiudad] = useState("");
 
   const [roles, setRoles] = useState([]);
-  
 
   useEffect(() => {
     cargarConvocatorias();
@@ -60,29 +59,27 @@ function EquiposExpertos() {
 
   const cargarRoles = async (convocatoria, eje) => {
 
-  try {
+    try {
 
-    const res = await fetch(
-      `${API_URL}/equipos-expertos/roles/${encodeURIComponent(convocatoria)}/${encodeURIComponent(eje)}`
-    );
+      const res = await fetch(
+        `${API_URL}/equipos-expertos/roles/${encodeURIComponent(convocatoria)}/${encodeURIComponent(eje)}`
+      );
 
-    const data = await res.json();
+      const data = await res.json();
 
-    console.log("Roles:", data);
+      console.log("Roles:", data);
 
-    setRoles(data);
+      setRoles(data);
 
-  } catch (error) {
+    } catch (error) {
 
-    console.error(error);
+      console.error(error);
 
-  }
+    }
 
-};
+  };
 
-  
-
-  return (
+    return (
 
     <div className="equipos-expertos">
 
@@ -104,6 +101,7 @@ function EquiposExpertos() {
 
               setCiudad("");
               setCiudades([]);
+              setRoles([]);
 
               if (valor) {
                 cargarCiudades(valor);
@@ -135,35 +133,20 @@ function EquiposExpertos() {
 
           <label>Ciudad</label>
 
-         <select
-         value={ciudad}
-         onChange={(e) => {
+          <select
+            value={ciudad}
+            onChange={(e) => {
 
-         const valor = e.target.value;
+              const valor = e.target.value;
 
-         setCiudad(valor);
+              setCiudad(valor);
 
-         if (valor !== "") {
-         cargarRoles(convocatoria, valor);
-    }
+              if (valor) {
+                cargarRoles(convocatoria, valor);
+              }
 
-  }}
->select
-          value={ciudad}
-          onChange={(e) => {
-
-          const valor = e.target.value;
-
-          setCiudad(valor);
-
-          if (valor) {
-
-          cargarRoles(convocatoria, valor);
-
-    }
-
-  }}
->
+            }}
+          >
 
             <option value="">
               Seleccione...
@@ -191,11 +174,11 @@ function EquiposExpertos() {
         <div className="datos-informe">
 
           <p>
-            <strong>Convocatoria:</strong> CNSC Territorial 11
+            <strong>Convocatoria:</strong> {convocatoria || "-"}
           </p>
 
           <p>
-            <strong>Ciudad:</strong> Bogotá
+            <strong>Ciudad:</strong> {ciudad || "-"}
           </p>
 
         </div>
@@ -204,93 +187,92 @@ function EquiposExpertos() {
 
       <hr />
 
-      
+      {roles.map((item) => (
 
-<div style={{ display: "none" }}>
-  {roles.length}
-</div>
+        <div
+          className="bloque-rol"
+          key={item.rol}
+        >
 
-<div className="bloque-rol"></div>
+          <h3 className="titulo-rol">
+            {item.rol}
+          </h3>
 
-      <div className="bloque-rol">
+          <div className="resumen-rol">
 
-        <h3 className="titulo-rol">
-          COORDINADOR DE TEST
-        </h3>
+            <div className="dato-resumen">
+              <span className="etiqueta">Requeridos</span>
+              <span className="valor">15</span>
+            </div>
 
-        <div className="resumen-rol">
+            <div className="dato-resumen">
+              <span className="etiqueta">Reclutados</span>
+              <span className="valor">8</span>
+            </div>
 
-          <div className="dato-resumen">
-            <span className="etiqueta">Requeridos</span>
-            <span className="valor">15</span>
+            <div className="dato-resumen">
+              <span className="etiqueta">Aprobados</span>
+              <span className="valor">6</span>
+            </div>
+
           </div>
 
-          <div className="dato-resumen">
-            <span className="etiqueta">Reclutados</span>
-            <span className="valor">8</span>
+          <div className="tabla-equipo">
+
+            <div className="encabezado-tabla">
+
+              <span>Documento</span>
+              <span>Nombre del experto</span>
+              <span>Estado</span>
+              <span>Disponibilidad</span>
+              <span>Teléfono</span>
+              <span>Ciudad de domicilio</span>
+
+            </div>
+
+            <div className="fila-equipo">
+
+              <span>1022334455</span>
+
+              <span>Juan Pérez González</span>
+
+              <span className="estado-aprobado">
+                Aprobado
+              </span>
+
+              <span>Domingo a domingo</span>
+
+              <span>3104567890</span>
+
+              <span>Bogotá</span>
+
+            </div>
+
+            <div className="fila-equipo">
+
+              <span>1033445566</span>
+
+              <span>Ana Torres</span>
+
+              <span className="estado-pendiente">
+                Pendiente
+              </span>
+
+              <span>Tiempo completo</span>
+
+              <span>3104567890</span>
+
+              <span>Bogotá</span>
+
+            </div>
+
           </div>
 
-          <div className="dato-resumen">
-            <span className="etiqueta">Aprobados</span>
-            <span className="valor">6</span>
-          </div>
+          <hr />
 
         </div>
 
-        <div className="tabla-equipo">
-
-          <div className="encabezado-tabla">
-
-            <span>Documento</span>
-            <span>Nombre del experto</span>
-            <span>Estado</span>
-            <span>Disponibilidad</span>
-            <span>Teléfono</span>
-            <span>Ciudad de domicilio</span>
-
-          </div>
-
-          <div className="fila-equipo">
-
-            <span>1022334455</span>
-
-            <span>Juan Pérez González</span>
-
-            <span className="estado-aprobado">
-              Aprobado
-            </span>
-
-            <span>Domingo a domingo</span>
-
-            <span>3104567890</span>
-
-            <span>Bogotá</span>
-
-          </div>
-
-          <div className="fila-equipo">
-
-            <span>1033445566</span>
-
-            <span>Ana Torres</span>
-
-            <span className="estado-pendiente">
-              Pendiente
-            </span>
-
-            <span>Tiempo completo</span>
-
-            <span>3104567890</span>
-
-            <span>Bogotá</span>
-
-          </div>
-
-        </div>
-
-      </div>
-
-      <hr />
+      ))}
 
     </div>
 
