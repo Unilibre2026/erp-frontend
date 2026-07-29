@@ -239,7 +239,7 @@ function EquiposExpertos() {
     key={experto.documento_experto}
   >
 
-    <span>{experto.novedad_novedad}</span>
+    <span>{experto.numero_novedad}</span>
 
     <span>{experto.documento_experto}</span>
 
