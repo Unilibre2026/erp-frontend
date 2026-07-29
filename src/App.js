@@ -2300,6 +2300,7 @@ function Consultas() {
       <option value="Pre-aprobado">Pre-aprobado</option>
       <option value="SUBSANAR">SUBSANAR</option>
       <option value="APROBADO">APROBADO</option>
+      <option value="NOVEDAD RETIRADA">NOVEDAD RETIRADA</option>
     </select>
 
   </div>
