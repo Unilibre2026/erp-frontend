@@ -105,7 +105,20 @@ export async function exportarConsultaCNSC(
 
     };
 
-    hoja.getCell("B8").value = new Date().toLocaleDateString("es-CO");
+    const fechaHoraColombia = new Intl.DateTimeFormat("es-CO", {
+    timeZone: "America/Bogota",
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: false
+})
+.format(new Date())
+.replace(",", "");
+
+hoja.getCell("B8").value = fechaHoraColombia;
 
     // ==========================================
     // ENCABEZADOS
