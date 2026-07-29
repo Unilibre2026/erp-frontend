@@ -231,24 +231,40 @@ function EquiposExpertos() {
 
             </div>
 
-            <div className="fila-equipo">
+            {item.expertos.map((experto) => (
 
-              <span>1022334455</span>
+  <div
+    className="fila-equipo"
+    key={experto.documento_experto}
+  >
 
-              <span>Juan Pérez González</span>
+    <span>
+      {experto.documento_experto}
+    </span>
 
-              <span className="estado-aprobado">
-                Aprobado
-              </span>
+    <span>
+      {experto.nombre}
+    </span>
 
-              <span>Domingo a domingo</span>
+    <span>
+      -
+    </span>
 
-              <span>3104567890</span>
+    <span>
+      -
+    </span>
 
-              <span>Bogotá</span>
+    <span>
+      -
+    </span>
 
-            </div>
+    <span>
+      -
+    </span>
 
+  </div>
+
+))}
             <div className="fila-equipo">
 
               <span>1033445566</span>
