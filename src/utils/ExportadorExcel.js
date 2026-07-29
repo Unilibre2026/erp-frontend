@@ -176,17 +176,25 @@ worksheet.getCell("B5").value = convocatoria;
 
 // ← AQUÍ va el código de fecha Colombia
 
-const ahora = new Date();
+//=====================================
+// FECHA Y HORA DE BOGOTÁ
+//=====================================
 
-const fechaColombia = new Date(
-    ahora.toLocaleString("en-US", {
-        timeZone: "America/Bogota"
-    })
-);
+const fechaColombia = new Intl.DateTimeFormat("es-CO", {
+
+    timeZone: "America/Bogota",
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false
+
+}).format(new Date());
 
 worksheet.getCell("A6").value = "Fecha";
+
 worksheet.getCell("B6").value = fechaColombia;
-worksheet.getCell("B6").numFmt = "dd/mm/yyyy hh:mm";
 
 // Ajustar ancho de columnas...
 worksheet.getColumn(1).width = 25;
