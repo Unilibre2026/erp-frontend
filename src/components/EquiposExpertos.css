@@ -83,7 +83,15 @@
 .equipos-expertos .encabezado-tabla,
 .equipos-expertos .fila-equipo {
     display: grid;
-    grid-template-columns: 120px 260px 110px 170px 120px 170px;
+    grid-template-columns:
+        90px     /* Novedad */
+        140px    /* Documento */
+        280px    /* Nombre */
+        120px    /* Estado */
+        170px    /* Disponibilidad */
+        130px    /* Teléfono */
+        180px;   /* Ciudad */
+
     column-gap: 12px;
     align-items: center;
 }
