@@ -155,22 +155,25 @@ worksheet.getCell("B5").value = convocatoria;
 
 const ahora = new Date();
 
-const fechaColombia = new Date(
+//=====================================
+// FECHA Y HORA DE BOGOTÁ
+//=====================================
 
-    ahora.toLocaleString("en-US", {
+const fechaColombia = new Intl.DateTimeFormat("es-CO", {
 
-        timeZone: "America/Bogota"
+    timeZone: "America/Bogota",
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false
 
-    })
-
-);
+}).format(new Date());
 
 worksheet.getCell("A6").value = "Fecha";
 
 worksheet.getCell("B6").value = fechaColombia;
-
-worksheet.getCell("B6").numFmt = "dd/mm/yyyy hh:mm";
-
 worksheet.getColumn(1).width = 25;
 
 worksheet.getColumn(2).width = 28;
