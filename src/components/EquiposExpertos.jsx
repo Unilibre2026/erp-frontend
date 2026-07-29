@@ -245,7 +245,7 @@ function EquiposExpertos() {
 
     <span>{experto.nombre}</span>
 
-    <span>-</span>
+    <span>{experto.estado || "-"}</span>
 
     <span>{experto.validador || "-"}</span>
 
