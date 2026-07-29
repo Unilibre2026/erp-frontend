@@ -44,12 +44,6 @@ function EquiposExpertos() {
 
       <div className="filtros-equipos">
 
-        <div className="grupo-filtro">
-          <label>Convocatoria</label>
-          <select>
-            <option>Seleccione...</option>
-          </select>
-        </div>
 
         <div className="grupo-filtro">
   <label>Convocatoria</label>
