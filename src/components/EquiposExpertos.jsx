@@ -10,7 +10,7 @@ function EquiposExpertos() {
 
   const [ciudades, setCiudades] = useState([]);
   const [ciudad, setCiudad] = useState("");
-  const [roles, setRoles] = useState([]);
+  
 
   useEffect(() => {
     cargarConvocatorias();
@@ -56,27 +56,7 @@ function EquiposExpertos() {
 
   };
 
-  const cargarRoles = async (conv, eje) => {
-
-  try {
-
-    const res = await fetch(
-      `${API_URL}/equipos-expertos/roles/${encodeURIComponent(conv)}/${encodeURIComponent(eje)}`
-    );
-
-    const data = await res.json();
-
-    console.log("Roles:", data);
-
-    setRoles(data);
-
-  } catch (error) {
-
-    console.error(error);
-
-  }
-
-};
+  
 
   return (
 
