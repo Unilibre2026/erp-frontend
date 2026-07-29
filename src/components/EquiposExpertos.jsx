@@ -10,8 +10,7 @@ function EquiposExpertos() {
 
   const [ciudades, setCiudades] = useState([]);
   const [ciudad, setCiudad] = useState("");
-
-  const [roles, setRoles] = useState([]);
+  const [reporte, setReporte] = useState([]);
 
   useEffect(() => {
     cargarConvocatorias();
@@ -57,27 +56,27 @@ function EquiposExpertos() {
 
   };
 
-  const cargarRoles = async (convocatoria, eje) => {
+ const cargarReporte = async (convocatoria, eje) => {
 
-    try {
+  try {
 
-      const res = await fetch(
-        `${API_URL}/equipos-expertos/roles/${encodeURIComponent(convocatoria)}/${encodeURIComponent(eje)}`
-      );
+    const res = await fetch(
+      `${API_URL}/equipos-expertos/reporte/${encodeURIComponent(convocatoria)}/${encodeURIComponent(eje)}`
+    );
 
-      const data = await res.json();
+    const data = await res.json();
 
-      console.log("Roles:", data);
+    console.log("Reporte:", data);
 
-      setRoles(data);
+    setReporte(data);
 
-    } catch (error) {
+  } catch (error) {
 
-      console.error(error);
+    console.error(error);
 
-    }
+  }
 
-  };
+};
 
     return (
 
@@ -101,7 +100,7 @@ function EquiposExpertos() {
 
               setCiudad("");
               setCiudades([]);
-              setRoles([]);
+              setReporte([]);
 
               if (valor) {
                 cargarCiudades(valor);
@@ -142,7 +141,7 @@ function EquiposExpertos() {
               setCiudad(valor);
 
               if (valor) {
-                cargarRoles(convocatoria, valor);
+                cargarReporte(convocatoria, valor);
               }
 
             }}
@@ -187,7 +186,7 @@ function EquiposExpertos() {
 
       <hr />
 
-      {roles.map((item) => (
+      {reporte.map((item) => (
 
         <div
           className="bloque-rol"
