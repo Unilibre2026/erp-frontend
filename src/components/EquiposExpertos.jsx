@@ -10,6 +10,7 @@ function EquiposExpertos() {
 
   const [ciudades, setCiudades] = useState([]);
   const [ciudad, setCiudad] = useState("");
+  const [roles, setRoles] = useState([]);
 
   useEffect(() => {
     cargarConvocatorias();
@@ -54,6 +55,28 @@ function EquiposExpertos() {
     }
 
   };
+
+  const cargarRoles = async (conv, eje) => {
+
+  try {
+
+    const res = await fetch(
+      `${API_URL}/equipos-expertos/roles/${encodeURIComponent(conv)}/${encodeURIComponent(eje)}`
+    );
+
+    const data = await res.json();
+
+    console.log("Roles:", data);
+
+    setRoles(data);
+
+  } catch (error) {
+
+    console.error(error);
+
+  }
+
+};
 
   return (
 
@@ -108,10 +131,22 @@ function EquiposExpertos() {
 
           <label>Ciudad</label>
 
-          <select
-            value={ciudad}
-            onChange={(e) => setCiudad(e.target.value)}
-          >
+         <select
+          value={ciudad}
+          onChange={(e) => {
+
+          const valor = e.target.value;
+
+          setCiudad(valor);
+
+          if (valor) {
+
+          cargarRoles(convocatoria, valor);
+
+    }
+
+  }}
+>
 
             <option value="">
               Seleccione...
