@@ -249,7 +249,7 @@ function EquiposExpertos() {
 
     <span>{experto.validador || "-"}</span>
 
-    <span>-</span>
+    <span>{experto.telefono || "-"}</span>
 
     <span>{experto.observaciones || "-"}</span>
 
