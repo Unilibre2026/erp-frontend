@@ -265,24 +265,7 @@ function EquiposExpertos() {
   </div>
 
 ))}
-            <div className="fila-equipo">
-
-              <span>1033445566</span>
-
-              <span>Ana Torres</span>
-
-              <span className="estado-pendiente">
-                Pendiente
-              </span>
-
-              <span>Tiempo completo</span>
-
-              <span>3104567890</span>
-
-              <span>Bogotá</span>
-
-            </div>
-
+            
           </div>
 
           <hr />
