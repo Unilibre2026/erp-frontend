@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./EquiposExpertos.css";
 
-const API_URL = process.env.REACT_APP_API_URL;
+const API_URL = "https://erp-unilibre-production.up.railway.app";
 
 function EquiposExpertos() {
 
