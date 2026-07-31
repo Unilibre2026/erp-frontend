@@ -375,6 +375,11 @@ cargarSubsanaciones();
         </div>
 
         <div>
+            <strong>Ciudad de domicilio</strong>
+            <p>{expertoSeleccionado.ciudad_domicilio}</p>
+        </div>
+
+        <div>
             <strong>Disponibilidad</strong>
             <p>{expertoSeleccionado.validador}</p>
         </div>
