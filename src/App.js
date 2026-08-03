@@ -28,6 +28,7 @@ import AprobacionVRM from "./components/AprobacionVRM";
 
 import IndicadoresGestion from "./components/IndicadoresGestion";
 import EquiposExpertos from "./components/EquiposExpertos";
+import JuecesAsignados from "./components/JuecesAsignados";
 
 const API_URL = "https://erp-unilibre-production.up.railway.app";
 
@@ -473,6 +474,13 @@ if (!usuario) {
   </button>
 )}
 
+{puedeVer("jueces_asignados") && (
+<button onClick={() => setVista("jueces_asignados")}>
+    Jueces asignados
+</button>
+
+)}
+
 
 {puedeVer("usuarios") && (
 <button onClick={() => cambiarVista("permisos_modulos")}>
@@ -507,6 +515,7 @@ if (!usuario) {
         <>
   {vista === "formulario" && <Formulario />}
   {vista === "equipos_expertos" && <EquiposExpertos />}
+  {vista === "jueces_asignados" && <JuecesAsignados />}
   {vista === "aprobacion_vrm" && <AprobacionVRM />}
   {vista === "consulta" && <Consultas />}
   {vista === "avance_general" && (<AvanceGeneral />)}

@@ -1,0 +1,207 @@
+.equipos-expertos {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* ===========================
+   FILTROS
+=========================== */
+
+.filtros-equipos {
+    display: flex;
+    gap: 25px;
+    align-items: flex-end;
+    margin-top: 20px;
+    margin-bottom: 25px;
+}
+
+.grupo-filtro {
+    display: flex;
+    flex-direction: column;
+}
+
+.grupo-filtro label {
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.grupo-filtro select {
+    width: 260px;
+    height: 36px;
+}
+
+/* ===========================
+   BLOQUE DEL ROL
+=========================== */
+
+.bloque-rol {
+    margin-top: 25px;
+}
+
+.titulo-rol {
+    margin: 0;
+    padding: 8px 12px;
+    background-color: #0b5f7d;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.resumen-rol {
+    display: flex;
+    gap: 35px;
+    align-items: center;
+    margin: 15px 0;
+}
+
+.dato-resumen {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.etiqueta {
+    font-weight: 600;
+    color: #444;
+}
+
+.valor {
+    font-size: 20px;
+    font-weight: bold;
+    color: #0b5f7d;
+}
+/* ===========================
+   TABLA
+=========================== */
+
+.equipos-expertos .tabla-equipo {
+    width: 100%;
+    margin-top: 18px;
+}
+
+.equipos-expertos .encabezado-tabla,
+.equipos-expertos .fila-equipo {
+    display: grid;
+    grid-template-columns:
+        90px     /* Novedad */
+        140px    /* Documento */
+        280px    /* Nombre */
+        120px    /* Estado */
+        170px    /* Disponibilidad */
+        130px    /* Teléfono */
+        180px;   /* Ciudad */
+
+    column-gap: 12px;
+    align-items: center;
+}
+
+.equipos-expertos .encabezado-tabla {
+    padding: 10px 0;
+    border-bottom: 2px solid #d9d9d9;
+}
+
+.equipos-expertos .fila-equipo {
+    padding: 10px 0;
+    border-bottom: 1px solid #ececec;
+}
+
+/* Todos los textos de la tabla */
+
+.equipos-expertos .encabezado-tabla > span,
+.equipos-expertos .fila-equipo > span {
+
+    margin: 0;
+    padding: 0;
+
+    font-family: inherit;
+    font-size: 14px;
+    line-height: 1.4;
+
+    color: #000;
+
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+
+    text-decoration: none;
+
+}
+
+/* Encabezados */
+
+.equipos-expertos .encabezado-tabla > span{
+    font-weight:600;
+}
+
+/* Filas */
+
+.equipos-expertos .fila-equipo > span{
+    font-weight:400;
+}
+
+
+/* ===========================
+   ESTADOS
+=========================== */
+
+.estado-aprobado {
+    color: #2e7d32;
+    font-weight: 600;
+}
+
+.estado-pendiente {
+    color: #c49000;
+    font-weight: 600;
+}
+
+.estado-preaprobado {
+    color: #1565c0;
+    font-weight: 600;
+}
+
+.estado-subsanado {
+    color: #7b1fa2;
+    font-weight: 600;
+}
+
+.encabezado-tabla span,
+.fila-equipo span {
+    font-size: 14px;
+    font-weight: 400;
+    color: inherit;
+}
+
+.encabezado-tabla span {
+    font-weight: 600;
+}
+
+.fila-equipo span:last-child,
+.encabezado-tabla span:last-child {
+    font-size: inherit;
+    font-weight: inherit;
+    border: none !important;
+    outline: none !important;
+}
+
+/* ===========================
+   ENCABEZADOS DE LA TABLA
+=========================== */
+
+.equipos-expertos .encabezado-tabla > span,
+.equipos-expertos .encabezado-tabla > div {
+    font-size: 15px;
+    font-weight: 700;
+    color: #0b5f7d;   /* Azul petróleo */
+}
+
+/* ===========================
+   DATOS DE LA TABLA
+=========================== */
+
+.equipos-expertos .fila-equipo > span,
+.equipos-expertos .fila-equipo > div {
+    font-size: 15px;
+    font-weight: 400;
+    color: #000;
+}
