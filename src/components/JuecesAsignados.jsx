@@ -11,12 +11,7 @@ function JuecesAsignados() {
   const [ciudades, setCiudades] = useState([]);
   const [ciudad, setCiudad] = useState("");
 
-  const [documento, setDocumento] = useState("");
-  const [nombre, setNombre] = useState("");
-  const [estado, setEstado] = useState("");
-
-  const [reporteOriginal, setReporteOriginal] = useState([]);
-
+  
   const [reporte, setReporte] = useState([]);
 
   const controllerRef = useRef(null);
@@ -95,7 +90,7 @@ function JuecesAsignados() {
       return;
     }
 
-    setReporteOriginal(data);
+    
     setReporte(data);
 
   } catch (error) {
@@ -131,12 +126,12 @@ function JuecesAsignados() {
               setCiudad("");
               setCiudades([]);
               
-              setDocumento("");
-              setNombre("");
+              
+              
               setEstado("");
 
               setReporte([]);
-              setReporteOriginal([]);
+              
 
               if (valor) {
                 cargarCiudades(valor);
