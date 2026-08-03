@@ -102,7 +102,7 @@ function JuecesAsignados() {
 
     return (
 
-    <div className="equipos-expertos">
+    <div className="jueces-asignados">
 
       <h2>Jueces asignados</h2>
 
