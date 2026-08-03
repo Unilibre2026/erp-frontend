@@ -75,11 +75,11 @@ function JuecesAsignados() {
   try {
 
     const res = await fetch(
-      `${API_URL}/equipos-expertos/reporte/${encodeURIComponent(convocatoria)}/${encodeURIComponent(eje)}`,
-      {
-        signal: controller.signal
-      }
-    );
+     `${API_URL}/jueces-asignados?convocatoria=${encodeURIComponent(convocatoria)}&ciudad=${encodeURIComponent(eje)}`,
+  {
+     signal: controller.signal
+  }
+);
 
     const data = await res.json();
 
@@ -104,7 +104,7 @@ function JuecesAsignados() {
 
     <div className="equipos-expertos">
 
-      <h2>Equipos de expertos</h2>
+      <h2>Jueces asignados</h2>
 
       <div className="filtros-equipos">
 
