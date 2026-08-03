@@ -125,10 +125,7 @@ function JuecesAsignados() {
 
               setCiudad("");
               setCiudades([]);
-              
-              
-              
-              setEstado("");
+                                                     
 
               setReporte([]);
               
