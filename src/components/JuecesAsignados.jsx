@@ -208,84 +208,52 @@ function JuecesAsignados() {
 
       <hr />
 
-      {reporte.map((item) => (
+      <div className="tabla-equipo">
+
+    <div className="encabezado-tabla">
+
+        <span>Novedad</span>
+        <span>Documento</span>
+        <span>Nombre del experto</span>
+        <span>Estado</span>
+        <span>Ciudad</span>
+        <span>Rol</span>
+        <span>Disponibilidad</span>
+        <span>Teléfono</span>
+        <span>Ciudad de domicilio</span>
+
+    </div>
+
+    {reporte.map((item) => (
 
         <div
-          className="bloque-rol"
-          key={item.rol}
+            className="fila-equipo"
+            key={item.numero_novedad}
         >
 
-          <h3 className="titulo-rol">
-            {item.rol}
-          </h3>
+            <span>{item.numero_novedad}</span>
 
-          <div className="resumen-rol">
+            <span>{item.documento}</span>
 
-            <div className="dato-resumen">
-              <span className="etiqueta">Requeridos</span>
-              <span className="valor">
-               {item.requeridos}
-              </span>
-            </div>
+            <span>{item.nombre}</span>
 
-            <div className="dato-resumen">
-              <span className="etiqueta">Reclutados</span>
-              <span className="valor">{item.reclutados}</span>
-            </div>
+            <span>{item.estado}</span>
 
-            <div className="dato-resumen">
-              <span className="etiqueta">Aprobados</span>
-              <span className="valor">{item.aprobados}</span>
-            </div>
+            <span>{item.ciudad}</span>
 
-          </div>
+            <span>{item.rol}</span>
 
-          <div className="tabla-equipo">
+            <span>{item.disponibilidad || "-"}</span>
 
-            <div className="encabezado-tabla">
+            <span>{item.telefono || "-"}</span>
 
-              <span>Novedad</span>
-              <span>Documento</span>
-              <span>Nombre del experto</span>
-              <span>Estado</span>
-              <span>Disponibilidad</span>
-              <span>Teléfono</span>
-              <span>Ciudad de domicilio</span>
-
-            </div>
-
-            {item.expertos.map((experto) => (
-
-  <div
-    className="fila-equipo"
-    key={experto.documento_experto}
-  >
-
-    <span>{experto.numero_novedad}</span>
-
-    <span>{experto.documento_experto}</span>
-
-    <span>{experto.nombre}</span>
-
-    <span>{experto.estado || "-"}</span>
-
-    <span>{experto.validador || "-"}</span>
-
-    <span>{experto.telefono || "-"}</span>
-
-    <span>{experto.observaciones || "-"}</span>
-
-  </div>
-
-))}            
-          </div>
-
-          <hr />
+            <span>{item.ciudad_domicilio || "-"}</span>
 
         </div>
 
-      ))}
+    ))}
 
+</div>
     </div>
 
   );

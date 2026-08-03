@@ -1,5 +1,5 @@
-.equipos-expertos {
-    max-width: 1400px;
+.jueces-asignados {
+    max-width: 1700px;
     margin: 0 auto;
     padding: 20px;
 }
@@ -14,6 +14,7 @@
     align-items: flex-end;
     margin-top: 20px;
     margin-bottom: 25px;
+    flex-wrap: wrap;
 }
 
 .grupo-filtro {
@@ -26,182 +27,152 @@
     font-weight: 600;
 }
 
-.grupo-filtro select {
-    width: 260px;
+.grupo-filtro select,
+.grupo-filtro input {
+
+    width: 250px;
     height: 36px;
+    padding: 0 10px;
+
 }
 
 /* ===========================
-   BLOQUE DEL ROL
+   ENCABEZADO INFORME
 =========================== */
 
-.bloque-rol {
-    margin-top: 25px;
+.encabezado-informe{
+
+    margin-top:20px;
+    margin-bottom:20px;
+
 }
 
-.titulo-rol {
-    margin: 0;
-    padding: 8px 12px;
-    background-color: #0b5f7d;
-    color: white;
-    font-size: 18px;
-    font-weight: bold;
+.datos-informe{
+
+    display:flex;
+    gap:50px;
+    flex-wrap:wrap;
+
 }
 
-.resumen-rol {
-    display: flex;
-    gap: 35px;
-    align-items: center;
-    margin: 15px 0;
-}
-
-.dato-resumen {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.etiqueta {
-    font-weight: 600;
-    color: #444;
-}
-
-.valor {
-    font-size: 20px;
-    font-weight: bold;
-    color: #0b5f7d;
-}
 /* ===========================
    TABLA
 =========================== */
 
-.equipos-expertos .tabla-equipo {
-    width: 100%;
-    margin-top: 18px;
+.jueces-asignados .tabla-equipo{
+
+    width:100%;
+    margin-top:20px;
+
 }
 
-.equipos-expertos .encabezado-tabla,
-.equipos-expertos .fila-equipo {
-    display: grid;
+.jueces-asignados .encabezado-tabla,
+.jueces-asignados .fila-equipo{
+
+    display:grid;
+
     grid-template-columns:
-        90px     /* Novedad */
-        140px    /* Documento */
-        280px    /* Nombre */
-        120px    /* Estado */
-        170px    /* Disponibilidad */
-        130px    /* Teléfono */
-        180px;   /* Ciudad */
 
-    column-gap: 12px;
-    align-items: center;
-}
+        90px      /* Novedad */
+        140px     /* Documento */
+        320px     /* Nombre */
+        120px     /* Estado */
+        140px     /* Ciudad */
+        200px     /* Rol */
+        170px     /* Disponibilidad */
+        140px     /* Teléfono */
+        200px;    /* Ciudad domicilio */
 
-.equipos-expertos .encabezado-tabla {
-    padding: 10px 0;
-    border-bottom: 2px solid #d9d9d9;
-}
+    column-gap:12px;
 
-.equipos-expertos .fila-equipo {
-    padding: 10px 0;
-    border-bottom: 1px solid #ececec;
-}
-
-/* Todos los textos de la tabla */
-
-.equipos-expertos .encabezado-tabla > span,
-.equipos-expertos .fila-equipo > span {
-
-    margin: 0;
-    padding: 0;
-
-    font-family: inherit;
-    font-size: 14px;
-    line-height: 1.4;
-
-    color: #000;
-
-    border: none !important;
-    outline: none !important;
-    box-shadow: none !important;
-
-    text-decoration: none;
+    align-items:center;
 
 }
 
-/* Encabezados */
+.jueces-asignados .encabezado-tabla{
 
-.equipos-expertos .encabezado-tabla > span{
-    font-weight:600;
+    padding:12px 0;
+
+    border-bottom:2px solid #d9d9d9;
+
 }
 
-/* Filas */
+.jueces-asignados .fila-equipo{
 
-.equipos-expertos .fila-equipo > span{
+    padding:10px 0;
+
+    border-bottom:1px solid #ececec;
+
+}
+
+.jueces-asignados .encabezado-tabla > span{
+
+    font-size:15px;
+    font-weight:700;
+    color:#0b5f7d;
+
+}
+
+.jueces-asignados .fila-equipo > span{
+
+    font-size:15px;
     font-weight:400;
+    color:#000;
+
 }
 
+.jueces-asignados .encabezado-tabla > span,
+.jueces-asignados .fila-equipo > span{
+
+    margin:0;
+    padding:0;
+
+    border:none !important;
+    outline:none !important;
+    box-shadow:none !important;
+
+    line-height:1.4;
+
+}
 
 /* ===========================
    ESTADOS
 =========================== */
 
-.estado-aprobado {
-    color: #2e7d32;
-    font-weight: 600;
+.estado-aprobado{
+
+    color:#2e7d32;
+    font-weight:600;
+
 }
 
-.estado-pendiente {
-    color: #c49000;
-    font-weight: 600;
+.estado-preaprobado{
+
+    color:#1565c0;
+    font-weight:600;
+
 }
 
-.estado-preaprobado {
-    color: #1565c0;
-    font-weight: 600;
+.estado-pendiente{
+
+    color:#c49000;
+    font-weight:600;
+
 }
 
-.estado-subsanado {
-    color: #7b1fa2;
-    font-weight: 600;
-}
+.estado-subsanado{
 
-.encabezado-tabla span,
-.fila-equipo span {
-    font-size: 14px;
-    font-weight: 400;
-    color: inherit;
-}
+    color:#7b1fa2;
+    font-weight:600;
 
-.encabezado-tabla span {
-    font-weight: 600;
-}
-
-.fila-equipo span:last-child,
-.encabezado-tabla span:last-child {
-    font-size: inherit;
-    font-weight: inherit;
-    border: none !important;
-    outline: none !important;
 }
 
 /* ===========================
-   ENCABEZADOS DE LA TABLA
+   RESPONSIVE
 =========================== */
 
-.equipos-expertos .encabezado-tabla > span,
-.equipos-expertos .encabezado-tabla > div {
-    font-size: 15px;
-    font-weight: 700;
-    color: #0b5f7d;   /* Azul petróleo */
-}
+.jueces-asignados .tabla-equipo{
 
-/* ===========================
-   DATOS DE LA TABLA
-=========================== */
+    overflow-x:auto;
 
-.equipos-expertos .fila-equipo > span,
-.equipos-expertos .fila-equipo > div {
-    font-size: 15px;
-    font-weight: 400;
-    color: #000;
 }
