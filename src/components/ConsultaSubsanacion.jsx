@@ -61,6 +61,9 @@ export default function ConsultaSubsanacion() {
         const token = localStorage.getItem("token");
         const subsanadoPor = localStorage.getItem("usuario");
 
+        console.log("esRetiro:", esRetiro);
+        console.log("motivo original:", expertoSeleccionado.motivo_retiro);
+
         const body = {
 
             numero_novedad: expertoSeleccionado.numero_novedad,
@@ -94,6 +97,8 @@ export default function ConsultaSubsanacion() {
             subsanado_por: subsanadoPor
 
         };
+
+        console.log("Body enviado:", body);
 
         const res = await fetch(`${API_URL}/subsanaciones`, {
     method: "POST",
