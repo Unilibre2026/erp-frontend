@@ -491,7 +491,7 @@ cargarSubsanaciones();
     <button
         className="btn-guardar-subsanacion"
         type="button"
-        onClick={guardarSubsanacion}
+        onClick={() => guardarSubsanacion(false)}
     >
         Guardar Subsanación
     </button>
