@@ -282,12 +282,14 @@ export default function ReporteAsistencia() {
       <div className="reporte-asistencia-formulario">
 
         {/* =========================
-            FILA 1
+            FILA 1 - 4 CAMPOS
         ========================= */}
 
         <div className="reporte-asistencia-fila">
 
+          {/* TIPO DE REPORTE */}
           <div className="reporte-asistencia-campo">
+
             <label>Tipo de reporte</label>
 
             <input
@@ -295,9 +297,13 @@ export default function ReporteAsistencia() {
               value="REPORTE INICIAL"
               disabled
             />
+
           </div>
 
+
+          {/* FECHA */}
           <div className="reporte-asistencia-campo">
+
             <label>Fecha</label>
 
             <input
@@ -305,9 +311,13 @@ export default function ReporteAsistencia() {
               value={fecha}
               onChange={(e) => setFecha(e.target.value)}
             />
+
           </div>
 
+
+          {/* DOCUMENTO */}
           <div className="reporte-asistencia-campo">
+
             <label>Documento</label>
 
             <input
@@ -317,18 +327,13 @@ export default function ReporteAsistencia() {
               onBlur={() => buscarExperto(documento)}
               placeholder="Digite el documento"
             />
+
           </div>
 
-        </div>
 
-
-        {/* =========================
-            FILA 2
-        ========================= */}
-
-        <div className="reporte-asistencia-fila">
-
+          {/* NOMBRE */}
           <div className="reporte-asistencia-campo">
+
             <label>Nombre del experto</label>
 
             <input
@@ -336,85 +341,115 @@ export default function ReporteAsistencia() {
               value={nombre}
               disabled
             />
+
           </div>
 
+        </div>
+
+
+        {/* =========================
+            FILA 2 - 4 CAMPOS
+        ========================= */}
+
+        <div className="reporte-asistencia-fila">
+
+          {/* CIUDAD */}
           <div className="reporte-asistencia-campo">
+
             <label>Ciudad</label>
 
             <select
               value={ciudad}
               onChange={(e) => setCiudad(e.target.value)}
             >
-              <option value="">Seleccione...</option>
+
+              <option value="">
+                Seleccione...
+              </option>
 
               {CIUDADES.map((item) => (
-                <option key={item} value={item}>
+                <option
+                  key={item}
+                  value={item}
+                >
                   {item}
                 </option>
               ))}
+
             </select>
+
           </div>
 
+
+          {/* ROL */}
           <div className="reporte-asistencia-campo">
+
             <label>Rol</label>
 
             <select
               value={rol}
               onChange={(e) => setRol(e.target.value)}
             >
-              <option value="">Seleccione...</option>
+
+              <option value="">
+                Seleccione...
+              </option>
 
               {ROLES.map((item) => (
-                <option key={item} value={item}>
+                <option
+                  key={item}
+                  value={item}
+                >
                   {item}
                 </option>
               ))}
+
             </select>
+
           </div>
 
-        </div>
 
-
-        {/* =========================
-            FILA 3
-        ========================= */}
-
-        <div className="reporte-asistencia-fila">
-
+          {/* JORNADA */}
           <div className="reporte-asistencia-campo">
+
             <label>Jornada</label>
 
             <select
               value={jornada}
               onChange={(e) => setJornada(e.target.value)}
             >
-              <option value="">Seleccione...</option>
+
+              <option value="">
+                Seleccione...
+              </option>
 
               {JORNADAS.map((item) => (
-                <option key={item} value={item}>
+                <option
+                  key={item}
+                  value={item}
+                >
                   {item}
                 </option>
               ))}
+
             </select>
+
           </div>
 
-        </div>
 
+          {/* OBSERVACIONES */}
+          <div className="reporte-asistencia-campo">
 
-        {/* =========================
-            OBSERVACIONES
-        ========================= */}
-
-        <div className="reporte-asistencia-fila">
-
-          <div className="reporte-asistencia-campo reporte-asistencia-observaciones">
             <label>Observaciones</label>
 
             <textarea
               value={observaciones}
-              onChange={(e) => setObservaciones(e.target.value)}
+              onChange={(e) =>
+                setObservaciones(e.target.value)
+              }
               rows="3"
             />
+
           </div>
 
         </div>
@@ -462,7 +497,11 @@ export default function ReporteAsistencia() {
       <div className="reporte-asistencia-tabla-contenedor">
 
         <div className="reporte-asistencia-tabla-header">
-          <h3>Reportes registrados</h3>
+
+          <h3>
+            Reportes registrados
+          </h3>
+
         </div>
 
         {cargando ? (
@@ -478,6 +517,7 @@ export default function ReporteAsistencia() {
             <table>
 
               <thead>
+
                 <tr>
                   <th>Tipo de reporte</th>
                   <th>Fecha</th>
@@ -490,6 +530,7 @@ export default function ReporteAsistencia() {
                   <th>Responsable</th>
                   <th>Fecha registro</th>
                 </tr>
+
               </thead>
 
               <tbody>
@@ -497,9 +538,11 @@ export default function ReporteAsistencia() {
                 {reportes.length === 0 ? (
 
                   <tr>
+
                     <td colSpan="10">
                       No hay reportes registrados
                     </td>
+
                   </tr>
 
                 ) : (
@@ -508,23 +551,41 @@ export default function ReporteAsistencia() {
 
                     <tr key={reporte.id}>
 
-                      <td>{reporte.tipo_reporte}</td>
+                      <td>
+                        {reporte.tipo_reporte}
+                      </td>
 
-                      <td>{reporte.fecha}</td>
+                      <td>
+                        {reporte.fecha}
+                      </td>
 
-                      <td>{reporte.documento}</td>
+                      <td>
+                        {reporte.documento}
+                      </td>
 
-                      <td>{reporte.nombre}</td>
+                      <td>
+                        {reporte.nombre}
+                      </td>
 
-                      <td>{reporte.ciudad}</td>
+                      <td>
+                        {reporte.ciudad}
+                      </td>
 
-                      <td>{reporte.rol}</td>
+                      <td>
+                        {reporte.rol}
+                      </td>
 
-                      <td>{reporte.jornada}</td>
+                      <td>
+                        {reporte.jornada}
+                      </td>
 
-                      <td>{reporte.observaciones || ""}</td>
+                      <td>
+                        {reporte.observaciones || ""}
+                      </td>
 
-                      <td>{reporte.responsable_reporte}</td>
+                      <td>
+                        {reporte.responsable_reporte}
+                      </td>
 
                       <td>
                         {reporte.fecha_registro
