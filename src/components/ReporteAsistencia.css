@@ -1,117 +1,351 @@
+/* =========================================
+   REPORTE DE ASISTENCIA
+========================================= */
+
 .reporte-asistencia {
-  width: 100%;
-  padding: 20px;
-  box-sizing: border-box;
+    width: 100%;
+    padding: 25px 35px;
+    box-sizing: border-box;
 }
+
+/* =========================================
+   ENCABEZADO
+========================================= */
 
 .reporte-asistencia h2 {
-  margin-bottom: 20px;
+    margin: 0 0 25px 0;
+    font-size: 22px;
+    color: #111;
 }
 
+/* =========================================
+   FORMULARIO
+========================================= */
+
 .reporte-asistencia-formulario {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 15px;
+    width: 100%;
+}
+
+.reporte-asistencia-fila {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-bottom: 18px;
 }
 
 .reporte-asistencia-campo {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+    display: flex;
+    flex-direction: column;
 }
 
 .reporte-asistencia-campo label {
-  font-weight: 600;
+    font-size: 13px;
+    font-weight: 600;
+    color: #111;
+    margin-bottom: 6px;
 }
 
 .reporte-asistencia-campo input,
 .reporte-asistencia-campo select,
 .reporte-asistencia-campo textarea {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 9px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #c9cdd1;
+    border-radius: 4px;
+    padding: 8px 10px;
+    font-size: 13px;
+    background-color: #fff;
+    color: #111;
 }
 
-.reporte-asistencia-campo input:disabled {
-  background: #eeeeee;
+.reporte-asistencia-campo input:focus,
+.reporte-asistencia-campo select:focus,
+.reporte-asistencia-campo textarea:focus {
+    outline: none;
+    border-color: #20576a;
 }
 
-.reporte-asistencia-observaciones {
-  grid-column: span 2;
+.reporte-asistencia-campo textarea {
+    min-height: 90px;
+    resize: vertical;
 }
 
-.reporte-asistencia-acciones {
-  margin-top: 20px;
+/* Campos que ocupan más espacio */
+
+.reporte-asistencia-campo.observaciones {
+    grid-column: span 2;
 }
 
-.reporte-asistencia-acciones button {
-  padding: 10px 20px;
-  cursor: pointer;
+/* =========================================
+   TIPO DE REPORTE
+========================================= */
+
+.reporte-asistencia-campo input[readonly] {
+    background-color: #eeeeee;
+    color: #555;
 }
 
-.reporte-asistencia-mensaje {
-  margin-top: 15px;
-  padding: 10px;
+/* =========================================
+   BOTÓN
+========================================= */
+
+.btn-guardar-reporte {
+    margin-top: 5px;
+    padding: 9px 18px;
+    border: none;
+    border-radius: 4px;
+    background-color: #2864e8;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
 }
 
-.reporte-asistencia-error {
-  margin-top: 15px;
-  padding: 10px;
+.btn-guardar-reporte:hover {
+    background-color: #1f52c2;
 }
 
-.reporte-asistencia-tabla-contenedor {
-  margin-top: 30px;
+/* =========================================
+   MENSAJES
+========================================= */
+
+.mensaje-reporte {
+    margin: 15px 0;
+    font-size: 13px;
 }
 
-.reporte-asistencia-tabla-header {
-  margin-bottom: 10px;
+.mensaje-error {
+    color: #b42318;
 }
 
-.reporte-asistencia-tabla-scroll {
-  width: 100%;
-  overflow-x: auto;
+.mensaje-exito {
+    color: #18794e;
 }
 
-.reporte-asistencia-tabla-scroll table {
-  width: 100%;
-  min-width: 1200px;
-  border-collapse: collapse;
+/* =========================================
+   TÍTULO TABLA
+========================================= */
+
+.reporte-asistencia-listado {
+    margin-top: 35px;
 }
 
-.reporte-asistencia-tabla-scroll th,
-.reporte-asistencia-tabla-scroll td {
-  padding: 8px;
-  border: 1px solid #ddd;
-  white-space: nowrap;
+.reporte-asistencia-listado h3 {
+    margin: 0 0 12px 0;
+    font-size: 17px;
+    color: #111;
 }
 
-.reporte-asistencia-tabla-scroll th {
-  font-weight: 600;
+/* =========================================
+   TABLA DE REPORTES
+========================================= */
+
+.tabla-reportes {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    background: transparent;
 }
 
-.reporte-asistencia-cargando {
-  padding: 20px;
-  text-align: center;
+/* =========================================
+   ENCABEZADOS DE LA TABLA
+========================================= */
+
+.tabla-reportes th {
+    background: transparent;
+    color: #111;
+    border: none;
+    border-bottom: 1px solid #d5d9dd;
+
+    padding: 10px 8px;
+
+    text-align: left;
+    vertical-align: middle;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    white-space: nowrap;
 }
 
-@media (max-width: 900px) {
+/* =========================================
+   CELDAS
+========================================= */
 
-  .reporte-asistencia-formulario {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.tabla-reportes td {
+    background: transparent;
+    color: #111;
 
+    border: none;
+    border-bottom: 1px solid #d5d9dd;
+
+    padding: 9px 8px;
+
+    text-align: left;
+    vertical-align: middle;
+
+    font-size: 12px;
+    line-height: 1.35;
+
+    /*
+       IMPORTANTE:
+       Evita que nombres, observaciones
+       o responsables se salgan de la celda.
+    */
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
 }
 
-@media (max-width: 600px) {
+/* =========================================
+   ÚLTIMA FILA
+========================================= */
 
-  .reporte-asistencia-formulario {
-    grid-template-columns: 1fr;
-  }
+.tabla-reportes tbody tr:last-child td {
+    border-bottom: none;
+}
 
-  .reporte-asistencia-observaciones {
-    grid-column: span 1;
-  }
+/* =========================================
+   EFECTO AL PASAR EL MOUSE
+========================================= */
 
+.tabla-reportes tbody tr:hover td {
+    background-color: #eef2f5;
+}
+
+/* =========================================
+   ANCHOS DE COLUMNAS
+========================================= */
+
+/* Tipo de reporte */
+.tabla-reportes th:nth-child(1),
+.tabla-reportes td:nth-child(1) {
+    width: 10%;
+}
+
+/* Fecha */
+.tabla-reportes th:nth-child(2),
+.tabla-reportes td:nth-child(2) {
+    width: 9%;
+}
+
+/* Documento */
+.tabla-reportes th:nth-child(3),
+.tabla-reportes td:nth-child(3) {
+    width: 10%;
+}
+
+/* Nombre */
+.tabla-reportes th:nth-child(4),
+.tabla-reportes td:nth-child(4) {
+    width: 15%;
+}
+
+/* Ciudad */
+.tabla-reportes th:nth-child(5),
+.tabla-reportes td:nth-child(5) {
+    width: 10%;
+}
+
+/* Rol */
+.tabla-reportes th:nth-child(6),
+.tabla-reportes td:nth-child(6) {
+    width: 12%;
+}
+
+/* Jornada */
+.tabla-reportes th:nth-child(7),
+.tabla-reportes td:nth-child(7) {
+    width: 10%;
+}
+
+/* Observaciones */
+.tabla-reportes th:nth-child(8),
+.tabla-reportes td:nth-child(8) {
+    width: 12%;
+}
+
+/* Responsable */
+.tabla-reportes th:nth-child(9),
+.tabla-reportes td:nth-child(9) {
+    width: 10%;
+}
+
+/* Fecha registro */
+.tabla-reportes th:nth-child(10),
+.tabla-reportes td:nth-child(10) {
+    width: 12%;
+}
+
+/* =========================================
+   OBSERVACIONES
+========================================= */
+
+.tabla-reportes td:nth-child(8) {
+    text-align: left;
+}
+
+/* =========================================
+   FECHA DE REGISTRO
+========================================= */
+
+.tabla-reportes td:nth-child(10) {
+    white-space: normal;
+}
+
+/* =========================================
+   MENSAJE CUANDO NO HAY REGISTROS
+========================================= */
+
+.tabla-reportes .sin-registros {
+    text-align: center;
+    color: #555;
+    padding: 20px;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1100px) {
+
+    .reporte-asistencia {
+        padding: 20px;
+    }
+
+    .reporte-asistencia-fila {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .reporte-asistencia-campo.observaciones {
+        grid-column: span 2;
+    }
+
+    .reporte-asistencia-listado {
+        overflow-x: auto;
+    }
+
+    .tabla-reportes {
+        min-width: 950px;
+    }
+}
+
+@media (max-width: 700px) {
+
+    .reporte-asistencia {
+        padding: 15px;
+    }
+
+    .reporte-asistencia-fila {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .reporte-asistencia-campo.observaciones {
+        grid-column: span 1;
+    }
+
+    .tabla-reportes {
+        min-width: 950px;
+    }
 }
