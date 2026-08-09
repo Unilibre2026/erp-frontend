@@ -29,6 +29,7 @@ import AprobacionVRM from "./components/AprobacionVRM";
 import IndicadoresGestion from "./components/IndicadoresGestion";
 import EquiposExpertos from "./components/EquiposExpertos";
 import JuecesAsignados from "./components/JuecesAsignados";
+import ReporteAsistencia from "./components/ReporteAsistencia";
 
 const API_URL = "https://erp-unilibre-production.up.railway.app";
 
@@ -489,6 +490,12 @@ if (!usuario) {
 
 )}
 
+{puedeVer("reporte_asistencia") && (
+  <button onClick={() => cambiarVista("reporte_asistencia")}>
+    Reporte de asistencia
+  </button>
+)}
+
 
 
         <button
@@ -530,6 +537,7 @@ if (!usuario) {
   {vista === "permisos_modulos" && <PermisosModulos />}
   {vista === "aprobaciones" && <Aprobaciones />}
   {vista === "consulta_subsanacion" && (<ConsultaSubsanacion />
+  {vista === "reporte_asistencia" && <ReporteAsistencia />}
 )}
 
 

@@ -1,0 +1,117 @@
+.reporte-asistencia {
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.reporte-asistencia h2 {
+  margin-bottom: 20px;
+}
+
+.reporte-asistencia-formulario {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+}
+
+.reporte-asistencia-campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.reporte-asistencia-campo label {
+  font-weight: 600;
+}
+
+.reporte-asistencia-campo input,
+.reporte-asistencia-campo select,
+.reporte-asistencia-campo textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 9px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.reporte-asistencia-campo input:disabled {
+  background: #eeeeee;
+}
+
+.reporte-asistencia-observaciones {
+  grid-column: span 2;
+}
+
+.reporte-asistencia-acciones {
+  margin-top: 20px;
+}
+
+.reporte-asistencia-acciones button {
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.reporte-asistencia-mensaje {
+  margin-top: 15px;
+  padding: 10px;
+}
+
+.reporte-asistencia-error {
+  margin-top: 15px;
+  padding: 10px;
+}
+
+.reporte-asistencia-tabla-contenedor {
+  margin-top: 30px;
+}
+
+.reporte-asistencia-tabla-header {
+  margin-bottom: 10px;
+}
+
+.reporte-asistencia-tabla-scroll {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.reporte-asistencia-tabla-scroll table {
+  width: 100%;
+  min-width: 1200px;
+  border-collapse: collapse;
+}
+
+.reporte-asistencia-tabla-scroll th,
+.reporte-asistencia-tabla-scroll td {
+  padding: 8px;
+  border: 1px solid #ddd;
+  white-space: nowrap;
+}
+
+.reporte-asistencia-tabla-scroll th {
+  font-weight: 600;
+}
+
+.reporte-asistencia-cargando {
+  padding: 20px;
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+
+  .reporte-asistencia-formulario {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+}
+
+@media (max-width: 600px) {
+
+  .reporte-asistencia-formulario {
+    grid-template-columns: 1fr;
+  }
+
+  .reporte-asistencia-observaciones {
+    grid-column: span 1;
+  }
+
+}
