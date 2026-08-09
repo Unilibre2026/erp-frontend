@@ -23,12 +23,12 @@
 ========================================= */
 
 .reporte-asistencia-formulario {
-    width: 100%;
+    width: 40%;
 }
 
 .reporte-asistencia-fila {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 18px;
     margin-bottom: 18px;
 }
@@ -70,7 +70,9 @@
     resize: vertical;
 }
 
-/* Campos que ocupan más espacio */
+/* =========================================
+   OBSERVACIONES
+========================================= */
 
 .reporte-asistencia-campo.observaciones {
     grid-column: span 2;
@@ -127,6 +129,7 @@
 ========================================= */
 
 .reporte-asistencia-listado {
+    width: 100%;
     margin-top: 35px;
 }
 
@@ -187,11 +190,7 @@
     font-size: 12px;
     line-height: 1.35;
 
-    /*
-       IMPORTANTE:
-       Evita que nombres, observaciones
-       o responsables se salgan de la celda.
-    */
+    /* Evita que el texto se salga de la celda */
     white-space: normal;
     overflow-wrap: anywhere;
     word-break: break-word;
@@ -278,7 +277,7 @@
 }
 
 /* =========================================
-   OBSERVACIONES
+   OBSERVACIONES DE LA TABLA
 ========================================= */
 
 .tabla-reportes td:nth-child(8) {
@@ -313,6 +312,11 @@
         padding: 20px;
     }
 
+    /* El formulario ocupa todo el ancho */
+    .reporte-asistencia-formulario {
+        width: 100%;
+    }
+
     .reporte-asistencia-fila {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -322,6 +326,7 @@
     }
 
     .reporte-asistencia-listado {
+        width: 100%;
         overflow-x: auto;
     }
 
@@ -330,10 +335,18 @@
     }
 }
 
+/* =========================================
+   CELULARES
+========================================= */
+
 @media (max-width: 700px) {
 
     .reporte-asistencia {
         padding: 15px;
+    }
+
+    .reporte-asistencia-formulario {
+        width: 100%;
     }
 
     .reporte-asistencia-fila {
