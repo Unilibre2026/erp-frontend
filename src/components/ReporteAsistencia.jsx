@@ -123,7 +123,9 @@ export default function ReporteAsistencia() {
       setError("");
 
       const response = await fetch(
-        `${API_URL}/reporte-asistencia/buscar/${encodeURIComponent(doc.trim())}`
+        `${API_URL}/reporte-asistencia/buscar/${encodeURIComponent(
+          doc.trim()
+        )}`
       );
 
       if (response.status === 404) {
@@ -279,110 +281,150 @@ export default function ReporteAsistencia() {
 
       <div className="reporte-asistencia-formulario">
 
-        <div className="reporte-asistencia-campo">
-          <label>Tipo de reporte</label>
+        {/* =========================
+            FILA 1
+        ========================= */}
 
-          <input
-            type="text"
-            value="REPORTE INICIAL"
-            disabled
-          />
+        <div className="reporte-asistencia-fila">
+
+          <div className="reporte-asistencia-campo">
+            <label>Tipo de reporte</label>
+
+            <input
+              type="text"
+              value="REPORTE INICIAL"
+              disabled
+            />
+          </div>
+
+          <div className="reporte-asistencia-campo">
+            <label>Fecha</label>
+
+            <input
+              type="date"
+              value={fecha}
+              onChange={(e) => setFecha(e.target.value)}
+            />
+          </div>
+
+          <div className="reporte-asistencia-campo">
+            <label>Documento</label>
+
+            <input
+              type="text"
+              value={documento}
+              onChange={handleDocumentoChange}
+              onBlur={() => buscarExperto(documento)}
+              placeholder="Digite el documento"
+            />
+          </div>
+
         </div>
 
-        <div className="reporte-asistencia-campo">
-          <label>Fecha</label>
 
-          <input
-            type="date"
-            value={fecha}
-            onChange={(e) => setFecha(e.target.value)}
-          />
+        {/* =========================
+            FILA 2
+        ========================= */}
+
+        <div className="reporte-asistencia-fila">
+
+          <div className="reporte-asistencia-campo">
+            <label>Nombre del experto</label>
+
+            <input
+              type="text"
+              value={nombre}
+              disabled
+            />
+          </div>
+
+          <div className="reporte-asistencia-campo">
+            <label>Ciudad</label>
+
+            <select
+              value={ciudad}
+              onChange={(e) => setCiudad(e.target.value)}
+            >
+              <option value="">Seleccione...</option>
+
+              {CIUDADES.map((item) => (
+                <option key={item} value={item}>
+                  {item}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className="reporte-asistencia-campo">
+            <label>Rol</label>
+
+            <select
+              value={rol}
+              onChange={(e) => setRol(e.target.value)}
+            >
+              <option value="">Seleccione...</option>
+
+              {ROLES.map((item) => (
+                <option key={item} value={item}>
+                  {item}
+                </option>
+              ))}
+            </select>
+          </div>
+
         </div>
 
-        <div className="reporte-asistencia-campo">
-          <label>Documento</label>
 
-          <input
-            type="text"
-            value={documento}
-            onChange={handleDocumentoChange}
-            onBlur={() => buscarExperto(documento)}
-            placeholder="Digite el documento"
-          />
+        {/* =========================
+            FILA 3
+        ========================= */}
+
+        <div className="reporte-asistencia-fila">
+
+          <div className="reporte-asistencia-campo">
+            <label>Jornada</label>
+
+            <select
+              value={jornada}
+              onChange={(e) => setJornada(e.target.value)}
+            >
+              <option value="">Seleccione...</option>
+
+              {JORNADAS.map((item) => (
+                <option key={item} value={item}>
+                  {item}
+                </option>
+              ))}
+            </select>
+          </div>
+
         </div>
 
-        <div className="reporte-asistencia-campo">
-          <label>Nombre del experto</label>
 
-          <input
-            type="text"
-            value={nombre}
-            disabled
-          />
-        </div>
+        {/* =========================
+            OBSERVACIONES
+        ========================= */}
 
-        <div className="reporte-asistencia-campo">
-          <label>Ciudad</label>
+        <div className="reporte-asistencia-fila">
 
-          <select
-            value={ciudad}
-            onChange={(e) => setCiudad(e.target.value)}
-          >
-            <option value="">Seleccione...</option>
+          <div className="reporte-asistencia-campo reporte-asistencia-observaciones">
+            <label>Observaciones</label>
 
-            {CIUDADES.map((item) => (
-              <option key={item} value={item}>
-                {item}
-              </option>
-            ))}
-          </select>
-        </div>
+            <textarea
+              value={observaciones}
+              onChange={(e) => setObservaciones(e.target.value)}
+              rows="3"
+            />
+          </div>
 
-        <div className="reporte-asistencia-campo">
-          <label>Rol</label>
-
-          <select
-            value={rol}
-            onChange={(e) => setRol(e.target.value)}
-          >
-            <option value="">Seleccione...</option>
-
-            {ROLES.map((item) => (
-              <option key={item} value={item}>
-                {item}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <div className="reporte-asistencia-campo">
-          <label>Jornada</label>
-
-          <select
-            value={jornada}
-            onChange={(e) => setJornada(e.target.value)}
-          >
-            <option value="">Seleccione...</option>
-
-            {JORNADAS.map((item) => (
-              <option key={item} value={item}>
-                {item}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <div className="reporte-asistencia-campo reporte-asistencia-observaciones">
-          <label>Observaciones</label>
-
-          <textarea
-            value={observaciones}
-            onChange={(e) => setObservaciones(e.target.value)}
-            rows="3"
-          />
         </div>
 
       </div>
+
+
+      {/* =========================
+          BOTÓN
+      ========================= */}
 
       <div className="reporte-asistencia-acciones">
 
@@ -394,6 +436,11 @@ export default function ReporteAsistencia() {
         </button>
 
       </div>
+
+
+      {/* =========================
+          MENSAJES
+      ========================= */}
 
       {mensaje && (
         <div className="reporte-asistencia-mensaje">
@@ -407,8 +454,9 @@ export default function ReporteAsistencia() {
         </div>
       )}
 
+
       {/* =========================
-          TABLA AZUL
+          TABLA
       ========================= */}
 
       <div className="reporte-asistencia-tabla-contenedor">
@@ -418,10 +466,13 @@ export default function ReporteAsistencia() {
         </div>
 
         {cargando ? (
+
           <div className="reporte-asistencia-cargando">
             Cargando reportes...
           </div>
+
         ) : (
+
           <div className="reporte-asistencia-tabla-scroll">
 
             <table>
@@ -458,14 +509,23 @@ export default function ReporteAsistencia() {
                     <tr key={reporte.id}>
 
                       <td>{reporte.tipo_reporte}</td>
+
                       <td>{reporte.fecha}</td>
+
                       <td>{reporte.documento}</td>
+
                       <td>{reporte.nombre}</td>
+
                       <td>{reporte.ciudad}</td>
+
                       <td>{reporte.rol}</td>
+
                       <td>{reporte.jornada}</td>
+
                       <td>{reporte.observaciones || ""}</td>
+
                       <td>{reporte.responsable_reporte}</td>
+
                       <td>
                         {reporte.fecha_registro
                           ? new Date(
@@ -485,6 +545,7 @@ export default function ReporteAsistencia() {
             </table>
 
           </div>
+
         )}
 
       </div>
