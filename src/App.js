@@ -536,8 +536,9 @@ if (!usuario) {
   {vista === "usuarios" && <Usuarios />}
   {vista === "permisos_modulos" && <PermisosModulos />}
   {vista === "aprobaciones" && <Aprobaciones />}
-  {vista === "consulta_subsanacion" && (<ConsultaSubsanacion />
   {vista === "reporte_asistencia" && <ReporteAsistencia />}
+  {vista === "consulta_subsanacion" && (<ConsultaSubsanacion />
+  
 )}
 
 
