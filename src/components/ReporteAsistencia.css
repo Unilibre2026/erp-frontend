@@ -23,12 +23,12 @@
 ========================================= */
 
 .reporte-asistencia-formulario {
-    width: 40%;
+    width: 65%;
 }
 
 .reporte-asistencia-fila {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 18px;
     margin-bottom: 18px;
 }
@@ -75,7 +75,7 @@
 ========================================= */
 
 .reporte-asistencia-campo.observaciones {
-    grid-column: span 2;
+    grid-column: span 3;
 }
 
 /* =========================================
@@ -303,7 +303,7 @@
 }
 
 /* =========================================
-   RESPONSIVE
+   RESPONSIVE - TABLET
 ========================================= */
 
 @media (max-width: 1100px) {
@@ -312,9 +312,8 @@
         padding: 20px;
     }
 
-    /* El formulario ocupa todo el ancho */
     .reporte-asistencia-formulario {
-        width: 100%;
+        width: 80%;
     }
 
     .reporte-asistencia-fila {
@@ -336,7 +335,7 @@
 }
 
 /* =========================================
-   CELULARES
+   RESPONSIVE - CELULAR
 ========================================= */
 
 @media (max-width: 700px) {
