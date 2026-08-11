@@ -3095,7 +3095,7 @@ return (
 
     <div>
 
-      <h2>Cargar perfiles sugeridos por indicador</h2>
+      <h2>Perfiles sugeridos por indicador</h2>
 
       <input
         type="file"
