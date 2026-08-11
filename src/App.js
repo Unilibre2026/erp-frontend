@@ -473,7 +473,6 @@ if (!usuario) {
       <div className="tooltip-separador"></div>
 
       <div className="tooltip-descripcion">
-        AQUÍ ESTÁ EL NUEVO MENSAJE DEL FORMULARIO.
         Permite registrar novedades relacionadas con los expertos,
         como ingresos, cambios de rol y retiros.
       </div>
