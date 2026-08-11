@@ -8,6 +8,7 @@
     box-sizing: border-box;
 }
 
+
 /* =========================================
    ENCABEZADO
 ========================================= */
@@ -18,6 +19,7 @@
     color: #111;
 }
 
+
 /* =========================================
    FORMULARIO
 ========================================= */
@@ -26,17 +28,29 @@
     width: 65%;
 }
 
+
+/* =========================================
+   FILAS DEL FORMULARIO
+========================================= */
+
 .reporte-asistencia-fila {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1.5fr 0.75fr 0.85fr 1.5fr;
     gap: 18px;
     margin-bottom: 18px;
 }
 
+
+/* =========================================
+   CAMPOS
+========================================= */
+
 .reporte-asistencia-campo {
     display: flex;
     flex-direction: column;
+    min-width: 0;
 }
+
 
 .reporte-asistencia-campo label {
     font-size: 13px;
@@ -44,6 +58,7 @@
     color: #111;
     margin-bottom: 6px;
 }
+
 
 .reporte-asistencia-campo input,
 .reporte-asistencia-campo select,
@@ -58,6 +73,7 @@
     color: #111;
 }
 
+
 .reporte-asistencia-campo input:focus,
 .reporte-asistencia-campo select:focus,
 .reporte-asistencia-campo textarea:focus {
@@ -65,10 +81,22 @@
     border-color: #20576a;
 }
 
+
 .reporte-asistencia-campo textarea {
     min-height: 90px;
     resize: vertical;
 }
+
+
+/* =========================================
+   SEGUNDA FILA
+   CIUDAD - ROL - JORNADA
+========================================= */
+
+.reporte-asistencia-fila:nth-child(2) {
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
 
 /* =========================================
    OBSERVACIONES
@@ -78,14 +106,17 @@
     grid-column: span 3;
 }
 
+
 /* =========================================
    TIPO DE REPORTE
 ========================================= */
 
-.reporte-asistencia-campo input[readonly] {
+.reporte-asistencia-campo input[readonly],
+.reporte-asistencia-campo input:disabled {
     background-color: #eeeeee;
     color: #555;
 }
+
 
 /* =========================================
    BOTÓN
@@ -103,9 +134,11 @@
     cursor: pointer;
 }
 
+
 .btn-guardar-reporte:hover {
     background-color: #1f52c2;
 }
+
 
 /* =========================================
    MENSAJES
@@ -116,13 +149,16 @@
     font-size: 13px;
 }
 
+
 .mensaje-error {
     color: #b42318;
 }
 
+
 .mensaje-exito {
     color: #18794e;
 }
+
 
 /* =========================================
    TÍTULO TABLA
@@ -133,11 +169,13 @@
     margin-top: 35px;
 }
 
+
 .reporte-asistencia-listado h3 {
     margin: 0 0 12px 0;
     font-size: 17px;
     color: #111;
 }
+
 
 /* =========================================
    TABLA DE REPORTES
@@ -149,6 +187,7 @@
     table-layout: fixed;
     background: transparent;
 }
+
 
 /* =========================================
    ENCABEZADOS DE LA TABLA
@@ -171,6 +210,7 @@
     white-space: nowrap;
 }
 
+
 /* =========================================
    CELDAS
 ========================================= */
@@ -190,11 +230,11 @@
     font-size: 12px;
     line-height: 1.35;
 
-    /* Evita que el texto se salga de la celda */
     white-space: normal;
     overflow-wrap: anywhere;
     word-break: break-word;
 }
+
 
 /* =========================================
    ÚLTIMA FILA
@@ -204,6 +244,7 @@
     border-bottom: none;
 }
 
+
 /* =========================================
    EFECTO AL PASAR EL MOUSE
 ========================================= */
@@ -211,6 +252,7 @@
 .tabla-reportes tbody tr:hover td {
     background-color: #eef2f5;
 }
+
 
 /* =========================================
    ANCHOS DE COLUMNAS
@@ -222,11 +264,13 @@
     width: 10%;
 }
 
+
 /* Fecha */
 .tabla-reportes th:nth-child(2),
 .tabla-reportes td:nth-child(2) {
     width: 9%;
 }
+
 
 /* Documento */
 .tabla-reportes th:nth-child(3),
@@ -234,11 +278,13 @@
     width: 10%;
 }
 
+
 /* Nombre */
 .tabla-reportes th:nth-child(4),
 .tabla-reportes td:nth-child(4) {
     width: 15%;
 }
+
 
 /* Ciudad */
 .tabla-reportes th:nth-child(5),
@@ -246,11 +292,13 @@
     width: 10%;
 }
 
+
 /* Rol */
 .tabla-reportes th:nth-child(6),
 .tabla-reportes td:nth-child(6) {
     width: 12%;
 }
+
 
 /* Jornada */
 .tabla-reportes th:nth-child(7),
@@ -258,11 +306,13 @@
     width: 10%;
 }
 
+
 /* Observaciones */
 .tabla-reportes th:nth-child(8),
 .tabla-reportes td:nth-child(8) {
     width: 12%;
 }
+
 
 /* Responsable */
 .tabla-reportes th:nth-child(9),
@@ -270,11 +320,13 @@
     width: 10%;
 }
 
+
 /* Fecha registro */
 .tabla-reportes th:nth-child(10),
 .tabla-reportes td:nth-child(10) {
     width: 12%;
 }
+
 
 /* =========================================
    OBSERVACIONES DE LA TABLA
@@ -284,6 +336,7 @@
     text-align: left;
 }
 
+
 /* =========================================
    FECHA DE REGISTRO
 ========================================= */
@@ -291,6 +344,7 @@
 .tabla-reportes td:nth-child(10) {
     white-space: normal;
 }
+
 
 /* =========================================
    MENSAJE CUANDO NO HAY REGISTROS
@@ -301,6 +355,7 @@
     color: #555;
     padding: 20px;
 }
+
 
 /* =========================================
    RESPONSIVE - TABLET
@@ -320,6 +375,10 @@
         grid-template-columns: repeat(2, 1fr);
     }
 
+    .reporte-asistencia-fila:nth-child(2) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
     .reporte-asistencia-campo.observaciones {
         grid-column: span 2;
     }
@@ -333,6 +392,7 @@
         min-width: 950px;
     }
 }
+
 
 /* =========================================
    RESPONSIVE - CELULAR
@@ -348,7 +408,8 @@
         width: 100%;
     }
 
-    .reporte-asistencia-fila {
+    .reporte-asistencia-fila,
+    .reporte-asistencia-fila:nth-child(2) {
         grid-template-columns: 1fr;
         gap: 14px;
     }
