@@ -358,12 +358,7 @@ if (!usuario) {
       <div className={`sidebar ${menuAbierto ? "sidebar-abierto" : ""}`}>
         <h2 className="titulo-sidebar">Reclutamiento</h2>
 
-        {puedeVer("indicadores_gestion") && (
-<button onClick={() => setVista("indicadores_gestion")}>
-    Análisis de gestión
-</button>
 
-)}
 
 {puedeVer("aprobaciones") && (
   <button onClick={() => cambiarVista("aprobaciones")}>
@@ -390,18 +385,18 @@ if (!usuario) {
   </button>
 )}
 
+{puedeVer("avance_general") && (
+  <button onClick={() => cambiarVista("avance_general")}>
+    Avance general
+  </button>
+)}
+
 {puedeVer("avance_prueba") && (
   <button onClick={() => cambiarVista("avance_prueba")}>
     Avance por prueba
   </button>
 )}
 
-        
-{puedeVer("avance_general") && (
-  <button onClick={() => cambiarVista("avance_general")}>
-    Consulta avance general
-  </button>
-)}
 
 {puedeVer("consulta_cnsc") && (
   <button onClick={() => cambiarVista("consulta_cnsc")}>
@@ -415,11 +410,7 @@ if (!usuario) {
   </button>
 )}
 
-{puedeVer("consulta_subsanacion") && (
-  <button onClick={() => cambiarVista("consulta_subsanacion")}>
-    Consulta de subsanación
-  </button>
-)}
+
 
 {puedeVer("indicadores") && (
   <button onClick={() => cambiarVista("indicadores")}>
@@ -464,6 +455,13 @@ if (!usuario) {
   </button>
 )}
 
+        {puedeVer("indicadores_gestion") && (
+<button onClick={() => setVista("indicadores_gestion")}>
+    Indicadores x reclutador
+</button>
+
+)}
+
 {puedeVer("jueces_asignados") && (
 <button onClick={() => setVista("jueces_asignados")}>
     Jueces asignados
@@ -495,6 +493,12 @@ if (!usuario) {
 {puedeVer("reporte_asistencia") && (
   <button onClick={() => cambiarVista("reporte_asistencia")}>
     Reporte de asistencia
+  </button>
+)}
+
+{puedeVer("consulta_subsanacion") && (
+  <button onClick={() => cambiarVista("consulta_subsanacion")}>
+    Subsanar
   </button>
 )}
 
