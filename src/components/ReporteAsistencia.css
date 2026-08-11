@@ -472,3 +472,104 @@
     font-weight: 600;
     margin: 0;
 }
+
+/* =========================================
+   SOBRESCRITURA FINAL - TABLA SOBRIA
+   ========================================= */
+
+.tabla-reportes {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    border-spacing: 0 !important;
+    background: #ffffff !important;
+    table-layout: fixed !important;
+}
+
+
+/* =========================================
+   ENCABEZADOS
+   ========================================= */
+
+.tabla-reportes thead th,
+.tabla-reportes th {
+    background: #ffffff !important;
+    color: #111111 !important;
+
+    border: none !important;
+    border-bottom: 1px solid #d5d9dd !important;
+
+    padding: 10px 8px !important;
+
+    text-align: left !important;
+    vertical-align: middle !important;
+
+    font-size: 13px !important;
+    font-weight: 600 !important;
+
+    white-space: nowrap !important;
+}
+
+
+/* =========================================
+   CELDAS
+   ========================================= */
+
+.tabla-reportes tbody td,
+.tabla-reportes td {
+    background: #ffffff !important;
+    color: #111111 !important;
+
+    border: none !important;
+    border-bottom: 1px solid #e1e4e7 !important;
+
+    padding: 10px 8px !important;
+
+    text-align: left !important;
+    vertical-align: middle !important;
+
+    font-size: 14px !important;
+    line-height: 1.35 !important;
+
+    white-space: normal !important;
+    overflow-wrap: anywhere !important;
+    word-break: break-word !important;
+}
+
+
+/* =========================================
+   FILAS
+   ========================================= */
+
+.tabla-reportes tbody tr {
+    background: #ffffff !important;
+}
+
+
+/* =========================================
+   HOVER MUY SUAVE
+   ========================================= */
+
+.tabla-reportes tbody tr:hover td {
+    background: #f7f8f9 !important;
+}
+
+
+/* =========================================
+   ÚLTIMA FILA
+   ========================================= */
+
+.tabla-reportes tbody tr:last-child td {
+    border-bottom: none !important;
+}
+
+
+/* =========================================
+   MENSAJE SIN REGISTROS
+   ========================================= */
+
+.tabla-reportes .sin-registros {
+    background: #ffffff !important;
+    color: #555555 !important;
+    text-align: center !important;
+    padding: 20px !important;
+}
