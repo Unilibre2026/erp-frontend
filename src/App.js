@@ -398,11 +398,7 @@ if (!usuario) {
 
         
 
-{puedeVer("observaciones_expertos") && (
-  <button onClick={() => cambiarVista("Cargar observaciones de expertos")}>
-    Cargar observaciones de expertos
-  </button>
-)}
+
 
 {puedeVer("perfiles_sugeridos_indicador") && (
   <button onClick={() => cambiarVista("Cargar perfiles sugeridos por indicador")}>
@@ -484,10 +480,16 @@ if (!usuario) {
 
 )}
 
+{puedeVer("observaciones_expertos") && (
+  <button onClick={() => cambiarVista("Cargar observaciones de expertos")}>
+    Observaciones de expertos
+  </button>
+)}
+
 
 {puedeVer("usuarios") && (
 <button onClick={() => cambiarVista("permisos_modulos")}>
-  Permisos módulos
+  Permisos
 </button>
 
 )}
