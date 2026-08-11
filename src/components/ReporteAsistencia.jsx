@@ -791,7 +791,7 @@ export default function ReporteAsistencia() {
                 type="button"
                 className="btn-exportar-opcion"
                 onClick={exportarInformeExperto}
-                disabled={reportes.length === 0}
+                disabled={!documento.trim() || reportes.length === 0}
               >
                 Exportar informe de experto seleccionado
               </button>
