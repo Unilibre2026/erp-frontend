@@ -342,35 +342,58 @@ export default function ReporteAsistencia() {
 
   const exportarInformeExperto = async () => {
 
+    // =========================================
+    // VALIDAR QUE HAYA UN EXPERTO SELECCIONADO
+    // =========================================
+
+    if (!documento.trim()) {
+
+        setError(
+            "Digite el documento del experto que desea exportar"
+        );
+
+        setMostrarModalExportar(false);
+
+        return;
+    }
+
+    // =========================================
+    // VALIDAR QUE EXISTAN REPORTES DEL EXPERTO
+    // =========================================
+
     if (!reportes || reportes.length === 0) {
 
-      setError(
-        "No hay reportes del experto seleccionado para exportar"
-      );
+        setError(
+            "El experto seleccionado no tiene reportes de asistencia"
+        );
 
-      setMostrarModalExportar(false);
+        setMostrarModalExportar(false);
 
-      return;
+        return;
     }
 
     try {
 
-      setError("");
+        setError("");
 
-      await exportarReporteAsistencia(
-        reportes,
-        "experto"
-      );
+        await exportarReporteAsistencia(
+            reportes,
+            "experto"
+        );
 
-      setMostrarModalExportar(false);
+        setMostrarModalExportar(false);
 
     } catch (err) {
 
-      console.error(err);
-      setError(err.message);
+        console.error(err);
+
+        setError(
+            "No fue posible generar el informe del experto"
+        );
 
     }
-  };
+};
+  
 
   return (
     <div className="reporte-asistencia">
