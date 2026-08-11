@@ -397,15 +397,6 @@ if (!usuario) {
 )}
 
         
-
-
-
-{puedeVer("perfiles_sugeridos_indicador") && (
-  <button onClick={() => cambiarVista("Cargar perfiles sugeridos por indicador")}>
-    Cargar perfiles sugeridos por indicador
-  </button>
-)}
-
 {puedeVer("avance_general") && (
   <button onClick={() => cambiarVista("avance_general")}>
     Consulta avance general
@@ -485,6 +476,13 @@ if (!usuario) {
     Observaciones de expertos
   </button>
 )}
+
+{puedeVer("perfiles_sugeridos_indicador") && (
+  <button onClick={() => cambiarVista("Cargar perfiles sugeridos por indicador")}>
+    Perfiles sugeridos por indicador
+  </button>
+)}
+
 
 
 {puedeVer("usuarios") && (
