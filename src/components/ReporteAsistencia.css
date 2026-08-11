@@ -171,14 +171,19 @@
 
 /* =========================================
    TABLA DE REPORTES
-   ESTILO SOBRIO
+   PROTEGIDA DE ESTILOS GLOBALES
 ========================================= */
 
-.tabla-reportes {
-    width: 100%;
-    border-collapse: collapse;
-    table-layout: fixed;
-    background: transparent;
+.reporte-asistencia .tabla-reportes {
+    width: 100% !important;
+    min-width: 0 !important;
+
+    border-collapse: collapse !important;
+    border-spacing: 0 !important;
+
+    table-layout: fixed !important;
+
+    background: #ffffff !important;
 }
 
 
@@ -186,22 +191,27 @@
    ENCABEZADOS DE LA TABLA
 ========================================= */
 
-.tabla-reportes th {
-    background: transparent;
-    color: #111;
+.reporte-asistencia .tabla-reportes thead th,
+.reporte-asistencia .tabla-reportes th {
+    background: #ffffff !important;
+    color: #111111 !important;
 
-    border: none;
-    border-bottom: 1px solid #d5d9dd;
+    border: none !important;
+    border-bottom: 1px solid #d5d9dd !important;
 
-    padding: 10px 8px;
+    position: static !important;
 
-    text-align: left;
-    vertical-align: middle;
+    height: auto !important;
 
-    font-size: 12px;
-    font-weight: 600;
+    padding: 10px 8px !important;
 
-    white-space: nowrap;
+    text-align: left !important;
+    vertical-align: middle !important;
+
+    font-size: 13px !important;
+    font-weight: 600 !important;
+
+    white-space: nowrap !important;
 }
 
 
@@ -209,24 +219,27 @@
    CELDAS
 ========================================= */
 
-.tabla-reportes td {
-    background: transparent;
-    color: #111;
+.reporte-asistencia .tabla-reportes tbody td,
+.reporte-asistencia .tabla-reportes td {
+    background: #ffffff !important;
+    color: #111111 !important;
 
-    border: none;
-    border-bottom: 1px solid #e1e4e7;
+    border: none !important;
+    border-bottom: 1px solid #e1e4e7 !important;
 
-    padding: 9px 8px;
+    height: auto !important;
 
-    text-align: left;
-    vertical-align: middle;
+    padding: 10px 8px !important;
 
-    font-size: 14px;
-    line-height: 1.35;
+    text-align: left !important;
+    vertical-align: middle !important;
 
-    white-space: normal;
-    overflow-wrap: anywhere;
-    word-break: break-word;
+    font-size: 14px !important;
+    line-height: 1.35 !important;
+
+    white-space: normal !important;
+    overflow-wrap: anywhere !important;
+    word-break: break-word !important;
 }
 
 
@@ -234,18 +247,17 @@
    FILAS
 ========================================= */
 
-.tabla-reportes tbody tr {
-    background: transparent;
+.reporte-asistencia .tabla-reportes tbody tr {
+    background: #ffffff !important;
 }
 
 
 /* =========================================
-   EFECTO AL PASAR EL MOUSE
-   MUY SUAVE
+   HOVER MUY SUAVE
 ========================================= */
 
-.tabla-reportes tbody tr:hover td {
-    background-color: #f7f8f9;
+.reporte-asistencia .tabla-reportes tbody tr:hover td {
+    background: #f7f8f9 !important;
 }
 
 
@@ -253,82 +265,82 @@
    ÚLTIMA FILA
 ========================================= */
 
-.tabla-reportes tbody tr:last-child td {
-    border-bottom: none;
+.reporte-asistencia .tabla-reportes tbody tr:last-child td {
+    border-bottom: none !important;
 }
 
 
 /* =========================================
-   ANCHOS DE COLUMNAS - TABLA
+   ANCHOS DE COLUMNAS
 ========================================= */
 
 /* Tipo de reporte */
-.tabla-reportes th:nth-child(1),
-.tabla-reportes td:nth-child(1) {
-    width: 5%;
+.reporte-asistencia .tabla-reportes th:nth-child(1),
+.reporte-asistencia .tabla-reportes td:nth-child(1) {
+    width: 5% !important;
 }
 
 
 /* Fecha */
-.tabla-reportes th:nth-child(2),
-.tabla-reportes td:nth-child(2) {
-    width: 5%;
+.reporte-asistencia .tabla-reportes th:nth-child(2),
+.reporte-asistencia .tabla-reportes td:nth-child(2) {
+    width: 5% !important;
 }
 
 
 /* Documento */
-.tabla-reportes th:nth-child(3),
-.tabla-reportes td:nth-child(3) {
-    width: 5%;
+.reporte-asistencia .tabla-reportes th:nth-child(3),
+.reporte-asistencia .tabla-reportes td:nth-child(3) {
+    width: 5% !important;
 }
 
 
 /* Nombre */
-.tabla-reportes th:nth-child(4),
-.tabla-reportes td:nth-child(4) {
-    width: 15%;
+.reporte-asistencia .tabla-reportes th:nth-child(4),
+.reporte-asistencia .tabla-reportes td:nth-child(4) {
+    width: 15% !important;
 }
 
 
 /* Ciudad */
-.tabla-reportes th:nth-child(5),
-.tabla-reportes td:nth-child(5) {
-    width: 10%;
+.reporte-asistencia .tabla-reportes th:nth-child(5),
+.reporte-asistencia .tabla-reportes td:nth-child(5) {
+    width: 10% !important;
 }
 
 
 /* Rol */
-.tabla-reportes th:nth-child(6),
-.tabla-reportes td:nth-child(6) {
-    width: 12%;
+.reporte-asistencia .tabla-reportes th:nth-child(6),
+.reporte-asistencia .tabla-reportes td:nth-child(6) {
+    width: 12% !important;
 }
 
 
 /* Jornada */
-.tabla-reportes th:nth-child(7),
-.tabla-reportes td:nth-child(7) {
-    width: 5%;
+.reporte-asistencia .tabla-reportes th:nth-child(7),
+.reporte-asistencia .tabla-reportes td:nth-child(7) {
+    width: 5% !important;
 }
 
 
 /* Observaciones */
-.tabla-reportes th:nth-child(8),
-.tabla-reportes td:nth-child(8) {
-    width: 15%;
+.reporte-asistencia .tabla-reportes th:nth-child(8),
+.reporte-asistencia .tabla-reportes td:nth-child(8) {
+    width: 15% !important;
 }
 
 
 /* Responsable */
-.tabla-reportes th:nth-child(9),
-.tabla-reportes td:nth-child(9) {
-    width: 5%;
+.reporte-asistencia .tabla-reportes th:nth-child(9),
+.reporte-asistencia .tabla-reportes td:nth-child(9) {
+    width: 5% !important;
 }
 
 
 /* Fecha de registro */
-.tabla-reportes th:nth-child(10),
-.tabla-reportes td:nth-child(10) {
-    width: 18%;
+.reporte-asistencia .tabla-reportes th:nth-child(10),
+.reporte-asistencia .tabla-reportes td:nth-child(10) {
+    width: 18% !important;
 }
 
 
@@ -336,8 +348,8 @@
    OBSERVACIONES DE LA TABLA
 ========================================= */
 
-.tabla-reportes td:nth-child(8) {
-    text-align: left;
+.reporte-asistencia .tabla-reportes td:nth-child(8) {
+    text-align: left !important;
 }
 
 
@@ -345,8 +357,8 @@
    FECHA DE REGISTRO
 ========================================= */
 
-.tabla-reportes td:nth-child(10) {
-    white-space: normal;
+.reporte-asistencia .tabla-reportes td:nth-child(10) {
+    white-space: normal !important;
 }
 
 
@@ -354,10 +366,13 @@
    MENSAJE CUANDO NO HAY REGISTROS
 ========================================= */
 
-.tabla-reportes .sin-registros {
-    text-align: center;
-    color: #555;
-    padding: 20px;
+.reporte-asistencia .tabla-reportes .sin-registros {
+    background: #ffffff !important;
+    color: #555555 !important;
+
+    text-align: center !important;
+
+    padding: 20px !important;
 }
 
 
@@ -392,8 +407,8 @@
         overflow-x: auto;
     }
 
-    .tabla-reportes {
-        min-width: 950px;
+    .reporte-asistencia .tabla-reportes {
+        min-width: 950px !important;
     }
 }
 
@@ -422,8 +437,8 @@
         grid-column: span 1;
     }
 
-    .tabla-reportes {
-        min-width: 950px;
+    .reporte-asistencia .tabla-reportes {
+        min-width: 950px !important;
     }
 }
 
@@ -471,105 +486,4 @@
     font-size: 20px;
     font-weight: 600;
     margin: 0;
-}
-
-/* =========================================
-   SOBRESCRITURA FINAL - TABLA SOBRIA
-   ========================================= */
-
-.tabla-reportes {
-    width: 100% !important;
-    border-collapse: collapse !important;
-    border-spacing: 0 !important;
-    background: #ffffff !important;
-    table-layout: fixed !important;
-}
-
-
-/* =========================================
-   ENCABEZADOS
-   ========================================= */
-
-.tabla-reportes thead th,
-.tabla-reportes th {
-    background: #ffffff !important;
-    color: #111111 !important;
-
-    border: none !important;
-    border-bottom: 1px solid #d5d9dd !important;
-
-    padding: 10px 8px !important;
-
-    text-align: left !important;
-    vertical-align: middle !important;
-
-    font-size: 13px !important;
-    font-weight: 600 !important;
-
-    white-space: nowrap !important;
-}
-
-
-/* =========================================
-   CELDAS
-   ========================================= */
-
-.tabla-reportes tbody td,
-.tabla-reportes td {
-    background: #ffffff !important;
-    color: #111111 !important;
-
-    border: none !important;
-    border-bottom: 1px solid #e1e4e7 !important;
-
-    padding: 10px 8px !important;
-
-    text-align: left !important;
-    vertical-align: middle !important;
-
-    font-size: 14px !important;
-    line-height: 1.35 !important;
-
-    white-space: normal !important;
-    overflow-wrap: anywhere !important;
-    word-break: break-word !important;
-}
-
-
-/* =========================================
-   FILAS
-   ========================================= */
-
-.tabla-reportes tbody tr {
-    background: #ffffff !important;
-}
-
-
-/* =========================================
-   HOVER MUY SUAVE
-   ========================================= */
-
-.tabla-reportes tbody tr:hover td {
-    background: #f7f8f9 !important;
-}
-
-
-/* =========================================
-   ÚLTIMA FILA
-   ========================================= */
-
-.tabla-reportes tbody tr:last-child td {
-    border-bottom: none !important;
-}
-
-
-/* =========================================
-   MENSAJE SIN REGISTROS
-   ========================================= */
-
-.tabla-reportes .sin-registros {
-    background: #ffffff !important;
-    color: #555555 !important;
-    text-align: center !important;
-    padding: 20px !important;
 }
