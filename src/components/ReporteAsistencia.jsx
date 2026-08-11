@@ -89,9 +89,14 @@ export default function ReporteAsistencia() {
     } catch (err) {
 
       console.error(err);
-      setError(err.message);
 
-    } finally {
+      // No mostrar error automáticamente al entrar al módulo
+      // cuando la consulta inicial de reportes falla.
+      if (doc.trim()) {
+        setError(err.message);
+    }
+
+} finally {
 
       setCargando(false);
 

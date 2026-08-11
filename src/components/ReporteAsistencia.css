@@ -445,14 +445,14 @@
 
 .reporte-asistencia-mensaje {
     color: #18794e;
-    font-size: 13px;
+    font-size: 20px;
     font-weight: 500;
     margin: 0;
 }
 
 .reporte-asistencia-error {
     color: #b42318;
-    font-size: 13px;
+    font-size: 20px;
     font-weight: 600;
     margin: 0;
 }
