@@ -431,3 +431,28 @@
     height: 32px;
     padding: 8px 10px;
 }
+
+/* =========================================
+   BOTÓN Y ALERTA EN LA MISMA LÍNEA
+========================================= */
+
+.reporte-asistencia-acciones {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: 5px;
+}
+
+.reporte-asistencia-mensaje {
+    color: #18794e;
+    font-size: 13px;
+    font-weight: 500;
+    margin: 0;
+}
+
+.reporte-asistencia-error {
+    color: #b42318;
+    font-size: 13px;
+    font-weight: 600;
+    margin: 0;
+}

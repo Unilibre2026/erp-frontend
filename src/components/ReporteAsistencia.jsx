@@ -457,37 +457,28 @@ export default function ReporteAsistencia() {
       </div>
 
 
-      {/* =========================
-          BOTÓN
-      ========================= */}
-
       <div className="reporte-asistencia-acciones">
 
-        <button
-          type="button"
-          onClick={guardarReporte}
-        >
-          Guardar reporte
-        </button>
+    <button
+        type="button"
+        onClick={guardarReporte}
+    >
+        Guardar reporte
+    </button>
 
-      </div>
-
-
-      {/* =========================
-          MENSAJES
-      ========================= */}
-
-      {mensaje && (
+    {mensaje && (
         <div className="reporte-asistencia-mensaje">
-          {mensaje}
+            {mensaje}
         </div>
-      )}
+    )}
 
-      {error && (
+    {error && (
         <div className="reporte-asistencia-error">
-          {error}
+            {error}
         </div>
-      )}
+    )}
+
+</div>
 
 
       {/* =========================
