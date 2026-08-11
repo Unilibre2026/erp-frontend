@@ -94,9 +94,9 @@ export default function ReporteAsistencia() {
       // cuando la consulta inicial de reportes falla.
       if (doc.trim()) {
         setError(err.message);
-    }
+      }
 
-} finally {
+    } finally {
 
       setCargando(false);
 
@@ -227,7 +227,7 @@ export default function ReporteAsistencia() {
     if (!observaciones.trim()) {
       setError("Digite las observaciones de la asistencia");
       return;
-}
+    }
 
     try {
 
@@ -358,7 +358,8 @@ export default function ReporteAsistencia() {
 
 
         {/* =========================
-            FILA 2 - 4 CAMPOS
+            FILA 2
+            CIUDAD - ROL - JORNADA
         ========================= */}
 
         <div className="reporte-asistencia-fila">
@@ -448,7 +449,7 @@ export default function ReporteAsistencia() {
 
 
           {/* OBSERVACIONES */}
-          <div className="reporte-asistencia-campo">
+          <div className="reporte-asistencia-campo observaciones">
 
             <label>Observaciones</label>
 
@@ -467,32 +468,39 @@ export default function ReporteAsistencia() {
       </div>
 
 
+      {/* =========================
+          BOTÓN Y MENSAJES
+      ========================= */}
+
       <div className="reporte-asistencia-acciones">
 
-    <button
-        type="button"
-        onClick={guardarReporte}
-    >
-        Guardar reporte
-    </button>
+        <button
+          type="button"
+          className="btn-guardar-reporte"
+          onClick={guardarReporte}
+        >
+          Guardar reporte
+        </button>
 
-    {mensaje && (
-        <div className="reporte-asistencia-mensaje">
+        {mensaje && (
+          <div className="reporte-asistencia-mensaje">
             {mensaje}
-        </div>
-    )}
+          </div>
+        )}
 
-    {error && (
-        <div className="reporte-asistencia-error">
+        {error && (
+          <div className="reporte-asistencia-error">
             {error}
-        </div>
-    )}
+          </div>
+        )}
 
-</div>
+      </div>
 
 
       {/* =========================
-          TABLA
+          TABLA DE REPORTES
+          MISMA ESTRUCTURA DE
+          JUECES ASIGNADOS
       ========================= */}
 
       <div className="reporte-asistencia-tabla-contenedor">
@@ -515,96 +523,96 @@ export default function ReporteAsistencia() {
 
           <div className="reporte-asistencia-tabla-scroll">
 
-            <table>
+            {/* ENCABEZADO */}
 
-              <thead>
+            <div className="reporte-asistencia-encabezado-tabla">
 
-                <tr>
-                  <th>Tipo de reporte</th>
-                  <th>Fecha</th>
-                  <th>Documento</th>
-                  <th>Nombre</th>
-                  <th>Ciudad</th>
-                  <th>Rol</th>
-                  <th>Jornada</th>
-                  <th>Observaciones</th>
-                  <th>Responsable</th>
-                  <th>Fecha registro</th>
-                </tr>
+              <span>Tipo de reporte</span>
+              <span>Fecha</span>
+              <span>Documento</span>
+              <span>Nombre</span>
+              <span>Ciudad</span>
+              <span>Rol</span>
+              <span>Jornada</span>
+              <span>Observaciones</span>
+              <span>Responsable</span>
+              <span>Fecha registro</span>
 
-              </thead>
+            </div>
 
-              <tbody>
 
-                {reportes.length === 0 ? (
+            {/* REGISTROS */}
 
-                  <tr>
+            {reportes.length === 0 ? (
 
-                    <td colSpan="10">
-                      No hay reportes registrados
-                    </td>
+              <div className="reporte-asistencia-fila-tabla">
 
-                  </tr>
+                <span
+                  className="reporte-asistencia-sin-registros"
+                >
+                  No hay reportes registrados
+                </span>
 
-                ) : (
+              </div>
 
-                  reportes.map((reporte) => (
+            ) : (
 
-                    <tr key={reporte.id}>
+              reportes.map((reporte) => (
 
-                      <td>
-                        {reporte.tipo_reporte}
-                      </td>
+                <div
+                  className="reporte-asistencia-fila-tabla"
+                  key={reporte.id}
+                >
 
-                      <td>
-                        {reporte.fecha}
-                      </td>
+                  <span>
+                    {reporte.tipo_reporte}
+                  </span>
 
-                      <td>
-                        {reporte.documento}
-                      </td>
+                  <span>
+                    {reporte.fecha}
+                  </span>
 
-                      <td>
-                        {reporte.nombre}
-                      </td>
+                  <span>
+                    {reporte.documento}
+                  </span>
 
-                      <td>
-                        {reporte.ciudad}
-                      </td>
+                  <span>
+                    {reporte.nombre}
+                  </span>
 
-                      <td>
-                        {reporte.rol}
-                      </td>
+                  <span>
+                    {reporte.ciudad}
+                  </span>
 
-                      <td>
-                        {reporte.jornada}
-                      </td>
+                  <span>
+                    {reporte.rol}
+                  </span>
 
-                      <td>
-                        {reporte.observaciones || ""}
-                      </td>
+                  <span>
+                    {reporte.jornada}
+                  </span>
 
-                      <td>
-                        {reporte.responsable_reporte}
-                      </td>
+                  <span>
+                    {reporte.observaciones || ""}
+                  </span>
 
-                      <td>
-                        {reporte.fecha_registro
-                          ? new Date(
-                              reporte.fecha_registro
-                            ).toLocaleString("es-CO")
-                          : ""}
-                      </td>
+                  <span>
+                    {reporte.responsable_reporte}
+                  </span>
 
-                    </tr>
+                  <span>
+                    {reporte.fecha_registro
+                      ? new Date(
+                          reporte.fecha_registro
+                        ).toLocaleString("es-CO")
+                      : ""}
+                  </span>
 
-                  ))
+                </div>
 
-                )}
+              ))
 
-              </tbody>
-
-            </table>
+            )}
 
           </div>
 
