@@ -51,14 +51,12 @@
     min-width: 0;
 }
 
-
 .reporte-asistencia-campo label {
     font-size: 13px;
     font-weight: 600;
     color: #111;
     margin-bottom: 6px;
 }
-
 
 .reporte-asistencia-campo input,
 .reporte-asistencia-campo select,
@@ -73,14 +71,12 @@
     color: #111;
 }
 
-
 .reporte-asistencia-campo input:focus,
 .reporte-asistencia-campo select:focus,
 .reporte-asistencia-campo textarea:focus {
     outline: none;
     border-color: #20576a;
 }
-
 
 .reporte-asistencia-campo textarea {
     min-height: 90px;
@@ -134,7 +130,6 @@
     cursor: pointer;
 }
 
-
 .btn-guardar-reporte:hover {
     background-color: #1f52c2;
 }
@@ -149,11 +144,9 @@
     font-size: 13px;
 }
 
-
 .mensaje-error {
     color: #b42318;
 }
-
 
 .mensaje-exito {
     color: #18794e;
@@ -169,7 +162,6 @@
     margin-top: 35px;
 }
 
-
 .reporte-asistencia-listado h3 {
     margin: 0 0 12px 0;
     font-size: 17px;
@@ -179,6 +171,7 @@
 
 /* =========================================
    TABLA DE REPORTES
+   ESTILO SOBRIO
 ========================================= */
 
 .tabla-reportes {
@@ -196,6 +189,7 @@
 .tabla-reportes th {
     background: transparent;
     color: #111;
+
     border: none;
     border-bottom: 1px solid #d5d9dd;
 
@@ -220,19 +214,38 @@
     color: #111;
 
     border: none;
-    border-bottom: 1px solid #d5d9dd;
+    border-bottom: 1px solid #e1e4e7;
 
     padding: 9px 8px;
 
     text-align: left;
     vertical-align: middle;
 
-    font-size: 16px;
+    font-size: 14px;
     line-height: 1.35;
 
     white-space: normal;
     overflow-wrap: anywhere;
     word-break: break-word;
+}
+
+
+/* =========================================
+   FILAS
+========================================= */
+
+.tabla-reportes tbody tr {
+    background: transparent;
+}
+
+
+/* =========================================
+   EFECTO AL PASAR EL MOUSE
+   MUY SUAVE
+========================================= */
+
+.tabla-reportes tbody tr:hover td {
+    background-color: #f7f8f9;
 }
 
 
@@ -246,15 +259,6 @@
 
 
 /* =========================================
-   EFECTO AL PASAR EL MOUSE
-========================================= */
-
-.tabla-reportes tbody tr:hover td {
-    background-color: #eef2f5;
-}
-
-
-/* =========================================
    ANCHOS DE COLUMNAS - TABLA
 ========================================= */
 
@@ -264,11 +268,13 @@
     width: 5%;
 }
 
+
 /* Fecha */
 .tabla-reportes th:nth-child(2),
 .tabla-reportes td:nth-child(2) {
     width: 5%;
 }
+
 
 /* Documento */
 .tabla-reportes th:nth-child(3),
@@ -276,11 +282,13 @@
     width: 5%;
 }
 
+
 /* Nombre */
 .tabla-reportes th:nth-child(4),
 .tabla-reportes td:nth-child(4) {
     width: 15%;
 }
+
 
 /* Ciudad */
 .tabla-reportes th:nth-child(5),
@@ -288,11 +296,13 @@
     width: 10%;
 }
 
+
 /* Rol */
 .tabla-reportes th:nth-child(6),
 .tabla-reportes td:nth-child(6) {
     width: 12%;
 }
+
 
 /* Jornada */
 .tabla-reportes th:nth-child(7),
@@ -300,17 +310,20 @@
     width: 5%;
 }
 
+
 /* Observaciones */
 .tabla-reportes th:nth-child(8),
 .tabla-reportes td:nth-child(8) {
     width: 15%;
 }
 
+
 /* Responsable */
 .tabla-reportes th:nth-child(9),
 .tabla-reportes td:nth-child(9) {
     width: 5%;
 }
+
 
 /* Fecha de registro */
 .tabla-reportes th:nth-child(10),
@@ -414,6 +427,7 @@
     }
 }
 
+
 /* =========================================
    AJUSTE ALTURA CAMPO FECHA
 ========================================= */
@@ -422,6 +436,7 @@
     height: 32px;
     padding: 8px 10px;
 }
+
 
 /* =========================================
    BOTÓN Y ALERTA EN LA MISMA LÍNEA
@@ -434,12 +449,22 @@
     margin-top: 5px;
 }
 
+
+/* =========================================
+   MENSAJE DE ÉXITO
+========================================= */
+
 .reporte-asistencia-mensaje {
     color: #18794e;
     font-size: 20px;
     font-weight: 500;
     margin: 0;
 }
+
+
+/* =========================================
+   MENSAJE DE ERROR
+========================================= */
 
 .reporte-asistencia-error {
     color: #b42318;
