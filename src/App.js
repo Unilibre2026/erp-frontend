@@ -396,11 +396,7 @@ if (!usuario) {
   </button>
 )}
 
-        {puedeVer("carga") && (
-  <button onClick={() => cambiarVista("carga")}>
-    Carga masiva de expertos
-  </button>
-)}
+        
 
 {puedeVer("observaciones_expertos") && (
   <button onClick={() => cambiarVista("Cargar observaciones de expertos")}>
@@ -466,6 +462,12 @@ if (!usuario) {
 {puedeVer("equipos_expertos") && (
   <button onClick={() => cambiarVista("equipos_expertos")}>
     Equipos de expertos
+  </button>
+)}
+
+{puedeVer("carga") && (
+  <button onClick={() => cambiarVista("carga")}>
+    Expertos
   </button>
 )}
 
