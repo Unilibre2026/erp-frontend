@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./ReporteAsistencia.css";
+import { exportarReporteAsistencia } from "../utils/ExportadorReporteAsistencia";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -52,6 +53,13 @@ export default function ReporteAsistencia() {
   const [cargando, setCargando] = useState(false);
   const [mensaje, setMensaje] = useState("");
   const [error, setError] = useState("");
+
+  // =========================
+  // MODAL EXPORTAR
+  // =========================
+
+  const [mostrarModalExportar, setMostrarModalExportar] =
+    useState(false);
 
   // =========================
   // USUARIO ACTUAL
@@ -280,6 +288,90 @@ export default function ReporteAsistencia() {
     }
   };
 
+  // =========================
+  // EXPORTAR INFORME TOTAL
+  // =========================
+
+  const exportarInformeTotal = async () => {
+
+    try {
+
+      setError("");
+
+      setCargando(true);
+
+      const response = await fetch(
+        `${API_URL}/reporte-asistencia`
+      );
+
+      if (!response.ok) {
+        throw new Error(
+          "No fue posible consultar el informe total de asistencias"
+        );
+      }
+
+      const data = await response.json();
+
+      if (!data || data.length === 0) {
+        setError("No hay reportes de asistencia para exportar");
+        return;
+      }
+
+      await exportarReporteAsistencia(
+        data,
+        "total"
+      );
+
+      setMostrarModalExportar(false);
+
+    } catch (err) {
+
+      console.error(err);
+      setError(err.message);
+
+    } finally {
+
+      setCargando(false);
+
+    }
+  };
+
+  // =========================
+  // EXPORTAR EXPERTO SELECCIONADO
+  // =========================
+
+  const exportarInformeExperto = async () => {
+
+    if (!reportes || reportes.length === 0) {
+
+      setError(
+        "No hay reportes del experto seleccionado para exportar"
+      );
+
+      setMostrarModalExportar(false);
+
+      return;
+    }
+
+    try {
+
+      setError("");
+
+      await exportarReporteAsistencia(
+        reportes,
+        "experto"
+      );
+
+      setMostrarModalExportar(false);
+
+    } catch (err) {
+
+      console.error(err);
+      setError(err.message);
+
+    }
+  };
+
   return (
     <div className="reporte-asistencia">
 
@@ -499,17 +591,29 @@ export default function ReporteAsistencia() {
 
       {/* =========================
           TABLA DE REPORTES
-          MISMA ESTRUCTURA DE
-          JUECES ASIGNADOS
       ========================= */}
 
       <div className="reporte-asistencia-tabla-contenedor">
 
         <div className="reporte-asistencia-tabla-header">
 
-          <h3>
-            Reportes registrados
-          </h3>
+          <div className="reporte-asistencia-titulo-acciones">
+
+            <h3>
+              Reportes registrados
+            </h3>
+
+            <button
+              type="button"
+              className="btn-exportar-asistencia"
+              onClick={() =>
+                setMostrarModalExportar(true)
+              }
+            >
+              Exportar Excel
+            </button>
+
+          </div>
 
         </div>
 
@@ -619,6 +723,73 @@ export default function ReporteAsistencia() {
         )}
 
       </div>
+
+
+      {/* =========================
+          MODAL DE EXPORTACIÓN
+      ========================= */}
+
+      {mostrarModalExportar && (
+
+        <div
+          className="modal-exportar-asistencia-overlay"
+          onClick={() =>
+            setMostrarModalExportar(false)
+          }
+        >
+
+          <div
+            className="modal-exportar-asistencia"
+            onClick={(e) =>
+              e.stopPropagation()
+            }
+          >
+
+            <h3>
+              Exportar informe de asistencias
+            </h3>
+
+            <p>
+              Seleccione el tipo de informe que desea
+              descargar:
+            </p>
+
+            <div className="modal-exportar-asistencia-opciones">
+
+              <button
+                type="button"
+                className="btn-exportar-opcion"
+                onClick={exportarInformeTotal}
+              >
+                Exportar informe total de asistencias
+              </button>
+
+              <button
+                type="button"
+                className="btn-exportar-opcion"
+                onClick={exportarInformeExperto}
+                disabled={reportes.length === 0}
+              >
+                Exportar informe de experto seleccionado
+              </button>
+
+            </div>
+
+            <button
+              type="button"
+              className="btn-cerrar-exportar"
+              onClick={() =>
+                setMostrarModalExportar(false)
+              }
+            >
+              Cancelar
+            </button>
+
+          </div>
+
+        </div>
+
+      )}
 
     </div>
   );
