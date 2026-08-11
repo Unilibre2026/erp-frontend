@@ -422,3 +422,12 @@
         min-width: 950px;
     }
 }
+
+/* =========================================
+   AJUSTE ALTURA CAMPO FECHA
+========================================= */
+
+.reporte-asistencia-campo input[type="date"] {
+    height: 35px;
+    padding: 8px 10px;
+}
