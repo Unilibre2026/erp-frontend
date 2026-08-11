@@ -474,8 +474,7 @@ if (!usuario) {
 
       <div className="tooltip-descripcion">
         Permite registrar novedades relacionadas con los expertos,
-        como ingresos, cambios de rol y retiros, para mantener la
-        información actualizada.
+        como ingresos, cambios de rol y retiros.
       </div>
 
       <div className="tooltip-pie">
