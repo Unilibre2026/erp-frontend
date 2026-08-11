@@ -15,9 +15,14 @@
   gap: 10px;
 
   height: 100vh;
-  overflow-y: auto;
-  overflow-x: visible;
+
+  /* Permite que el tooltip salga del sidebar */
+  overflow: visible;
+
   box-sizing: border-box;
+
+  position: relative;
+  z-index: 10000;
 }
 
 .titulo-sidebar {
@@ -47,8 +52,10 @@
   padding: 20px;
   background-color: #f1f5f9;
   overflow-y: auto;
-}
 
+  position: relative;
+  z-index: 1;
+}
 /* Inputs */
 .content input,
 .content textarea,
