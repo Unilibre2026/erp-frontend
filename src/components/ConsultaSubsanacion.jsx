@@ -291,11 +291,15 @@ cargarSubsanaciones();
 
         <div>
 
-            <strong>Estado</strong>
+           <strong>Estado</strong>
 
-            <p>{expertoSeleccionado.aprobacion}</p>
+           <p>
+              {expertoSeleccionado.origen === "VRM"
+                ? "NO APROBADO VRM"
+                : expertoSeleccionado.aprobacion}
+    </p>
 
-        </div>
+</div>
 
         <div>
 
