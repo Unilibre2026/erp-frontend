@@ -406,7 +406,7 @@ if (!usuario) {
 
        {puedeVer("consulta") && (
   <button onClick={() => cambiarVista("consulta")}>
-    Consulta general de novedades
+    Consulta de novedades
   </button>
 )}
 
