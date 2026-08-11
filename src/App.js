@@ -30,6 +30,7 @@ import IndicadoresGestion from "./components/IndicadoresGestion";
 import EquiposExpertos from "./components/EquiposExpertos";
 import JuecesAsignados from "./components/JuecesAsignados";
 import ReporteAsistencia from "./components/ReporteAsistencia";
+import { FileText } from "lucide-react";
 
 const API_URL = "https://erp-unilibre-production.up.railway.app";
 
@@ -449,10 +450,51 @@ if (!usuario) {
   </button>
 )}
 
-        {puedeVer("formulario") && (
-  <button onClick={() => cambiarVista("formulario")}>
-    Formulario
-  </button>
+ {puedeVer("formulario") && (
+  <div className="menu-modulo-con-ayuda">
+
+    <button
+      className={`menu-boton ${
+        vista === "formulario" ? "menu-boton-activo" : ""
+      }`}
+      onClick={() => cambiarVista("formulario")}
+    >
+      <FileText size={17} strokeWidth={1.8} />
+      <span>Formulario</span>
+    </button>
+
+    <div className="tooltip-modulo">
+
+      <div className="tooltip-titulo">
+        <FileText size={20} strokeWidth={1.8} />
+        <span>Formulario</span>
+      </div>
+
+      <div className="tooltip-separador"></div>
+
+      <div className="tooltip-descripcion">
+        Permite registrar novedades relacionadas con los expertos,
+        como ingresos, cambios de rol y retiros, para mantener la
+        información actualizada.
+      </div>
+
+      <div className="tooltip-pie">
+        <span className="tooltip-lampara">💡</span>
+
+        <span>
+          Mantén la información
+          <br />
+          actualizada, confiable
+          <br />
+          y siempre al día.
+        </span>
+
+        <span className="tooltip-destello">✦</span>
+      </div>
+
+    </div>
+
+  </div>
 )}
 
         {puedeVer("indicadores_gestion") && (

@@ -1645,3 +1645,192 @@ thead th {
     background:#16A34A;
     color:#FFF;
 }
+
+/* =========================================================
+   MENÚ LATERAL - MÓDULOS CON INFORMACIÓN
+   ========================================================= */
+
+.menu-modulo-con-ayuda {
+  position: relative;
+  width: 100%;
+}
+
+
+/* =========================================================
+   BOTÓN DEL MÓDULO
+   ========================================================= */
+
+.menu-modulo-con-ayuda .menu-boton {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 9px;
+
+  box-sizing: border-box;
+
+  border: none;
+  border-radius: 4px;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.15s ease;
+}
+
+
+/* =========================================================
+   BOTÓN ACTIVO
+   ========================================================= */
+
+.menu-modulo-con-ayuda .menu-boton-activo {
+  background-color: #2864e8;
+  color: #ffffff;
+}
+
+
+/* =========================================================
+   TARJETA INFORMATIVA
+   ========================================================= */
+
+.tooltip-modulo {
+  position: absolute;
+
+  left: calc(100% + 12px);
+  top: 50%;
+
+  transform: translateY(-50%) translateX(-8px);
+
+  width: 300px;
+
+  padding: 16px;
+
+  box-sizing: border-box;
+
+  background: linear-gradient(
+    145deg,
+    #173b61,
+    #214d78
+  );
+
+  color: #ffffff;
+
+  border-radius: 8px;
+
+  box-shadow:
+    0 8px 22px rgba(0, 0, 0, 0.30);
+
+  border: 1px solid rgba(255, 255, 255, 0.18);
+
+  opacity: 0;
+  visibility: hidden;
+
+  pointer-events: none;
+
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+
+  z-index: 9999;
+}
+
+
+/* =========================================================
+   MOSTRAR TARJETA
+   ========================================================= */
+
+.menu-modulo-con-ayuda:hover .tooltip-modulo {
+  opacity: 1;
+  visibility: visible;
+
+  transform: translateY(-50%) translateX(0);
+}
+
+
+/* =========================================================
+   TÍTULO
+   ========================================================= */
+
+.tooltip-titulo {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  font-size: 15px;
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   SEPARADOR
+   ========================================================= */
+
+.tooltip-separador {
+  width: 100%;
+  height: 1px;
+
+  margin: 11px 0;
+
+  background: rgba(255, 255, 255, 0.35);
+}
+
+
+/* =========================================================
+   DESCRIPCIÓN
+   ========================================================= */
+
+.tooltip-descripcion {
+  font-size: 13px;
+  line-height: 1.45;
+
+  color: #f2f6fa;
+}
+
+
+/* =========================================================
+   PIE DE LA TARJETA
+   ========================================================= */
+
+.tooltip-pie {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  margin-top: 14px;
+
+  padding-top: 10px;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+
+  font-size: 12px;
+  font-style: italic;
+  font-weight: 600;
+
+  color: #dceeff;
+}
+
+
+/* =========================================================
+   ICONO LÁMPARA
+   ========================================================= */
+
+.tooltip-lampara {
+  font-size: 22px;
+  font-style: normal;
+}
+
+
+/* =========================================================
+   DESTELLO
+   ========================================================= */
+
+.tooltip-destello {
+  margin-left: auto;
+
+  font-size: 20px;
+
+  color: #ffd85a;
+}
