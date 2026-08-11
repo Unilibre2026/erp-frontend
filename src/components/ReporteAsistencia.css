@@ -255,29 +255,26 @@
 
 
 /* =========================================
-   ANCHOS DE COLUMNAS
+   ANCHOS DE COLUMNAS - TABLA
 ========================================= */
 
 /* Tipo de reporte */
 .tabla-reportes th:nth-child(1),
 .tabla-reportes td:nth-child(1) {
-    width: 10%;
+    width: 5%;
 }
-
 
 /* Fecha */
 .tabla-reportes th:nth-child(2),
 .tabla-reportes td:nth-child(2) {
-    width: 9%;
+    width: 5%;
 }
-
 
 /* Documento */
 .tabla-reportes th:nth-child(3),
 .tabla-reportes td:nth-child(3) {
-    width: 10%;
+    width: 5%;
 }
-
 
 /* Nombre */
 .tabla-reportes th:nth-child(4),
@@ -285,13 +282,11 @@
     width: 15%;
 }
 
-
 /* Ciudad */
 .tabla-reportes th:nth-child(5),
 .tabla-reportes td:nth-child(5) {
     width: 10%;
 }
-
 
 /* Rol */
 .tabla-reportes th:nth-child(6),
@@ -299,32 +294,28 @@
     width: 12%;
 }
 
-
 /* Jornada */
 .tabla-reportes th:nth-child(7),
 .tabla-reportes td:nth-child(7) {
-    width: 10%;
+    width: 5%;
 }
-
 
 /* Observaciones */
 .tabla-reportes th:nth-child(8),
 .tabla-reportes td:nth-child(8) {
-    width: 12%;
+    width: 15%;
 }
-
 
 /* Responsable */
 .tabla-reportes th:nth-child(9),
 .tabla-reportes td:nth-child(9) {
-    width: 10%;
+    width: 5%;
 }
 
-
-/* Fecha registro */
+/* Fecha de registro */
 .tabla-reportes th:nth-child(10),
 .tabla-reportes td:nth-child(10) {
-    width: 12%;
+    width: 18%;
 }
 
 
