@@ -224,6 +224,11 @@ export default function ReporteAsistencia() {
       return;
     }
 
+    if (!observaciones.trim()) {
+      setError("Digite las observaciones de la asistencia");
+      return;
+}
+
     try {
 
       const response = await fetch(
