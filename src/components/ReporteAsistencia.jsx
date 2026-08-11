@@ -319,7 +319,8 @@ export default function ReporteAsistencia() {
 
       await exportarReporteAsistencia(
         data,
-        "total"
+        "total",
+        usuario
       );
 
       setMostrarModalExportar(false);
@@ -378,7 +379,8 @@ export default function ReporteAsistencia() {
 
         await exportarReporteAsistencia(
             reportes,
-            "experto"
+            "experto",
+            usuario
         );
 
         setMostrarModalExportar(false);
