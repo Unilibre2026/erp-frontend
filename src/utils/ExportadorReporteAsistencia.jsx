@@ -129,7 +129,7 @@ export async function exportarReporteAsistencia(
 
         const encabezados = [
             "Tipo de reporte",
-            "Fecha",
+            "Fecha de asistencia",
             "Documento",
             "Nombre del experto",
             "Ciudad",

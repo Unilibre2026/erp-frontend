@@ -657,7 +657,7 @@ export default function ReporteAsistencia() {
             <div className="reporte-asistencia-encabezado-tabla">
 
               <span>Tipo de reporte</span>
-              <span>Fecha</span>
+              <span>Fecha de asistencia</span>
               <span>Documento</span>
               <span>Nombre</span>
               <span>Ciudad</span>
