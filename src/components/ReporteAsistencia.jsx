@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./ReporteAsistencia.css";
 import { exportarReporteAsistencia } from "../utils/ExportadorReporteAsistencia";
 
-const API_URL = process.env.REACT_APP_API_URL;
+const API_URL = "https://erp-unilibre-production.up.railway.app";
 
 const CIUDADES = [
   "Barranquilla",
@@ -36,6 +36,9 @@ export default function ReporteAsistencia() {
   // FORMULARIO
   // =========================
 
+  const [convocatoria, setConvocatoria] = useState("");
+  const [convocatorias, setConvocatorias] = useState([]);
+
   const [fecha, setFecha] = useState("");
   const [documento, setDocumento] = useState("");
   const [nombre, setNombre] = useState("");
@@ -49,6 +52,8 @@ export default function ReporteAsistencia() {
   // =========================
 
   const [reportes, setReportes] = useState([]);
+
+  const [convocatoriaFiltro, setConvocatoriaFiltro] = useState("");
 
   const [cargando, setCargando] = useState(false);
   const [mensaje, setMensaje] = useState("");
@@ -68,6 +73,39 @@ export default function ReporteAsistencia() {
   const usuario = localStorage.getItem("usuario") || "";
 
   // =========================
+  // CARGAR CONVOCATORIAS
+  // =========================
+
+  const cargarConvocatorias = async () => {
+
+    try {
+
+      const response = await fetch(
+        `${API_URL}/convocatorias`
+      );
+
+      if (!response.ok) {
+        throw new Error(
+          "No fue posible consultar las convocatorias"
+        );
+      }
+
+      const data = await response.json();
+
+      setConvocatorias(data);
+
+    } catch (err) {
+
+      console.error(err);
+
+      setError(
+        "No fue posible cargar las convocatorias"
+      );
+
+    }
+  };
+
+  // =========================
   // CONSULTAR REPORTES
   // =========================
 
@@ -81,13 +119,20 @@ export default function ReporteAsistencia() {
       let url = `${API_URL}/reporte-asistencia`;
 
       if (doc.trim()) {
-        url += `?documento=${encodeURIComponent(doc.trim())}`;
+
+        url +=
+          `?documento=${encodeURIComponent(
+            doc.trim()
+          )}`;
+
       }
 
       const response = await fetch(url);
 
       if (!response.ok) {
-        throw new Error("No fue posible consultar los reportes");
+        throw new Error(
+          "No fue posible consultar los reportes"
+        );
       }
 
       const data = await response.json();
@@ -98,8 +143,8 @@ export default function ReporteAsistencia() {
 
       console.error(err);
 
-      // No mostrar error automáticamente al entrar al módulo
-      // cuando la consulta inicial de reportes falla.
+      // No mostrar error automáticamente al entrar
+      // cuando la consulta inicial falla.
       if (doc.trim()) {
         setError(err.message);
       }
@@ -112,12 +157,34 @@ export default function ReporteAsistencia() {
   };
 
   // =========================
-  // CARGAR TODOS AL ENTRAR
+  // CARGAR DATOS AL ENTRAR
   // =========================
 
   useEffect(() => {
+
+    cargarConvocatorias();
     cargarReportes();
+
   }, []);
+
+  // =========================
+  // FILTRAR REPORTES
+  // =========================
+
+  const reportesFiltrados = reportes.filter(
+    (reporte) => {
+
+      if (!convocatoriaFiltro) {
+        return true;
+      }
+
+      return (
+        reporte.convocatoria ===
+        convocatoriaFiltro
+      );
+
+    }
+  );
 
   // =========================
   // BUSCAR EXPERTO
@@ -126,8 +193,10 @@ export default function ReporteAsistencia() {
   const buscarExperto = async (doc) => {
 
     if (!doc.trim()) {
+
       setNombre("");
       cargarReportes();
+
       return;
     }
 
@@ -144,7 +213,9 @@ export default function ReporteAsistencia() {
       if (response.status === 404) {
 
         setNombre("");
-        setError("No se encontró un experto con ese documento");
+        setError(
+          "No se encontró un experto con ese documento"
+        );
 
         // Limpiar tabla si el documento no existe
         setReportes([]);
@@ -153,7 +224,9 @@ export default function ReporteAsistencia() {
       }
 
       if (!response.ok) {
-        throw new Error("Error al buscar el experto");
+        throw new Error(
+          "Error al buscar el experto"
+        );
       }
 
       const data = await response.json();
@@ -166,6 +239,7 @@ export default function ReporteAsistencia() {
     } catch (err) {
 
       console.error(err);
+
       setNombre("");
       setError(err.message);
 
@@ -202,38 +276,79 @@ export default function ReporteAsistencia() {
     setMensaje("");
     setError("");
 
+    // =========================
+    // VALIDAR CONVOCATORIA
+    // =========================
+
+    if (!convocatoria) {
+
+      setError(
+        "Seleccione la convocatoria"
+      );
+
+      return;
+    }
+
     if (!fecha) {
-      setError("Seleccione la fecha de la asistencia");
+
+      setError(
+        "Seleccione la fecha de la asistencia"
+      );
+
       return;
     }
 
     if (!documento.trim()) {
-      setError("Digite el documento del experto");
+
+      setError(
+        "Digite el documento del experto"
+      );
+
       return;
     }
 
     if (!nombre) {
-      setError("El documento no corresponde a un experto válido");
+
+      setError(
+        "El documento no corresponde a un experto válido"
+      );
+
       return;
     }
 
     if (!ciudad) {
-      setError("Seleccione la ciudad");
+
+      setError(
+        "Seleccione la ciudad"
+      );
+
       return;
     }
 
     if (!rol) {
-      setError("Seleccione el rol");
+
+      setError(
+        "Seleccione el rol"
+      );
+
       return;
     }
 
     if (!jornada) {
-      setError("Seleccione la jornada");
+
+      setError(
+        "Seleccione la jornada"
+      );
+
       return;
     }
 
     if (!observaciones.trim()) {
-      setError("Digite las observaciones de la asistencia");
+
+      setError(
+        "Digite las observaciones de la asistencia"
+      );
+
       return;
     }
 
@@ -246,29 +361,51 @@ export default function ReporteAsistencia() {
           headers: {
             "Content-Type": "application/json",
           },
+
           body: JSON.stringify({
+
+            convocatoria,
+
             fecha,
+
             documento,
+
             ciudad,
+
             rol,
+
             jornada,
+
             observaciones,
-            responsable_reporte: usuario,
+
+            responsable_reporte:
+              usuario,
+
           }),
         }
       );
 
-      const data = await response.json();
+      const data =
+        await response.json();
 
       if (!response.ok) {
+
         throw new Error(
-          data.detail || "No fue posible guardar el reporte"
+          data.detail ||
+          "No fue posible guardar el reporte"
         );
+
       }
 
-      setMensaje(data.mensaje);
+      setMensaje(
+        data.mensaje
+      );
 
-      // Limpiar campos del registro
+      // =========================
+      // LIMPIAR CAMPOS DEL REGISTRO
+      // =========================
+
+      setConvocatoria("");
       setFecha("");
       setDocumento("");
       setNombre("");
@@ -283,7 +420,10 @@ export default function ReporteAsistencia() {
     } catch (err) {
 
       console.error(err);
-      setError(err.message);
+
+      setError(
+        err.message
+      );
 
     }
   };
@@ -297,7 +437,6 @@ export default function ReporteAsistencia() {
     try {
 
       setError("");
-
       setCargando(true);
 
       const response = await fetch(
@@ -305,15 +444,25 @@ export default function ReporteAsistencia() {
       );
 
       if (!response.ok) {
+
         throw new Error(
           "No fue posible consultar el informe total de asistencias"
         );
+
       }
 
-      const data = await response.json();
+      const data =
+        await response.json();
 
-      if (!data || data.length === 0) {
-        setError("No hay reportes de asistencia para exportar");
+      if (
+        !data ||
+        data.length === 0
+      ) {
+
+        setError(
+          "No hay reportes de asistencia para exportar"
+        );
+
         return;
       }
 
@@ -328,7 +477,10 @@ export default function ReporteAsistencia() {
     } catch (err) {
 
       console.error(err);
-      setError(err.message);
+
+      setError(
+        err.message
+      );
 
     } finally {
 
@@ -349,58 +501,65 @@ export default function ReporteAsistencia() {
 
     if (!documento.trim()) {
 
-        setError(
-            "Digite el documento del experto que desea exportar"
-        );
+      setError(
+        "Digite el documento del experto que desea exportar"
+      );
 
-        setMostrarModalExportar(false);
+      setMostrarModalExportar(false);
 
-        return;
+      return;
     }
 
     // =========================================
     // VALIDAR QUE EXISTAN REPORTES DEL EXPERTO
     // =========================================
 
-    if (!reportes || reportes.length === 0) {
+    if (
+      !reportes ||
+      reportes.length === 0
+    ) {
 
-        setError(
-            "El experto seleccionado no tiene reportes de asistencia"
-        );
+      setError(
+        "El experto seleccionado no tiene reportes de asistencia"
+      );
 
-        setMostrarModalExportar(false);
+      setMostrarModalExportar(false);
 
-        return;
+      return;
     }
 
     try {
 
-        setError("");
+      setError("");
 
-        await exportarReporteAsistencia(
-            reportes,
-            "experto",
-            usuario
-        );
+      await exportarReporteAsistencia(
+        reportesFiltrados,
+        "experto",
+        usuario
+      );
 
-        setMostrarModalExportar(false);
+      setMostrarModalExportar(false);
 
     } catch (err) {
 
-        console.error(err);
+      console.error(err);
 
-        setError(
-            "No fue posible generar el informe del experto"
-        );
+      setError(
+        "No fue posible generar el informe del experto"
+      );
 
     }
-};
-  
+  };
+
 
   return (
+
     <div className="reporte-asistencia">
 
-      <h2>Reporte de asistencia</h2>
+      <h2>
+        Reporte de asistencia
+      </h2>
+
 
       {/* =========================
           FORMULARIO
@@ -408,16 +567,70 @@ export default function ReporteAsistencia() {
 
       <div className="reporte-asistencia-formulario">
 
+
+        {/* =========================
+            CONVOCATORIA
+        ========================= */}
+
+        <div className="reporte-asistencia-fila">
+
+          <div className="reporte-asistencia-campo">
+
+            <label>
+              Convocatoria
+            </label>
+
+            <select
+              value={convocatoria}
+              onChange={(e) =>
+                setConvocatoria(
+                  e.target.value
+                )
+              }
+            >
+
+              <option value="">
+                Seleccione...
+              </option>
+
+              {convocatorias.map(
+                (item) => (
+
+                  <option
+                    key={item.id}
+                    value={
+                      item.nombre_convocatoria
+                    }
+                  >
+                    {
+                      item.nombre_convocatoria
+                    }
+                  </option>
+
+                )
+              )}
+
+            </select>
+
+          </div>
+
+        </div>
+
+
         {/* =========================
             FILA 1 - 4 CAMPOS
         ========================= */}
 
         <div className="reporte-asistencia-fila">
 
+
           {/* TIPO DE REPORTE */}
+
           <div className="reporte-asistencia-campo">
 
-            <label>Tipo de reporte</label>
+            <label>
+              Tipo de reporte
+            </label>
 
             <input
               type="text"
@@ -429,29 +642,45 @@ export default function ReporteAsistencia() {
 
 
           {/* FECHA */}
+
           <div className="reporte-asistencia-campo">
 
-            <label>Fecha</label>
+            <label>
+              Fecha
+            </label>
 
             <input
               type="date"
               value={fecha}
-              onChange={(e) => setFecha(e.target.value)}
+              onChange={(e) =>
+                setFecha(
+                  e.target.value
+                )
+              }
             />
 
           </div>
 
 
           {/* DOCUMENTO */}
+
           <div className="reporte-asistencia-campo">
 
-            <label>Documento</label>
+            <label>
+              Documento
+            </label>
 
             <input
               type="text"
               value={documento}
-              onChange={handleDocumentoChange}
-              onBlur={() => buscarExperto(documento)}
+              onChange={
+                handleDocumentoChange
+              }
+              onBlur={() =>
+                buscarExperto(
+                  documento
+                )
+              }
               placeholder="Digite el documento"
             />
 
@@ -459,9 +688,12 @@ export default function ReporteAsistencia() {
 
 
           {/* NOMBRE */}
+
           <div className="reporte-asistencia-campo">
 
-            <label>Nombre del experto</label>
+            <label>
+              Nombre del experto
+            </label>
 
             <input
               type="text"
@@ -481,28 +713,40 @@ export default function ReporteAsistencia() {
 
         <div className="reporte-asistencia-fila">
 
+
           {/* CIUDAD */}
+
           <div className="reporte-asistencia-campo">
 
-            <label>Ciudad</label>
+            <label>
+              Ciudad
+            </label>
 
             <select
               value={ciudad}
-              onChange={(e) => setCiudad(e.target.value)}
+              onChange={(e) =>
+                setCiudad(
+                  e.target.value
+                )
+              }
             >
 
               <option value="">
                 Seleccione...
               </option>
 
-              {CIUDADES.map((item) => (
-                <option
-                  key={item}
-                  value={item}
-                >
-                  {item}
-                </option>
-              ))}
+              {CIUDADES.map(
+                (item) => (
+
+                  <option
+                    key={item}
+                    value={item}
+                  >
+                    {item}
+                  </option>
+
+                )
+              )}
 
             </select>
 
@@ -510,27 +754,38 @@ export default function ReporteAsistencia() {
 
 
           {/* ROL */}
+
           <div className="reporte-asistencia-campo">
 
-            <label>Rol</label>
+            <label>
+              Rol
+            </label>
 
             <select
               value={rol}
-              onChange={(e) => setRol(e.target.value)}
+              onChange={(e) =>
+                setRol(
+                  e.target.value
+                )
+              }
             >
 
               <option value="">
                 Seleccione...
               </option>
 
-              {ROLES.map((item) => (
-                <option
-                  key={item}
-                  value={item}
-                >
-                  {item}
-                </option>
-              ))}
+              {ROLES.map(
+                (item) => (
+
+                  <option
+                    key={item}
+                    value={item}
+                  >
+                    {item}
+                  </option>
+
+                )
+              )}
 
             </select>
 
@@ -538,27 +793,38 @@ export default function ReporteAsistencia() {
 
 
           {/* JORNADA */}
+
           <div className="reporte-asistencia-campo">
 
-            <label>Jornada</label>
+            <label>
+              Jornada
+            </label>
 
             <select
               value={jornada}
-              onChange={(e) => setJornada(e.target.value)}
+              onChange={(e) =>
+                setJornada(
+                  e.target.value
+                )
+              }
             >
 
               <option value="">
                 Seleccione...
               </option>
 
-              {JORNADAS.map((item) => (
-                <option
-                  key={item}
-                  value={item}
-                >
-                  {item}
-                </option>
-              ))}
+              {JORNADAS.map(
+                (item) => (
+
+                  <option
+                    key={item}
+                    value={item}
+                  >
+                    {item}
+                  </option>
+
+                )
+              )}
 
             </select>
 
@@ -566,14 +832,19 @@ export default function ReporteAsistencia() {
 
 
           {/* OBSERVACIONES */}
+
           <div className="reporte-asistencia-campo observaciones">
 
-            <label>Observaciones</label>
+            <label>
+              Observaciones
+            </label>
 
             <textarea
               value={observaciones}
               onChange={(e) =>
-                setObservaciones(e.target.value)
+                setObservaciones(
+                  e.target.value
+                )
               }
               rows="3"
             />
@@ -594,7 +865,9 @@ export default function ReporteAsistencia() {
         <button
           type="button"
           className="btn-guardar-reporte"
-          onClick={guardarReporte}
+          onClick={
+            guardarReporte
+          }
         >
           Guardar reporte
         </button>
@@ -628,11 +901,60 @@ export default function ReporteAsistencia() {
               Reportes registrados
             </h3>
 
+            {/* =========================
+                FILTRO CONVOCATORIA
+            ========================= */}
+
+            <div className="reporte-asistencia-filtro-convocatoria">
+
+              <label>
+                Convocatoria
+              </label>
+
+              <select
+                value={
+                  convocatoriaFiltro
+                }
+                onChange={(e) =>
+                  setConvocatoriaFiltro(
+                    e.target.value
+                  )
+                }
+              >
+
+                <option value="">
+                  Todas
+                </option>
+
+                {convocatorias.map(
+                  (item) => (
+
+                    <option
+                      key={item.id}
+                      value={
+                        item.nombre_convocatoria
+                      }
+                    >
+                      {
+                        item.nombre_convocatoria
+                      }
+                    </option>
+
+                  )
+                )}
+
+              </select>
+
+            </div>
+
+
             <button
               type="button"
               className="btn-exportar-asistencia"
               onClick={() =>
-                setMostrarModalExportar(true)
+                setMostrarModalExportar(
+                  true
+                )
               }
             >
               Exportar Excel
@@ -641,6 +963,7 @@ export default function ReporteAsistencia() {
           </div>
 
         </div>
+
 
         {cargando ? (
 
@@ -652,27 +975,65 @@ export default function ReporteAsistencia() {
 
           <div className="reporte-asistencia-tabla-scroll">
 
-            {/* ENCABEZADO */}
+
+            {/* =========================
+                ENCABEZADO
+            ========================= */}
 
             <div className="reporte-asistencia-encabezado-tabla">
 
-              <span>Tipo de reporte</span>
-              <span>Fecha de asistencia</span>
-              <span>Documento</span>
-              <span>Nombre</span>
-              <span>Ciudad</span>
-              <span>Rol</span>
-              <span>Jornada</span>
-              <span>Observaciones</span>
-              <span>Responsable</span>
-              <span>Fecha registro</span>
+              <span>
+                Convocatoria
+              </span>
+
+              <span>
+                Tipo de reporte
+              </span>
+
+              <span>
+                Fecha de asistencia
+              </span>
+
+              <span>
+                Documento
+              </span>
+
+              <span>
+                Nombre
+              </span>
+
+              <span>
+                Ciudad
+              </span>
+
+              <span>
+                Rol
+              </span>
+
+              <span>
+                Jornada
+              </span>
+
+              <span>
+                Observaciones
+              </span>
+
+              <span>
+                Responsable
+              </span>
+
+              <span>
+                Fecha registro
+              </span>
 
             </div>
 
 
-            {/* REGISTROS */}
+            {/* =========================
+                REGISTROS
+            ========================= */}
 
-            {reportes.length === 0 ? (
+            {reportesFiltrados.length === 0 ? (
 
               <div className="reporte-asistencia-fila-tabla">
 
@@ -686,60 +1047,92 @@ export default function ReporteAsistencia() {
 
             ) : (
 
-              reportes.map((reporte) => (
+              reportesFiltrados.map(
+                (reporte) => (
 
-                <div
-                  className="reporte-asistencia-fila-tabla"
-                  key={reporte.id}
-                >
+                  <div
+                    className="reporte-asistencia-fila-tabla"
+                    key={reporte.id}
+                  >
 
-                  <span>
-                    {reporte.tipo_reporte}
-                  </span>
+                    <span>
+                      {
+                        reporte.convocatoria ||
+                        ""
+                      }
+                    </span>
 
-                  <span>
-                    {reporte.fecha}
-                  </span>
+                    <span>
+                      {
+                        reporte.tipo_reporte
+                      }
+                    </span>
 
-                  <span>
-                    {reporte.documento}
-                  </span>
+                    <span>
+                      {
+                        reporte.fecha
+                      }
+                    </span>
 
-                  <span>
-                    {reporte.nombre}
-                  </span>
+                    <span>
+                      {
+                        reporte.documento
+                      }
+                    </span>
 
-                  <span>
-                    {reporte.ciudad}
-                  </span>
+                    <span>
+                      {
+                        reporte.nombre
+                      }
+                    </span>
 
-                  <span>
-                    {reporte.rol}
-                  </span>
+                    <span>
+                      {
+                        reporte.ciudad
+                      }
+                    </span>
 
-                  <span>
-                    {reporte.jornada}
-                  </span>
+                    <span>
+                      {
+                        reporte.rol
+                      }
+                    </span>
 
-                  <span>
-                    {reporte.observaciones || ""}
-                  </span>
+                    <span>
+                      {
+                        reporte.jornada
+                      }
+                    </span>
 
-                  <span>
-                    {reporte.responsable_reporte}
-                  </span>
+                    <span>
+                      {
+                        reporte.observaciones ||
+                        ""
+                      }
+                    </span>
 
-                  <span>
-                    {reporte.fecha_registro
-                      ? new Date(
-                          reporte.fecha_registro
-                        ).toLocaleString("es-CO")
-                      : ""}
-                  </span>
+                    <span>
+                      {
+                        reporte.responsable_reporte
+                      }
+                    </span>
 
-                </div>
+                    <span>
+                      {
+                        reporte.fecha_registro
+                          ? new Date(
+                              reporte.fecha_registro
+                            ).toLocaleString(
+                              "es-CO"
+                            )
+                          : ""
+                      }
+                    </span>
 
-              ))
+                  </div>
+
+                )
+              )
 
             )}
 
@@ -759,7 +1152,9 @@ export default function ReporteAsistencia() {
         <div
           className="modal-exportar-asistencia-overlay"
           onClick={() =>
-            setMostrarModalExportar(false)
+            setMostrarModalExportar(
+              false
+            )
           }
         >
 
@@ -784,7 +1179,9 @@ export default function ReporteAsistencia() {
               <button
                 type="button"
                 className="btn-exportar-opcion"
-                onClick={exportarInformeTotal}
+                onClick={
+                  exportarInformeTotal
+                }
               >
                 Exportar informe total de asistencias
               </button>
@@ -792,8 +1189,13 @@ export default function ReporteAsistencia() {
               <button
                 type="button"
                 className="btn-exportar-opcion"
-                onClick={exportarInformeExperto}
-                disabled={!documento.trim() || reportes.length === 0}
+                onClick={
+                  exportarInformeExperto
+                }
+                disabled={
+                  !documento.trim() ||
+                  reportesFiltrados.length === 0
+                }
               >
                 Exportar informe de experto seleccionado
               </button>
@@ -804,7 +1206,9 @@ export default function ReporteAsistencia() {
               type="button"
               className="btn-cerrar-exportar"
               onClick={() =>
-                setMostrarModalExportar(false)
+                setMostrarModalExportar(
+                  false
+                )
               }
             >
               Cancelar
