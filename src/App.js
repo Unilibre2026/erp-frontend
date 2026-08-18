@@ -118,7 +118,8 @@ const cambiarVista = (nuevaVista) => {
 
   const [rolForm, setRolForm] = useState({
     convocatoria: "",
-    rol: ""
+    rol: "",
+    valor_rol: ""
   });
 
 const [roles, setRoles] = useState([]);
@@ -268,7 +269,7 @@ const handleVacanteChange = (e) => {
 };
 
 const guardarRol = async () => {
-  if (!rolForm.convocatoria || !rolForm.rol) {
+  if (!rolForm.convocatoria || !rolForm.rol || !rolForm.valor_rol) {
     alert("Completa los campos");
     
     return;
@@ -290,7 +291,8 @@ const guardarRol = async () => {
     // limpiar formulario
     setRolForm({
       convocatoria: "",
-      rol: ""
+      rol: "",
+      valor_rol: ""
     });
 
 
@@ -640,6 +642,19 @@ if (!usuario) {
 />
       </div>
 
+      {/* Valor del rol */}
+<div style={{ display: "flex", flexDirection: "column" }}>
+  <label>Valor del rol</label>
+  <input
+    name="valor_rol"
+    value={rolForm.valor_rol}
+    onChange={handleRolChange}
+    type="number"
+    min="0"
+    style={{ width: "150px" }}
+  />
+</div>
+
       {/* Botón guardar */}
       <div>
         <button onClick={guardarRol} style={{ height: "38px" }}>
@@ -659,6 +674,7 @@ if (!usuario) {
           <th>ID</th>
           <th>Convocatoria</th>
           <th>Rol</th>
+          <th>Valor del rol</th>
           <th>Acción</th>
         </tr>
       </thead>
@@ -669,6 +685,7 @@ if (!usuario) {
             <td>{r.id}</td>
             <td>{r.convocatoria}</td>
             <td>{r.rol}</td>
+            <td>{r.valor_rol}</td>
             <td>
               <button
                 onClick={() => eliminarRol(r.id)}
