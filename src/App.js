@@ -1101,7 +1101,7 @@ if (name === "nivel") {
     }
 
   }
-
+}
 };
   const buscarExperto = async () => {
 
