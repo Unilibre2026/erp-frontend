@@ -541,7 +541,7 @@ if (!usuario) {
 
 )}
 
-{puedeVer("presupuesto") && (
+{puedeVer("consulta_presupuesto") && (
   <button onClick={() => cambiarVista("consulta_presupuesto")}>
     Presupuesto
   </button>
