@@ -1102,7 +1102,7 @@ if (name === "nivel") {
 
   }
 
-}
+};
   const buscarExperto = async () => {
 
     if (bloquearBusqueda) return; 
