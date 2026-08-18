@@ -94,7 +94,7 @@
    ========================================================= */
 
 .reporte-asistencia-fila:first-child {
-  grid-template-columns: minmax(90px, 1fr);
+  grid-template-columns: 240px;
 }
 
 
