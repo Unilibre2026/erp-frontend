@@ -31,6 +31,7 @@ import EquiposExpertos from "./components/EquiposExpertos";
 import JuecesAsignados from "./components/JuecesAsignados";
 import ReporteAsistencia from "./components/ReporteAsistencia";
 import IncluirPresupuesto from "./pages/Presupuesto/IncluirPresupuesto";
+import Presupuesto from "./components/Presupuesto";
 import { FileText } from "lucide-react";
 
 const API_URL = "https://erp-unilibre-production.up.railway.app";
@@ -540,6 +541,12 @@ if (!usuario) {
 
 )}
 
+{puedeVer("presupuesto") && (
+  <button onClick={() => cambiarVista("consulta_presupuesto")}>
+    Presupuesto
+  </button>
+)}
+
 
 
 {puedeVer("reporte_asistencia") && (
@@ -596,6 +603,7 @@ if (!usuario) {
   {vista === "aprobaciones" && <Aprobaciones />}
   {vista === "reporte_asistencia" && <ReporteAsistencia />}
   {vista === "presupuesto" && <IncluirPresupuesto />}
+  {vista === "consulta_presupuesto" && <Presupuesto />}
   {vista === "consulta_subsanacion" && (<ConsultaSubsanacion />
   
 )}
