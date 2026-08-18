@@ -235,7 +235,36 @@ export default function Presupuesto() {
 
     });
 
-    return Object.values(acumulado);
+    return Object.values(acumulado).sort((a, b) => {
+
+  // Primero: ciudad
+  const ciudadComparacion =
+    String(a.ciudad || "").localeCompare(
+      String(b.ciudad || ""),
+      "es",
+      { sensitivity: "base" }
+    );
+
+  if (ciudadComparacion !== 0) {
+    return ciudadComparacion;
+  }
+
+  // Segundo: fecha
+  const fechaA = String(a.fecha || "");
+  const fechaB = String(b.fecha || "");
+
+  if (fechaA !== fechaB) {
+    return fechaA.localeCompare(fechaB);
+  }
+
+  // Tercero: rol
+  return String(a.rol || "").localeCompare(
+    String(b.rol || ""),
+    "es",
+    { sensitivity: "base" }
+  );
+
+});
 
   };
 
