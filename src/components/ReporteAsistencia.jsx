@@ -56,6 +56,7 @@ export default function ReporteAsistencia() {
   const [convocatoriaFiltro, setConvocatoriaFiltro] = useState("");
 
   const [cargando, setCargando] = useState(false);
+  const [guardando, setGuardando] = useState(false);
   const [mensaje, setMensaje] = useState("");
   const [error, setError] = useState("");
 
@@ -273,6 +274,11 @@ export default function ReporteAsistencia() {
 
   const guardarReporte = async () => {
 
+    // Evitar doble envío
+    if (guardando) {
+    return;
+  }
+
     setMensaje("");
     setError("");
 
@@ -424,6 +430,10 @@ export default function ReporteAsistencia() {
       setError(
         err.message
       );
+
+      } finally {
+
+      setGuardando(false);
 
     }
   };
@@ -868,8 +878,11 @@ export default function ReporteAsistencia() {
           onClick={
             guardarReporte
           }
+          disabled={guardando}
         >
-          Guardar reporte
+          {guardando
+            ? "Guardando..."
+            : "Guardar reporte"}
         </button>
 
         {mensaje && (
