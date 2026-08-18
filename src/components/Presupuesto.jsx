@@ -8,6 +8,7 @@ export default function Presupuesto() {
 
   const [convocatorias, setConvocatorias] = useState([]);
   const [convocatoria, setConvocatoria] = useState("");
+  const [ciudadFiltro, setCiudadFiltro] = useState("");
 
   const [datos, setDatos] = useState([]);
 
@@ -166,6 +167,40 @@ export default function Presupuesto() {
 
 
   // =========================================================
+  // CIUDADES DISPONIBLES
+  //
+  // Se obtienen de los datos de la convocatoria seleccionada.
+  // =========================================================
+
+  const ciudades = [
+    ...new Set(
+      datos
+        .map((fila) => fila.ciudad)
+        .filter(Boolean)
+    )
+  ].sort((a, b) =>
+    String(a).localeCompare(
+      String(b),
+      "es",
+      { sensitivity: "base" }
+    )
+  );
+
+
+  // =========================================================
+  // DATOS FILTRADOS POR CIUDAD
+  // =========================================================
+
+  const datosFiltrados = ciudadFiltro
+    ? datos.filter(
+        (fila) =>
+          String(fila.ciudad || "").trim() ===
+          String(ciudadFiltro).trim()
+      )
+    : datos;
+
+
+  // =========================================================
   // CONSOLIDAR DETALLE
   //
   // CLAVE:
@@ -178,7 +213,7 @@ export default function Presupuesto() {
 
     const acumulado = {};
 
-    datos.forEach((fila) => {
+    datosFiltrados.forEach((fila) => {
 
       const clave =
         `${fila.convocatoria}|${fila.ciudad}|${fila.rol}|${fila.fecha}`;
@@ -595,11 +630,10 @@ export default function Presupuesto() {
 
           <select
             value={convocatoria}
-            onChange={(e) =>
-              setConvocatoria(
-                e.target.value
-              )
-            }
+            onChange={(e) => {
+              setConvocatoria(e.target.value);
+              setCiudadFiltro("");
+            }}
           >
 
             <option value="">
@@ -607,6 +641,42 @@ export default function Presupuesto() {
             </option>
 
             {convocatorias.map(
+              (item, index) => (
+
+                <option
+                  key={index}
+                  value={item}
+                >
+                  {item}
+                </option>
+
+              )
+            )}
+
+          </select>
+
+        </div>
+
+
+        <div className="presupuesto-campo">
+
+          <label>
+            Ciudad
+          </label>
+
+          <select
+            value={ciudadFiltro}
+            onChange={(e) =>
+              setCiudadFiltro(e.target.value)
+            }
+            disabled={!datos.length}
+          >
+
+            <option value="">
+              Todas
+            </option>
+
+            {ciudades.map(
               (item, index) => (
 
                 <option
