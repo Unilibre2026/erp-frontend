@@ -839,71 +839,85 @@ export default function Presupuesto() {
                     </div>
 
 
-                    {datosVista.map(
-                      (fila, index) => (
+                                        {datosVista.map(
+                      (fila, index) => {
 
-                        <div
-                          className="presupuesto-fila"
-                          key={index}
-                        >
+                        const siguiente = datosVista[index + 1];
 
-                          <span>
-                            {fila.ciudad}
-                          </span>
+                        const cambiaFecha =
+                          siguiente &&
+                          String(siguiente.fecha || "") !==
+                            String(fila.fecha || "");
 
-                          <span>
-                            {fila.rol}
-                          </span>
+                        return (
 
-                          <span>
-                            {fila.requerido}
-                          </span>
-
-                          <span>
-                            {fila.asistencia}
-                          </span>
-
-                          <span>
-                            {formatoFecha(
-                              fila.fecha
-                            )}
-                          </span>
-
-                          <span>
-                            {formatoMoneda(
-                              fila.presupuestado
-                            )}
-                          </span>
-
-                          <span>
-                            {formatoMoneda(
-                              fila.ejecutado
-                            )}
-                          </span>
-
-                          <span
-                            className={
-                              Number(
-                                fila.diferencia
-                              ) > 0
-                                ? "presupuesto-positivo"
-                                : Number(
-                                    fila.diferencia
-                                  ) < 0
-                                ? "presupuesto-negativo"
-                                : ""
-                            }
+                          <div
+                            className="presupuesto-fila"
+                            key={index}
+                            style={{
+                              borderBottom: cambiaFecha
+                                ? "3px solid #555"
+                                : undefined
+                            }}
                           >
-                            {formatoMoneda(
-                              fila.diferencia
-                            )}
-                          </span>
 
-                        </div>
+                            <span>
+                              {fila.ciudad}
+                            </span>
 
-                      )
+                            <span>
+                              {fila.rol}
+                            </span>
+
+                            <span>
+                              {fila.requerido}
+                            </span>
+
+                            <span>
+                              {fila.asistencia}
+                            </span>
+
+                            <span>
+                              {formatoFecha(
+                                fila.fecha
+                              )}
+                            </span>
+
+                            <span>
+                              {formatoMoneda(
+                                fila.presupuestado
+                              )}
+                            </span>
+
+                            <span>
+                              {formatoMoneda(
+                                fila.ejecutado
+                              )}
+                            </span>
+
+                            <span
+                              className={
+                                Number(
+                                  fila.diferencia
+                                ) > 0
+                                  ? "presupuesto-positivo"
+                                  : Number(
+                                      fila.diferencia
+                                    ) < 0
+                                  ? "presupuesto-negativo"
+                                  : ""
+                              }
+                            >
+                              {formatoMoneda(
+                                fila.diferencia
+                              )}
+                            </span>
+
+                          </div>
+
+                        );
+                      }
                     )}
-
                   </>
 
                 )}
