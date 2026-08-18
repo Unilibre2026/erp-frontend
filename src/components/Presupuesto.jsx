@@ -31,7 +31,9 @@ export default function Presupuesto() {
         );
 
         if (!res.ok) {
-          throw new Error("Error cargando convocatorias");
+          throw new Error(
+            "Error cargando convocatorias"
+          );
         }
 
         const data = await res.json();
@@ -69,6 +71,7 @@ export default function Presupuesto() {
         setDatos([]);
 
         return;
+
       }
 
       setCargando(true);
@@ -82,9 +85,11 @@ export default function Presupuesto() {
         );
 
         if (!res.ok) {
+
           throw new Error(
             "Error consultando presupuesto"
           );
+
         }
 
         const data = await res.json();
@@ -95,7 +100,10 @@ export default function Presupuesto() {
 
       } catch (error) {
 
-        console.error(error);
+        console.error(
+          "Error consultando presupuesto:",
+          error
+        );
 
         alert(
           "No fue posible consultar el presupuesto."
@@ -158,26 +166,111 @@ export default function Presupuesto() {
 
 
   // =========================================================
-  // CONSOLIDAR POR ROL
+  // CONSOLIDAR DETALLE
+  //
+  // CLAVE:
+  // Convocatoria + Ciudad + Rol + Fecha
+  //
+  // El valor del rol NO participa en la agrupación.
   // =========================================================
 
-  const consolidarPorRol = () => {
+  const consolidarDetalle = () => {
 
     const acumulado = {};
 
     datos.forEach((fila) => {
 
-      const rol = fila.rol || "SIN ROL";
+      const clave =
+        `${fila.convocatoria}|${fila.ciudad}|${fila.rol}|${fila.fecha}`;
+
+      if (!acumulado[clave]) {
+
+        acumulado[clave] = {
+
+          convocatoria:
+            fila.convocatoria,
+
+          ciudad:
+            fila.ciudad,
+
+          rol:
+            fila.rol,
+
+          fecha:
+            fila.fecha,
+
+          requerido: 0,
+
+          asistencia: 0,
+
+          presupuestado: 0,
+
+          ejecutado: 0,
+
+          diferencia: 0
+
+        };
+
+      }
+
+      acumulado[clave].requerido += Number(
+        fila.requerido || 0
+      );
+
+      acumulado[clave].asistencia += Number(
+        fila.asistencia || 0
+      );
+
+      acumulado[clave].presupuestado += Number(
+        fila.presupuestado || 0
+      );
+
+      acumulado[clave].ejecutado += Number(
+        fila.ejecutado || 0
+      );
+
+      acumulado[clave].diferencia += Number(
+        fila.diferencia || 0
+      );
+
+    });
+
+    return Object.values(acumulado);
+
+  };
+
+
+  // =========================================================
+  // CONSOLIDAR POR ROL
+  // =========================================================
+
+  const consolidarPorRol = () => {
+
+    const detalle = consolidarDetalle();
+
+    const acumulado = {};
+
+    detalle.forEach((fila) => {
+
+      const rol =
+        fila.rol || "SIN ROL";
 
       if (!acumulado[rol]) {
 
         acumulado[rol] = {
+
           rol,
+
           requerido: 0,
+
           asistencia: 0,
+
           presupuestado: 0,
+
           ejecutado: 0,
+
           diferencia: 0
+
         };
 
       }
@@ -215,9 +308,11 @@ export default function Presupuesto() {
 
   const consolidarPorCiudad = () => {
 
+    const detalle = consolidarDetalle();
+
     const acumulado = {};
 
-    datos.forEach((fila) => {
+    detalle.forEach((fila) => {
 
       const ciudad =
         fila.ciudad || "SIN CIUDAD";
@@ -225,12 +320,19 @@ export default function Presupuesto() {
       if (!acumulado[ciudad]) {
 
         acumulado[ciudad] = {
+
           ciudad,
+
           requerido: 0,
+
           asistencia: 0,
+
           presupuestado: 0,
+
           ejecutado: 0,
+
           diferencia: 0
+
         };
 
       }
@@ -268,17 +370,28 @@ export default function Presupuesto() {
 
   const obtenerDatosVista = () => {
 
+    if (vista === "detallado") {
+
+      return consolidarDetalle();
+
+    }
+
     if (vista === "rol") {
+
       return consolidarPorRol();
+
     }
 
     if (vista === "ciudad") {
+
       return consolidarPorCiudad();
+
     }
 
-    return datos;
+    return [];
 
   };
+
 
   const datosVista = obtenerDatosVista();
 
@@ -296,9 +409,15 @@ export default function Presupuesto() {
       );
 
       return;
+
     }
 
     let filas = [];
+
+
+    // =======================================================
+    // DETALLADO
+    // =======================================================
 
     if (vista === "detallado") {
 
@@ -322,9 +441,6 @@ export default function Presupuesto() {
         Fecha:
           formatoFecha(fila.fecha),
 
-        "Valor rol":
-          fila.valor_rol,
-
         Presupuestado:
           fila.presupuestado,
 
@@ -336,7 +452,14 @@ export default function Presupuesto() {
 
       }));
 
-    } else if (vista === "rol") {
+    }
+
+
+    // =======================================================
+    // CONSOLIDADO POR ROL
+    // =======================================================
+
+    else if (vista === "rol") {
 
       filas = datosVista.map((fila) => ({
 
@@ -360,7 +483,14 @@ export default function Presupuesto() {
 
       }));
 
-    } else {
+    }
+
+
+    // =======================================================
+    // CONSOLIDADO POR CIUDAD
+    // =======================================================
+
+    else {
 
       filas = datosVista.map((fila) => ({
 
@@ -437,7 +567,9 @@ export default function Presupuesto() {
           <select
             value={convocatoria}
             onChange={(e) =>
-              setConvocatoria(e.target.value)
+              setConvocatoria(
+                e.target.value
+              )
             }
           >
 
@@ -564,7 +696,7 @@ export default function Presupuesto() {
 
 
                 {/* =================================================
-                    DETALLADO
+                    VISTA DETALLADA
                     ================================================= */}
 
                 {vista === "detallado" && (
@@ -573,15 +705,37 @@ export default function Presupuesto() {
 
                     <div className="presupuesto-fila presupuesto-encabezado">
 
-                      <span>Ciudad</span>
-                      <span>Rol</span>
-                      <span>Requerido</span>
-                      <span>Asistencia</span>
-                      <span>Fecha</span>
-                      <span>Valor rol</span>
-                      <span>Presupuestado</span>
-                      <span>Ejecutado</span>
-                      <span>Diferencia</span>
+                      <span>
+                        Ciudad
+                      </span>
+
+                      <span>
+                        Rol
+                      </span>
+
+                      <span>
+                        Requerido
+                      </span>
+
+                      <span>
+                        Asistencia
+                      </span>
+
+                      <span>
+                        Fecha
+                      </span>
+
+                      <span>
+                        Presupuestado
+                      </span>
+
+                      <span>
+                        Ejecutado
+                      </span>
+
+                      <span>
+                        Diferencia
+                      </span>
 
                     </div>
 
@@ -613,12 +767,6 @@ export default function Presupuesto() {
                           <span>
                             {formatoFecha(
                               fila.fecha
-                            )}
-                          </span>
-
-                          <span>
-                            {formatoMoneda(
-                              fila.valor_rol
                             )}
                           </span>
 
@@ -663,7 +811,7 @@ export default function Presupuesto() {
 
 
                 {/* =================================================
-                    CONSOLIDADO
+                    VISTAS CONSOLIDADAS
                     ================================================= */}
 
                 {vista !== "detallado" && (
@@ -673,9 +821,11 @@ export default function Presupuesto() {
                     <div className="presupuesto-fila presupuesto-fila-consolidada presupuesto-encabezado">
 
                       <span>
+
                         {vista === "rol"
                           ? "Rol"
                           : "Ciudad"}
+
                       </span>
 
                       <span>
@@ -710,9 +860,11 @@ export default function Presupuesto() {
                         >
 
                           <span>
+
                             {vista === "rol"
                               ? fila.rol
                               : fila.ciudad}
+
                           </span>
 
                           <span>
