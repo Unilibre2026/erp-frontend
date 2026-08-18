@@ -1237,11 +1237,9 @@ if (name === "nivel") {
 
 if (form.tipo_novedad === "Ingreso") {
 
-  // Si el último registro es un RETIRO DEFINITIVO
-  // y está APROBADO, comienza un nuevo ciclo.
-  const nuevoCiclo = await ultimoRegistroEsRetiroAprobado();
+  const permitirNuevoIngreso = await permiteNuevoIngreso();
 
-  if (!nuevoCiclo) {
+  if (!permitirNuevoIngreso) {
 
     try {
 
@@ -1267,7 +1265,6 @@ if (form.tipo_novedad === "Ingreso") {
   }
 
 }
-
 
     try {
       const res = await fetch(`${API_URL}/novedades`, {
