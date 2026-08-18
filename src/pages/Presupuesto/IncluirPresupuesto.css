@@ -1,0 +1,272 @@
+/* =========================================================
+   CONTENEDOR PRINCIPAL
+   ========================================================= */
+
+.incluir-presupuesto {
+  width: 100%;
+  padding: 24px 28px;
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   ENCABEZADO
+   ========================================================= */
+
+.presupuesto-header {
+  margin-bottom: 22px;
+}
+
+.presupuesto-header h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+}
+
+.presupuesto-header p {
+  margin: 6px 0 0;
+  color: #777;
+  font-size: 14px;
+}
+
+
+/* =========================================================
+   CARGA EXCEL
+   ========================================================= */
+
+.presupuesto-carga {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-bottom: 20px;
+}
+
+.presupuesto-carga-titulo {
+  padding: 12px 16px;
+  border-bottom: 1px solid #ddd;
+  font-size: 15px;
+  font-weight: 600;
+  color: #444;
+}
+
+.presupuesto-carga-contenido {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+}
+
+.presupuesto-carga-contenido input[type="file"] {
+  flex: 1;
+  font-size: 14px;
+}
+
+
+/* =========================================================
+   BOTONES
+   ========================================================= */
+
+.btn-presupuesto-cargar,
+.btn-presupuesto-exportar {
+  border: none;
+  border-radius: 4px;
+  padding: 9px 16px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.btn-presupuesto-cargar {
+  background: #444;
+  color: #fff;
+}
+
+.btn-presupuesto-cargar:hover {
+  background: #222;
+}
+
+.btn-presupuesto-cargar:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-presupuesto-exportar {
+  background: #555;
+  color: #fff;
+}
+
+.btn-presupuesto-exportar:hover {
+  background: #333;
+}
+
+
+/* =========================================================
+   FILTROS
+   ========================================================= */
+
+.presupuesto-filtros {
+  display: flex;
+  gap: 18px;
+  align-items: flex-end;
+  margin-bottom: 16px;
+}
+
+.presupuesto-filtro {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 260px;
+}
+
+.presupuesto-filtro label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #555;
+}
+
+.presupuesto-filtro select {
+  height: 38px;
+  padding: 0 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+  color: #333;
+  font-size: 14px;
+}
+
+
+/* =========================================================
+   ACCIONES
+   ========================================================= */
+
+.presupuesto-acciones {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+
+/* =========================================================
+   TABLA
+   ========================================================= */
+
+.presupuesto-tabla-contenedor {
+  width: 100%;
+  overflow-x: auto;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+.tabla-presupuesto {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 1100px;
+  font-size: 13px;
+}
+
+.tabla-presupuesto thead {
+  background: #f2f2f2;
+}
+
+.tabla-presupuesto th {
+  padding: 11px 10px;
+  border-bottom: 1px solid #ccc;
+  color: #444;
+  font-weight: 600;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.tabla-presupuesto td {
+  padding: 10px;
+  border-bottom: 1px solid #e5e5e5;
+  color: #444;
+  vertical-align: middle;
+}
+
+.tabla-presupuesto tbody tr:hover {
+  background: #fafafa;
+}
+
+.presupuesto-numero {
+  text-align: center;
+}
+
+.presupuesto-monto {
+  text-align: right;
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   BOTÓN ELIMINAR
+   ========================================================= */
+
+.btn-presupuesto-eliminar {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 4px 8px;
+}
+
+.btn-presupuesto-eliminar:hover {
+  transform: scale(1.1);
+}
+
+
+/* =========================================================
+   SIN REGISTROS
+   ========================================================= */
+
+.presupuesto-sin-registros {
+  text-align: center !important;
+  padding: 30px !important;
+  color: #888 !important;
+}
+
+
+/* =========================================================
+   CONTADOR
+   ========================================================= */
+
+.presupuesto-total-registros {
+  margin-top: 10px;
+  color: #777;
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+  .incluir-presupuesto {
+    padding: 18px 14px;
+  }
+
+  .presupuesto-carga-contenido {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .presupuesto-filtros {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .presupuesto-filtro {
+    min-width: auto;
+    width: 100%;
+  }
+
+  .presupuesto-acciones {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+}

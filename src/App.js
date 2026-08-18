@@ -30,6 +30,7 @@ import IndicadoresGestion from "./components/IndicadoresGestion";
 import EquiposExpertos from "./components/EquiposExpertos";
 import JuecesAsignados from "./components/JuecesAsignados";
 import ReporteAsistencia from "./components/ReporteAsistencia";
+import IncluirPresupuesto from "./pages/Presupuesto/IncluirPresupuesto";
 import { FileText } from "lucide-react";
 
 const API_URL = "https://erp-unilibre-production.up.railway.app";
@@ -505,6 +506,12 @@ if (!usuario) {
 
 )}
 
+{puedeVer("presupuesto") && (
+  <button onClick={() => cambiarVista("presupuesto")}>
+    Incluir presupuesto
+  </button>
+)}
+
 {puedeVer("jueces_asignados") && (
 <button onClick={() => setVista("jueces_asignados")}>
     Jueces asignados
@@ -532,6 +539,8 @@ if (!usuario) {
 </button>
 
 )}
+
+
 
 {puedeVer("reporte_asistencia") && (
   <button onClick={() => cambiarVista("reporte_asistencia")}>
@@ -586,6 +595,7 @@ if (!usuario) {
   {vista === "permisos_modulos" && <PermisosModulos />}
   {vista === "aprobaciones" && <Aprobaciones />}
   {vista === "reporte_asistencia" && <ReporteAsistencia />}
+  {vista === "presupuesto" && <IncluirPresupuesto />}
   {vista === "consulta_subsanacion" && (<ConsultaSubsanacion />
   
 )}
