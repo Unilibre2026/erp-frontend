@@ -459,6 +459,28 @@ export default function Presupuesto() {
 
   const datosVista = obtenerDatosVista();
 
+    // =========================================================
+  // TOTALES DE LA VISTA
+  // =========================================================
+
+  const totalPresupuestado = datosVista.reduce(
+    (total, fila) =>
+      total + Number(fila.presupuestado || 0),
+    0
+  );
+
+  const totalEjecutado = datosVista.reduce(
+    (total, fila) =>
+      total + Number(fila.ejecutado || 0),
+    0
+  );
+
+  const totalDiferencia = datosVista.reduce(
+    (total, fila) =>
+      total + Number(fila.diferencia || 0),
+    0
+  );
+
 
   // =========================================================
   // EXPORTAR EXCEL
@@ -774,6 +796,70 @@ export default function Presupuesto() {
           {/* =================================================
               TABLA
               ================================================= */}
+
+                        {/* =================================================
+              TOTALES
+              ================================================= */}
+
+          {!cargando && datosVista.length > 0 && (
+
+            <div className="presupuesto-totales">
+
+              <div className="presupuesto-total">
+
+                <span className="presupuesto-total-titulo">
+                  Presupuestado
+                </span>
+
+                <span className="presupuesto-total-valor">
+                  {formatoMoneda(
+                    totalPresupuestado
+                  )}
+                </span>
+
+              </div>
+
+
+              <div className="presupuesto-total">
+
+                <span className="presupuesto-total-titulo">
+                  Ejecutado
+                </span>
+
+                <span className="presupuesto-total-valor">
+                  {formatoMoneda(
+                    totalEjecutado
+                  )}
+                </span>
+
+              </div>
+
+
+              <div className="presupuesto-total">
+
+                <span className="presupuesto-total-titulo">
+                  Diferencia
+                </span>
+
+                <span
+                  className={
+                    totalDiferencia > 0
+                      ? "presupuesto-total-valor presupuesto-positivo"
+                      : totalDiferencia < 0
+                      ? "presupuesto-total-valor presupuesto-negativo"
+                      : "presupuesto-total-valor"
+                  }
+                >
+                  {formatoMoneda(
+                    totalDiferencia
+                  )}
+                </span>
+
+              </div>
+
+            </div>
+
+          )}
 
           <div className="presupuesto-tabla-contenedor">
 

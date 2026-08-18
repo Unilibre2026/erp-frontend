@@ -283,3 +283,38 @@
   }
 
 }
+
+/* =========================================================
+   TOTALES PRESUPUESTO
+   ========================================================= */
+
+.presupuesto-totales {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-bottom: 12px;
+}
+
+.presupuesto-total {
+  min-width: 190px;
+  padding: 10px 16px;
+  background: #ffffff;
+  border: 1px solid #d8d8d8;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.presupuesto-total-titulo {
+  font-size: 12px;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 4px;
+}
+
+.presupuesto-total-valor {
+  font-size: 16px;
+  font-weight: 700;
+  color: #333;
+}
