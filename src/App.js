@@ -1103,26 +1103,6 @@ if (name === "nivel") {
   }
 
 }
-
-    const res = await fetch(
-      `${API_URL}/validar-asignacion?documento=${form.documento_experto}&convocatoria=${encodeURIComponent(form.convocatoria)}&indicador=${encodeURIComponent(form.indicador)}&nivel=${encodeURIComponent(value)}`
-    );
-
-    const data = await res.json();
-
-    if (data.existe) {
-      alert(
-        "⚠️ Este experto ya se encuentra asignado a esta convocatoria, indicador y nivel."
-      );
-    }
-
-  } catch (error) {
-    console.error(error);
-  }
-
-};
-
-
   const buscarExperto = async () => {
 
     if (bloquearBusqueda) return; 
