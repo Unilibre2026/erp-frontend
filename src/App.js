@@ -1074,18 +1074,35 @@ const ultimoRegistroEsRetiroAprobado = async () => {
 
 if (name === "nivel") {
 
-  // Si es un nuevo INGRESO después de un
-  // RETIRO DEFINITIVO APROBADO, permitimos continuar.
+  let permitirNuevoCiclo = false;
+
   if (form.tipo_novedad === "Ingreso") {
-
-    const nuevoCiclo = await ultimoRegistroEsRetiroAprobado();
-
-    if (nuevoCiclo) {
-      return;
-    }
+    permitirNuevoCiclo = await ultimoRegistroEsRetiroAprobado();
   }
 
-  try {
+  if (!permitirNuevoCiclo) {
+
+    try {
+
+      const res = await fetch(
+        `${API_URL}/validar-asignacion?documento=${form.documento_experto}&convocatoria=${encodeURIComponent(form.convocatoria)}&indicador=${encodeURIComponent(form.indicador)}&nivel=${encodeURIComponent(value)}`
+      );
+
+      const data = await res.json();
+
+      if (data.existe) {
+        alert(
+          "⚠️ Este experto ya se encuentra asignado a esta convocatoria, indicador y nivel."
+        );
+      }
+
+    } catch (error) {
+      console.error(error);
+    }
+
+  }
+
+}
 
     const res = await fetch(
       `${API_URL}/validar-asignacion?documento=${form.documento_experto}&convocatoria=${encodeURIComponent(form.convocatoria)}&indicador=${encodeURIComponent(form.indicador)}&nivel=${encodeURIComponent(value)}`
