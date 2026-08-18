@@ -856,7 +856,7 @@ export default function Presupuesto() {
                             key={index}
                             style={{
                               borderBottom: cambiaFecha
-                                ? "3px solid #555"
+                                ? "3px solid #777"
                                 : undefined
                             }}
                           >
