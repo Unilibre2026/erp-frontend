@@ -944,11 +944,9 @@ useEffect(() => {
   }
 };
 
-const ultimoRegistroEsRetiroAprobado = async () => {
+const permiteNuevoIngreso = async () => {
   try {
-    const res = await fetch(
-      `${API_URL}/novedades`
-    );
+    const res = await fetch(`${API_URL}/novedades`);
 
     const novedades = await res.json();
 
@@ -964,25 +962,66 @@ const ultimoRegistroEsRetiroAprobado = async () => {
       return false;
     }
 
-    const ultimo = delExperto[0];
+    // =====================================================
+    // CASO 1:
+    // ÚLTIMO REGISTRO GENERAL = RETIRO DEFINITIVO APROBADO
+    // =====================================================
 
-    return (
-      String(ultimo.tipo_novedad || "").trim().toUpperCase() ===
-        "RETIRO DEFINITIVO" &&
-      String(ultimo.status || "").trim().toUpperCase() ===
-        "APROBADO"
-    );
+    const ultimoRegistro = delExperto[0];
+
+    const retiroDefinitivoAprobado =
+      String(ultimoRegistro.tipo_novedad || "")
+        .trim()
+        .toUpperCase() === "RETIRO DEFINITIVO" &&
+      String(ultimoRegistro.status || "")
+        .trim()
+        .toUpperCase() === "APROBADO";
+
+    if (retiroDefinitivoAprobado) {
+      return true;
+    }
+
+    // =====================================================
+    // CASO 2:
+    // ÚLTIMO MOVIMIENTO DEL MISMO INDICADOR =
+    // RETIRO PARCIAL APROBADO
+    // =====================================================
+
+    const movimientosIndicador = delExperto
+      .filter(
+        (n) =>
+          String(n.convocatoria || "").trim() ===
+            String(form.convocatoria || "").trim() &&
+          String(n.eje || "").trim() ===
+            String(form.indicador || "").trim()
+      )
+      .sort((a, b) => Number(b.id) - Number(a.id));
+
+    if (movimientosIndicador.length === 0) {
+      return false;
+    }
+
+    const ultimoMovimientoIndicador = movimientosIndicador[0];
+
+    const retiroParcialAprobado =
+      String(ultimoMovimientoIndicador.tipo_novedad || "")
+        .trim()
+        .toUpperCase() === "RETIRO PARCIAL" &&
+      String(ultimoMovimientoIndicador.status || "")
+        .trim()
+        .toUpperCase() === "APROBADO";
+
+    return retiroParcialAprobado;
 
   } catch (error) {
     console.error(
-      "Error verificando último registro del experto:",
+      "Error verificando si se permite nuevo ingreso:",
       error
     );
 
     return false;
   }
 };
-
   const handleChange = async (e) => {
 
   const { name, value } = e.target;
@@ -1071,16 +1110,15 @@ const ultimoRegistroEsRetiroAprobado = async () => {
     }
   }
 
-
 if (name === "nivel") {
 
-  let permitirNuevoCiclo = false;
+  let permitirNuevoIngreso = false;
 
   if (form.tipo_novedad === "Ingreso") {
-    permitirNuevoCiclo = await ultimoRegistroEsRetiroAprobado();
+    permitirNuevoIngreso = await permiteNuevoIngreso();
   }
 
-  if (!permitirNuevoCiclo) {
+  if (!permitirNuevoIngreso) {
 
     try {
 
@@ -1101,7 +1139,9 @@ if (name === "nivel") {
     }
 
   }
+
 }
+
 };
   const buscarExperto = async () => {
 
