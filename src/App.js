@@ -944,6 +944,45 @@ useEffect(() => {
   }
 };
 
+const ultimoRegistroEsRetiroAprobado = async () => {
+  try {
+    const res = await fetch(
+      `${API_URL}/novedades`
+    );
+
+    const novedades = await res.json();
+
+    const delExperto = novedades
+      .filter(
+        (n) =>
+          String(n.documento_experto) ===
+          String(form.documento_experto)
+      )
+      .sort((a, b) => Number(b.id) - Number(a.id));
+
+    if (delExperto.length === 0) {
+      return false;
+    }
+
+    const ultimo = delExperto[0];
+
+    return (
+      String(ultimo.tipo_novedad || "").trim().toUpperCase() ===
+        "RETIRO DEFINITIVO" &&
+      String(ultimo.status || "").trim().toUpperCase() ===
+        "APROBADO"
+    );
+
+  } catch (error) {
+    console.error(
+      "Error verificando último registro del experto:",
+      error
+    );
+
+    return false;
+  }
+};
+
   const handleChange = async (e) => {
 
   const { name, value } = e.target;
@@ -1035,6 +1074,17 @@ useEffect(() => {
 
 if (name === "nivel") {
 
+  // Si es un nuevo INGRESO después de un
+  // RETIRO DEFINITIVO APROBADO, permitimos continuar.
+  if (form.tipo_novedad === "Ingreso") {
+
+    const nuevoCiclo = await ultimoRegistroEsRetiroAprobado();
+
+    if (nuevoCiclo) {
+      return;
+    }
+  }
+
   try {
 
     const res = await fetch(
@@ -1052,8 +1102,6 @@ if (name === "nivel") {
   } catch (error) {
     console.error(error);
   }
-
- }
 
 };
 
@@ -1152,25 +1200,33 @@ if (name === "nivel") {
 
 if (form.tipo_novedad === "Ingreso") {
 
-  try {
+  // Si el último registro es un RETIRO DEFINITIVO
+  // y está APROBADO, comienza un nuevo ciclo.
+  const nuevoCiclo = await ultimoRegistroEsRetiroAprobado();
 
-    const validar = await fetch(
-      `${API_URL}/validar-asignacion?documento=${form.documento_experto}&convocatoria=${encodeURIComponent(form.convocatoria)}&indicador=${encodeURIComponent(form.indicador)}&nivel=${encodeURIComponent(form.nivel)}`
-    );
+  if (!nuevoCiclo) {
 
-    const resultado = await validar.json();
+    try {
 
-    if (resultado.existe) {
-      alert(
-        "Este experto ya se encuentra asignado a esta convocatoria, indicador y nivel."
+      const validar = await fetch(
+        `${API_URL}/validar-asignacion?documento=${form.documento_experto}&convocatoria=${encodeURIComponent(form.convocatoria)}&indicador=${encodeURIComponent(form.indicador)}&nivel=${encodeURIComponent(form.nivel)}`
       );
+
+      const resultado = await validar.json();
+
+      if (resultado.existe) {
+        alert(
+          "Este experto ya se encuentra asignado a esta convocatoria, indicador y nivel."
+        );
+        return;
+      }
+
+    } catch (error) {
+      console.error("Error validando asignación:", error);
+      alert("No fue posible validar la asignación.");
       return;
     }
 
-  } catch (error) {
-    console.error("Error validando asignación:", error);
-    alert("No fue posible validar la asignación.");
-    return;
   }
 
 }
