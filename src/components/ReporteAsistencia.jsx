@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import "./ReporteAsistencia.css";
 import { exportarReporteAsistencia } from "../utils/ExportadorReporteAsistencia";
 
@@ -30,6 +30,11 @@ const JORNADAS = [
   "Media jornada",
 ];
 
+const TIPOS_REPORTE = [
+  "REPORTE INICIAL",
+  "AUDITORIA 1",
+];
+
 export default function ReporteAsistencia() {
 
   // =========================
@@ -39,6 +44,7 @@ export default function ReporteAsistencia() {
   const [convocatoria, setConvocatoria] = useState("");
   const [convocatorias, setConvocatorias] = useState([]);
 
+  const [tipoReporte, setTipoReporte] = useState("");
   const [fecha, setFecha] = useState("");
   const [documento, setDocumento] = useState("");
   const [nombre, setNombre] = useState("");
@@ -53,7 +59,10 @@ export default function ReporteAsistencia() {
 
   const [reportes, setReportes] = useState([]);
 
-  const [convocatoriaFiltro, setConvocatoriaFiltro] = useState("");
+  // Documento confirmado para consulta.
+  // Se actualiza cuando el usuario termina de digitar
+  // el documento y sale del campo.
+  const [documentoConsulta, setDocumentoConsulta] = useState("");
 
   const [cargando, setCargando] = useState(false);
   const [guardando, setGuardando] = useState(false);
@@ -77,7 +86,7 @@ export default function ReporteAsistencia() {
   // CARGAR CONVOCATORIAS
   // =========================
 
-  const cargarConvocatorias = async () => {
+  const cargarConvocatorias = useCallback(async () => {
 
     try {
 
@@ -104,31 +113,44 @@ export default function ReporteAsistencia() {
       );
 
     }
-  };
+  }, []);
 
   // =========================
   // CONSULTAR REPORTES
   // =========================
 
-  const cargarReportes = async (doc = "") => {
+  const cargarReportes = useCallback(async (
+    convocatoriaConsulta,
+    tipoReporteConsulta,
+    documentoConsultaValor
+  ) => {
+
+    // No consultar si no están completos
+    // los tres parámetros obligatorios.
+    if (
+      !convocatoriaConsulta ||
+      !tipoReporteConsulta ||
+      !documentoConsultaValor ||
+      !documentoConsultaValor.trim()
+    ) {
+      setReportes([]);
+      return;
+    }
 
     try {
 
       setCargando(true);
       setError("");
 
-      let url = `${API_URL}/reporte-asistencia`;
+      const params = new URLSearchParams({
+        convocatoria: convocatoriaConsulta,
+        tipo_reporte: tipoReporteConsulta,
+        documento: documentoConsultaValor.trim(),
+      });
 
-      if (doc.trim()) {
-
-        url +=
-          `?documento=${encodeURIComponent(
-            doc.trim()
-          )}`;
-
-      }
-
-      const response = await fetch(url);
+      const response = await fetch(
+        `${API_URL}/reporte-asistencia?${params.toString()}`
+      );
 
       if (!response.ok) {
         throw new Error(
@@ -138,25 +160,49 @@ export default function ReporteAsistencia() {
 
       const data = await response.json();
 
-      setReportes(data);
+      // Filtro de seguridad en frontend.
+      // Aunque el backend ya debe filtrar por los tres parámetros,
+      // aquí evitamos mostrar accidentalmente registros de otra
+      // convocatoria, tipo de reporte o documento.
+      const datosFiltrados = Array.isArray(data)
+        ? data.filter((reporte) => {
+
+            const mismaConvocatoria =
+              reporte.convocatoria ===
+              convocatoriaConsulta;
+
+            const mismoTipoReporte =
+              reporte.tipo_reporte ===
+              tipoReporteConsulta;
+
+            const mismoDocumento =
+              String(reporte.documento ?? "").trim() ===
+              String(documentoConsultaValor).trim();
+
+            return (
+              mismaConvocatoria &&
+              mismoTipoReporte &&
+              mismoDocumento
+            );
+
+          })
+        : [];
+
+      setReportes(datosFiltrados);
 
     } catch (err) {
 
       console.error(err);
 
-      // No mostrar error automáticamente al entrar
-      // cuando la consulta inicial falla.
-      if (doc.trim()) {
-        setError(err.message);
-      }
+      setReportes([]);
+      setError(err.message);
 
     } finally {
 
       setCargando(false);
 
     }
-  };
-
+  }, []);
   // =========================
   // CARGAR DATOS AL ENTRAR
   // =========================
@@ -164,28 +210,42 @@ export default function ReporteAsistencia() {
   useEffect(() => {
 
     cargarConvocatorias();
-    cargarReportes();
 
-  }, []);
+  }, [cargarConvocatorias]);
 
   // =========================
-  // FILTRAR REPORTES
+  // CONSULTAR AUTOMÁTICAMENTE
+  // CUANDO ESTÁN LOS 3 PARÁMETROS
   // =========================
 
-  const reportesFiltrados = reportes.filter(
-    (reporte) => {
+  useEffect(() => {
 
-      if (!convocatoriaFiltro) {
-        return true;
-      }
+    if (
+      convocatoria &&
+      tipoReporte &&
+      documentoConsulta
+    ) {
 
-      return (
-        reporte.convocatoria ===
-        convocatoriaFiltro
+      cargarReportes(
+        convocatoria,
+        tipoReporte,
+        documentoConsulta
       );
 
+    } else {
+
+      // Si falta cualquiera de los tres parámetros,
+      // la tabla debe permanecer vacía.
+      setReportes([]);
+
     }
-  );
+
+  }, [
+    convocatoria,
+    tipoReporte,
+    documentoConsulta,
+    cargarReportes,
+  ]);
 
   // =========================
   // BUSCAR EXPERTO
@@ -193,11 +253,13 @@ export default function ReporteAsistencia() {
 
   const buscarExperto = async (doc) => {
 
-    if (!doc.trim()) {
+    const documentoLimpio = doc.trim();
+
+    if (!documentoLimpio) {
 
       setNombre("");
-      cargarReportes();
-
+      setDocumentoConsulta("");
+      setReportes([]);
       return;
     }
 
@@ -207,19 +269,19 @@ export default function ReporteAsistencia() {
 
       const response = await fetch(
         `${API_URL}/reporte-asistencia/buscar/${encodeURIComponent(
-          doc.trim()
+          documentoLimpio
         )}`
       );
 
       if (response.status === 404) {
 
         setNombre("");
+        setDocumentoConsulta("");
+        setReportes([]);
+
         setError(
           "No se encontró un experto con ese documento"
         );
-
-        // Limpiar tabla si el documento no existe
-        setReportes([]);
 
         return;
       }
@@ -234,14 +296,16 @@ export default function ReporteAsistencia() {
 
       setNombre(data.nombre);
 
-      // Buscar sus reportes
-      cargarReportes(doc);
+      // Confirmamos el documento para activar la consulta.
+      setDocumentoConsulta(documentoLimpio);
 
     } catch (err) {
 
       console.error(err);
 
       setNombre("");
+      setDocumentoConsulta("");
+      setReportes([]);
       setError(err.message);
 
     }
@@ -257,15 +321,49 @@ export default function ReporteAsistencia() {
 
     setDocumento(valor);
 
-    // Si se borra el documento,
-    // mostramos nuevamente todos
+    // Mientras se está digitando un nuevo documento,
+    // no mostramos los registros anteriores.
+    setDocumentoConsulta("");
+    setReportes([]);
+
     if (!valor.trim()) {
 
       setNombre("");
       setError("");
-      cargarReportes();
 
     }
+
+  };
+
+  // =========================
+  // CAMBIO CONVOCATORIA
+  // =========================
+
+  const handleConvocatoriaChange = (e) => {
+
+    const valor = e.target.value;
+
+    setConvocatoria(valor);
+
+    // Evita mostrar registros de una convocatoria anterior
+    // mientras se realiza la nueva consulta.
+    setReportes([]);
+
+  };
+
+  // =========================
+  // CAMBIO TIPO DE REPORTE
+  // =========================
+
+  const handleTipoReporteChange = (e) => {
+
+    const valor = e.target.value;
+
+    setTipoReporte(valor);
+
+    // Evita mezclar REPORTE INICIAL con AUDITORIA 1.
+    setReportes([]);
+
   };
 
   // =========================
@@ -276,8 +374,8 @@ export default function ReporteAsistencia() {
 
     // Evitar doble envío
     if (guardando) {
-    return;
-  }
+      return;
+    }
 
     setMensaje("");
     setError("");
@@ -290,6 +388,19 @@ export default function ReporteAsistencia() {
 
       setError(
         "Seleccione la convocatoria"
+      );
+
+      return;
+    }
+
+    // =========================
+    // VALIDAR TIPO DE REPORTE
+    // =========================
+
+    if (!tipoReporte) {
+
+      setError(
+        "Seleccione el tipo de reporte"
       );
 
       return;
@@ -360,6 +471,8 @@ export default function ReporteAsistencia() {
 
     try {
 
+      setGuardando(true);
+
       const response = await fetch(
         `${API_URL}/reporte-asistencia`,
         {
@@ -371,6 +484,8 @@ export default function ReporteAsistencia() {
           body: JSON.stringify({
 
             convocatoria,
+
+            tipo_reporte: tipoReporte,
 
             fecha,
 
@@ -410,18 +525,29 @@ export default function ReporteAsistencia() {
       // =========================
       // LIMPIAR CAMPOS DEL REGISTRO
       // =========================
+      //
+      // Se conservan convocatoria, tipo de reporte
+      // y documento porque esos tres campos determinan
+      // la consulta de la tabla y permiten registrar
+      // varias novedades consecutivas para el mismo experto.
+      //
 
-      setConvocatoria("");
       setFecha("");
-      setDocumento("");
-      setNombre("");
       setCiudad("");
       setRol("");
       setJornada("");
       setObservaciones("");
 
-      // Recargar tabla completa
-      cargarReportes();
+      // Mantener el experto seleccionado y refrescar
+      // inmediatamente sus registros correspondientes
+      // a la convocatoria y tipo de reporte actuales.
+      setDocumentoConsulta(documento.trim());
+
+      await cargarReportes(
+        convocatoria,
+        tipoReporte,
+        documento.trim()
+      );
 
     } catch (err) {
 
@@ -431,7 +557,7 @@ export default function ReporteAsistencia() {
         err.message
       );
 
-      } finally {
+    } finally {
 
       setGuardando(false);
 
@@ -543,7 +669,7 @@ export default function ReporteAsistencia() {
       setError("");
 
       await exportarReporteAsistencia(
-        reportesFiltrados,
+        reportes,
         "experto",
         usuario
       );
@@ -561,7 +687,6 @@ export default function ReporteAsistencia() {
     }
   };
 
-
   return (
 
     <div className="reporte-asistencia">
@@ -570,13 +695,11 @@ export default function ReporteAsistencia() {
         Reporte de asistencia
       </h2>
 
-
       {/* =========================
           FORMULARIO
       ========================= */}
 
       <div className="reporte-asistencia-formulario">
-
 
         {/* =========================
             CONVOCATORIA
@@ -592,10 +715,8 @@ export default function ReporteAsistencia() {
 
             <select
               value={convocatoria}
-              onChange={(e) =>
-                setConvocatoria(
-                  e.target.value
-                )
+              onChange={
+                handleConvocatoriaChange
               }
             >
 
@@ -626,13 +747,11 @@ export default function ReporteAsistencia() {
 
         </div>
 
-
         {/* =========================
             FILA 1 - 4 CAMPOS
         ========================= */}
 
         <div className="reporte-asistencia-fila">
-
 
           {/* TIPO DE REPORTE */}
 
@@ -642,14 +761,33 @@ export default function ReporteAsistencia() {
               Tipo de reporte
             </label>
 
-            <input
-              type="text"
-              value="REPORTE INICIAL"
-              disabled
-            />
+            <select
+              value={tipoReporte}
+              onChange={
+                handleTipoReporteChange
+              }
+            >
+
+              <option value="">
+                Seleccione...
+              </option>
+
+              {TIPOS_REPORTE.map(
+                (item) => (
+
+                  <option
+                    key={item}
+                    value={item}
+                  >
+                    {item}
+                  </option>
+
+                )
+              )}
+
+            </select>
 
           </div>
-
 
           {/* FECHA */}
 
@@ -670,7 +808,6 @@ export default function ReporteAsistencia() {
             />
 
           </div>
-
 
           {/* DOCUMENTO */}
 
@@ -696,7 +833,6 @@ export default function ReporteAsistencia() {
 
           </div>
 
-
           {/* NOMBRE */}
 
           <div className="reporte-asistencia-campo">
@@ -715,14 +851,12 @@ export default function ReporteAsistencia() {
 
         </div>
 
-
         {/* =========================
             FILA 2
             CIUDAD - ROL - JORNADA
         ========================= */}
 
         <div className="reporte-asistencia-fila">
-
 
           {/* CIUDAD */}
 
@@ -762,7 +896,6 @@ export default function ReporteAsistencia() {
 
           </div>
 
-
           {/* ROL */}
 
           <div className="reporte-asistencia-campo">
@@ -800,7 +933,6 @@ export default function ReporteAsistencia() {
             </select>
 
           </div>
-
 
           {/* JORNADA */}
 
@@ -840,7 +972,6 @@ export default function ReporteAsistencia() {
 
           </div>
 
-
           {/* OBSERVACIONES */}
 
           <div className="reporte-asistencia-campo observaciones">
@@ -864,7 +995,6 @@ export default function ReporteAsistencia() {
         </div>
 
       </div>
-
 
       {/* =========================
           BOTÓN Y MENSAJES
@@ -899,7 +1029,6 @@ export default function ReporteAsistencia() {
 
       </div>
 
-
       {/* =========================
           TABLA DE REPORTES
       ========================= */}
@@ -913,53 +1042,6 @@ export default function ReporteAsistencia() {
             <h3>
               Reportes registrados
             </h3>
-
-            {/* =========================
-                FILTRO CONVOCATORIA
-            ========================= */}
-
-            <div className="reporte-asistencia-filtro-convocatoria">
-
-              <label>
-                Convocatoria
-              </label>
-
-              <select
-                value={
-                  convocatoriaFiltro
-                }
-                onChange={(e) =>
-                  setConvocatoriaFiltro(
-                    e.target.value
-                  )
-                }
-              >
-
-                <option value="">
-                  Todas
-                </option>
-
-                {convocatorias.map(
-                  (item) => (
-
-                    <option
-                      key={item.id}
-                      value={
-                        item.nombre_convocatoria
-                      }
-                    >
-                      {
-                        item.nombre_convocatoria
-                      }
-                    </option>
-
-                  )
-                )}
-
-              </select>
-
-            </div>
-
 
             <button
               type="button"
@@ -977,17 +1059,30 @@ export default function ReporteAsistencia() {
 
         </div>
 
-
         {cargando ? (
 
           <div className="reporte-asistencia-cargando">
             Cargando reportes...
           </div>
 
+        ) : !convocatoria ||
+          !tipoReporte ||
+          !documentoConsulta ? (
+
+          <div className="reporte-asistencia-fila-tabla">
+
+            <span
+              className="reporte-asistencia-sin-registros"
+            >
+              Seleccione la convocatoria, el tipo de reporte
+              y digite un documento para consultar.
+            </span>
+
+          </div>
+
         ) : (
 
           <div className="reporte-asistencia-tabla-scroll">
-
 
             {/* =========================
                 ENCABEZADO
@@ -1041,26 +1136,26 @@ export default function ReporteAsistencia() {
 
             </div>
 
-
             {/* =========================
                 REGISTROS
             ========================= */}
 
-            {reportesFiltrados.length === 0 ? (
+            {reportes.length === 0 ? (
 
               <div className="reporte-asistencia-fila-tabla">
 
                 <span
                   className="reporte-asistencia-sin-registros"
                 >
-                  No hay reportes registrados
+                  No hay reportes registrados para
+                  los parámetros seleccionados.
                 </span>
 
               </div>
 
             ) : (
 
-              reportesFiltrados.map(
+              reportes.map(
                 (reporte) => (
 
                   <div
@@ -1077,43 +1172,50 @@ export default function ReporteAsistencia() {
 
                     <span>
                       {
-                        reporte.tipo_reporte
+                        reporte.tipo_reporte ||
+                        ""
                       }
                     </span>
 
                     <span>
                       {
-                        reporte.fecha
+                        reporte.fecha ||
+                        ""
                       }
                     </span>
 
                     <span>
                       {
-                        reporte.documento
+                        reporte.documento ||
+                        ""
                       }
                     </span>
 
                     <span>
                       {
-                        reporte.nombre
+                        reporte.nombre ||
+                        ""
                       }
                     </span>
 
                     <span>
                       {
-                        reporte.ciudad
+                        reporte.ciudad ||
+                        ""
                       }
                     </span>
 
                     <span>
                       {
-                        reporte.rol
+                        reporte.rol ||
+                        ""
                       }
                     </span>
 
                     <span>
                       {
-                        reporte.jornada
+                        reporte.jornada ||
+                        ""
                       }
                     </span>
 
@@ -1126,7 +1228,8 @@ export default function ReporteAsistencia() {
 
                     <span>
                       {
-                        reporte.responsable_reporte
+                        reporte.responsable_reporte ||
+                        ""
                       }
                     </span>
 
@@ -1154,7 +1257,6 @@ export default function ReporteAsistencia() {
         )}
 
       </div>
-
 
       {/* =========================
           MODAL DE EXPORTACIÓN
@@ -1207,7 +1309,7 @@ export default function ReporteAsistencia() {
                 }
                 disabled={
                   !documento.trim() ||
-                  reportesFiltrados.length === 0
+                  reportes.length === 0
                 }
               >
                 Exportar informe de experto seleccionado
