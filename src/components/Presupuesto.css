@@ -34,6 +34,10 @@
   padding: 18px;
   box-sizing: border-box;
   margin-bottom: 18px;
+
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
 }
 
 .presupuesto-campo {
@@ -126,7 +130,7 @@
 
 
 /* =========================================================
-   TABLA
+   CONTENEDOR GENERAL DE TABLAS
    ========================================================= */
 
 .presupuesto-tabla-contenedor {
@@ -145,11 +149,111 @@
 
 
 /* =========================================================
-   FILAS
+   BLOQUE DE CADA TIPO DE REPORTE
+   ========================================================= */
+
+.presupuesto-bloque-reporte {
+  width: 100%;
+  margin-bottom: 26px;
+}
+
+.presupuesto-bloque-reporte:last-child {
+  margin-bottom: 0;
+}
+
+
+/* =========================================================
+   ENCABEZADO DEL TIPO DE REPORTE
+   ========================================================= */
+
+.presupuesto-titulo-reporte {
+  width: 100%;
+  min-height: 36px;
+
+  display: flex;
+  align-items: center;
+
+  box-sizing: border-box;
+
+  padding: 8px 14px;
+
+  background: #17375e;
+  color: #ffffff;
+
+  font-size: 16px;
+  font-weight: 700;
+
+  text-transform: uppercase;
+
+  border-radius: 4px 4px 0 0;
+
+  margin-top: 18px;
+  margin-bottom: 0;
+}
+
+
+/* =========================================================
+   TOTALES
+   ========================================================= */
+
+.presupuesto-totales {
+  display: flex;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 12px;
+  margin-bottom: 10px;
+  padding-top: 0;
+}
+
+.presupuesto-total {
+  min-width: 190px;
+  padding: 9px 16px;
+
+  background: #ffffff;
+
+  border: 1px solid #d8d8d8;
+  border-radius: 5px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  box-sizing: border-box;
+}
+
+.presupuesto-total-titulo {
+  font-size: 12px;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 4px;
+}
+
+.presupuesto-total-valor {
+  font-size: 16px;
+  font-weight: 700;
+  color: #333;
+}
+
+
+/* =========================================================
+   FILAS - VISTA DETALLADA
    ========================================================= */
 
 .presupuesto-fila {
   display: grid;
+
+  /*
+     La vista detallada tiene 8 columnas:
+     
+     Ciudad
+     Rol
+     Requerido
+     Asistencia
+     Fecha
+     Presupuestado
+     Ejecutado
+     Diferencia
+  */
 
   grid-template-columns:
     150px
@@ -159,21 +263,24 @@
     110px
     120px
     150px
-    150px
     150px;
 
-  min-width: 1270px;
+  min-width: 1120px;
 
   border-bottom: 1px solid #e5e5e5;
 
   font-size: 13px;
   color: #444;
+
+  box-sizing: border-box;
 }
 
 .presupuesto-fila span {
-  padding: 10px;
+  padding: 9px 10px;
   box-sizing: border-box;
+
   border-right: 1px solid #eee;
+
   word-break: break-word;
 }
 
@@ -183,7 +290,7 @@
 
 
 /* =========================================================
-   ENCABEZADO
+   ENCABEZADO DE LA TABLA
    ========================================================= */
 
 .presupuesto-encabezado {
@@ -199,7 +306,7 @@
 
 
 /* =========================================================
-   FILAS
+   FILAS DE DATOS
    ========================================================= */
 
 .presupuesto-fila:not(.presupuesto-encabezado):hover {
@@ -208,7 +315,7 @@
 
 
 /* =========================================================
-   CONSOLIDADO
+   CONSOLIDADO POR ROL / CIUDAD
    ========================================================= */
 
 .presupuesto-fila-consolidada {
@@ -282,39 +389,17 @@
     width: 100%;
   }
 
-}
+  .presupuesto-totales {
+    flex-wrap: wrap;
+  }
 
-/* =========================================================
-   TOTALES PRESUPUESTO  
-   ========================================================= */
+  .presupuesto-total {
+    min-width: 170px;
+    flex: 1;
+  }
 
-.presupuesto-totales {
-  display: flex;
-  justify-content: flex-start;
-  gap: 15px;
-  margin-bottom: 12px;
-}
-
-.presupuesto-total {
-  min-width: 190px;
-  padding: 10px 16px;
-  background: #ffffff;
-  border: 1px solid #d8d8d8;
-  border-radius: 5px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-}
-
-.presupuesto-total-titulo {
-  font-size: 12px;
-  font-weight: 600;
-  color: #555;
-  margin-bottom: 4px;
-}
-
-.presupuesto-total-valor {
-  font-size: 16px;
-  font-weight: 700;
-  color: #333;
+  .presupuesto-titulo-reporte {
+    font-size: 14px;
+    padding: 8px 10px;
+  }
 }

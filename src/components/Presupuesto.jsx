@@ -1104,9 +1104,8 @@ export default function Presupuesto() {
                           className="presupuesto-titulo-reporte"
                         >
 
-                          <span>
-                            {tipoReporte}
-                          </span>
+                           {tipoReporte}
+                          
 
                         </div>
 
