@@ -1,3 +1,4 @@
+```jsx
 import { useEffect, useState } from "react";
 import * as XLSX from "xlsx";
 import "./Presupuesto.css";
@@ -168,8 +169,6 @@ export default function Presupuesto() {
 
   // =========================================================
   // CIUDADES DISPONIBLES
-  //
-  // Se obtienen de los datos de la convocatoria seleccionada.
   // =========================================================
 
   const ciudades = [
@@ -182,7 +181,9 @@ export default function Presupuesto() {
     String(a).localeCompare(
       String(b),
       "es",
-      { sensitivity: "base" }
+      {
+        sensitivity: "base"
+      }
     )
   );
 
@@ -201,22 +202,74 @@ export default function Presupuesto() {
 
 
   // =========================================================
+  // TIPOS DE REPORTE DISPONIBLES
+  //
+  // Se obtienen directamente de la respuesta del backend.
+  //
+  // No se escriben tipos fijos aquí.
+  // =========================================================
+
+  const tiposReporte = [
+    ...new Set(
+      datosFiltrados
+        .map((fila) =>
+          String(
+            fila.tipo_reporte || ""
+          ).trim()
+        )
+        .filter(Boolean)
+    )
+  ];
+
+
+  // =========================================================
+  // ORDEN DE TIPOS DE REPORTE
+  //
+  // El backend ya entrega un orden adecuado.
+  // Aquí solamente conservamos el orden en que aparecen.
+  // =========================================================
+
+  const tiposReporteOrdenados = tiposReporte;
+
+
+  // =========================================================
   // CONSOLIDAR DETALLE
   //
   // CLAVE:
-  // Convocatoria + Ciudad + Rol + Fecha
   //
-  // El valor del rol NO participa en la agrupación.
+  // Convocatoria
+  // + Tipo de reporte
+  // + Ciudad
+  // + Rol
+  // + Fecha
+  //
+  // Esto evita mezclar:
+  //
+  // REPORTE INICIAL
+  // AUDITORIA 1
+  // AUDITORIA 2
+  // CIERRE
   // =========================================================
 
-  const consolidarDetalle = () => {
+  const consolidarDetalle = (datosBase = datosFiltrados) => {
 
     const acumulado = {};
 
-    datosFiltrados.forEach((fila) => {
+    datosBase.forEach((fila) => {
+
+      const tipoReporte =
+        String(
+          fila.tipo_reporte || ""
+        ).trim() || "SIN TIPO DE REPORTE";
+
 
       const clave =
-        `${fila.convocatoria}|${fila.ciudad}|${fila.rol}|${fila.fecha}`;
+        `${fila.convocatoria}|` +
+        `${tipoReporte}|` +
+        `${fila.ciudad}|` +
+        `${fila.rol}|` +
+        `${fila.fecha}`;
+
 
       if (!acumulado[clave]) {
 
@@ -224,6 +277,9 @@ export default function Presupuesto() {
 
           convocatoria:
             fila.convocatoria,
+
+          tipo_reporte:
+            tipoReporte,
 
           ciudad:
             fila.ciudad,
@@ -248,21 +304,26 @@ export default function Presupuesto() {
 
       }
 
+
       acumulado[clave].requerido += Number(
         fila.requerido || 0
       );
+
 
       acumulado[clave].asistencia += Number(
         fila.asistencia || 0
       );
 
+
       acumulado[clave].presupuestado += Number(
         fila.presupuestado || 0
       );
 
+
       acumulado[clave].ejecutado += Number(
         fila.ejecutado || 0
       );
+
 
       acumulado[clave].diferencia += Number(
         fila.diferencia || 0
@@ -270,58 +331,97 @@ export default function Presupuesto() {
 
     });
 
+
     return Object.values(acumulado).sort((a, b) => {
 
-  // Primero: ciudad
-  const ciudadComparacion =
-    String(a.ciudad || "").localeCompare(
-      String(b.ciudad || ""),
-      "es",
-      { sensitivity: "base" }
-    );
+      // Primero: ciudad
+      const ciudadComparacion =
+        String(a.ciudad || "").localeCompare(
+          String(b.ciudad || ""),
+          "es",
+          {
+            sensitivity: "base"
+          }
+        );
 
-  if (ciudadComparacion !== 0) {
-    return ciudadComparacion;
-  }
 
-  // Segundo: fecha
-  const fechaA = String(a.fecha || "");
-  const fechaB = String(b.fecha || "");
+      if (ciudadComparacion !== 0) {
+        return ciudadComparacion;
+      }
 
-  if (fechaA !== fechaB) {
-    return fechaA.localeCompare(fechaB);
-  }
 
-  // Tercero: rol
-  return String(a.rol || "").localeCompare(
-    String(b.rol || ""),
-    "es",
-    { sensitivity: "base" }
-  );
+      // Segundo: fecha
+      const fechaA =
+        String(a.fecha || "");
 
-});
+      const fechaB =
+        String(b.fecha || "");
+
+
+      if (fechaA !== fechaB) {
+        return fechaA.localeCompare(
+          fechaB
+        );
+      }
+
+
+      // Tercero: rol
+      return String(
+        a.rol || ""
+      ).localeCompare(
+        String(b.rol || ""),
+        "es",
+        {
+          sensitivity: "base"
+        }
+      );
+
+    });
 
   };
 
 
   // =========================================================
   // CONSOLIDAR POR ROL
+  //
+  // También se separa por tipo de reporte.
   // =========================================================
 
-  const consolidarPorRol = () => {
+  const consolidarPorRol = (
+    datosBase = datosFiltrados
+  ) => {
 
-    const detalle = consolidarDetalle();
+    const detalle =
+      consolidarDetalle(
+        datosBase
+      );
+
 
     const acumulado = {};
 
+
     detalle.forEach((fila) => {
 
+      const tipoReporte =
+        fila.tipo_reporte ||
+        "SIN TIPO DE REPORTE";
+
+
       const rol =
-        fila.rol || "SIN ROL";
+        fila.rol ||
+        "SIN ROL";
 
-      if (!acumulado[rol]) {
 
-        acumulado[rol] = {
+      const clave =
+        `${tipoReporte}|${rol}`;
+
+
+      if (!acumulado[clave]) {
+
+        acumulado[clave] = {
+
+          tipo_reporte:
+            tipoReporte,
 
           rol,
 
@@ -339,51 +439,82 @@ export default function Presupuesto() {
 
       }
 
-      acumulado[rol].requerido += Number(
+
+      acumulado[clave].requerido += Number(
         fila.requerido || 0
       );
 
-      acumulado[rol].asistencia += Number(
+
+      acumulado[clave].asistencia += Number(
         fila.asistencia || 0
       );
 
-      acumulado[rol].presupuestado += Number(
+
+      acumulado[clave].presupuestado += Number(
         fila.presupuestado || 0
       );
 
-      acumulado[rol].ejecutado += Number(
+
+      acumulado[clave].ejecutado += Number(
         fila.ejecutado || 0
       );
 
-      acumulado[rol].diferencia += Number(
+
+      acumulado[clave].diferencia += Number(
         fila.diferencia || 0
       );
 
     });
 
-    return Object.values(acumulado);
+
+    return Object.values(
+      acumulado
+    );
 
   };
 
 
   // =========================================================
   // CONSOLIDAR POR CIUDAD
+  //
+  // También se separa por tipo de reporte.
   // =========================================================
 
-  const consolidarPorCiudad = () => {
+  const consolidarPorCiudad = (
+    datosBase = datosFiltrados
+  ) => {
 
-    const detalle = consolidarDetalle();
+    const detalle =
+      consolidarDetalle(
+        datosBase
+      );
+
 
     const acumulado = {};
 
+
     detalle.forEach((fila) => {
 
+      const tipoReporte =
+        fila.tipo_reporte ||
+        "SIN TIPO DE REPORTE";
+
+
       const ciudad =
-        fila.ciudad || "SIN CIUDAD";
+        fila.ciudad ||
+        "SIN CIUDAD";
 
-      if (!acumulado[ciudad]) {
 
-        acumulado[ciudad] = {
+      const clave =
+        `${tipoReporte}|${ciudad}`;
+
+
+      if (!acumulado[clave]) {
+
+        acumulado[clave] = {
+
+          tipo_reporte:
+            tipoReporte,
 
           ciudad,
 
@@ -401,94 +532,90 @@ export default function Presupuesto() {
 
       }
 
-      acumulado[ciudad].requerido += Number(
+
+      acumulado[clave].requerido += Number(
         fila.requerido || 0
       );
 
-      acumulado[ciudad].asistencia += Number(
+
+      acumulado[clave].asistencia += Number(
         fila.asistencia || 0
       );
 
-      acumulado[ciudad].presupuestado += Number(
+
+      acumulado[clave].presupuestado += Number(
         fila.presupuestado || 0
       );
 
-      acumulado[ciudad].ejecutado += Number(
+
+      acumulado[clave].ejecutado += Number(
         fila.ejecutado || 0
       );
 
-      acumulado[ciudad].diferencia += Number(
+
+      acumulado[clave].diferencia += Number(
         fila.diferencia || 0
       );
 
     });
 
-    return Object.values(acumulado);
+
+    return Object.values(
+      acumulado
+    );
 
   };
 
 
   // =========================================================
-  // DATOS DE LA VISTA
+  // OBTENER DATOS SEGÚN LA VISTA
   // =========================================================
 
-  const obtenerDatosVista = () => {
+  const obtenerDatosVista = (
+    datosBase
+  ) => {
 
     if (vista === "detallado") {
 
-      return consolidarDetalle();
+      return consolidarDetalle(
+        datosBase
+      );
 
     }
+
 
     if (vista === "rol") {
 
-      return consolidarPorRol();
+      return consolidarPorRol(
+        datosBase
+      );
 
     }
+
 
     if (vista === "ciudad") {
 
-      return consolidarPorCiudad();
+      return consolidarPorCiudad(
+        datosBase
+      );
 
     }
+
 
     return [];
 
   };
 
 
-  const datosVista = obtenerDatosVista();
-
-    // =========================================================
-  // TOTALES DE LA VISTA
-  // =========================================================
-
-  const totalPresupuestado = datosVista.reduce(
-    (total, fila) =>
-      total + Number(fila.presupuestado || 0),
-    0
-  );
-
-  const totalEjecutado = datosVista.reduce(
-    (total, fila) =>
-      total + Number(fila.ejecutado || 0),
-    0
-  );
-
-  const totalDiferencia = datosVista.reduce(
-    (total, fila) =>
-      total + Number(fila.diferencia || 0),
-    0
-  );
-
-
   // =========================================================
   // EXPORTAR EXCEL
+  //
+  // Incluye Tipo de reporte para mantener la separación.
   // =========================================================
 
   const exportarExcel = () => {
 
-    if (!datosVista.length) {
+    if (!datosFiltrados.length) {
 
       alert(
         "No hay información para exportar."
@@ -497,6 +624,24 @@ export default function Presupuesto() {
       return;
 
     }
+
+
+    const datosExportacion =
+      obtenerDatosVista(
+        datosFiltrados
+      );
+
+
+    if (!datosExportacion.length) {
+
+      alert(
+        "No hay información para exportar."
+      );
+
+      return;
+
+    }
+
 
     let filas = [];
 
@@ -507,36 +652,44 @@ export default function Presupuesto() {
 
     if (vista === "detallado") {
 
-      filas = datosVista.map((fila) => ({
+      filas =
+        datosExportacion.map(
+          (fila) => ({
 
-        Convocatoria:
-          fila.convocatoria,
+            Convocatoria:
+              fila.convocatoria,
 
-        Ciudad:
-          fila.ciudad,
+            "Tipo de reporte":
+              fila.tipo_reporte,
 
-        Rol:
-          fila.rol,
+            Ciudad:
+              fila.ciudad,
 
-        Requerido:
-          fila.requerido,
+            Rol:
+              fila.rol,
 
-        Asistencia:
-          fila.asistencia,
+            Requerido:
+              fila.requerido,
 
-        Fecha:
-          formatoFecha(fila.fecha),
+            Asistencia:
+              fila.asistencia,
 
-        Presupuestado:
-          fila.presupuestado,
+            Fecha:
+              formatoFecha(
+                fila.fecha
+              ),
 
-        Ejecutado:
-          fila.ejecutado,
+            Presupuestado:
+              fila.presupuestado,
 
-        Diferencia:
-          fila.diferencia
+            Ejecutado:
+              fila.ejecutado,
 
-      }));
+            Diferencia:
+              fila.diferencia
+
+          })
+        );
 
     }
 
@@ -547,27 +700,33 @@ export default function Presupuesto() {
 
     else if (vista === "rol") {
 
-      filas = datosVista.map((fila) => ({
+      filas =
+        datosExportacion.map(
+          (fila) => ({
 
-        Rol:
-          fila.rol,
+            "Tipo de reporte":
+              fila.tipo_reporte,
 
-        Requerido:
-          fila.requerido,
+            Rol:
+              fila.rol,
 
-        Asistencia:
-          fila.asistencia,
+            Requerido:
+              fila.requerido,
 
-        Presupuestado:
-          fila.presupuestado,
+            Asistencia:
+              fila.asistencia,
 
-        Ejecutado:
-          fila.ejecutado,
+            Presupuestado:
+              fila.presupuestado,
 
-        Diferencia:
-          fila.diferencia
+            Ejecutado:
+              fila.ejecutado,
 
-      }));
+            Diferencia:
+              fila.diferencia
+
+          })
+        );
 
     }
 
@@ -578,42 +737,53 @@ export default function Presupuesto() {
 
     else {
 
-      filas = datosVista.map((fila) => ({
+      filas =
+        datosExportacion.map(
+          (fila) => ({
 
-        Ciudad:
-          fila.ciudad,
+            "Tipo de reporte":
+              fila.tipo_reporte,
 
-        Requerido:
-          fila.requerido,
+            Ciudad:
+              fila.ciudad,
 
-        Asistencia:
-          fila.asistencia,
+            Requerido:
+              fila.requerido,
 
-        Presupuestado:
-          fila.presupuestado,
+            Asistencia:
+              fila.asistencia,
 
-        Ejecutado:
-          fila.ejecutado,
+            Presupuestado:
+              fila.presupuestado,
 
-        Diferencia:
-          fila.diferencia
+            Ejecutado:
+              fila.ejecutado,
 
-      }));
+            Diferencia:
+              fila.diferencia
+
+          })
+        );
 
     }
 
 
     const hoja =
-      XLSX.utils.json_to_sheet(filas);
+      XLSX.utils.json_to_sheet(
+        filas
+      );
+
 
     const libro =
       XLSX.utils.book_new();
+
 
     XLSX.utils.book_append_sheet(
       libro,
       hoja,
       "Presupuesto"
     );
+
 
     XLSX.writeFile(
       libro,
@@ -631,7 +801,10 @@ export default function Presupuesto() {
 
     <div className="presupuesto">
 
-      <h2>Presupuesto</h2>
+      <h2>
+        Presupuesto
+      </h2>
+
 
       <p className="presupuesto-subtitulo">
         Comparación del presupuesto frente a la asistencia registrada.
@@ -639,7 +812,7 @@ export default function Presupuesto() {
 
 
       {/* =====================================================
-          FILTRO CONVOCATORIA
+          FILTROS
           ===================================================== */}
 
       <div className="presupuesto-filtros">
@@ -650,17 +823,24 @@ export default function Presupuesto() {
             Convocatoria
           </label>
 
+
           <select
             value={convocatoria}
             onChange={(e) => {
-              setConvocatoria(e.target.value);
+
+              setConvocatoria(
+                e.target.value
+              );
+
               setCiudadFiltro("");
+
             }}
           >
 
             <option value="">
               Seleccione convocatoria
             </option>
+
 
             {convocatorias.map(
               (item, index) => (
@@ -686,10 +866,13 @@ export default function Presupuesto() {
             Ciudad
           </label>
 
+
           <select
             value={ciudadFiltro}
             onChange={(e) =>
-              setCiudadFiltro(e.target.value)
+              setCiudadFiltro(
+                e.target.value
+              )
             }
             disabled={!datos.length}
           >
@@ -697,6 +880,7 @@ export default function Presupuesto() {
             <option value="">
               Todas
             </option>
+
 
             {ciudades.map(
               (item, index) => (
@@ -739,7 +923,9 @@ export default function Presupuesto() {
                   : ""
               }
               onClick={() =>
-                setVista("detallado")
+                setVista(
+                  "detallado"
+                )
               }
             >
               Detallado
@@ -753,7 +939,9 @@ export default function Presupuesto() {
                   : ""
               }
               onClick={() =>
-                setVista("rol")
+                setVista(
+                  "rol"
+                )
               }
             >
               Consolidado por rol
@@ -767,7 +955,9 @@ export default function Presupuesto() {
                   : ""
               }
               onClick={() =>
-                setVista("ciudad")
+                setVista(
+                  "ciudad"
+                )
               }
             >
               Consolidado por ciudad
@@ -784,8 +974,12 @@ export default function Presupuesto() {
 
             <button
               className="btn-exportar-presupuesto"
-              onClick={exportarExcel}
-              disabled={!datosVista.length}
+              onClick={
+                exportarExcel
+              }
+              disabled={
+                !datosFiltrados.length
+              }
             >
               Exportar Excel
             </button>
@@ -794,72 +988,8 @@ export default function Presupuesto() {
 
 
           {/* =================================================
-              TABLA
+              CONTENIDO DE TABLAS
               ================================================= */}
-
-            {/* =================================================
-              TOTALES
-              ================================================= */}
-
-          {!cargando && datosVista.length > 0 && (
-
-            <div className="presupuesto-totales">
-
-              <div className="presupuesto-total">
-
-                <span className="presupuesto-total-titulo">
-                  Presupuestado
-                </span>
-
-                <span className="presupuesto-total-valor">
-                  {formatoMoneda(
-                    totalPresupuestado
-                  )}
-                </span>
-
-              </div>
-
-
-              <div className="presupuesto-total">
-
-                <span className="presupuesto-total-titulo">
-                  Ejecutado
-                </span>
-
-                <span className="presupuesto-total-valor">
-                  {formatoMoneda(
-                    totalEjecutado
-                  )}
-                </span>
-
-              </div>
-
-
-              <div className="presupuesto-total">
-
-                <span className="presupuesto-total-titulo">
-                  Diferencia
-                </span>
-
-                <span
-                  className={
-                    totalDiferencia > 0
-                      ? "presupuesto-total-valor presupuesto-positivo"
-                      : totalDiferencia < 0
-                      ? "presupuesto-total-valor presupuesto-negativo"
-                      : "presupuesto-total-valor"
-                  }
-                >
-                  {formatoMoneda(
-                    totalDiferencia
-                  )}
-                </span>
-
-              </div>
-
-            </div>
-
-          )}
 
           <div className="presupuesto-tabla-contenedor">
 
@@ -869,248 +999,448 @@ export default function Presupuesto() {
                 Cargando información...
               </div>
 
-            ) : datosVista.length === 0 ? (
+            ) : datosFiltrados.length === 0 ? (
 
               <div className="presupuesto-sin-registros">
                 No existen registros para la convocatoria seleccionada.
+              </div>
+
+            ) : tiposReporteOrdenados.length === 0 ? (
+
+              <div className="presupuesto-sin-registros">
+                No existen tipos de reporte registrados para la información seleccionada.
               </div>
 
             ) : (
 
               <div className="presupuesto-tabla-scroll">
 
-
                 {/* =================================================
-                    VISTA DETALLADA
+                    GENERAR UN BLOQUE POR CADA TIPO DE REPORTE
                     ================================================= */}
 
-                {vista === "detallado" && (
+                {tiposReporteOrdenados.map(
+                  (tipoReporte) => {
 
-                  <>
-
-                    <div className="presupuesto-fila presupuesto-encabezado">
-
-                      <span>
-                        Ciudad
-                      </span>
-
-                      <span>
-                        Rol
-                      </span>
-
-                      <span>
-                        Requerido
-                      </span>
-
-                      <span>
-                        Asistencia
-                      </span>
-
-                      <span>
-                        Fecha
-                      </span>
-
-                      <span>
-                        Presupuestado
-                      </span>
-
-                      <span>
-                        Ejecutado
-                      </span>
-
-                      <span>
-                        Diferencia
-                      </span>
-
-                    </div>
+                    const datosTipoReporte =
+                      datosFiltrados.filter(
+                        (fila) =>
+                          String(
+                            fila.tipo_reporte || ""
+                          ).trim() ===
+                          String(
+                            tipoReporte
+                          ).trim()
+                      );
 
 
-                                        {datosVista.map(
-                      (fila, index) => {
+                    const datosVista =
+                      obtenerDatosVista(
+                        datosTipoReporte
+                      );
 
-                        const siguiente = datosVista[index + 1];
 
-                        const cambiaFecha =
-                          siguiente &&
-                          String(siguiente.fecha || "") !==
-                            String(fila.fecha || "");
+                    if (
+                      !datosVista.length
+                    ) {
+                      return null;
+                    }
 
-                        return (
 
-                          <div
-                            className="presupuesto-fila"
-                            key={index}
-                            style={{
-                              borderBottom: cambiaFecha
-                                ? "3px solid #777"
-                                : undefined
-                            }}
-                          >
+                    // =============================================
+                    // TOTALES DEL TIPO DE REPORTE
+                    // =============================================
 
-                            <span>
-                              {fila.ciudad}
+                    const totalPresupuestado =
+                      datosVista.reduce(
+                        (total, fila) =>
+                          total +
+                          Number(
+                            fila.presupuestado ||
+                            0
+                          ),
+                        0
+                      );
+
+
+                    const totalEjecutado =
+                      datosVista.reduce(
+                        (total, fila) =>
+                          total +
+                          Number(
+                            fila.ejecutado ||
+                            0
+                          ),
+                        0
+                      );
+
+
+                    const totalDiferencia =
+                      datosVista.reduce(
+                        (total, fila) =>
+                          total +
+                          Number(
+                            fila.diferencia ||
+                            0
+                          ),
+                        0
+                      );
+
+
+                    return (
+
+                      <div
+                        className="presupuesto-bloque-reporte"
+                        key={
+                          tipoReporte
+                        }
+                      >
+
+                        {/* =========================================
+                            TITULO DEL TIPO DE REPORTE
+                            ========================================= */}
+
+                        <div
+                          className="presupuesto-titulo-reporte"
+                        >
+
+                          <span>
+                            {tipoReporte}
+                          </span>
+
+                        </div>
+
+
+                        {/* =========================================
+                            TOTALES
+                            ========================================= */}
+
+                        <div className="presupuesto-totales">
+
+                          <div className="presupuesto-total">
+
+                            <span className="presupuesto-total-titulo">
+                              Presupuestado
                             </span>
 
-                            <span>
-                              {fila.rol}
-                            </span>
-
-                            <span>
-                              {fila.requerido}
-                            </span>
-
-                            <span>
-                              {fila.asistencia}
-                            </span>
-
-                            <span>
-                              {formatoFecha(
-                                fila.fecha
-                              )}
-                            </span>
-
-                            <span>
+                            <span className="presupuesto-total-valor">
                               {formatoMoneda(
-                                fila.presupuestado
-                              )}
-                            </span>
-
-                            <span>
-                              {formatoMoneda(
-                                fila.ejecutado
-                              )}
-                            </span>
-
-                            <span
-                              className={
-                                Number(
-                                  fila.diferencia
-                                ) > 0
-                                  ? "presupuesto-positivo"
-                                  : Number(
-                                      fila.diferencia
-                                    ) < 0
-                                  ? "presupuesto-negativo"
-                                  : ""
-                              }
-                            >
-                              {formatoMoneda(
-                                fila.diferencia
+                                totalPresupuestado
                               )}
                             </span>
 
                           </div>
 
-                        );
-                      }
-                    )}
-                  </>
 
-                )}
+                          <div className="presupuesto-total">
 
+                            <span className="presupuesto-total-titulo">
+                              Ejecutado
+                            </span>
 
-                {/* =================================================
-                    VISTAS CONSOLIDADAS
-                    ================================================= */}
+                            <span className="presupuesto-total-valor">
+                              {formatoMoneda(
+                                totalEjecutado
+                              )}
+                            </span>
 
-                {vista !== "detallado" && (
-
-                  <>
-
-                    <div className="presupuesto-fila presupuesto-fila-consolidada presupuesto-encabezado">
-
-                      <span>
-
-                        {vista === "rol"
-                          ? "Rol"
-                          : "Ciudad"}
-
-                      </span>
-
-                      <span>
-                        Requerido
-                      </span>
-
-                      <span>
-                        Asistencia
-                      </span>
-
-                      <span>
-                        Presupuestado
-                      </span>
-
-                      <span>
-                        Ejecutado
-                      </span>
-
-                      <span>
-                        Diferencia
-                      </span>
-
-                    </div>
+                          </div>
 
 
-                    {datosVista.map(
-                      (fila, index) => (
+                          <div className="presupuesto-total">
 
-                        <div
-                          className="presupuesto-fila presupuesto-fila-consolidada"
-                          key={index}
-                        >
+                            <span className="presupuesto-total-titulo">
+                              Diferencia
+                            </span>
 
-                          <span>
+                            <span
+                              className={
+                                totalDiferencia > 0
+                                  ? "presupuesto-total-valor presupuesto-positivo"
+                                  : totalDiferencia < 0
+                                  ? "presupuesto-total-valor presupuesto-negativo"
+                                  : "presupuesto-total-valor"
+                              }
+                            >
+                              {formatoMoneda(
+                                totalDiferencia
+                              )}
+                            </span>
 
-                            {vista === "rol"
-                              ? fila.rol
-                              : fila.ciudad}
-
-                          </span>
-
-                          <span>
-                            {fila.requerido}
-                          </span>
-
-                          <span>
-                            {fila.asistencia}
-                          </span>
-
-                          <span>
-                            {formatoMoneda(
-                              fila.presupuestado
-                            )}
-                          </span>
-
-                          <span>
-                            {formatoMoneda(
-                              fila.ejecutado
-                            )}
-                          </span>
-
-                          <span
-                            className={
-                              Number(
-                                fila.diferencia
-                              ) > 0
-                                ? "presupuesto-positivo"
-                                : Number(
-                                    fila.diferencia
-                                  ) < 0
-                                ? "presupuesto-negativo"
-                                : ""
-                            }
-                          >
-                            {formatoMoneda(
-                              fila.diferencia
-                            )}
-                          </span>
+                          </div>
 
                         </div>
 
-                      )
-                    )}
 
-                  </>
+                        {/* =========================================
+                            VISTA DETALLADA
+                            ========================================= */}
 
+                        {vista === "detallado" && (
+
+                          <>
+
+                            <div className="presupuesto-fila presupuesto-encabezado">
+
+                              <span>
+                                Ciudad
+                              </span>
+
+                              <span>
+                                Rol
+                              </span>
+
+                              <span>
+                                Requerido
+                              </span>
+
+                              <span>
+                                Asistencia
+                              </span>
+
+                              <span>
+                                Fecha
+                              </span>
+
+                              <span>
+                                Presupuestado
+                              </span>
+
+                              <span>
+                                Ejecutado
+                              </span>
+
+                              <span>
+                                Diferencia
+                              </span>
+
+                            </div>
+
+
+                            {datosVista.map(
+                              (fila, index) => {
+
+                                const siguiente =
+                                  datosVista[
+                                    index + 1
+                                  ];
+
+
+                                const cambiaFecha =
+                                  siguiente &&
+                                  String(
+                                    siguiente.fecha ||
+                                    ""
+                                  ) !==
+                                  String(
+                                    fila.fecha ||
+                                    ""
+                                  );
+
+
+                                return (
+
+                                  <div
+                                    className="presupuesto-fila"
+                                    key={index}
+                                    style={{
+                                      borderBottom:
+                                        cambiaFecha
+                                          ? "3px solid #777"
+                                          : undefined
+                                    }}
+                                  >
+
+                                    <span>
+                                      {fila.ciudad}
+                                    </span>
+
+
+                                    <span>
+                                      {fila.rol}
+                                    </span>
+
+
+                                    <span>
+                                      {fila.requerido}
+                                    </span>
+
+
+                                    <span>
+                                      {fila.asistencia}
+                                    </span>
+
+
+                                    <span>
+                                      {formatoFecha(
+                                        fila.fecha
+                                      )}
+                                    </span>
+
+
+                                    <span>
+                                      {formatoMoneda(
+                                        fila.presupuestado
+                                      )}
+                                    </span>
+
+
+                                    <span>
+                                      {formatoMoneda(
+                                        fila.ejecutado
+                                      )}
+                                    </span>
+
+
+                                    <span
+                                      className={
+                                        Number(
+                                          fila.diferencia
+                                        ) > 0
+                                          ? "presupuesto-positivo"
+                                          : Number(
+                                              fila.diferencia
+                                            ) < 0
+                                          ? "presupuesto-negativo"
+                                          : ""
+                                      }
+                                    >
+                                      {formatoMoneda(
+                                        fila.diferencia
+                                      )}
+                                    </span>
+
+                                  </div>
+
+                                );
+
+                              }
+                            )}
+
+                          </>
+
+                        )}
+
+
+                        {/* =========================================
+                            VISTAS CONSOLIDADAS
+                            ========================================= */}
+
+                        {vista !== "detallado" && (
+
+                          <>
+
+                            <div className="presupuesto-fila presupuesto-fila-consolidada presupuesto-encabezado">
+
+                              <span>
+
+                                {vista === "rol"
+                                  ? "Rol"
+                                  : "Ciudad"}
+
+                              </span>
+
+
+                              <span>
+                                Requerido
+                              </span>
+
+
+                              <span>
+                                Asistencia
+                              </span>
+
+
+                              <span>
+                                Presupuestado
+                              </span>
+
+
+                              <span>
+                                Ejecutado
+                              </span>
+
+
+                              <span>
+                                Diferencia
+                              </span>
+
+                            </div>
+
+
+                            {datosVista.map(
+                              (fila, index) => (
+
+                                <div
+                                  className="presupuesto-fila presupuesto-fila-consolidada"
+                                  key={index}
+                                >
+
+                                  <span>
+
+                                    {vista === "rol"
+                                      ? fila.rol
+                                      : fila.ciudad}
+
+                                  </span>
+
+
+                                  <span>
+                                    {fila.requerido}
+                                  </span>
+
+
+                                  <span>
+                                    {fila.asistencia}
+                                  </span>
+
+
+                                  <span>
+                                    {formatoMoneda(
+                                      fila.presupuestado
+                                    )}
+                                  </span>
+
+
+                                  <span>
+                                    {formatoMoneda(
+                                      fila.ejecutado
+                                    )}
+                                  </span>
+
+
+                                  <span
+                                    className={
+                                      Number(
+                                        fila.diferencia
+                                      ) > 0
+                                        ? "presupuesto-positivo"
+                                        : Number(
+                                            fila.diferencia
+                                          ) < 0
+                                        ? "presupuesto-negativo"
+                                        : ""
+                                    }
+                                  >
+                                    {formatoMoneda(
+                                      fila.diferencia
+                                    )}
+                                  </span>
+
+                                </div>
+
+                              )
+                            )}
+
+                          </>
+
+                        )}
+
+                      </div>
+
+                    );
+
+                  }
                 )}
 
               </div>
@@ -1128,3 +1458,22 @@ export default function Presupuesto() {
   );
 
 }
+```
+
+
+```text
+REPORTE INICIAL
+    Presupuestado
+    Ejecutado
+    Diferencia
+    ↓
+    tabla
+
+AUDITORIA 1
+    Presupuestado
+    Ejecutado
+    Diferencia
+    ↓
+    tabla
+```
+
