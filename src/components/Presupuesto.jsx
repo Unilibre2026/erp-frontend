@@ -1,4 +1,4 @@
-```jsx
+
 import { useEffect, useState } from "react";
 import * as XLSX from "xlsx";
 import "./Presupuesto.css";
@@ -29,7 +29,7 @@ export default function Presupuesto() {
       try {
 
         const res = await fetch(
-          `${API_URL}/presupuesto/convocatorias`
+          `${API_URL}/presupuesto/convocatorias
         );
 
         if (!res.ok) {
