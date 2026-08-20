@@ -1458,22 +1458,3 @@ export default function Presupuesto() {
   );
 
 }
-```
-
-
-```text
-REPORTE INICIAL
-    Presupuestado
-    Ejecutado
-    Diferencia
-    ↓
-    tabla
-
-AUDITORIA 1
-    Presupuestado
-    Ejecutado
-    Diferencia
-    ↓
-    tabla
-```
-
