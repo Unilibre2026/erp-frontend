@@ -2746,6 +2746,8 @@ function Consultas() {
 
               <th>N. novedad</th>
 
+              <th>Detalle</th>
+
               <th>Status</th>
 
               <th>Documento</th>
@@ -2764,7 +2766,7 @@ function Consultas() {
 
               <th>Responsable de la novedad</th>
 
-              <th>Detalle</th>
+              
 
             </tr>
 
@@ -2772,91 +2774,94 @@ function Consultas() {
 
           <tbody>
 
-            {filtrados.map((i) => (
+  {filtrados.map((i) => (
 
-              <tr key={i.id}>
+    <tr key={i.id}>
 
-                <td>
-                  {i.id}
-                </td>
+      <td>
+        {i.id}
+      </td>
 
-                {/* STATUS */}
+      {/* DETALLE */}
 
-                <td>
+      <td className="celda-detalle">
 
-                  <span
-                    className={`status-badge ${
-                      i.status === "Pendiente"
-                        ? "status-pendiente"
-                        : i.status === "Pre-aprobado"
-                        ? "status-preaprobado"
-                        : i.status === "SUBSANAR"
-                        ? "status-subsanar"
-                        : i.status === "APROBADO"
-                        ? "status-aprobado"
-                        : i.status === "NOVEDAD RETIRADA"
-                        ? "status-retirada"
-                        : ""
-                    }`}
-                  >
-                    {i.status}
-                  </span>
+        <button
+          type="button"
+          className="btn-ver-detalle"
+          onClick={() =>
+            setNovedadSeleccionada(i)
+          }
+        >
+          Ver detalle
+        </button>
 
-                </td>
+      </td>
 
-                <td>
-                  {i.documento_experto}
-                </td>
+      {/* STATUS */}
 
-                <td>
-                  {i.nombre}
-                </td>
+      <td>
 
-                <td>
-                  {i.convocatoria}
-                </td>
+        <span
+          className={`status-badge ${
+            i.status === "Pendiente"
+              ? "status-pendiente"
+              : i.status === "Pre-aprobado"
+              ? "status-preaprobado"
+              : i.status === "SUBSANAR"
+              ? "status-subsanar"
+              : i.status === "APROBADO"
+              ? "status-aprobado"
+              : i.status === "NOVEDAD RETIRADA"
+              ? "status-retirada"
+              : ""
+          }`}
+        >
+          {i.status}
+        </span>
 
-                <td>
-                  {i.tipo_novedad}
-                </td>
+      </td>
 
-                <td>
-                  {i.eje}
-                </td>
+      <td>
+        {i.documento_experto}
+      </td>
 
-                <td>
-                  {i.nivel}
-                </td>
+      <td>
+        {i.nombre}
+      </td>
 
-                <td>
-                  {i.rol}
-                </td>
+      <td>
+        {i.convocatoria}
+      </td>
 
-                <td>
-                  {i.responsable}
-                </td>
+      <td>
+        {i.tipo_novedad}
+      </td>
 
-                {/* DETALLE */}
+      <td>
+        {i.eje}
+      </td>
 
-                <td className="celda-detalle">
+      <td>
+        {i.nivel}
+      </td>
 
-                  <button
-                    type="button"
-                    className="btn-ver-detalle"
-                    onClick={() =>
-                      setNovedadSeleccionada(i)
-                    }
-                  >
-                    Ver detalle
-                  </button>
+      <td>
+        {i.rol}
+      </td>
 
-                </td>
+      <td>
+        {i.responsable}
+      </td>
 
-              </tr>
+    </tr>
 
-            ))}
+  ))}
 
-          </tbody>
+</tbody>
+
+                
+        
 
         </table>
 
