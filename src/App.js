@@ -3493,7 +3493,7 @@ const exportarFiltrado = async () => {
                   {/* LÍNEA DE TIEMPO */}
 
                   <div className="titulo-timeline">
-                    Línea de tiempo
+                    Trazabilidad.
                   </div>
 
                   <div className="timeline-trazabilidad">
