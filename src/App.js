@@ -32,7 +32,7 @@ import JuecesAsignados from "./components/JuecesAsignados";
 import ReporteAsistencia from "./components/ReporteAsistencia";
 import IncluirPresupuesto from "./pages/Presupuesto/IncluirPresupuesto";
 import Presupuesto from "./components/Presupuesto";
-import { FileText } from "lucide-react";
+import { FileUser } from "lucide-react";
 
 const API_URL = "https://erp-unilibre-production.up.railway.app";
 
@@ -2901,7 +2901,7 @@ const exportarFiltrado = async () => {
 
               <th>N. novedad</th>
 
-              <th>Detalle</th>
+              <th>Resumen perfil</th>
 
               <th>Status</th>
 
@@ -2941,17 +2941,18 @@ const exportarFiltrado = async () => {
 
       <td className="celda-detalle">
 
-        <button
-          type="button"
-          className="btn-ver-detalle"
-          onClick={() =>
-            setNovedadSeleccionada(i)
-          }
-        >
-          Ver detalle
-        </button>
+  <button
+    type="button"
+    className="btn-ver-detalle"
+    onClick={() =>
+      setNovedadSeleccionada(i)
+    }
+    title="Ver detalle"
+  >
+    <FileUser size={24} strokeWidth={2} />
+  </button>
 
-      </td>
+</td>
 
       {/* STATUS */}
 
