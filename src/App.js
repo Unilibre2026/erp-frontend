@@ -3446,6 +3446,7 @@ const exportarFiltrado = async () => {
                         <strong>
                           Tipo de novedad:
                         </strong>
+                        <span>{novedadSeleccionada.tipo_novedad}</span>
 
                         <span>
                           {trazabilidad.informacion?.tipo_novedad || "-"}
@@ -3456,6 +3457,7 @@ const exportarFiltrado = async () => {
                         <strong>
                           Eje / Indicador:
                         </strong>
+                        <span>{novedadSeleccionada.eje}</span>
 
                         <span>
                           {trazabilidad.informacion?.eje || "-"}
@@ -3466,6 +3468,7 @@ const exportarFiltrado = async () => {
                         <strong>
                           Nivel:
                         </strong>
+                        <span>{novedadSeleccionada.nivel}</span>
 
                         <span>
                           {trazabilidad.informacion?.nivel || "-"}
