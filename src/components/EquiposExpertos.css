@@ -90,6 +90,7 @@
         120px    /* Estado */
         170px    /* Disponibilidad */
         130px    /* Teléfono */
+        260px     /* Correo */
         180px;   /* Ciudad */
 
     column-gap: 12px;
@@ -204,4 +205,13 @@
     font-size: 15px;
     font-weight: 400;
     color: #000;
+}
+
+/* ===========================
+   CORREO
+=========================== */
+
+.equipos-expertos .fila-equipo > span:nth-child(7) {
+    overflow-wrap: anywhere;
+    word-break: break-word;
 }

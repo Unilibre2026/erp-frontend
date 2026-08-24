@@ -250,6 +250,7 @@ function EquiposExpertos() {
               <span>Estado</span>
               <span>Disponibilidad</span>
               <span>Teléfono</span>
+              <span>Correo</span>
               <span>Ciudad de domicilio</span>
 
             </div>
@@ -272,6 +273,8 @@ function EquiposExpertos() {
     <span>{experto.validador || "-"}</span>
 
     <span>{experto.telefono || "-"}</span>
+
+    <span>{experto.correo_personal || "-"}</span>
 
     <span>{experto.observaciones || "-"}</span>
 
