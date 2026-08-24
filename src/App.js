@@ -2334,265 +2334,812 @@ function Consultas() {
   const [textoBusqueda, setTextoBusqueda] = useState("");
   const [statusFiltro, setStatusFiltro] = useState("Todos");
 
+  // =========================
+  // MODAL
+  // =========================
+
+  const [novedadSeleccionada, setNovedadSeleccionada] = useState(null);
+
+  // =========================
+  // CARGAR DATOS
+  // =========================
+
   useEffect(() => {
+
     fetch(`${API_URL}/novedades`)
       .then(r => r.json())
       .then(data => {
+
         console.table([data[0]]);
-        setDatos(data);
+
+        setDatos(Array.isArray(data) ? data : []);
+
       })
-      .catch(err => console.error("Error cargando datos:", err));
+      .catch(err =>
+        console.error("Error cargando datos:", err)
+      );
+
   }, []);
 
-  const filtrados = datos.filter((item) => {
+  // =========================
+  // FILTROS
+  // =========================
 
-  // Filtro por texto
-  const coincideTexto =
-    !textoBusqueda ||
-    String(item?.[campoBusqueda] || "")
-      .toLowerCase()
-      .includes(textoBusqueda.toLowerCase());
+  const filtrados = datos
 
-  // Filtro por status
-  const coincideStatus =
-    statusFiltro === "Todos" ||
-    item.status === statusFiltro;
+    .filter((item) => {
 
-  return coincideTexto && coincideStatus;
+      const coincideTexto =
+        !textoBusqueda ||
+        String(item?.[campoBusqueda] || "")
+          .toLowerCase()
+          .includes(
+            textoBusqueda.toLowerCase()
+          );
 
-});
+      const coincideStatus =
+        statusFiltro === "Todos" ||
+        item.status === statusFiltro;
+
+      return coincideTexto && coincideStatus;
+
+    })
+
+    // =========================
+    // ORDENAR POR N. NOVEDAD
+    // =========================
+
+    .sort((a, b) => {
+
+      return Number(a.id || 0) - Number(b.id || 0);
+
+    });
+
+  // =========================
+  // EXPORTAR EXCEL
+  // =========================
 
   const exportarExcel = async () => {
-  const workbook = new ExcelJS.Workbook();
-  const sheet = workbook.addWorksheet("Novedades");
 
-  sheet.columns = [
-    { header: "ID", key: "id", width: 10 },
-    { header: "Status", key: "status", width: 18 },
-    { header: "Documento", key: "documento_experto", width: 20 },
-    { header: "Nombre", key: "nombre", width: 25 },
-    { header: "Convocatoria", key: "convocatoria", width: 25 },
-    { header: "Tipo novedad", key: "tipo_novedad", width: 20 },
-    { header: "Eje", key: "eje", width: 25 },
-    { header: "Nivel", key: "nivel", width: 15 },
-    { header: "Rol", key: "rol", width: 20 },
-    { header: "Responsable", key: "responsable", width: 25 },
-    { header: "Motivo retiro", key: "motivo_retiro", width: 25 },
-    { header: "Observaciones", key: "observaciones", width: 40 },
-    { header: "Contactar", key: "contactar_futuro", width: 20 },
-    { header: "Justificación", key: "justificacion", width: 40 },
-    { header: "Perfil laboral", key: "perfil_laboral", width: 40 },
-    { header: "Perfil académico", key: "perfil_academico", width: 40 },
-    { header: "Validador", key: "validador", width: 20 },
-    { header: "Fecha", key: "fecha_creacion", width: 25 },
-  ];
+    const workbook = new ExcelJS.Workbook();
 
-  filtrados.forEach((i) => {
-    sheet.addRow({
-      id: i.id,
-      status: i.status,
-      documento_experto: i.documento_experto,
-      nombre: i.nombre,
-      convocatoria: i.convocatoria,
-      tipo_novedad: i.tipo_novedad,
-      eje: i.eje,
-      nivel: i.nivel,
-      rol: i.rol,
-      responsable: i.responsable,
-      motivo_retiro: i.motivo_retiro,
-      observaciones: i.observaciones,
-      contactar_futuro: i.contactar_futuro,
-      justificacion: i.justificacion,
-      perfil_laboral: i.perfil_laboral,
-      perfil_academico: i.perfil_academico,
-      validador: i.validador,
-      fecha_creacion: i.fecha_creacion,
+    const sheet =
+      workbook.addWorksheet("Novedades");
+
+    sheet.columns = [
+
+      { header: "ID", key: "id", width: 10 },
+
+      { header: "Status", key: "status", width: 18 },
+
+      {
+        header: "Documento",
+        key: "documento_experto",
+        width: 20
+      },
+
+      {
+        header: "Nombre",
+        key: "nombre",
+        width: 25
+      },
+
+      {
+        header: "Convocatoria",
+        key: "convocatoria",
+        width: 25
+      },
+
+      {
+        header: "Tipo novedad",
+        key: "tipo_novedad",
+        width: 20
+      },
+
+      {
+        header: "Eje",
+        key: "eje",
+        width: 25
+      },
+
+      {
+        header: "Nivel",
+        key: "nivel",
+        width: 15
+      },
+
+      {
+        header: "Rol",
+        key: "rol",
+        width: 20
+      },
+
+      {
+        header: "Responsable",
+        key: "responsable",
+        width: 25
+      },
+
+      {
+        header: "Motivo retiro",
+        key: "motivo_retiro",
+        width: 25
+      },
+
+      {
+        header: "Observaciones",
+        key: "observaciones",
+        width: 40
+      },
+
+      {
+        header: "Contactar",
+        key: "contactar_futuro",
+        width: 20
+      },
+
+      {
+        header: "Justificación",
+        key: "justificacion",
+        width: 40
+      },
+
+      {
+        header: "Perfil laboral",
+        key: "perfil_laboral",
+        width: 40
+      },
+
+      {
+        header: "Perfil académico",
+        key: "perfil_academico",
+        width: 40
+      },
+
+      {
+        header: "Validador",
+        key: "validador",
+        width: 20
+      },
+
+      {
+        header: "Fecha",
+        key: "fecha_creacion",
+        width: 25
+      }
+
+    ];
+
+    filtrados.forEach((i) => {
+
+      sheet.addRow({
+
+        id: i.id,
+
+        status: i.status,
+
+        documento_experto:
+          i.documento_experto,
+
+        nombre:
+          i.nombre,
+
+        convocatoria:
+          i.convocatoria,
+
+        tipo_novedad:
+          i.tipo_novedad,
+
+        eje:
+          i.eje,
+
+        nivel:
+          i.nivel,
+
+        rol:
+          i.rol,
+
+        responsable:
+          i.responsable,
+
+        motivo_retiro:
+          i.motivo_retiro,
+
+        observaciones:
+          i.observaciones,
+
+        contactar_futuro:
+          i.contactar_futuro,
+
+        justificacion:
+          i.justificacion,
+
+        perfil_laboral:
+          i.perfil_laboral,
+
+        perfil_academico:
+          i.perfil_academico,
+
+        validador:
+          i.validador,
+
+        fecha_creacion:
+          i.fecha_creacion
+
+      });
+
     });
-  });
 
-  sheet.getRow(1).font = { bold: true };
+    sheet.getRow(1).font = {
+      bold: true
+    };
 
-  const buffer = await workbook.xlsx.writeBuffer();
+    const buffer =
+      await workbook.xlsx.writeBuffer();
 
-  const blob = new Blob([buffer], {
-    type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-  });
+    const blob = new Blob(
+      [buffer],
+      {
+        type:
+          "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      }
+    );
 
-  saveAs(blob, "novedades.xlsx");
-};
+    saveAs(
+      blob,
+      "novedades.xlsx"
+    );
+
+  };
+
+  // =========================
+  // CERRAR MODAL
+  // =========================
+
+  const cerrarModal = () => {
+
+    setNovedadSeleccionada(null);
+
+  };
 
   return (
+
     <div className="consulta-novedades">
-      <h2>CONSULTA GENERAL DE NOVEDADES</h2>
+
+      <h2>
+        CONSULTA GENERAL DE NOVEDADES
+      </h2>
+
+      {/* =========================
+          EXPORTAR
+      ========================= */}
 
       <button
-       onClick={exportarExcel}
-       style={{
-        marginBottom: "10px",
-        padding: "8px 12px",
-        background: "#2d6cdf",
-        color: "white",
-        border: "none",
-        borderRadius: "4px",
-        cursor: "pointer"
-      }}
+        onClick={exportarExcel}
+        className="btn-exportar-consulta"
       >
-      📥 Descargar Excel
+        📥 Descargar Excel
       </button>
+
+      {/* =========================
+          FILTROS
+      ========================= */}
 
       <div className="barra-filtros">
 
-  <div className="grupo-busqueda">
+        <div className="grupo-busqueda">
 
-    <label className="titulo-filtro">
-      Buscar por
-    </label>
+          <label className="titulo-filtro">
+            Buscar por
+          </label>
 
-    <div className="controles-busqueda">
+          <div className="controles-busqueda">
 
-      <select
-        className="filtro-consulta"
-        onChange={(e) => setCampoBusqueda(e.target.value)}
-      >
-        <option value="documento_experto">Documento</option>
-        <option value="nombre">Nombre</option>
-        <option value="tipo_novedad">Tipo de novedad</option>
-        <option value="convocatoria">Convocatoria</option>
-        <option value="responsable">Responsable de la novedad</option>
-        <option value="eje">Eje/Indicador</option>
-      </select>
-        
+            <select
+              className="filtro-consulta"
+              value={campoBusqueda}
+              onChange={(e) =>
+                setCampoBusqueda(
+                  e.target.value
+                )
+              }
+            >
 
-      <input
-        className="filtro-consulta"
-        placeholder="Buscar..."
-        value={textoBusqueda}
-        onChange={(e) => setTextoBusqueda(e.target.value)}
-      />
+              <option value="documento_experto">
+                Documento
+              </option>
+
+              <option value="nombre">
+                Nombre
+              </option>
+
+              <option value="tipo_novedad">
+                Tipo de novedad
+              </option>
+
+              <option value="convocatoria">
+                Convocatoria
+              </option>
+
+              <option value="responsable">
+                Responsable de la novedad
+              </option>
+
+              <option value="eje">
+                Eje/Indicador
+              </option>
+
+            </select>
+
+            <input
+              className="filtro-consulta"
+              placeholder="Buscar..."
+              value={textoBusqueda}
+              onChange={(e) =>
+                setTextoBusqueda(
+                  e.target.value
+                )
+              }
+            />
+
+          </div>
+
+        </div>
+
+        <div className="grupo-status">
+
+          <label className="titulo-filtro">
+            Estado de la novedad
+          </label>
+
+          <select
+            className="filtro-consulta"
+            value={statusFiltro}
+            onChange={(e) =>
+              setStatusFiltro(
+                e.target.value
+              )
+            }
+          >
+
+            <option value="Todos">
+              Todos los estados
+            </option>
+
+            <option value="Pendiente">
+              Pendiente
+            </option>
+
+            <option value="Pre-aprobado">
+              Pre-aprobado
+            </option>
+
+            <option value="SUBSANAR">
+              SUBSANAR
+            </option>
+
+            <option value="APROBADO">
+              APROBADO
+            </option>
+
+            <option value="NOVEDAD RETIRADA">
+              NOVEDAD RETIRADA
+            </option>
+
+          </select>
+
+        </div>
+
+      </div>
+
+      {/* =========================
+          TABLA PRINCIPAL
+      ========================= */}
+
+      <div className="contenedor-tabla-consulta">
+
+        <table className="tabla-novedades">
+
+          <thead>
+
+            <tr>
+
+              <th>N. novedad</th>
+
+              <th>Status</th>
+
+              <th>Documento</th>
+
+              <th>Nombre del experto</th>
+
+              <th>Convocatoria</th>
+
+              <th>Tipo de novedad</th>
+
+              <th>Eje/Indicador</th>
+
+              <th>Nivel</th>
+
+              <th>Rol</th>
+
+              <th>Responsable de la novedad</th>
+
+              <th>Detalle</th>
+
+            </tr>
+
+          </thead>
+
+          <tbody>
+
+            {filtrados.map((i) => (
+
+              <tr key={i.id}>
+
+                <td>
+                  {i.id}
+                </td>
+
+                {/* STATUS */}
+
+                <td>
+
+                  <span
+                    className={`status-badge ${
+                      i.status === "Pendiente"
+                        ? "status-pendiente"
+                        : i.status === "Pre-aprobado"
+                        ? "status-preaprobado"
+                        : i.status === "SUBSANAR"
+                        ? "status-subsanar"
+                        : i.status === "APROBADO"
+                        ? "status-aprobado"
+                        : i.status === "NOVEDAD RETIRADA"
+                        ? "status-retirada"
+                        : ""
+                    }`}
+                  >
+                    {i.status}
+                  </span>
+
+                </td>
+
+                <td>
+                  {i.documento_experto}
+                </td>
+
+                <td>
+                  {i.nombre}
+                </td>
+
+                <td>
+                  {i.convocatoria}
+                </td>
+
+                <td>
+                  {i.tipo_novedad}
+                </td>
+
+                <td>
+                  {i.eje}
+                </td>
+
+                <td>
+                  {i.nivel}
+                </td>
+
+                <td>
+                  {i.rol}
+                </td>
+
+                <td>
+                  {i.responsable}
+                </td>
+
+                {/* DETALLE */}
+
+                <td className="celda-detalle">
+
+                  <button
+                    type="button"
+                    className="btn-ver-detalle"
+                    onClick={() =>
+                      setNovedadSeleccionada(i)
+                    }
+                  >
+                    Ver detalle
+                  </button>
+
+                </td>
+
+              </tr>
+
+            ))}
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+      {/* =========================
+          MODAL
+      ========================= */}
+
+      {novedadSeleccionada && (
+
+        <div
+          className="modal-overlay-consulta"
+          onClick={cerrarModal}
+        >
+
+          <div
+            className="modal-consulta"
+            onClick={(e) =>
+              e.stopPropagation()
+            }
+          >
+
+            {/* ENCABEZADO */}
+
+            <div className="modal-consulta-header">
+
+              <div>
+
+                <div className="modal-consulta-titulo">
+                  Detalle de la novedad
+                </div>
+
+                <div className="modal-consulta-subtitulo">
+
+                  {novedadSeleccionada.nombre}
+
+                </div>
+
+                <div className="modal-consulta-meta">
+
+                  Documento:
+                  {" "}
+                  {novedadSeleccionada.documento_experto}
+
+                  {"   •   "}
+
+                  Convocatoria:
+                  {" "}
+                  {novedadSeleccionada.convocatoria}
+
+                </div>
+
+              </div>
+
+              <button
+                type="button"
+                className="btn-cerrar-modal-consulta"
+                onClick={cerrarModal}
+              >
+                ×
+              </button>
+
+            </div>
+
+            {/* CONTENIDO */}
+
+            <div className="modal-consulta-body">
+
+              {/* INFORMACIÓN GENERAL */}
+
+              <div className="tarjeta-modal-consulta">
+
+                <div className="titulo-tarjeta-modal">
+                  Información general
+                </div>
+
+                <div className="grid-info-modal">
+
+                  <div>
+                    <strong>
+                      N. novedad
+                    </strong>
+                    <span>
+                      {novedadSeleccionada.id}
+                    </span>
+                  </div>
+
+                  <div>
+                    <strong>
+                      Status
+                    </strong>
+
+                    <span>
+                      <span
+                        className={`status-badge ${
+                          novedadSeleccionada.status === "Pendiente"
+                            ? "status-pendiente"
+                            : novedadSeleccionada.status === "Pre-aprobado"
+                            ? "status-preaprobado"
+                            : novedadSeleccionada.status === "SUBSANAR"
+                            ? "status-subsanar"
+                            : novedadSeleccionada.status === "APROBADO"
+                            ? "status-aprobado"
+                            : "status-retirada"
+                        }`}
+                      >
+                        {novedadSeleccionada.status}
+                      </span>
+                    </span>
+
+                  </div>
+
+                  <div>
+                    <strong>
+                      Tipo de novedad
+                    </strong>
+                    <span>
+                      {novedadSeleccionada.tipo_novedad || "-"}
+                    </span>
+                  </div>
+
+                  <div>
+                    <strong>
+                      Eje / Indicador
+                    </strong>
+                    <span>
+                      {novedadSeleccionada.eje || "-"}
+                    </span>
+                  </div>
+
+                  <div>
+                    <strong>
+                      Nivel
+                    </strong>
+                    <span>
+                      {novedadSeleccionada.nivel || "-"}
+                    </span>
+                  </div>
+
+                  <div>
+                    <strong>
+                      Rol
+                    </strong>
+                    <span>
+                      {novedadSeleccionada.rol || "-"}
+                    </span>
+                  </div>
+
+                  <div>
+                    <strong>
+                      Responsable de la novedad
+                    </strong>
+                    <span>
+                      {novedadSeleccionada.responsable || "-"}
+                    </span>
+                  </div>
+
+                  <div>
+                    <strong>
+                      Fecha de la novedad
+                    </strong>
+                    <span>
+                      {novedadSeleccionada.fecha_creacion || "-"}
+                    </span>
+                  </div>
+
+                </div>
+
+              </div>
+
+              {/* INFORMACIÓN ADICIONAL */}
+
+              <div className="tarjeta-modal-consulta">
+
+                <div className="titulo-tarjeta-modal">
+                  Información adicional
+                </div>
+
+                <div className="grid-info-modal">
+
+                  <div>
+                    <strong>
+                      Ciudad de domicilio
+                    </strong>
+                    <span>
+                      {novedadSeleccionada.observaciones || "-"}
+                    </span>
+                  </div>
+
+                  <div>
+                    <strong>
+                      Disponibilidad de tiempo
+                    </strong>
+                    <span>
+                      {novedadSeleccionada.validador || "-"}
+                    </span>
+                  </div>
+
+                  <div>
+                    <strong>
+                      Contactar en futuras convocatorias
+                    </strong>
+                    <span>
+                      {novedadSeleccionada.contactar_futuro || "-"}
+                    </span>
+                  </div>
+
+                  <div>
+                    <strong>
+                      Motivo del retiro
+                    </strong>
+                    <span>
+                      {novedadSeleccionada.motivo_retiro || "-"}
+                    </span>
+                  </div>
+
+                </div>
+
+              </div>
+
+              {/* JUSTIFICACIÓN */}
+
+              <div className="tarjeta-modal-consulta">
+
+                <div className="titulo-tarjeta-modal">
+                  Justificación de la asignación
+                </div>
+
+                <div className="texto-modal-consulta">
+
+                  {novedadSeleccionada.justificacion || "-"}
+
+                </div>
+
+              </div>
+
+              {/* PERFILES */}
+
+              <div className="grid-tarjetas-modal">
+
+                <div className="tarjeta-modal-consulta">
+
+                  <div className="titulo-tarjeta-modal">
+                    Perfil laboral
+                  </div>
+
+                  <div className="texto-modal-consulta">
+
+                    {novedadSeleccionada.perfil_laboral || "-"}
+
+                  </div>
+
+                </div>
+
+                <div className="tarjeta-modal-consulta">
+
+                  <div className="titulo-tarjeta-modal">
+                    Perfil académico
+                  </div>
+
+                  <div className="texto-modal-consulta">
+
+                    {novedadSeleccionada.perfil_academico || "-"}
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      )}
 
     </div>
 
-  </div>
-
-  <div className="grupo-status">
-
-    <label className="titulo-filtro">
-      Estado de la novedad
-    </label>
-
-    <select
-      className="filtro-consulta"
-      value={statusFiltro}
-      onChange={(e) => setStatusFiltro(e.target.value)}
-    >
-      <option value="Todos">Todos los estados</option>
-      <option value="Pendiente">Pendiente</option>
-      <option value="Pre-aprobado">Pre-aprobado</option>
-      <option value="SUBSANAR">SUBSANAR</option>
-      <option value="APROBADO">APROBADO</option>
-      <option value="NOVEDAD RETIRADA">NOVEDAD RETIRADA</option>
-    </select>
-
-  </div>
-
-</div>
-
-      <table border="1" className="tabla-novedades">
-        <thead>
-          <tr>
-            <th className="col-id">N. novedad</th>
-            <th className="col-status">Status</th>
-            <th className="col-documento">Documento</th>
-            <th className="col-nombre">Nombre del experto</th>
-            <th className="col-convocatoria">Convocatoria</th>
-            <th className="col-tipo">Tipo de novedad</th>
-            <th className="col-eje">Eje/indicador</th>
-            <th className="col-nivel">Nivel</th>
-            <th className="col-rol">Rol</th>
-            <th className="col-responsable">Responsable de la novedad</th>
-            <th className="col-motivo">Motivo del retiro</th>
-            <th className="col-ciudad">Ciudad de domicilio</th>
-            <th className="col-contactar">Contactar en futuras convocatorias</th>
-            <th className="col-justificacion">Justificación de la asignación</th>
-            <th className="col-perfil-laboral">Perfil laboral</th>
-            <th className="col-perfil-academico">Perfil académico</th>
-            <th className="col-disponibilidad">Disponibilidad de tiempo</th>
-            <th className="col-fecha">Fecha de la novedad</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          {filtrados.map((i, idx) => (
-           <tr key={idx}>
-    <td className="col-id">{i.id}</td>
-
-    <td className="col-status">
-        <span
-    className={`status-badge ${
-        i.status === "Pendiente"
-            ? "status-pendiente"
-            : i.status === "Pre-aprobado"
-            ? "status-preaprobado"
-            : i.status === "SUBSANAR"
-            ? "status-subsanar"
-            : i.status === "APROBADO"
-            ? "status-aprobado"
-            : ""
-    }`}
->
-    {i.status}
-</span>
-    </td>
-
-    <td className="col-documento">{i.documento_experto}</td>
-
-    <td className="col-nombre">{i.nombre}</td>
-
-    <td className="col-convocatoria">{i.convocatoria}</td>
-
-    <td className="col-tipo">{i.tipo_novedad}</td>
-
-    <td className="col-eje">{i.eje}</td>
-
-    <td className="col-nivel">{i.nivel}</td>
-
-    <td className="col-rol">{i.rol}</td>
-
-    <td className="col-responsable">{i.responsable}</td>
-
-    <td className="col-motivo">{i.motivo_retiro}</td>
-
-    <td className="col-ciudad">
-        <div className="scroll-columna-12">
-            {i.observaciones}
-        </div>
-    </td>
-
-    <td className="col-contactar">{i.contactar_futuro}</td>
-
-    <td className="col-justificacion">
-        <div className="scroll-columna-12">
-            {i.justificacion}
-        </div>
-    </td>
-
-    <td className="col-perfil-laboral">
-        <div className="scroll-columna-12">
-            {i.perfil_laboral}
-        </div>
-    </td>
-
-    <td className="col-perfil-academico">{i.perfil_academico}</td>
-
-    <td className="col-disponibilidad">{i.validador}</td>
-
-    <td className="col-fecha">{i.fecha_creacion}</td>
-</tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
   );
+
 }
 
 /* =========================
