@@ -1866,6 +1866,45 @@ thead th {
 }
 
 /* =========================
+   MENÚ EXPORTAR EXCEL
+========================= */
+
+.contenedor-exportar-consulta {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+.menu-exportar-consulta {
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    min-width: 190px;
+    background: #ffffff;
+    border: 1px solid #d9d9d9;
+    border-radius: 5px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 100;
+    overflow: hidden;
+}
+
+.menu-exportar-consulta button {
+    display: block;
+    width: 100%;
+    padding: 10px 14px;
+    border: none;
+    background: #ffffff;
+    color: #222;
+    text-align: left;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.menu-exportar-consulta button:hover {
+    background: #f1f4f6;
+}
+
+/* =========================
    TABLA
 ========================= */
 

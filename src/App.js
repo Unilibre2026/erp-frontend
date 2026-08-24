@@ -2333,6 +2333,66 @@ function Consultas() {
   const [campoBusqueda, setCampoBusqueda] = useState("documento_experto");
   const [textoBusqueda, setTextoBusqueda] = useState("");
   const [statusFiltro, setStatusFiltro] = useState("Todos");
+  const [menuExportarAbierto, setMenuExportarAbierto] = useState(false);
+
+  // =========================
+// CARGAR DATOS SOLO AL FILTRAR
+// =========================
+
+useEffect(() => {
+
+  const hayFiltro =
+    textoBusqueda.trim() !== "" ||
+    statusFiltro !== "Todos";
+
+  // Si no hay filtros, la tabla permanece vacía
+  if (!hayFiltro) {
+
+    setDatos([]);
+
+    return;
+  }
+
+  // Si ya tenemos los datos cargados,
+  // no volvemos a consultar SQL
+  if (datos.length > 0) {
+    return;
+  }
+
+  const cargarDatos = async () => {
+
+    try {
+
+      const res = await fetch(`${API_URL}/novedades`);
+
+      if (!res.ok) {
+        throw new Error("Error cargando novedades");
+      }
+
+      const data = await res.json();
+
+      setDatos(
+        Array.isArray(data)
+          ? data
+          : []
+      );
+
+    } catch (error) {
+
+      console.error(
+        "Error cargando datos:",
+        error
+      );
+
+      setDatos([]);
+
+    }
+
+  };
+
+  cargarDatos();
+
+}, [textoBusqueda, statusFiltro, datos.length]);
 
   // =========================
   // MODAL
@@ -2340,26 +2400,7 @@ function Consultas() {
 
   const [novedadSeleccionada, setNovedadSeleccionada] = useState(null);
 
-  // =========================
-  // CARGAR DATOS
-  // =========================
-
-  useEffect(() => {
-
-    fetch(`${API_URL}/novedades`)
-      .then(r => r.json())
-      .then(data => {
-
-        console.table([data[0]]);
-
-        setDatos(Array.isArray(data) ? data : []);
-
-      })
-      .catch(err =>
-        console.error("Error cargando datos:", err)
-      );
-
-  }, []);
+ 
 
   // =========================
   // FILTROS
@@ -2396,201 +2437,278 @@ function Consultas() {
     });
 
   // =========================
-  // EXPORTAR EXCEL
-  // =========================
+// EXPORTAR EXCEL
+// =========================
 
-  const exportarExcel = async () => {
+const exportarExcel = async (lista, nombreArchivo) => {
 
-    const workbook = new ExcelJS.Workbook();
+  const workbook = new ExcelJS.Workbook();
 
-    const sheet =
-      workbook.addWorksheet("Novedades");
+  const sheet =
+    workbook.addWorksheet("Novedades");
 
-    sheet.columns = [
+  sheet.columns = [
 
-      { header: "ID", key: "id", width: 10 },
+    { header: "ID", key: "id", width: 10 },
 
-      { header: "Status", key: "status", width: 18 },
+    { header: "Status", key: "status", width: 18 },
 
-      {
-        header: "Documento",
-        key: "documento_experto",
-        width: 20
-      },
+    {
+      header: "Documento",
+      key: "documento_experto",
+      width: 20
+    },
 
-      {
-        header: "Nombre",
-        key: "nombre",
-        width: 25
-      },
+    {
+      header: "Nombre",
+      key: "nombre",
+      width: 25
+    },
 
-      {
-        header: "Convocatoria",
-        key: "convocatoria",
-        width: 25
-      },
+    {
+      header: "Convocatoria",
+      key: "convocatoria",
+      width: 25
+    },
 
-      {
-        header: "Tipo novedad",
-        key: "tipo_novedad",
-        width: 20
-      },
+    {
+      header: "Tipo novedad",
+      key: "tipo_novedad",
+      width: 20
+    },
 
-      {
-        header: "Eje",
-        key: "eje",
-        width: 25
-      },
+    {
+      header: "Eje",
+      key: "eje",
+      width: 25
+    },
 
-      {
-        header: "Nivel",
-        key: "nivel",
-        width: 15
-      },
+    {
+      header: "Nivel",
+      key: "nivel",
+      width: 15
+    },
 
-      {
-        header: "Rol",
-        key: "rol",
-        width: 20
-      },
+    {
+      header: "Rol",
+      key: "rol",
+      width: 20
+    },
 
-      {
-        header: "Responsable",
-        key: "responsable",
-        width: 25
-      },
+    {
+      header: "Responsable",
+      key: "responsable",
+      width: 25
+    },
 
-      {
-        header: "Motivo retiro",
-        key: "motivo_retiro",
-        width: 25
-      },
+    {
+      header: "Motivo retiro",
+      key: "motivo_retiro",
+      width: 25
+    },
 
-      {
-        header: "Observaciones",
-        key: "observaciones",
-        width: 40
-      },
+    {
+      header: "Observaciones",
+      key: "observaciones",
+      width: 40
+    },
 
-      {
-        header: "Contactar",
-        key: "contactar_futuro",
-        width: 20
-      },
+    {
+      header: "Contactar",
+      key: "contactar_futuro",
+      width: 20
+    },
 
-      {
-        header: "Justificación",
-        key: "justificacion",
-        width: 40
-      },
+    {
+      header: "Justificación",
+      key: "justificacion",
+      width: 40
+    },
 
-      {
-        header: "Perfil laboral",
-        key: "perfil_laboral",
-        width: 40
-      },
+    {
+      header: "Perfil laboral",
+      key: "perfil_laboral",
+      width: 40
+    },
 
-      {
-        header: "Perfil académico",
-        key: "perfil_academico",
-        width: 40
-      },
+    {
+      header: "Perfil académico",
+      key: "perfil_academico",
+      width: 40
+    },
 
-      {
-        header: "Validador",
-        key: "validador",
-        width: 20
-      },
+    {
+      header: "Validador",
+      key: "validador",
+      width: 20
+    },
 
-      {
-        header: "Fecha",
-        key: "fecha_creacion",
-        width: 25
-      }
+    {
+      header: "Fecha",
+      key: "fecha_creacion",
+      width: 25
+    }
 
-    ];
+  ];
 
-    filtrados.forEach((i) => {
+  lista.forEach((i) => {
 
-      sheet.addRow({
+    sheet.addRow({
 
-        id: i.id,
+      id: i.id,
 
-        status: i.status,
+      status: i.status,
 
-        documento_experto:
-          i.documento_experto,
+      documento_experto:
+        i.documento_experto,
 
-        nombre:
-          i.nombre,
+      nombre:
+        i.nombre,
 
-        convocatoria:
-          i.convocatoria,
+      convocatoria:
+        i.convocatoria,
 
-        tipo_novedad:
-          i.tipo_novedad,
+      tipo_novedad:
+        i.tipo_novedad,
 
-        eje:
-          i.eje,
+      eje:
+        i.eje,
 
-        nivel:
-          i.nivel,
+      nivel:
+        i.nivel,
 
-        rol:
-          i.rol,
+      rol:
+        i.rol,
 
-        responsable:
-          i.responsable,
+      responsable:
+        i.responsable,
 
-        motivo_retiro:
-          i.motivo_retiro,
+      motivo_retiro:
+        i.motivo_retiro,
 
-        observaciones:
-          i.observaciones,
+      observaciones:
+        i.observaciones,
 
-        contactar_futuro:
-          i.contactar_futuro,
+      contactar_futuro:
+        i.contactar_futuro,
 
-        justificacion:
-          i.justificacion,
+      justificacion:
+        i.justificacion,
 
-        perfil_laboral:
-          i.perfil_laboral,
+      perfil_laboral:
+        i.perfil_laboral,
 
-        perfil_academico:
-          i.perfil_academico,
+      perfil_academico:
+        i.perfil_academico,
 
-        validador:
-          i.validador,
+      validador:
+        i.validador,
 
-        fecha_creacion:
-          i.fecha_creacion
-
-      });
+      fecha_creacion:
+        i.fecha_creacion
 
     });
 
-    sheet.getRow(1).font = {
-      bold: true
-    };
+  });
 
-    const buffer =
-      await workbook.xlsx.writeBuffer();
-
-    const blob = new Blob(
-      [buffer],
-      {
-        type:
-          "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-      }
-    );
-
-    saveAs(
-      blob,
-      "novedades.xlsx"
-    );
-
+  sheet.getRow(1).font = {
+    bold: true
   };
+
+  const buffer =
+    await workbook.xlsx.writeBuffer();
+
+  const blob = new Blob(
+    [buffer],
+    {
+      type:
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    }
+  );
+
+  saveAs(
+    blob,
+    nombreArchivo
+  );
+
+};
+
+// =========================
+// EXPORTAR TODO
+// =========================
+
+const exportarTodo = async () => {
+
+  try {
+
+    const res = await fetch(
+      `${API_URL}/novedades`
+    );
+
+    if (!res.ok) {
+      throw new Error(
+        "No fue posible obtener las novedades"
+      );
+    }
+
+    const data = await res.json();
+
+    const listaCompleta =
+      Array.isArray(data)
+        ? data.sort(
+            (a, b) =>
+              Number(a.id || 0) -
+              Number(b.id || 0)
+          )
+        : [];
+
+    await exportarExcel(
+      listaCompleta,
+      "novedades_completas.xlsx"
+    );
+
+    setMenuExportarAbierto(false);
+
+  } catch (error) {
+
+    console.error(error);
+
+    alert(
+      "No fue posible exportar todas las novedades."
+    );
+
+  }
+
+};
+
+
+// =========================
+// EXPORTAR FILTRADO
+// =========================
+
+const exportarFiltrado = async () => {
+
+  const hayFiltro =
+    textoBusqueda.trim() !== "" ||
+    statusFiltro !== "Todos";
+
+  if (!hayFiltro) {
+
+    alert(
+      "Primero debes aplicar un filtro para exportar el listado filtrado."
+    );
+
+    return;
+  }
+
+  await exportarExcel(
+    filtrados,
+    "novedades_filtradas.xlsx"
+  );
+
+  setMenuExportarAbierto(false);
+
+};
 
   // =========================
   // CERRAR MODAL
@@ -2614,12 +2732,49 @@ function Consultas() {
           EXPORTAR
       ========================= */}
 
+      {/* =========================
+    EXPORTAR
+========================= */}
+
+<div
+  className="contenedor-exportar-consulta"
+>
+
+  <button
+    type="button"
+    className="btn-exportar-consulta"
+    onClick={() =>
+      setMenuExportarAbierto(
+        !menuExportarAbierto
+      )
+    }
+  >
+    📥 Descargar Excel ▾
+  </button>
+
+  {menuExportarAbierto && (
+
+    <div className="menu-exportar-consulta">
+
       <button
-        onClick={exportarExcel}
-        className="btn-exportar-consulta"
+        type="button"
+        onClick={exportarTodo}
       >
-        📥 Descargar Excel
+        📊 Exportar todo
       </button>
+
+      <button
+        type="button"
+        onClick={exportarFiltrado}
+      >
+        🔎 Exportar filtrado
+      </button>
+
+    </div>
+
+  )}
+
+</div>
 
       {/* =========================
           FILTROS
