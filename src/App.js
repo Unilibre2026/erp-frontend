@@ -2760,6 +2760,12 @@ const exportarFiltrado = async () => {
 
   };
 
+  const cerrarTrazabilidad = () => {
+
+  setTrazabilidad(null);
+
+};
+
   return (
 
     <div className="consulta-novedades">
@@ -3337,6 +3343,290 @@ const exportarFiltrado = async () => {
                 </div>
 
               </div>
+
+            </div>
+
+          </div>
+
+                </div>
+
+      )}
+
+      {/* =========================
+          MODAL TRAZABILIDAD
+      ========================= */}
+
+      {trazabilidad && (
+
+        <div
+          className="modal-overlay-trazabilidad"
+          onClick={cerrarTrazabilidad}
+        >
+
+          <div
+            className="modal-trazabilidad"
+            onClick={(e) =>
+              e.stopPropagation()
+            }
+          >
+
+            {/* ENCABEZADO */}
+
+            <div className="modal-trazabilidad-header">
+
+              <div>
+
+                <div className="modal-trazabilidad-titulo">
+                  Trazabilidad de la novedad
+                </div>
+
+                <div className="modal-trazabilidad-subtitulo">
+
+                  Novedad #
+                  {trazabilidad.informacion?.numero_novedad}
+
+                  {" • "}
+
+                  {trazabilidad.informacion?.nombre_experto}
+
+                </div>
+
+                <div className="modal-trazabilidad-meta">
+
+                  Documento:
+                  {" "}
+                  {trazabilidad.informacion?.documento_experto}
+
+                  {"   •   "}
+
+                  Convocatoria:
+                  {" "}
+                  {trazabilidad.informacion?.convocatoria}
+
+                </div>
+
+              </div>
+
+              <button
+                type="button"
+                className="btn-cerrar-trazabilidad"
+                onClick={cerrarTrazabilidad}
+              >
+                ×
+              </button>
+
+            </div>
+
+
+            {/* CONTENIDO */}
+
+            <div className="modal-trazabilidad-body">
+
+              {cargandoTrazabilidad ? (
+
+                <div className="trazabilidad-cargando">
+                  Cargando trazabilidad...
+                </div>
+
+              ) : (
+
+                <>
+
+                  {/* INFORMACIÓN GENERAL */}
+
+                  <div className="tarjeta-trazabilidad-info">
+
+                    <div className="titulo-tarjeta-trazabilidad">
+                      Información de la novedad
+                    </div>
+
+                    <div className="grid-trazabilidad-info">
+
+                      <div>
+                        <strong>
+                          Tipo de novedad
+                        </strong>
+
+                        <span>
+                          {trazabilidad.informacion?.tipo_novedad || "-"}
+                        </span>
+                      </div>
+
+                      <div>
+                        <strong>
+                          Eje / Indicador
+                        </strong>
+
+                        <span>
+                          {trazabilidad.informacion?.eje || "-"}
+                        </span>
+                      </div>
+
+                      <div>
+                        <strong>
+                          Nivel
+                        </strong>
+
+                        <span>
+                          {trazabilidad.informacion?.nivel || "-"}
+                        </span>
+                      </div>
+
+                      <div>
+                        <strong>
+                          Rol
+                        </strong>
+
+                        <span>
+                          {trazabilidad.informacion?.rol || "-"}
+                        </span>
+                      </div>
+
+                    </div>
+
+                  </div>
+
+
+                  {/* LÍNEA DE TIEMPO */}
+
+                  <div className="titulo-timeline">
+                    Línea de tiempo
+                  </div>
+
+                  <div className="timeline">
+
+                    {trazabilidad.timeline?.map(
+                      (evento, index) => (
+
+                        <div
+                          className={`timeline-item timeline-${String(
+                            evento.tipo || ""
+                          ).toLowerCase()}`}
+                          key={`${evento.tipo}-${index}`}
+                        >
+
+                          <div className="timeline-punto">
+                            <span></span>
+                          </div>
+
+                          <div className="timeline-contenido">
+
+                            <div className="timeline-cabecera">
+
+                              <div className="timeline-titulo">
+                                {evento.titulo}
+                              </div>
+
+                              <div className="timeline-fecha">
+
+                                {evento.fecha
+                                  ? new Date(
+                                      evento.fecha
+                                    ).toLocaleString(
+                                      "es-CO",
+                                      {
+                                        dateStyle: "short",
+                                        timeStyle: "short"
+                                      }
+                                    )
+                                  : "-"
+                                }
+
+                              </div>
+
+                            </div>
+
+
+                            {evento.estado && (
+
+                              <div className="timeline-estado">
+
+                                <strong>
+                                  Estado:
+                                </strong>
+
+                                {" "}
+
+                                {evento.estado}
+
+                              </div>
+
+                            )}
+
+
+                            {evento.usuario && (
+
+                              <div className="timeline-usuario">
+
+                                <strong>
+                                  Responsable:
+                                </strong>
+
+                                {" "}
+
+                                {evento.usuario}
+
+                              </div>
+
+                            )}
+
+
+                            {evento.descripcion && (
+
+                              <div className="timeline-descripcion">
+
+                                {evento.descripcion}
+
+                              </div>
+
+                            )}
+
+
+                            {evento.justificacion && (
+
+                              <div className="timeline-justificacion">
+
+                                <strong>
+                                  Justificación:
+                                </strong>
+
+                                <div>
+                                  {evento.justificacion}
+                                </div>
+
+                              </div>
+
+                            )}
+
+
+                            {evento.observaciones && (
+
+                              <div className="timeline-justificacion">
+
+                                <strong>
+                                  Observaciones:
+                                </strong>
+
+                                <div>
+                                  {evento.observaciones}
+                                </div>
+
+                              </div>
+
+                            )}
+
+                          </div>
+
+                        </div>
+
+                      )
+                    )}
+
+                  </div>
+
+                </>
+
+              )}
 
             </div>
 
