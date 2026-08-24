@@ -3536,11 +3536,11 @@ const exportarFiltrado = async () => {
 
           <div className="evento-trazabilidad-header">
 
-            <div className="evento-trazabilidad-titulo">
-
-              {evento.titulo}
-
-            </div>
+            <div className="timeline-titulo">
+              {evento.tipo === "aprobacion"
+               ? "Aprobación líder"
+               : evento.titulo}
+</div>
 
             <div className="evento-trazabilidad-fecha">
 
