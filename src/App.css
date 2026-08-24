@@ -2368,12 +2368,12 @@ thead th {
 }
 
 .evento-trazabilidad:hover {
-    transform: translateY(-1px);
+    transform: none;
 
-    border-color: #cbd5e1;
+    border-color: #e2e8f0;
 
     box-shadow:
-        0 5px 14px rgba(0, 0, 0, 0.08);
+        0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 
@@ -2407,28 +2407,16 @@ thead th {
         box-shadow 0.2s ease;
 }
 
-.timeline-registrada::before {
+.timeline-registrada::before,
+.timeline-aprobacion::before,
+.timeline-subsanacion::before,
+.timeline-vrm::before {
     background: #2563eb;
     box-shadow: 0 0 0 2px #2563eb;
 }
 
-.timeline-aprobacion::before {
-    background: #16a34a;
-    box-shadow: 0 0 0 2px #16a34a;
-}
-
-.timeline-subsanacion::before {
-    background: #7c3aed;
-    box-shadow: 0 0 0 2px #7c3aed;
-}
-
-.timeline-vrm::before {
-    background: #d97706;
-    box-shadow: 0 0 0 2px #d97706;
-}
-
 .evento-trazabilidad:hover::before {
-    transform: scale(1.15);
+    transform: scale(1.12);
 
     box-shadow:
         0 0 0 2px #2563eb,
