@@ -2407,12 +2407,22 @@ thead th {
         box-shadow 0.2s ease;
 }
 
+.vrm-aprobado::before {
+    background: #16a34a;
+    box-shadow: 0 0 0 2px #16a34a;
+}
+
 .timeline-registrada::before,
 .timeline-aprobacion::before,
 .timeline-subsanacion::before,
 .timeline-vrm::before {
     background: #2563eb;
     box-shadow: 0 0 0 2px #2563eb;
+}
+
+.timeline-vrm.estado-aprobado::before {
+    background: #16a34a;
+    box-shadow: 0 0 0 2px #16a34a;
 }
 
 .evento-trazabilidad:hover::before {

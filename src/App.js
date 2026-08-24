@@ -3528,9 +3528,14 @@ const exportarFiltrado = async () => {
       return (
 
         <div
-          className={`evento-trazabilidad timeline-${tipoEvento}`}
-          key={`${evento.tipo}-${index}`}
-        >
+          className={`evento-trazabilidad timeline-${tipoEvento} ${
+           tipoEvento === "vrm" &&
+           String(evento.estado || "").toUpperCase() === "APROBADO"
+           ? "vrm-aprobado"
+           : ""
+  }`}
+  key={`${evento.tipo}-${index}`}
+>
 
           {/* ENCABEZADO DEL EVENTO */}
 
