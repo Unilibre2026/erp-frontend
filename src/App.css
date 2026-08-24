@@ -2225,6 +2225,9 @@ thead th {
     background: #2d6cdf !important;
 
     color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     font-size: 25px;
 
