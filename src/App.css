@@ -2310,6 +2310,11 @@ thead th {
     color: #1e293b;
 }
 
+.titulo-timeline {
+    margin-top: 16px;
+    margin-bottom: 8px;
+}
+
 
 /* =========================================================
    LÍNEA DE TIEMPO
