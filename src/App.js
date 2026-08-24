@@ -3485,7 +3485,7 @@ const exportarFiltrado = async () => {
 </div>
                     </div>
 
-                  </div>
+                  
 
 
                   {/* LÍNEA DE TIEMPO */}
