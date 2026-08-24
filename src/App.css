@@ -2453,10 +2453,10 @@ thead th {
 }
 
 .evento-trazabilidad-fecha {
-    font-size: 11px;
+    font-size: 13px;
     color: #64748b;
     white-space: nowrap;
-    font-weight: 500;
+    font-weight: 700;
 }
 
 
