@@ -2407,10 +2407,7 @@ thead th {
         box-shadow 0.2s ease;
 }
 
-.vrm-aprobado::before {
-    background: #16a34a;
-    box-shadow: 0 0 0 2px #16a34a;
-}
+
 
 .timeline-registrada::before,
 .timeline-aprobacion::before,
@@ -2420,10 +2417,7 @@ thead th {
     box-shadow: 0 0 0 2px #2563eb;
 }
 
-.timeline-vrm.estado-aprobado::before {
-    background: #16a34a;
-    box-shadow: 0 0 0 2px #16a34a;
-}
+
 
 .evento-trazabilidad:hover::before {
     transform: scale(1.12);
@@ -2846,23 +2840,4 @@ thead th {
         padding: 12px;
     }
 
-}
-/* =========================================================
-   VRM APROBADO - CÍRCULO VERDE
-========================================================= */
-
-.timeline-trazabilidad
-.timeline-vrm.timeline-vrm-aprobado::before {
-    background: #16a34a !important;
-
-    box-shadow:
-        0 0 0 2px #16a34a !important;
-}
-.timeline-trazabilidad
-.timeline-vrm.timeline-vrm-aprobado:hover::before {
-    background: #16a34a !important;
-
-    box-shadow:
-        0 0 0 2px #16a34a !important,
-        0 0 0 5px rgba(22, 163, 74, 0.12) !important;
 }
