@@ -2067,7 +2067,8 @@ thead th {
 }
 
 .btn-ver-detalle:hover {
-    background: #1f5bc1;
+    background: #22C55E !important;
+    color: white !important;
 }
 
 /* =========================
