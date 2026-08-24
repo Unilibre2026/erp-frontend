@@ -2664,7 +2664,7 @@ const exportarTodo = async () => {
 
     await exportarExcel(
       listaCompleta,
-      "novedades_completas.xlsx"
+      "novedades_totales.xlsx"
     );
 
     setMenuExportarAbierto(false);
