@@ -2070,6 +2070,31 @@ thead th {
     background: #1f5bc1;
 }
 
+/* =========================
+   NÚMERO DE NOVEDAD
+========================= */
+
+.btn-numero-novedad {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+
+    color: #2563eb !important;
+    text-decoration: underline;
+
+    font-size: 20px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.btn-numero-novedad:hover {
+    background: transparent !important;
+    color: #174ea6 !important;
+    text-decoration: underline;
+}
+
 /* =========================================================
    MODAL
 ========================================================= */
