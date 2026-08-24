@@ -40,7 +40,7 @@
 }
 
 .titulo-rol {
-    margin: 0;
+    margin: 0 -12px;
     padding: 8px 12px;
     background-color: #0b5f7d;
     color: white;
