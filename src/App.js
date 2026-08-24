@@ -32,7 +32,7 @@ import JuecesAsignados from "./components/JuecesAsignados";
 import ReporteAsistencia from "./components/ReporteAsistencia";
 import IncluirPresupuesto from "./pages/Presupuesto/IncluirPresupuesto";
 import Presupuesto from "./components/Presupuesto";
-import { FileUser } from "lucide-react";
+import { FileText, FileUser } from "lucide-react";
 
 const API_URL = "https://erp-unilibre-production.up.railway.app";
 
