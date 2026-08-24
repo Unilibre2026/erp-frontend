@@ -3493,137 +3493,167 @@ const exportarFiltrado = async () => {
                     Línea de tiempo
                   </div>
 
-                  <div className="timeline">
+                  <div className="timeline-trazabilidad">
 
-                    {trazabilidad.timeline?.map(
-                      (evento, index) => (
+  {trazabilidad.timeline?.map(
+    (evento, index) => {
 
-                        <div
-                          className={`timeline-item timeline-${String(
-                            evento.tipo || ""
-                          ).toLowerCase()}`}
-                          key={`${evento.tipo}-${index}`}
-                        >
+      const tipoEvento = String(
+        evento.tipo || ""
+      ).toLowerCase();
 
-                          <div className="timeline-punto">
-                            <span></span>
-                          </div>
+      let claseEstado = "evento-registrada";
 
-                          <div className="timeline-contenido">
+      if (tipoEvento === "aprobacion") {
 
-                            <div className="timeline-cabecera">
+        claseEstado =
+          String(evento.estado || "").toUpperCase() === "NO APROBADO"
+            ? "evento-no-aprobada"
+            : "evento-aprobada";
 
-                              <div className="timeline-titulo">
-                                {evento.titulo}
-                              </div>
+      }
 
-                              <div className="timeline-fecha">
+      if (tipoEvento === "subsanacion") {
 
-                                {evento.fecha
-                                  ? new Date(
-                                      evento.fecha
-                                    ).toLocaleString(
-                                      "es-CO",
-                                      {
-                                        dateStyle: "short",
-                                        timeStyle: "short"
-                                      }
-                                    )
-                                  : "-"
-                                }
+        claseEstado = "evento-subsanar";
 
-                              </div>
+      }
 
-                            </div>
+      if (tipoEvento === "vrm") {
 
+        claseEstado = "evento-vrm";
 
-                            {evento.estado && (
+      }
 
-                              <div className="timeline-estado">
+      return (
 
-                                <strong>
-                                  Estado:
-                                </strong>
+        <div
+          className={`evento-trazabilidad timeline-${tipoEvento}`}
+          key={`${evento.tipo}-${index}`}
+        >
 
-                                {" "}
+          {/* ENCABEZADO DEL EVENTO */}
 
-                                {evento.estado}
+          <div className="evento-trazabilidad-header">
 
-                              </div>
+            <div className="evento-trazabilidad-titulo">
 
-                            )}
+              {evento.titulo}
 
+            </div>
 
-                            {evento.usuario && (
+            <div className="evento-trazabilidad-fecha">
 
-                              <div className="timeline-usuario">
+              {evento.fecha
+                ? new Date(
+                    evento.fecha
+                  ).toLocaleString(
+                    "es-CO",
+                    {
+                      dateStyle: "short",
+                      timeStyle: "short"
+                    }
+                  )
+                : "-"
+              }
 
-                                <strong>
-                                  Responsable:
-                                </strong>
+            </div>
 
-                                {" "}
-
-                                {evento.usuario}
-
-                              </div>
-
-                            )}
+          </div>
 
 
-                            {evento.descripcion && (
+          {/* ESTADO */}
 
-                              <div className="timeline-descripcion">
+          {evento.estado && (
 
-                                {evento.descripcion}
+            <div
+              className={`evento-trazabilidad-estado ${claseEstado}`}
+            >
 
-                              </div>
+              Estado: {evento.estado}
 
-                            )}
+            </div>
 
-
-                            {evento.justificacion && (
-
-                              <div className="timeline-justificacion">
-
-                                <strong>
-                                  Justificación:
-                                </strong>
-
-                                <div>
-                                  {evento.justificacion}
-                                </div>
-
-                              </div>
-
-                            )}
+          )}
 
 
-                            {evento.observaciones && (
+          {/* RESPONSABLE */}
 
-                              <div className="timeline-justificacion">
+          {evento.usuario && (
 
-                                <strong>
-                                  Observaciones:
-                                </strong>
+            <div className="evento-trazabilidad-responsable">
 
-                                <div>
-                                  {evento.observaciones}
-                                </div>
+              <strong>
+                Responsable:
+              </strong>
 
-                              </div>
+              {" "}
 
-                            )}
+              {evento.usuario}
 
-                          </div>
+            </div>
 
-                        </div>
+          )}
 
-                      )
-                    )}
 
-                  </div>
+          {/* DESCRIPCIÓN */}
 
+          {evento.descripcion && (
+
+            <div className="evento-trazabilidad-descripcion">
+
+              {evento.descripcion}
+
+            </div>
+
+          )}
+
+
+          {/* JUSTIFICACIÓN */}
+
+          {evento.justificacion && (
+
+            <div className="evento-trazabilidad-justificacion">
+
+              <strong>
+                Justificación
+              </strong>
+
+              <div>
+                {evento.justificacion}
+              </div>
+
+            </div>
+
+          )}
+
+
+          {/* OBSERVACIONES */}
+
+          {evento.observaciones && (
+
+            <div className="evento-trazabilidad-justificacion">
+
+              <strong>
+                Observaciones
+              </strong>
+
+              <div>
+                {evento.observaciones}
+              </div>
+
+            </div>
+
+          )}
+
+        </div>
+
+      );
+
+    }
+  )}
+
+</div>
                 </>
 
               )}
