@@ -3444,7 +3444,7 @@ const exportarFiltrado = async () => {
 
                       <div>
                         <strong>
-                          Tipo de novedad
+                          Tipo de novedad:
                         </strong>
 
                         <span>
@@ -3454,7 +3454,7 @@ const exportarFiltrado = async () => {
 
                       <div>
                         <strong>
-                          Eje / Indicador
+                          Eje / Indicador:
                         </strong>
 
                         <span>
@@ -3464,7 +3464,7 @@ const exportarFiltrado = async () => {
 
                       <div>
                         <strong>
-                          Nivel
+                          Nivel:
                         </strong>
 
                         <span>
@@ -3474,7 +3474,7 @@ const exportarFiltrado = async () => {
 
                       <div>
                         <strong>
-                          Rol
+                          Rol:
                         </strong>
 
                         <span>
