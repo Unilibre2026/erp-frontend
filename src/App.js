@@ -3332,25 +3332,25 @@ const exportarFiltrado = async () => {
 
                   <div className="titulo-tarjeta-modal">
                     Perfil académico
-                  </div>
+</div>
 
-                  <div className="texto-modal-consulta">
+<div className="texto-modal-consulta">
 
-                    {novedadSeleccionada.perfil_academico || "-"}
+  {novedadSeleccionada.perfil_academico || "-"}
 
-                  </div>
+</div>
 
-                </div>
+</div>
 
-              </div>
+</div>
 
-            </div>
+</div>
 
-          
+</div>
 
-        
+</div>
 
-      )}
+)}
 
       {/* =========================
           MODAL TRAZABILIDAD
