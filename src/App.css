@@ -2096,6 +2096,546 @@ thead th {
 }
 
 /* =========================================================
+   BOTÓN NÚMERO DE NOVEDAD
+========================================================= */
+
+.btn-numero-novedad {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+
+    color: #2563eb !important;
+    text-decoration: underline;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.btn-numero-novedad:hover {
+    background: transparent !important;
+    color: #174ea6 !important;
+    text-decoration: underline;
+}
+
+
+/* =========================================================
+   MODAL DE TRAZABILIDAD
+========================================================= */
+
+.modal-overlay-trazabilidad {
+    position: fixed;
+    inset: 0;
+
+    background: rgba(15, 23, 42, 0.62);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 25px;
+
+    z-index: 10000;
+
+    backdrop-filter: blur(2px);
+}
+
+
+/* =========================================================
+   CONTENEDOR
+========================================================= */
+
+.modal-trazabilidad {
+    width: min(1000px, 94vw);
+    max-height: 90vh;
+
+    background: #ffffff;
+
+    border-radius: 14px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.35);
+
+    display: flex;
+    flex-direction: column;
+
+    animation: aparecerTrazabilidad 0.20s ease-out;
+}
+
+/* =========================================================
+   ENCABEZADO
+========================================================= */
+
+.modal-trazabilidad-header {
+    background: #21566a;
+    color: white;
+
+    padding: 20px 24px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    border-bottom: 3px solid #2d6cdf;
+}
+
+.modal-trazabilidad-titulo {
+    font-size: 19px;
+    font-weight: 700;
+}
+
+.modal-trazabilidad-subtitulo {
+    margin-top: 5px;
+
+    font-size: 15px;
+
+    font-weight: 600;
+}
+
+.modal-trazabilidad-meta {
+    margin-top: 6px;
+
+    font-size: 12px;
+
+    opacity: 0.90;
+}
+
+
+/* =========================================================
+   CERRAR
+========================================================= */
+
+.btn-cerrar-trazabilidad {
+    width: 36px;
+    height: 36px;
+
+    border: none;
+
+    border-radius: 5px;
+
+    background: #2d6cdf !important;
+
+    color: white;
+
+    font-size: 25px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    flex-shrink: 0;
+}
+
+.btn-cerrar-trazabilidad:hover {
+    background: #1f5bc1 !important;
+}
+
+
+/* =========================================================
+   CUERPO
+========================================================= */
+
+.modal-trazabilidad-body {
+    padding: 24px 28px;
+
+    overflow-y: auto;
+
+    background: #f8fafc;
+
+    scrollbar-width: thin;
+    scrollbar-color: #b8c4cc transparent;
+}
+
+/* =========================================================
+   RESUMEN
+========================================================= */
+
+.resumen-trazabilidad {
+    background: #ffffff;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 8px;
+
+    padding: 15px 18px;
+
+    margin-bottom: 22px;
+}
+
+.resumen-trazabilidad-titulo {
+    color: #21566a;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    margin-bottom: 12px;
+}
+
+.resumen-trazabilidad-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 15px;
+}
+
+.resumen-trazabilidad-grid div {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 4px;
+}
+
+.resumen-trazabilidad-grid strong {
+    font-size: 10px;
+
+    color: #64748b;
+}
+
+.resumen-trazabilidad-grid span {
+    font-size: 12px;
+
+    color: #1e293b;
+}
+
+
+/* =========================================================
+   LÍNEA DE TIEMPO
+========================================================= */
+
+.timeline-trazabilidad {
+    position: relative;
+
+    margin-left: 8px;
+
+    padding-left: 38px;
+}
+
+
+/* Línea vertical */
+
+.timeline-trazabilidad::before {
+    content: "";
+
+    position: absolute;
+
+    top: 8px;
+    bottom: 8px;
+
+    left: 10px;
+
+    
+    
+
+    width: 2px;
+
+    background: #cbd5e1;
+}
+
+
+/* =========================================================
+   EVENTO
+========================================================= */
+
+.evento-trazabilidad {
+    position: relative;
+
+    background: #ffffff;
+
+    border: 1px solid #e2e8f0;
+    border-left: 4px solid #cbd5e1;
+
+    border-radius: 10px;
+
+    padding: 16px 18px;
+
+    margin-bottom: 20px;
+
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.05);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.evento-trazabilidad:hover {
+    transform: translateY(-1px);
+
+    border-color: #cbd5e1;
+
+    box-shadow:
+        0 5px 14px rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================================================
+   CÍRCULO
+========================================================= */
+
+.evento-trazabilidad::before {
+    content: "";
+
+    position: absolute;
+
+    left: -39px;
+
+    top: 18px;
+
+    width: 14px;
+    height: 14px;
+
+    border-radius: 50%;
+
+    background: #2563eb;
+
+    border: 3px solid #ffffff;
+
+    box-shadow:
+        0 0 0 2px #2563eb;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.timeline-registrada::before {
+    background: #2563eb;
+    box-shadow: 0 0 0 2px #2563eb;
+}
+
+.timeline-aprobacion::before {
+    background: #16a34a;
+    box-shadow: 0 0 0 2px #16a34a;
+}
+
+.timeline-subsanacion::before {
+    background: #7c3aed;
+    box-shadow: 0 0 0 2px #7c3aed;
+}
+
+.timeline-vrm::before {
+    background: #d97706;
+    box-shadow: 0 0 0 2px #d97706;
+}
+
+.evento-trazabilidad:hover::before {
+    transform: scale(1.15);
+
+    box-shadow:
+        0 0 0 2px #2563eb,
+        0 0 0 5px rgba(37, 99, 235, 0.12);
+}
+
+
+/* =========================================================
+   ENCABEZADO EVENTO
+========================================================= */
+
+.evento-trazabilidad-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 15px;
+
+    margin-bottom: 10px;
+}
+
+.evento-trazabilidad-titulo {
+    font-size: 15px;
+    font-weight: 700;
+    color: #21566a;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.evento-trazabilidad-fecha {
+    font-size: 11px;
+    color: #64748b;
+    white-space: nowrap;
+    font-weight: 500;
+}
+
+
+/* =========================================================
+   ESTADO DEL EVENTO
+========================================================= */
+
+.evento-trazabilidad-estado {
+    display: inline-block;
+
+    padding: 4px 9px;
+
+    border-radius: 999px;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    margin-bottom: 8px;
+}
+
+.evento-registrada {
+    background: #dbeafe;
+    color: #1d4ed8;
+}
+
+.evento-aprobada {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.evento-no-aprobada {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+.evento-subsanar {
+    background: #ede9fe;
+    color: #6d28d9;
+}
+
+.evento-vrm {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+
+/* =========================================================
+   RESPONSABLE
+========================================================= */
+
+/* =========================================================
+   RESPONSABLE
+========================================================= */
+
+.evento-trazabilidad-responsable {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    margin-bottom: 10px;
+
+    font-size: 12px;
+    color: #475569;
+}
+
+.evento-trazabilidad-responsable strong {
+    color: #1e293b;
+    font-weight: 600;
+}
+
+/* =========================================================
+   DESCRIPCIÓN
+========================================================= */
+
+.evento-trazabilidad-descripcion {
+    font-size: 12px;
+
+    color: #334155;
+
+    line-height: 1.5;
+
+    white-space: pre-wrap;
+}
+
+
+/* =========================================================
+   JUSTIFICACIÓN
+========================================================= */
+
+.evento-trazabilidad-justificacion {
+    margin-top: 10px;
+
+    padding: 10px;
+
+    background: #f8fafc;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 5px;
+
+    font-size: 11px;
+
+    line-height: 1.5;
+
+    color: #475569;
+}
+
+.evento-trazabilidad-justificacion strong {
+    display: block;
+
+    color: #21566a;
+
+    margin-bottom: 4px;
+}
+
+
+/* =========================================================
+   ANIMACIÓN
+========================================================= */
+
+@keyframes aparecerTrazabilidad {
+
+    from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .modal-trazabilidad {
+        width: 96vw;
+
+        max-height: 94vh;
+    }
+
+    .resumen-trazabilidad-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .modal-trazabilidad-header {
+        padding: 14px;
+    }
+
+    .modal-trazabilidad-body {
+        padding: 14px;
+    }
+
+    .evento-trazabilidad-header {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 5px;
+    }
+
+}
+
+/* =========================================================
    MODAL
 ========================================================= */
 
