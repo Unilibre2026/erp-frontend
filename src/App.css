@@ -1956,9 +1956,13 @@ thead th {
 .consulta-novedades .tabla-novedades td:nth-child(1) {
     width: 85px;
     text-align: center;
-    font-weight: 600;
+    font-weight: 700;
 }
 
+.consulta-novedades .tabla-novedades td:nth-child(1) .btn-numero-novedad {
+    font-size: 18px;
+    font-weight: 700;
+}
 .consulta-novedades .tabla-novedades th:nth-child(2),
 .consulta-novedades .tabla-novedades td:nth-child(2) {
     width: 120px;
