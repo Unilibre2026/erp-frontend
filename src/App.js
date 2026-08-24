@@ -3521,17 +3521,20 @@ const exportarFiltrado = async () => {
 
       if (tipoEvento === "vrm") {
 
-        claseEstado = "evento-vrm";
+       claseEstado =
+        String(evento.estado || "").toUpperCase() === "APROBADO"
+        ? "evento-aprobada"
+        : "evento-vrm";
 
-      }
+}
 
       return (
 
         <div
           className={`evento-trazabilidad timeline-${tipoEvento} ${
            tipoEvento === "vrm" &&
-           String(evento.estado || "").toUpperCase() === "APROBADO"
-           ? "vrm-aprobado"
+           String(evento.estado || "").trim().toUpperCase() === "APROBADO"
+           ? "timeline-vrm-aprobado"
            : ""
   }`}
   key={`${evento.tipo}-${index}`}
