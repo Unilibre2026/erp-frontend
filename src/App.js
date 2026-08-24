@@ -3442,49 +3442,47 @@ const exportarFiltrado = async () => {
 
                     <div className="grid-trazabilidad-info">
 
-                      <div>
-                        <strong>
-                          Tipo de novedad:
-                        </strong>
-                        <span>{novedadSeleccionada.tipo_novedad}</span>
+  <div>
+    <strong>
+      Tipo de novedad:
+    </strong>
 
-                        <span>
-                          {trazabilidad.informacion?.tipo_novedad || "-"}
-                        </span>
-                      </div>
+    <span>
+      {trazabilidad.informacion?.tipo_novedad || "-"}
+    </span>
+  </div>
 
-                      <div>
-                        <strong>
-                          Eje / Indicador:
-                        </strong>
-                        <span>{novedadSeleccionada.eje}</span>
+  <div>
+    <strong>
+      Eje / Indicador:
+    </strong>
 
-                        <span>
-                          {trazabilidad.informacion?.eje || "-"}
-                        </span>
-                      </div>
+    <span>
+      {trazabilidad.informacion?.eje || "-"}
+    </span>
+  </div>
 
-                      <div>
-                        <strong>
-                          Nivel:
-                        </strong>
-                        <span>{novedadSeleccionada.nivel}</span>
+  <div>
+    <strong>
+      Nivel:
+    </strong>
 
-                        <span>
-                          {trazabilidad.informacion?.nivel || "-"}
-                        </span>
-                      </div>
+    <span>
+      {trazabilidad.informacion?.nivel || "-"}
+    </span>
+  </div>
 
-                      <div>
-                        <strong>
-                          Rol:
-                        </strong>
+  <div>
+    <strong>
+      Rol:
+    </strong>
 
-                        <span>
-                          {trazabilidad.informacion?.rol || "-"}
-                        </span>
-                      </div>
+    <span>
+      {trazabilidad.informacion?.rol || "-"}
+    </span>
+  </div>
 
+</div>
                     </div>
 
                   </div>
