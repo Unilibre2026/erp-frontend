@@ -2847,3 +2847,22 @@ thead th {
     }
 
 }
+/* =========================================================
+   VRM APROBADO - CÍRCULO VERDE
+========================================================= */
+
+.timeline-trazabilidad
+.timeline-vrm.timeline-vrm-aprobado::before {
+    background: #16a34a !important;
+
+    box-shadow:
+        0 0 0 2px #16a34a !important;
+}
+.timeline-trazabilidad
+.timeline-vrm.timeline-vrm-aprobado:hover::before {
+    background: #16a34a !important;
+
+    box-shadow:
+        0 0 0 2px #16a34a !important,
+        0 0 0 5px rgba(22, 163, 74, 0.12) !important;
+}
