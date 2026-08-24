@@ -2399,8 +2399,48 @@ useEffect(() => {
   // =========================
 
   const [novedadSeleccionada, setNovedadSeleccionada] = useState(null);
+  const [trazabilidad, setTrazabilidad] = useState(null);
+  const [cargandoTrazabilidad, setCargandoTrazabilidad] = useState(false);
 
  
+
+  const abrirTrazabilidad = async (numeroNovedad) => {
+
+  setCargandoTrazabilidad(true);
+  setTrazabilidad(null);
+
+  try {
+
+    const res = await fetch(
+      `${API_URL}/trazabilidad-novedad/${numeroNovedad}`
+    );
+
+    if (!res.ok) {
+      throw new Error("No fue posible obtener la trazabilidad.");
+    }
+
+    const data = await res.json();
+
+    setTrazabilidad(data);
+
+  } catch (error) {
+
+    console.error(
+      "Error cargando trazabilidad:",
+      error
+    );
+
+    alert(
+      "No fue posible consultar la trazabilidad de la novedad."
+    );
+
+  } finally {
+
+    setCargandoTrazabilidad(false);
+
+  }
+
+};
 
   // =========================
   // FILTROS
@@ -2934,8 +2974,17 @@ const exportarFiltrado = async () => {
     <tr key={i.id}>
 
       <td>
-        {i.id}
-      </td>
+
+        <button
+          type="button"
+          className="btn-numero-novedad"
+          onClick={() => abrirTrazabilidad(i.id)}
+          title="Ver trazabilidad de la novedad"
+  >
+    {i.id}
+  </button>
+
+</td>
 
       {/* DETALLE */}
 
