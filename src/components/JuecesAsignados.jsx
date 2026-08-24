@@ -235,6 +235,7 @@ function JuecesAsignados() {
           <span>Rol</span>
           <span>Disponibilidad</span>
           <span>Teléfono</span>
+          <span>Correo</span>
           <span>Ciudad de domicilio</span>
 
         </div>
@@ -270,6 +271,7 @@ function JuecesAsignados() {
               <span>{item.rol}</span>
               <span>{item.disponibilidad || "-"}</span>
               <span>{item.telefono || "-"}</span>
+              <span>{item.correo_personal || "-"}</span>
               <span>{item.ciudad_domicilio || "-"}</span>
 
             </div>
