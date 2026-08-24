@@ -1903,6 +1903,10 @@ thead th {
     vertical-align: middle;
 }
 
+.consulta-novedades .tabla-novedades tbody td {
+    background-color: #ffffff;
+}
+
 .consulta-novedades .tabla-novedades tbody tr:hover {
     background: #f7fafc;
 }
