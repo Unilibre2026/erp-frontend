@@ -1,4 +1,4 @@
-/* ============================================================
+* ============================================================
    PERFILES APROBADOS POR EXPERTO
    ============================================================ */
 
@@ -558,15 +558,19 @@
    ============================================================ */
 
 .btn-detalle-perfil {
-    display: inline-flex;
+    display: inline-flex !important;
 
     align-items: center;
     justify-content: center;
 
-    width: 34px;
-    height: 34px;
+    width: 34px !important;
+    height: 34px !important;
 
-    padding: 0;
+    min-width: 34px;
+    min-height: 34px;
+
+    padding: 0 !important;
+    margin: 0 auto;
 
     border: none;
 
@@ -578,15 +582,36 @@
 
     cursor: pointer;
 
+    box-sizing: border-box;
+
+    line-height: 1;
+
     transition:
         background 0.15s ease,
         transform 0.1s ease;
 }
 
+/* Mantener el tamaño correcto del ícono */
+.btn-detalle-perfil .icono-resumen-perfil {
+    display: block;
+
+    width: 25px !important;
+    height: 25px !important;
+
+    min-width: 25px;
+    min-height: 25px;
+
+    max-width: none !important;
+    max-height: none !important;
+
+    flex-shrink: 0;
+
+    color: #ffffff;
+}
+
 .btn-detalle-perfil:hover {
     background: #1d4ed8;
 }
-
 
 .btn-detalle-perfil:active {
     transform: translateY(1px);
