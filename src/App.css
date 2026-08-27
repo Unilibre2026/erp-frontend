@@ -2890,3 +2890,9 @@ thead th {
     }
 
 }
+
+.status-subsanado {
+  background-color: #eadcff;
+  color: #7b2cbf;
+  border: 1px solid #d3b8f0;
+}

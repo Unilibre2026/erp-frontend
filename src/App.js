@@ -33,6 +33,7 @@ import ReporteAsistencia from "./components/ReporteAsistencia";
 import IncluirPresupuesto from "./pages/Presupuesto/IncluirPresupuesto";
 import Presupuesto from "./components/Presupuesto";
 import { FileText, FileUser } from "lucide-react";
+import PerfilesAprobadosPorExperto from "./components/PerfilesAprobadosPorExperto";
 
 const API_URL = "https://erp-unilibre-production.up.railway.app";
 
@@ -526,6 +527,12 @@ if (!usuario) {
   </button>
 )}
 
+{puedeVer("perfiles_aprobados_por_experto") && (
+  <button onClick={() => cambiarVista("perfiles_aprobados_por_experto")}>
+    Perfiles aprobados por experto
+  </button>
+)}
+
 {puedeVer("perfiles_sugeridos_indicador") && (
   <button onClick={() => cambiarVista("Cargar perfiles sugeridos por indicador")}>
     Perfiles sugeridos por indicador
@@ -604,6 +611,7 @@ if (!usuario) {
   {vista === "reporte_asistencia" && <ReporteAsistencia />}
   {vista === "presupuesto" && <IncluirPresupuesto />}
   {vista === "consulta_presupuesto" && <Presupuesto />}
+  {vista === "perfiles_aprobados_por_experto" && (<PerfilesAprobadosPorExperto />)}
   {vista === "consulta_subsanacion" && (<ConsultaSubsanacion />
   
 )}
@@ -2919,6 +2927,10 @@ const exportarFiltrado = async () => {
               SUBSANAR
             </option>
 
+            <option value="Subsanado">
+              Subsanado
+            </option>
+
             <option value="APROBADO">
               APROBADO
             </option>
@@ -3037,6 +3049,8 @@ const exportarFiltrado = async () => {
               ? "status-preaprobado"
               : i.status === "SUBSANAR"
               ? "status-subsanar"
+              : i.status === "Subsanado"
+              ? "status-subsanado"
               : i.status === "APROBADO"
               ? "status-aprobado"
               : i.status === "NOVEDAD RETIRADA"
