@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import ExcelJS from "exceljs";
 import { saveAs } from "file-saver";
-import { FileUser, Download, X } from "lucide-react";
+import { Eye, FileUser, Download, X } from "lucide-react";
 import "./PerfilesAprobadosPorExperto.css";
 
 const API_URL = "https://erp-unilibre-production.up.railway.app";
@@ -928,11 +928,11 @@ function PerfilesAprobadosPorExperto() {
                                                 onClick={() =>
                                                     abrirModal(item)
                                                 }
-                                                title="Ver detalle"
+                                                title="Ver resumen del perfil"
                                             >
 
-                                                <Eye
-                                                    size={17}
+                                                <FileUser
+                                                    size={25}
                                                     strokeWidth={1.8}
                                                 />
 
