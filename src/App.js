@@ -530,7 +530,7 @@ if (!usuario) {
 
 {puedeVer("perfiles_aprobados_por_experto") && (
   <button onClick={() => cambiarVista("perfiles_aprobados_por_experto")}>
-    Perfiles aprobados por experto
+    Perfiles de expertos aprobados
   </button>
 )}
 
