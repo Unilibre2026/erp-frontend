@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import ExcelJS from "exceljs";
 import { saveAs } from "file-saver";
-import { Eye, FileUser, Download, X } from "lucide-react";
+import { FileUser, Download, X } from "lucide-react";
 import "./PerfilesAprobadosPorExperto.css";
 
 const API_URL = "https://erp-unilibre-production.up.railway.app";
