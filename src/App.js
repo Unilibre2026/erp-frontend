@@ -2949,6 +2949,8 @@ const exportarFiltrado = async () => {
 
               <th>Resumen perfil</th>
 
+              <th>Fecha</th>
+
               <th>Status</th>
 
               <th>Documento</th>
@@ -2990,6 +2992,12 @@ const exportarFiltrado = async () => {
     {i.id}
   </button>
 
+</td>
+
+<td>
+  {i.fecha_creacion
+    ? new Date(i.fecha_creacion).toLocaleDateString("es-CO")
+    : ""}
 </td>
 
       {/* DETALLE */}
