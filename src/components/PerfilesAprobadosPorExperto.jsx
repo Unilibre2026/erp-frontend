@@ -606,7 +606,7 @@ function PerfilesAprobadosPorExperto() {
             ================================================= */}
 
             <h2>
-                Perfiles aprobados por experto
+                Perfiles aprobados
             </h2>
 
 
@@ -1114,7 +1114,7 @@ function PerfilesAprobadosPorExperto() {
                             <div>
 
                                 <h3>
-                                    Perfil aprobado por experto
+                                    Perfil aprobado
                                 </h3>
 
                                 <span>
