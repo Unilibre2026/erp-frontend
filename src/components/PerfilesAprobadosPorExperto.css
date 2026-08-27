@@ -15,8 +15,10 @@
 
 .perfiles-aprobados h2 {
     margin: 0 0 18px 0;
+
     font-size: 24px;
     font-weight: 700;
+
     color: #111827;
 }
 
@@ -28,14 +30,17 @@
 .perfiles-aprobados-filtros {
     display: flex;
     align-items: center;
+
     gap: 12px;
+
     width: 100%;
+
     box-sizing: border-box;
 }
 
 
 /* ============================================================
-   PRIMERA LÍNEA
+   PRIMERA FILA
    ============================================================ */
 
 .fila-filtros {
@@ -44,7 +49,7 @@
 
 
 /* ============================================================
-   SEGUNDA LÍNEA
+   SEGUNDA FILA
    ============================================================ */
 
 .fila-filtros-secundaria {
@@ -60,14 +65,22 @@
 .perfiles-aprobados-filtros select,
 .perfiles-aprobados-filtros input {
     height: 38px;
+
     box-sizing: border-box;
+
     border: 1px solid #cbd5e1;
     border-radius: 6px;
+
     background: #ffffff;
+
     color: #1f2937;
+
     font-size: 14px;
+
     padding: 0 12px;
+
     outline: none;
+
     transition:
         border-color 0.15s ease,
         box-shadow 0.15s ease;
@@ -75,21 +88,19 @@
 
 
 /* ============================================================
-   ANCHO FILTROS PRINCIPALES
+   PRIMERA FILA - ANCHOS
    ============================================================ */
 
-.fila-filtros:first-child select {
+.fila-filtros select {
     flex: 1;
+
     min-width: 170px;
 }
 
 
-/* ============================================================
-   PALABRA CLAVE
-   ============================================================ */
-
-.fila-filtros:first-child input {
+.fila-filtros input {
     flex: 1;
+
     min-width: 220px;
 }
 
@@ -110,7 +121,9 @@
 .perfiles-aprobados-filtros select:focus,
 .perfiles-aprobados-filtros input:focus {
     border-color: #64748b;
-    box-shadow: 0 0 0 2px rgba(100, 116, 139, 0.12);
+
+    box-shadow:
+        0 0 0 2px rgba(100, 116, 139, 0.12);
 }
 
 
@@ -120,22 +133,30 @@
 
 .perfiles-aprobados-separador {
     width: 100%;
+
     height: 1px;
+
     background: #d7dce2;
+
     margin: 4px 0 12px;
 }
 
 
 /* ============================================================
-   BARRA SUPERIOR DE RESULTADOS
+   BARRA DE RESULTADOS
    ============================================================ */
 
 .perfiles-aprobados-barra {
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
+
     gap: 15px;
+
     min-height: 40px;
+
     margin-bottom: 10px;
 }
 
@@ -146,30 +167,38 @@
 
 .perfiles-aprobados-contador {
     font-size: 13px;
+
     color: #64748b;
 }
 
 
 /* ============================================================
-   BOTÓN EXPORTAR
+   EXPORTAR
    ============================================================ */
 
 .btn-exportar-perfiles {
     display: inline-flex;
+
     align-items: center;
+
     justify-content: center;
+
     gap: 7px;
 
     height: 36px;
+
     padding: 0 14px;
 
     border: none;
+
     border-radius: 6px;
 
     background: #2563eb;
-    color: white;
+
+    color: #ffffff;
 
     font-size: 13px;
+
     font-weight: 600;
 
     cursor: pointer;
@@ -193,6 +222,7 @@
 
 .btn-exportar-perfiles:disabled {
     opacity: 0.45;
+
     cursor: not-allowed;
 }
 
@@ -203,7 +233,9 @@
 
 .perfiles-aprobados-mensaje-inicial {
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
     min-height: 130px;
@@ -211,7 +243,9 @@
     padding: 20px;
 
     color: #64748b;
+
     font-size: 14px;
+
     text-align: center;
 }
 
@@ -222,11 +256,13 @@
 
 .perfiles-aprobados-error {
     padding: 12px 15px;
+
     margin-bottom: 12px;
 
     border-radius: 6px;
 
     background: #fef2f2;
+
     color: #b91c1c;
 
     font-size: 13px;
@@ -234,20 +270,23 @@
 
 
 /* ============================================================
-   CONTENEDOR TABLA
+   CONTENEDOR DE TABLA
    ============================================================ */
 
 .perfiles-aprobados-tabla-contenedor {
     width: 100%;
+
     max-width: 100%;
+
     overflow-x: auto;
+
     overflow-y: auto;
 
     max-height: calc(100vh - 300px);
 
-    border-radius: 4px;
-
     scrollbar-width: thin;
+
+    background: #ffffff;
 }
 
 
@@ -257,13 +296,16 @@
 
 .tabla-perfiles-aprobados {
     width: max-content;
+
     min-width: 100%;
 
     border-collapse: separate;
+
     border-spacing: 0;
 
     font-size: 13px;
-    color: #1f2937;
+
+    color: #17324d;
 }
 
 
@@ -273,26 +315,31 @@
 
 .tabla-perfiles-aprobados thead {
     position: sticky;
+
     top: 0;
-    z-index: 5;
+
+    z-index: 10;
 }
 
 
 .tabla-perfiles-aprobados th {
     position: sticky;
+
     top: 0;
 
-    padding: 11px 13px;
+    height: 48px;
 
-    background: #f8fafc;
+    padding: 0 14px;
+
+    background: #0f5968;
+
+    color: #ffffff;
 
     border: none;
-    border-bottom: 1px solid #cbd5e1;
-
-    color: #374151;
 
     font-size: 12px;
-    font-weight: 700;
+
+    font-weight: 600;
 
     text-align: left;
 
@@ -305,42 +352,75 @@
    ============================================================ */
 
 .tabla-perfiles-aprobados td {
-    padding: 11px 13px;
+    height: 46px;
+
+    padding: 0 14px;
 
     border: none;
-    border-bottom: 1px solid #edf0f3;
 
-    vertical-align: top;
+    border-bottom: 1px solid #e1e5e8;
 
-    white-space: normal;
+    vertical-align: middle;
 
-    max-width: 320px;
+    white-space: nowrap;
 
-    line-height: 1.4;
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    max-width: 280px;
+
+    color: #17324d;
 }
 
 
 /* ============================================================
-   HOVER
+   FILAS
    ============================================================ */
 
 .tabla-perfiles-aprobados tbody tr {
-    transition: background 0.12s ease;
+    background: #ffffff;
+
+    transition:
+        background 0.12s ease;
 }
 
 
 .tabla-perfiles-aprobados tbody tr:hover {
-    background: #f8fafc;
+    background: #f5f8f9;
 }
 
 
 /* ============================================================
-   COLUMNA N. NOVEDAD
+   DETALLE - PRIMERA COLUMNA
    ============================================================ */
 
 .tabla-perfiles-aprobados th:first-child,
 .tabla-perfiles-aprobados td:first-child {
+    width: 58px;
+
+    min-width: 58px;
+
+    max-width: 58px;
+
+    padding-left: 10px;
+
+    padding-right: 10px;
+
+    text-align: center;
+
+    white-space: nowrap;
+}
+
+
+/* ============================================================
+   N. NOVEDAD
+   ============================================================ */
+
+.tabla-perfiles-aprobados th:nth-child(2),
+.tabla-perfiles-aprobados td:nth-child(2) {
     min-width: 90px;
+
     white-space: nowrap;
 }
 
@@ -349,25 +429,16 @@
    DOCUMENTO
    ============================================================ */
 
-.tabla-perfiles-aprobados th:nth-child(2),
-.tabla-perfiles-aprobados td:nth-child(2) {
+.tabla-perfiles-aprobados th:nth-child(3),
+.tabla-perfiles-aprobados td:nth-child(3) {
     min-width: 130px;
+
     white-space: nowrap;
 }
 
 
 /* ============================================================
    NOMBRE
-   ============================================================ */
-
-.tabla-perfiles-aprobados th:nth-child(3),
-.tabla-perfiles-aprobados td:nth-child(3) {
-    min-width: 220px;
-}
-
-
-/* ============================================================
-   CONVOCATORIA
    ============================================================ */
 
 .tabla-perfiles-aprobados th:nth-child(4),
@@ -377,12 +448,42 @@
 
 
 /* ============================================================
-   INDICADOR
+   CONVOCATORIA
+   ============================================================ */
+
+.tabla-perfiles-aprobados th:nth-child(5),
+.tabla-perfiles-aprobados td:nth-child(5) {
+    min-width: 230px;
+}
+
+
+/* ============================================================
+   TIPO NOVEDAD
    ============================================================ */
 
 .tabla-perfiles-aprobados th:nth-child(6),
 .tabla-perfiles-aprobados td:nth-child(6) {
-    min-width: 130px;
+    min-width: 110px;
+}
+
+
+/* ============================================================
+   INDICADOR
+   ============================================================ */
+
+.tabla-perfiles-aprobados th:nth-child(7),
+.tabla-perfiles-aprobados td:nth-child(7) {
+    min-width: 120px;
+}
+
+
+/* ============================================================
+   NIVEL
+   ============================================================ */
+
+.tabla-perfiles-aprobados th:nth-child(8),
+.tabla-perfiles-aprobados td:nth-child(8) {
+    min-width: 80px;
 }
 
 
@@ -390,40 +491,65 @@
    ROL
    ============================================================ */
 
-.tabla-perfiles-aprobados th:nth-child(8),
-.tabla-perfiles-aprobados td:nth-child(8) {
+.tabla-perfiles-aprobados th:nth-child(9),
+.tabla-perfiles-aprobados td:nth-child(9) {
     min-width: 220px;
 }
 
 
 /* ============================================================
-   JUSTIFICACIÓN / PERFILES
+   RESPONSABLE
    ============================================================ */
 
-.tabla-perfiles-aprobados th:nth-child(11),
-.tabla-perfiles-aprobados td:nth-child(11),
-.tabla-perfiles-aprobados th:nth-child(12),
-.tabla-perfiles-aprobados td:nth-child(12),
-.tabla-perfiles-aprobados th:nth-child(13),
-.tabla-perfiles-aprobados td:nth-child(13) {
-    min-width: 350px;
-    max-width: 500px;
+.tabla-perfiles-aprobados th:nth-child(10),
+.tabla-perfiles-aprobados td:nth-child(10) {
+    min-width: 180px;
 }
 
 
 /* ============================================================
-   COLUMNA DETALLE
+   CIUDAD
    ============================================================ */
 
-.tabla-perfiles-aprobados th:last-child,
-.tabla-perfiles-aprobados td:last-child {
-    width: 55px;
-    min-width: 55px;
-    max-width: 55px;
+.tabla-perfiles-aprobados th:nth-child(11),
+.tabla-perfiles-aprobados td:nth-child(11) {
+    min-width: 130px;
+}
 
-    text-align: center;
 
-    white-space: nowrap;
+/* ============================================================
+   JUSTIFICACIÓN
+   ============================================================ */
+
+.tabla-perfiles-aprobados th:nth-child(12),
+.tabla-perfiles-aprobados td:nth-child(12) {
+    min-width: 300px;
+
+    max-width: 350px;
+}
+
+
+/* ============================================================
+   PERFIL LABORAL
+   ============================================================ */
+
+.tabla-perfiles-aprobados th:nth-child(13),
+.tabla-perfiles-aprobados td:nth-child(13) {
+    min-width: 300px;
+
+    max-width: 350px;
+}
+
+
+/* ============================================================
+   PERFIL ACADÉMICO
+   ============================================================ */
+
+.tabla-perfiles-aprobados th:nth-child(14),
+.tabla-perfiles-aprobados td:nth-child(14) {
+    min-width: 300px;
+
+    max-width: 350px;
 }
 
 
@@ -433,17 +559,24 @@
 
 .btn-detalle-perfil {
     display: inline-flex;
+
     align-items: center;
+
     justify-content: center;
 
-    width: 32px;
-    height: 32px;
+    width: 30px;
+
+    height: 30px;
+
+    padding: 0;
 
     border: none;
+
     border-radius: 5px;
 
     background: transparent;
-    color: #475569;
+
+    color: #0f5968;
 
     cursor: pointer;
 
@@ -454,8 +587,9 @@
 
 
 .btn-detalle-perfil:hover {
-    background: #e2e8f0;
-    color: #1e293b;
+    background: #e7f0f2;
+
+    color: #0b4653;
 }
 
 
@@ -465,12 +599,15 @@
 
 .modal-overlay-perfiles-aprobados {
     position: fixed;
+
     inset: 0;
 
     z-index: 1000;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
     padding: 25px;
@@ -485,9 +622,11 @@
 
 .modal-perfiles-aprobados {
     width: min(950px, 100%);
+
     max-height: calc(100vh - 50px);
 
     display: flex;
+
     flex-direction: column;
 
     background: #ffffff;
@@ -507,7 +646,9 @@
 
 .modal-perfiles-aprobados-header {
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
 
     padding: 18px 22px;
@@ -522,6 +663,7 @@
     margin: 0 0 5px;
 
     font-size: 19px;
+
     font-weight: 700;
 
     color: #111827;
@@ -530,6 +672,7 @@
 
 .modal-perfiles-aprobados-header span {
     font-size: 12px;
+
     color: #64748b;
 }
 
@@ -540,13 +683,17 @@
 
 .btn-cerrar-modal-perfiles {
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
     width: 34px;
+
     height: 34px;
 
     border: none;
+
     border-radius: 5px;
 
     background: transparent;
@@ -563,6 +710,7 @@
 
 .btn-cerrar-modal-perfiles:hover {
     background: #f1f5f9;
+
     color: #111827;
 }
 
@@ -600,17 +748,19 @@
     border-bottom: 1px solid #e5e7eb;
 
     font-size: 13px;
+
     font-weight: 700;
 
     color: #334155;
 
     text-transform: uppercase;
+
     letter-spacing: 0.02em;
 }
 
 
 /* ============================================================
-   GRID DEL MODAL
+   GRID MODAL
    ============================================================ */
 
 .modal-grid-perfiles {
@@ -625,6 +775,7 @@
 
 .modal-grid-perfiles > div {
     display: flex;
+
     flex-direction: column;
 
     gap: 4px;
@@ -633,6 +784,7 @@
 
 .modal-grid-perfiles label {
     font-size: 11px;
+
     font-weight: 600;
 
     color: #64748b;
@@ -649,7 +801,7 @@
 
 
 /* ============================================================
-   TEXTOS EXTENSOS DEL MODAL
+   TEXTOS EXTENSOS
    ============================================================ */
 
 .modal-texto-perfil {
@@ -685,13 +837,14 @@
         flex-wrap: wrap;
     }
 
-    .fila-filtros:first-child select,
-    .fila-filtros:first-child input {
+    .fila-filtros select,
+    .fila-filtros input {
         flex: 1 1 220px;
     }
 
     .fila-filtros-secundaria input {
         flex: 1 1 220px;
+
         width: auto;
     }
 
@@ -714,17 +867,20 @@
 
     .perfiles-aprobados-filtros {
         flex-direction: column;
+
         align-items: stretch;
     }
 
     .perfiles-aprobados-filtros select,
     .perfiles-aprobados-filtros input {
         width: 100%;
+
         min-width: 0;
     }
 
     .perfiles-aprobados-barra {
         align-items: stretch;
+
         flex-direction: column;
     }
 
