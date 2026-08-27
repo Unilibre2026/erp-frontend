@@ -2947,9 +2947,9 @@ const exportarFiltrado = async () => {
 
               <th>N. novedad</th>
 
-              <th>Resumen perfil</th>
-
               <th>Fecha</th>
+
+              <th>Resumen perfil</th>
 
               <th>Status</th>
 
@@ -2996,7 +2996,15 @@ const exportarFiltrado = async () => {
 
 <td>
   {i.fecha_creacion
-    ? new Date(i.fecha_creacion).toLocaleDateString("es-CO")
+    ? new Date(i.fecha_creacion).toLocaleString("es-CO", {
+        timeZone: "America/Bogota",
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false
+      })
     : ""}
 </td>
 
