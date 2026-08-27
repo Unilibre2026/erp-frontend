@@ -17,6 +17,7 @@ import ExcelJS from "exceljs";
 import { saveAs } from "file-saver";
 import Aprobaciones from "./components/Aprobaciones";
 import ConsultaSubsanacion from "./components/ConsultaSubsanacion";
+import PerfilesAprobadosPorExperto from "./components/PerfilesAprobadosPorExperto";
 
 import ConsultaCNSC from "./components/ConsultaCNSC";
 
@@ -33,7 +34,7 @@ import ReporteAsistencia from "./components/ReporteAsistencia";
 import IncluirPresupuesto from "./pages/Presupuesto/IncluirPresupuesto";
 import Presupuesto from "./components/Presupuesto";
 import { FileText, FileUser } from "lucide-react";
-import PerfilesAprobadosPorExperto from "./components/PerfilesAprobadosPorExperto";
+
 
 const API_URL = "https://erp-unilibre-production.up.railway.app";
 
