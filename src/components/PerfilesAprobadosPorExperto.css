@@ -397,11 +397,11 @@
 
 .tabla-perfiles-aprobados th:first-child,
 .tabla-perfiles-aprobados td:first-child {
-    width: 58px;
+    width: 72px;
 
-    min-width: 58px;
+    min-width: 72px;
 
-    max-width: 58px;
+    max-width: 72px;
 
     padding-left: 10px;
 
@@ -554,44 +554,44 @@
 
 
 /* ============================================================
-   BOTÓN DETALLE
+   BOTÓN RESUMEN PERFIL
    ============================================================ */
 
 .btn-detalle-perfil {
     display: inline-flex;
 
     align-items: center;
-
     justify-content: center;
 
-    width: 30px;
-
-    height: 30px;
+    width: 46px;
+    height: 46px;
 
     padding: 0;
 
     border: none;
 
-    border-radius: 5px;
+    border-radius: 6px;
 
-    background: transparent;
+    background: #2563eb;
 
-    color: #0f5968;
+    color: #ffffff;
 
     cursor: pointer;
 
     transition:
         background 0.15s ease,
-        color 0.15s ease;
+        transform 0.1s ease;
 }
 
 
 .btn-detalle-perfil:hover {
-    background: #e7f0f2;
-
-    color: #0b4653;
+    background: #1d4ed8;
 }
 
+
+.btn-detalle-perfil:active {
+    transform: translateY(1px);
+}
 
 /* ============================================================
    MODAL - FONDO
