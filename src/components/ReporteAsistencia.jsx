@@ -35,6 +35,10 @@ const TIPOS_REPORTE = [
   "AUDITORIA 1",
 ];
 
+const FECHA_HOY = new Intl.DateTimeFormat("en-CA", {
+  timeZone: "America/Bogota",
+}).format(new Date());
+
 export default function ReporteAsistencia() {
 
   // =========================
@@ -800,6 +804,7 @@ export default function ReporteAsistencia() {
             <input
               type="date"
               value={fecha}
+              max={FECHA_HOY}
               onChange={(e) =>
                 setFecha(
                   e.target.value
