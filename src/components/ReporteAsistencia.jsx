@@ -815,19 +815,20 @@ export default function ReporteAsistencia() {
               value={fecha}
               max={FECHA_HOY}
               onChange={(e) => {
-                const nuevaFecha = e.target.value;
+               setFecha(e.target.value);
+               setError("");
+  }}
+              onBlur={(e) => {
+               const nuevaFecha = e.target.value;
 
-                if (nuevaFecha > FECHA_HOY) {
-                  setError(
-                    "La fecha de asistencia no puede ser posterior a la fecha actual."
-                  );
-                  return;
-                }
-
-                setError("");
-                setFecha(nuevaFecha);
-              }}
-            />
+               if (nuevaFecha && nuevaFecha > FECHA_HOY) {
+                setError(
+                  "La fecha de asistencia no puede ser posterior a la fecha actual."
+      );
+      setFecha("");
+    }
+  }}
+/>
 
           </div>
 
