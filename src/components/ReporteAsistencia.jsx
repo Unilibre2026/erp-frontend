@@ -419,6 +419,15 @@ export default function ReporteAsistencia() {
       return;
     }
 
+    if (fecha > FECHA_HOY) {
+
+      setError(
+        "La fecha de asistencia no puede ser posterior a la fecha actual."
+      );
+
+      return;
+    }
+
     if (!documento.trim()) {
 
       setError(
@@ -795,24 +804,30 @@ export default function ReporteAsistencia() {
 
           {/* FECHA */}
 
-          <input
-           type="date"
-           value={fecha}
-           max={FECHA_HOY}
-           onChange={(e) => {
-            const nuevaFecha = e.target.value;
+          <div className="reporte-asistencia-campo">
 
-            if (nuevaFecha > FECHA_HOY) {
-             setError(
-             "La fecha de asistencia no puede ser posterior a la fecha actual."
-      );
-      return;
-    }
+            <label>
+              Fecha
+            </label>
 
-    setError("");
-    setFecha(nuevaFecha);
-  }}
-/>
+            <input
+              type="date"
+              value={fecha}
+              max={FECHA_HOY}
+              onChange={(e) => {
+                const nuevaFecha = e.target.value;
+
+                if (nuevaFecha > FECHA_HOY) {
+                  setError(
+                    "La fecha de asistencia no puede ser posterior a la fecha actual."
+                  );
+                  return;
+                }
+
+                setError("");
+                setFecha(nuevaFecha);
+              }}
+            />
 
           </div>
 
@@ -1003,7 +1018,9 @@ export default function ReporteAsistencia() {
 
       </div>
 
-      {/* =========================
+      {
+        
+        /* =========================
           BOTÓN Y MENSAJES
       ========================= */}
 
