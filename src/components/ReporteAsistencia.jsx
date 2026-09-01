@@ -795,22 +795,24 @@ export default function ReporteAsistencia() {
 
           {/* FECHA */}
 
-          <div className="reporte-asistencia-campo">
+          <input
+           type="date"
+           value={fecha}
+           max={FECHA_HOY}
+           onChange={(e) => {
+            const nuevaFecha = e.target.value;
 
-            <label>
-              Fecha
-            </label>
+            if (nuevaFecha > FECHA_HOY) {
+             setError(
+             "La fecha de asistencia no puede ser posterior a la fecha actual."
+      );
+      return;
+    }
 
-            <input
-              type="date"
-              value={fecha}
-              max={FECHA_HOY}
-              onChange={(e) =>
-                setFecha(
-                  e.target.value
-                )
-              }
-            />
+    setError("");
+    setFecha(nuevaFecha);
+  }}
+/>
 
           </div>
 
