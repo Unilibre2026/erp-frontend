@@ -1184,7 +1184,7 @@ setReportes(datosFiltrados);
                   const fechaA = String(a.fecha ?? "").trim();
                   const fechaB = String(b.fecha ?? "").trim();
 
-                  return fechaB.localeCompare(fechaA);
+                  return fechaA.localeCompare(fechaB);
   })
   .map(
                 (reporte) => (
