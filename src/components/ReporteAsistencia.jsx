@@ -188,13 +188,6 @@ const datosFiltrados = Array.isArray(data)
     })
   : [];
 
-// Ordenar por Fecha de asistencia,
-// de la más reciente a la más antigua.
-datosFiltrados.sort((a, b) =>
-  String(b.fecha || "").localeCompare(
-    String(a.fecha || "")
-  )
-);
 
 setReportes(datosFiltrados);
 
@@ -1186,8 +1179,8 @@ setReportes(datosFiltrados);
 
               [...reportes]
                 .sort((a, b) => {
-                  const fechaA = new Date(`${a.fecha}T00:00:00`);
-                  const fechaB = new Date(`${b.fecha}T00:00:00`);
+                  const fechaA = String(a.fecha ?? "").trim();
+                  const fechaB = String(b.fecha ?? "").trim();;
 
                   return fechaB - fechaA;
     })
