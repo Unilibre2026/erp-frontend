@@ -1180,11 +1180,11 @@ setReportes(datosFiltrados);
               [...reportes]
                 .sort((a, b) => {
                   const fechaA = String(a.fecha ?? "").trim();
-                  const fechaB = String(b.fecha ?? "").trim();;
+                  const fechaB = String(b.fecha ?? "").trim();
 
-                  return fechaB - fechaA;
-    })
-    .map(
+                  return fechaB.localeCompare(fechaA);
+  })
+  .map(
                 (reporte) => (
 
                   <div
