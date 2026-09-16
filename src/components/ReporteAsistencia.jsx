@@ -1184,7 +1184,14 @@ setReportes(datosFiltrados);
 
             ) : (
 
-              reportes.map(
+              [...reportes]
+                .sort((a, b) => {
+                  const fechaA = new Date(`${a.fecha}T00:00:00`);
+                  const fechaB = new Date(`${b.fecha}T00:00:00`);
+
+                  return fechaB - fechaA;
+    })
+    .map(
                 (reporte) => (
 
                   <div
