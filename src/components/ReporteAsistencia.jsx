@@ -168,31 +168,35 @@ export default function ReporteAsistencia() {
       // Aunque el backend ya debe filtrar por los tres parámetros,
       // aquí evitamos mostrar accidentalmente registros de otra
       // convocatoria, tipo de reporte o documento.
-      const datosFiltrados = Array.isArray(data)
-        ? data.filter((reporte) => {
+const datosFiltrados = Array.isArray(data)
+  ? data.filter((reporte) => {
+      const mismaConvocatoria =
+        reporte.convocatoria === convocatoriaConsulta;
 
-            const mismaConvocatoria =
-              reporte.convocatoria ===
-              convocatoriaConsulta;
+      const mismoTipoReporte =
+        reporte.tipo_reporte === tipoReporteConsulta;
 
-            const mismoTipoReporte =
-              reporte.tipo_reporte ===
-              tipoReporteConsulta;
+      const mismoDocumento =
+        String(reporte.documento ?? "").trim() ===
+        String(documentoConsultaValor).trim();
 
-            const mismoDocumento =
-              String(reporte.documento ?? "").trim() ===
-              String(documentoConsultaValor).trim();
+      return (
+        mismaConvocatoria &&
+        mismoTipoReporte &&
+        mismoDocumento
+      );
+    })
+  : [];
 
-            return (
-              mismaConvocatoria &&
-              mismoTipoReporte &&
-              mismoDocumento
-            );
+// Ordenar por Fecha de asistencia,
+// de la más reciente a la más antigua.
+datosFiltrados.sort((a, b) =>
+  String(b.fecha || "").localeCompare(
+    String(a.fecha || "")
+  )
+);
 
-          })
-        : [];
-
-      setReportes(datosFiltrados);
+setReportes(datosFiltrados);
 
     } catch (err) {
 
