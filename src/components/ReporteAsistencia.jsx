@@ -188,6 +188,8 @@ const datosFiltrados = Array.isArray(data)
     })
   : [];
 
+  console.log("ORDEN RECIBIDO:", datosFiltrados.map(r => r.fecha));
+
 
 setReportes(datosFiltrados);
 
